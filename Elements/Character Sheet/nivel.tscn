@@ -1,0 +1,78 @@
+[gd_scene load_steps=8 format=3 uid="uid://d3fmuxtj85tyo"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/nivelTab.gd" id="1_5pqjf"]
+[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_4wuh0"]
+[ext_resource type="PackedScene" uid="uid://c0iadyufud2mk" path="res://Elements/Character Sheet/level_up_alert.tscn" id="3_u7msg"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/level_up_alert.gd" id="4_mpswc"]
+[ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="5_m7x0b"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/levelText.gd" id="6_pewux"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3sni7"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
+corner_radius_bottom_left = 20
+
+[node name="Nivel" type="Control"]
+custom_minimum_size = Vector2(150, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 172.0
+offset_bottom = 70.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_5pqjf")
+player_data = ExtResource("2_4wuh0")
+
+[node name="Level Up Alert" parent="." instance=ExtResource("3_u7msg")]
+visible = false
+script = ExtResource("4_mpswc")
+
+[node name="Box" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.772549)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3sni7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Box"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.5
+offset_top = -20.0
+offset_right = 66.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Box/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_m7x0b")
+text = "NIVEL:"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="SpinBox" type="SpinBox" parent="Box/HBoxContainer"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+editable = false
+update_on_text_changed = true
+script = ExtResource("6_pewux")
+player_data = ExtResource("2_4wuh0")
+
+[connection signal="level_up" from="." to="Level Up Alert" method="_on_nivel_level_up"]
+[connection signal="level_up" from="." to="Box/HBoxContainer/SpinBox" method="_on_nivel_level_up"]
+[connection signal="close_requested" from="Level Up Alert" to="Level Up Alert" method="_on_close_requested"]

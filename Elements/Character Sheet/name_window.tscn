@@ -1,0 +1,67 @@
+[gd_scene load_steps=3 format=3 uid="uid://brxpiqlksqnb4"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/name_window.gd" id="1_r26r7"]
+[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_ey8x2"]
+
+[node name="NameWindow" type="Window"]
+transparent_bg = true
+title = "Editar nombre"
+size = Vector2i(250, 50)
+transient = true
+exclusive = true
+unresizable = true
+transparent = true
+popup_window = true
+min_size = Vector2i(20, 20)
+auto_translate = false
+script = ExtResource("1_r26r7")
+player_data = ExtResource("2_ey8x2")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.580392, 0.580392, 0.580392, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(0, 40)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.5
+offset_top = -20.0
+offset_right = 48.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = -1
+
+[node name="VBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 13
+alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Soy este"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+title = "Confirmación"
+size = Vector2i(319, 100)
+unresizable = true
+ok_button_text = "SI"
+dialog_text = "¿Seguro que desea cambiar el nombre?"
+cancel_button_text = "NO"
+
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_up"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

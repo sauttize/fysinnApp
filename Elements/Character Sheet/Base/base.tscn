@@ -1,0 +1,786 @@
+[gd_scene load_steps=34 format=3 uid="uid://uyc0kutjxwxt"]
+
+[ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
+[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_xdtbq"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Armor/armaduraNormal.gd" id="4_uyb8g"]
+[ext_resource type="Texture2D" uid="uid://bhnp62mlcjmnf" path="res://_assets/Icons/Shield/2x/outline_shield_white_24dp.png" id="4_ye1em"]
+[ext_resource type="PackedScene" uid="uid://digv3ro3tv7pw" path="res://Elements/Buttons/edit_button.tscn" id="5_uo5e2"]
+[ext_resource type="Texture2D" uid="uid://dyotspvqr5q7o" path="res://_assets/Icons/Heart/2x/outline_favorite_white_24dp.png" id="7_cy3tr"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Life/ptsActuales.gd" id="7_wbpa4"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Life/ptsMaximos.gd" id="8_od5s1"]
+[ext_resource type="Texture2D" uid="uid://cji1l78ale2wy" path="res://_assets/Icons/Heart/2x/pressed.png" id="8_t5hko"]
+[ext_resource type="Texture2D" uid="uid://e6i8aty78531" path="res://_assets/Icons/Heart/2x/hover.png" id="9_2m2pc"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Life/EditLifeWindow.gd" id="12_rgb77"]
+[ext_resource type="Texture2D" uid="uid://o8mlpwuru3bn" path="res://_assets/Icons/Sleep/2x/outline_hotel_white_36dp.png" id="13_cxsms"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/RightPanel.gd" id="13_v3jk2"]
+[ext_resource type="Texture2D" uid="uid://or46kprkgmj4" path="res://_assets/Icons/Water/2x/outline_local_drink_white_36dp.png" id="14_b57mx"]
+[ext_resource type="Texture2D" uid="uid://bftjailqhhj3" path="res://_assets/Icons/Hunger/2x/outline_local_dining_white_36dp.png" id="15_83kv6"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/timer.gd" id="16_7650a"]
+[ext_resource type="Texture2D" uid="uid://b3cqwgttxmky3" path="res://_assets/Icons/Arrow Right/2x/outline_play_arrow_white_36dp.png" id="16_x4nk2"]
+[ext_resource type="Texture2D" uid="uid://gc6d0ae3bpav" path="res://_assets/Icons/Arrow Right/2x/selected.png" id="17_swiu6"]
+[ext_resource type="Texture2D" uid="uid://cw26f6kx5th4t" path="res://_assets/Icons/Arrow Right/2x/hover.png" id="18_cnp5t"]
+[ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="19_741qg"]
+[ext_resource type="Texture2D" uid="uid://cbf2k5qxaivmx" path="res://_assets/Icons/Crown/crown.png" id="20_mx7hn"]
+[ext_resource type="PackedScene" uid="uid://bskd6y34g3loh" path="res://_assets/Tweens/position_tween.tscn" id="21_0ymhn"]
+[ext_resource type="Texture2D" uid="uid://cjahaw24b70hy" path="res://_assets/Icons/Skull/human-skull.png" id="21_d31vl"]
+[ext_resource type="PackedScene" uid="uid://b8xhfve5kr8cj" path="res://_assets/Tweens/aplha_tween.tscn" id="23_qsonh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk3gq"]
+bg_color = Color(0.309804, 0.470588, 0.756863, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lref1"]
+bg_color = Color(0.968627, 0.270588, 0.313726, 0.580392)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wqf2m"]
+bg_color = Color(0.227451, 0.227451, 0.227451, 1)
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0nwkr"]
+bg_color = Color(0.823529, 0.85098, 0.807843, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11r18"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdfpp"]
+bg_color = Color(0.2, 0.411765, 0.376471, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 1
+corner_radius_bottom_right = 1
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnahd"]
+bg_color = Color(0.686275, 0.341176, 0.301961, 1)
+corner_radius_top_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4tw0"]
+bg_color = Color(0.2, 0.411765, 0.376471, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="Base" type="MarginContainer"]
+custom_minimum_size = Vector2(0, 680)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+script = ExtResource("1_k2ofn")
+
+[node name="Structure" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Row1" type="HBoxContainer" parent="Structure"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Skills" parent="Structure/Row1" instance=ExtResource("1_b7ayw")]
+custom_minimum_size = Vector2(210, 240)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="AplhaTween" parent="Structure/Row1/Skills" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
+node = NodePath("..")
+duration = 0.8
+
+[node name="ArmorVida" type="VBoxContainer" parent="Structure/Row1"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 10
+
+[node name="Armadura" type="Control" parent="Structure/Row1/ArmorVida"]
+custom_minimum_size = Vector2(210, 110)
+layout_mode = 2
+mouse_filter = 1
+
+[node name="bg" type="Panel" parent="Structure/Row1/ArmorVida/Armadura"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+offset_right = 210.0
+offset_bottom = 110.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rk3gq")
+
+[node name="Normal" type="Label" parent="Structure/Row1/ArmorVida/Armadura"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -35.0
+offset_right = 75.0
+offset_bottom = 35.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_uyb8g")
+
+[node name="Temporary" type="Label" parent="Structure/Row1/ArmorVida/Armadura"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -35.0
+offset_bottom = 35.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 30
+text = "-"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Structure/Row1/ArmorVida/Armadura"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.5
+offset_top = -37.5
+offset_right = 38.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_ye1em")
+
+[node name="EditButton" parent="Structure/Row1/ArmorVida/Armadura" instance=ExtResource("5_uo5e2")]
+modulate = Color(1, 1, 1, 0.541176)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = -5.0
+grow_vertical = 0
+
+[node name="AddTempArmor" type="Window" parent="Structure/Row1/ArmorVida/Armadura"]
+title = "Defensa temporal"
+size = Vector2i(300, 100)
+visible = false
+transient = true
+exclusive = true
+unresizable = true
+
+[node name="VBoxContainer" type="GridContainer" parent="Structure/Row1/ArmorVida/Armadura/AddTempArmor"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.5
+offset_top = -20.0
+offset_right = 128.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="Label" type="Label" parent="Structure/Row1/ArmorVida/Armadura/AddTempArmor/VBoxContainer"]
+layout_mode = 2
+text = "Armadura"
+
+[node name="Tiempo" type="Label" parent="Structure/Row1/ArmorVida/Armadura/AddTempArmor/VBoxContainer"]
+layout_mode = 2
+text = "Tiempo"
+
+[node name="Vacio" type="Label" parent="Structure/Row1/ArmorVida/Armadura/AddTempArmor/VBoxContainer"]
+layout_mode = 2
+
+[node name="PuntosText" type="LineEdit" parent="Structure/Row1/ArmorVida/Armadura/AddTempArmor/VBoxContainer"]
+custom_minimum_size = Vector2(90, 25)
+layout_mode = 2
+
+[node name="TiempoText" type="LineEdit" parent="Structure/Row1/ArmorVida/Armadura/AddTempArmor/VBoxContainer"]
+custom_minimum_size = Vector2(90, 25)
+layout_mode = 2
+
+[node name="AgregarBtn" type="Button" parent="Structure/Row1/ArmorVida/Armadura/AddTempArmor/VBoxContainer"]
+layout_mode = 2
+text = "Agregar"
+
+[node name="Vida" type="Control" parent="Structure/Row1/ArmorVida"]
+custom_minimum_size = Vector2(210, 110)
+layout_mode = 2
+
+[node name="bg" type="Panel" parent="Structure/Row1/ArmorVida/Vida"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lref1")
+
+[node name="Linea" type="ColorRect" parent="Structure/Row1/ArmorVida/Vida"]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = -1.5
+offset_right = 95.0
+offset_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.436332
+pivot_offset = Vector2(91.1512, 1.24701)
+color = Color(0.984314, 0.74902, 0.701961, 1)
+
+[node name="Labels" type="MarginContainer" parent="Structure/Row1/ArmorVida/Vida"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="Actuales" type="VBoxContainer" parent="Structure/Row1/ArmorVida/Vida/Labels"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Actualeslbl" type="Label" parent="Structure/Row1/ArmorVida/Vida/Labels/Actuales"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 12
+text = "Actuales"
+
+[node name="ptsActuales" type="Label" parent="Structure/Row1/ArmorVida/Vida/Labels/Actuales"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_wbpa4")
+_playerData = ExtResource("3_xdtbq")
+
+[node name="warning" type="Window" parent="Structure/Row1/ArmorVida/Vida/Labels/Actuales"]
+title = "Error"
+size = Vector2i(220, 100)
+visible = false
+transient = true
+exclusive = true
+unresizable = true
+
+[node name="Label" type="Label" parent="Structure/Row1/ArmorVida/Vida/Labels/Actuales/warning"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Solo puedes colocar numeros"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Maximos" type="VBoxContainer" parent="Structure/Row1/ArmorVida/Vida/Labels"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Maximoslbl" type="Label" parent="Structure/Row1/ArmorVida/Vida/Labels/Maximos"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 12
+text = "Maximo"
+
+[node name="ptsMaximos" type="Label" parent="Structure/Row1/ArmorVida/Vida/Labels/Maximos"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 24
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("8_od5s1")
+_playerData = ExtResource("3_xdtbq")
+
+[node name="EditarVida" type="TextureButton" parent="Structure/Row1/ArmorVida/Vida"]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -17.5
+offset_top = -17.5
+offset_right = 17.5
+offset_bottom = 17.5
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("7_cy3tr")
+texture_pressed = ExtResource("8_t5hko")
+texture_hover = ExtResource("9_2m2pc")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="EditLife" type="Window" parent="Structure/Row1/ArmorVida/Vida" node_paths=PackedStringArray("_warning", "lifePoints", "maxPoints")]
+title = "Editar Vida"
+size = Vector2i(200, 300)
+visible = false
+transient = true
+exclusive = true
+unresizable = true
+script = ExtResource("12_rgb77")
+_warning = NodePath("../Labels/Actuales/warning")
+lifePoints = NodePath("VSplitContainer/UpperPanel/VBox/ptsVida")
+maxPoints = NodePath("VSplitContainer/BottomPanel/VBox/addMax")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Structure/Row1/ArmorVida/Vida/EditLife"]
+offset_right = 200.0
+offset_bottom = 300.0
+split_offset = 180
+
+[node name="UpperPanel" type="Panel" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_wqf2m")
+
+[node name="VBox" type="VBoxContainer" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -65.0
+offset_right = 54.0
+offset_bottom = 65.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 5
+
+[node name="title" type="Label" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Añadir/Quitar"
+
+[node name="ptsVida" type="LineEdit" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(0.0392157, 0.0392157, 0.0392157, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_0nwkr")
+alignment = 1
+
+[node name="curarbtn" type="Button" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_pressed_color = Color(0.266667, 0.333333, 0.243137, 1)
+theme_override_colors/font_hover_color = Color(0.435294, 0.619608, 0.435294, 1)
+text = "Curar"
+
+[node name="herirbtn" type="Button" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_colors/font_pressed_color = Color(0.459543, 0.140792, 0.204993, 1)
+theme_override_colors/font_hover_color = Color(0.823529, 0.294118, 0.321569, 1)
+text = "Herida"
+
+[node name="BottomPanel" type="Panel" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_11r18")
+
+[node name="VBox" type="VBoxContainer" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/BottomPanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -72.5
+offset_right = 72.5
+offset_bottom = 96.0
+grow_horizontal = 2
+
+[node name="title" type="Label" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/BottomPanel/VBox"]
+layout_mode = 2
+text = "Aumentar máximo
+"
+
+[node name="addMax" type="LineEdit" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/BottomPanel/VBox"]
+layout_mode = 2
+
+[node name="maxBtn" type="Button" parent="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/BottomPanel/VBox"]
+layout_mode = 2
+text = "Agregar"
+
+[node name="AplhaTween" parent="Structure/Row1/ArmorVida" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
+node = NodePath("..")
+duration = 1.2
+
+[node name="RightPanel" type="Control" parent="Structure/Row1" node_paths=PackedStringArray("picNode", "statsNode", "raza", "currentPic")]
+custom_minimum_size = Vector2(210, 240)
+layout_mode = 2
+script = ExtResource("13_v3jk2")
+playerData = ExtResource("3_xdtbq")
+picNode = NodePath("picture")
+statsNode = NodePath("stats")
+raza = NodePath("stats/vbox/hboxRaza/razaName")
+currentPic = NodePath("picture/bgFoto/profilePic")
+
+[node name="bg" type="Panel" parent="Structure/Row1/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_qdfpp")
+
+[node name="topPanel" type="Panel" parent="Structure/Row1/RightPanel"]
+layout_mode = 0
+offset_right = 254.0
+offset_bottom = 30.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_gnahd")
+
+[node name="cont1" type="MarginContainer" parent="Structure/Row1/RightPanel/topPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 40
+
+[node name="hbox" type="HBoxContainer" parent="Structure/Row1/RightPanel/topPanel/cont1"]
+layout_mode = 2
+
+[node name="Sueño" type="HBoxContainer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("13_cxsms")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño" node_paths=PackedStringArray("timer", "activateButton")]
+texture_filter = 1
+layout_mode = 2
+text = "100
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("16_7650a")
+timer = NodePath("Timer")
+activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
+currentNum = 20
+minutesUntilZero = 1
+orangeColor = Color(0.988235, 0.784314, 0.168627, 1)
+redColor = Color(0.717647, 0.00784314, 0, 1)
+desactivatedTimerColor = Color(0.0941176, 0.0941176, 0.0941176, 1)
+
+[node name="Timer" type="Timer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño/num"]
+
+[node name="ColorRect" type="ColorRect" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño"]
+custom_minimum_size = Vector2(1, 0.1)
+layout_mode = 2
+
+[node name="Sed" type="HBoxContainer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("14_b57mx")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed"]
+texture_filter = 1
+layout_mode = 2
+text = "100
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed"]
+custom_minimum_size = Vector2(1, 0.1)
+layout_mode = 2
+
+[node name="Hambre" type="HBoxContainer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox"]
+layout_mode = 2
+
+[node name="icon" type="TextureRect" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("15_83kv6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre"]
+texture_filter = 1
+layout_mode = 2
+text = "100
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre"]
+custom_minimum_size = Vector2(1, 0.1)
+layout_mode = 2
+
+[node name="Change" type="TextureButton" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox"]
+custom_minimum_size = Vector2(25, 0)
+layout_mode = 2
+texture_normal = ExtResource("16_x4nk2")
+texture_pressed = ExtResource("17_swiu6")
+texture_hover = ExtResource("18_cnp5t")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="picture" type="Control" parent="Structure/Row1/RightPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -81.0
+offset_top = -80.0
+offset_right = 85.0
+offset_bottom = 102.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bgFoto" type="Panel" parent="Structure/Row1/RightPanel/picture"]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -83.0
+offset_top = -91.0
+offset_right = 83.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x4tw0")
+
+[node name="positionTween" parent="Structure/Row1/RightPanel/picture/bgFoto" node_paths=PackedStringArray("node") instance=ExtResource("21_0ymhn")]
+node = NodePath("../profilePic")
+duration = 1.4
+newStartingPosition = true
+fromPosition2D = Vector2(143, -14)
+toPosition2D = Vector2(-13, -14)
+
+[node name="profilePic" type="TextureRect" parent="Structure/Row1/RightPanel/picture/bgFoto"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -13.0
+offset_top = -14.0
+offset_right = 17.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_741qg")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="EditButton" parent="Structure/Row1/RightPanel/picture" instance=ExtResource("5_uo5e2")]
+modulate = Color(1, 1, 1, 0.541176)
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -20.0
+offset_right = 23.0
+offset_bottom = -5.0
+grow_vertical = 0
+
+[node name="FileDialog" type="FileDialog" parent="Structure/Row1/RightPanel/picture"]
+title = "Open a File"
+size = Vector2i(600, 450)
+unresizable = true
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.jpg")
+
+[node name="stats" type="Control" parent="Structure/Row1/RightPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 36.0
+offset_right = 10.0
+offset_bottom = -9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="vbox" type="VBoxContainer" parent="Structure/Row1/RightPanel/stats"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -55.5
+offset_bottom = 55.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hbox" type="HBoxContainer" parent="Structure/Row1/RightPanel/stats/vbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 40
+
+[node name="fama" type="VBoxContainer" parent="Structure/Row1/RightPanel/stats/vbox/hbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="icon" type="TextureRect" parent="Structure/Row1/RightPanel/stats/vbox/hbox/fama"]
+custom_minimum_size = Vector2(38, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("20_mx7hn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/stats/vbox/hbox/fama"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="danger" type="VBoxContainer" parent="Structure/Row1/RightPanel/stats/vbox/hbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="icon" type="TextureRect" parent="Structure/Row1/RightPanel/stats/vbox/hbox/danger"]
+custom_minimum_size = Vector2(34, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+texture = ExtResource("21_d31vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/stats/vbox/hbox/danger"]
+texture_filter = 1
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="hLine" type="ColorRect" parent="Structure/Row1/RightPanel/stats/vbox"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.878431, 0.878431, 0.878431, 1)
+
+[node name="hboxRaza" type="HBoxContainer" parent="Structure/Row1/RightPanel/stats/vbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="raza" type="Label" parent="Structure/Row1/RightPanel/stats/vbox/hboxRaza"]
+texture_filter = 1
+layout_mode = 2
+text = "Raza: "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="razaName" type="Label" parent="Structure/Row1/RightPanel/stats/vbox/hboxRaza"]
+texture_filter = 1
+layout_mode = 2
+text = "Naiad
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play  Stop" type="Button" parent="Structure/Row1/RightPanel/stats/vbox"]
+texture_filter = 1
+layout_mode = 2
+text = "Play / Stop"
+
+[node name="Nuevo dia" type="Button" parent="Structure/Row1/RightPanel/stats/vbox"]
+texture_filter = 1
+layout_mode = 2
+text = "Nuevo Dia"
+
+[node name="AplhaTween" parent="Structure/Row1/RightPanel" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
+node = NodePath("..")
+duration = 1.6
+
+[connection signal="updateBaseData" from="." to="Structure/Row1/Skills" method="_on_base_update_base_data"]
+[connection signal="updateBaseData" from="." to="Structure/Row1/ArmorVida/Armadura/Normal" method="_on_base_update_base_data"]
+[connection signal="updateBaseData" from="." to="Structure/Row1/ArmorVida/Vida/Labels/Actuales/ptsActuales" method="_on_base_update_base_data"]
+[connection signal="updateBaseData" from="." to="Structure/Row1/ArmorVida/Vida/Labels/Maximos/ptsMaximos" method="_on_base_update_base_data"]
+[connection signal="button_up" from="Structure/Row1/ArmorVida/Armadura/EditButton" to="." method="_on_edit_button_button_up"]
+[connection signal="close_requested" from="Structure/Row1/ArmorVida/Armadura/AddTempArmor" to="." method="_on_add_temp_armor_close_requested"]
+[connection signal="close_requested" from="Structure/Row1/ArmorVida/Vida/Labels/Actuales/warning" to="Structure/Row1/ArmorVida/Vida/EditLife" method="_on_warning_close_requested"]
+[connection signal="button_up" from="Structure/Row1/ArmorVida/Vida/EditarVida" to="." method="_on_editar_vida_button_up"]
+[connection signal="addCurrent" from="Structure/Row1/ArmorVida/Vida/EditLife" to="Structure/Row1/ArmorVida/Vida/Labels/Actuales/ptsActuales" method="_on_edit_life_add_current"]
+[connection signal="close_requested" from="Structure/Row1/ArmorVida/Vida/EditLife" to="." method="_on_edit_life_close_requested"]
+[connection signal="subCurrent" from="Structure/Row1/ArmorVida/Vida/EditLife" to="Structure/Row1/ArmorVida/Vida/Labels/Actuales/ptsActuales" method="_on_edit_life_sub_current"]
+[connection signal="updateMax" from="Structure/Row1/ArmorVida/Vida/EditLife" to="Structure/Row1/ArmorVida/Vida/Labels/Maximos/ptsMaximos" method="_on_edit_life_update_max"]
+[connection signal="button_up" from="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox/curarbtn" to="Structure/Row1/ArmorVida/Vida/EditLife" method="_on_curarbtn_button_up"]
+[connection signal="button_up" from="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox/herirbtn" to="Structure/Row1/ArmorVida/Vida/EditLife" method="_on_herirbtn_button_up"]
+[connection signal="button_up" from="Structure/Row1/ArmorVida/Vida/EditLife/VSplitContainer/BottomPanel/VBox/maxBtn" to="Structure/Row1/ArmorVida/Vida/EditLife" method="_on_max_btn_button_up"]
+[connection signal="timeout" from="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño/num/Timer" to="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño/num" method="_on_timer_timeout"]
+[connection signal="button_up" from="Structure/Row1/RightPanel/topPanel/cont1/hbox/Change" to="Structure/Row1/RightPanel" method="_on_change_button_up"]
+[connection signal="button_up" from="Structure/Row1/RightPanel/picture/EditButton" to="Structure/Row1/RightPanel" method="_on_edit_button_button_up"]
+[connection signal="file_selected" from="Structure/Row1/RightPanel/picture/FileDialog" to="Structure/Row1/RightPanel" method="_on_file_dialog_file_selected"]

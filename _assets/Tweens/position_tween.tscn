@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bskd6y34g3loh"]
+
+[ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="1_enmgr"]
+
+[node name="positionTween" type="Node"]
+script = ExtResource("1_enmgr")

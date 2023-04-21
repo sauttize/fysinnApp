@@ -1,0 +1,180 @@
+[gd_scene load_steps=10 format=3 uid="uid://bddgh2tf2lob8"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/SkillsManager.gd" id="1_ylu36"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/FUE_bonus.gd" id="2_8ov4a"]
+[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_33d57"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/CON_bonus.gd" id="4_4nnux"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/DES_bonus.gd" id="4_st43u"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/INT_bonus.gd" id="5_qmx1w"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/SAB_bonus.gd" id="6_h08y0"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/CAR_bonus.gd" id="7_s7nvc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii5t1"]
+bg_color = Color(0.2, 0.411765, 0.376471, 1)
+corner_radius_top_left = 1
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 1
+
+[node name="Control" type="Control" node_paths=PackedStringArray("fue_num", "des_num", "con_num", "int_num", "sab_num", "car_num")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -470.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ylu36")
+_playerData = ExtResource("2_33d57")
+fue_num = NodePath("MarginContainer/GridContainer/FUE_num")
+des_num = NodePath("MarginContainer/GridContainer/DES_num")
+con_num = NodePath("MarginContainer/GridContainer/CON_num")
+int_num = NodePath("MarginContainer/GridContainer/INT_num")
+sab_num = NodePath("MarginContainer/GridContainer/SAB_num")
+car_num = NodePath("MarginContainer/GridContainer/CAR_num")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -73.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ii5t1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="FUE_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="FUE_lbl" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "FUE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FUE_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+min_value = -5.0
+max_value = 10.0
+editable = false
+script = ExtResource("2_8ov4a")
+
+[node name="DES_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="DES_lbl" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "DES
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DES_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+min_value = -5.0
+max_value = 10.0
+editable = false
+script = ExtResource("4_st43u")
+
+[node name="CON_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="CON_lbl" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "CON
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CON_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+min_value = -5.0
+max_value = 10.0
+editable = false
+script = ExtResource("4_4nnux")
+
+[node name="INT_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="INT_lbl" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "INT
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="INT_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+min_value = -5.0
+max_value = 10.0
+editable = false
+script = ExtResource("5_qmx1w")
+
+[node name="SAB_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="SAB_lbl" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "SAB
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SAB_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+min_value = -5.0
+max_value = 10.0
+editable = false
+script = ExtResource("6_h08y0")
+
+[node name="CAR_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="CAR_lbl" type="Label" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+text = "CAR
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CAR_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+min_value = -5.0
+max_value = 10.0
+editable = false
+script = ExtResource("7_s7nvc")
+
+[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/FUE_bonus" method="_on_control_update_bonuses"]
+[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/DES_bonus" method="_on_control_update_bonuses"]
+[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/CON_bonus" method="_on_control_update_bonuses"]
+[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/INT_bonus" method="_on_control_update_bonuses"]
+[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/SAB_bonus" method="_on_control_update_bonuses"]
+[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/CAR_bonus" method="_on_control_update_bonuses"]
+[connection signal="text_changed" from="MarginContainer/GridContainer/FUE_num" to="MarginContainer/GridContainer/FUE_bonus" method="_on_fue_num_text_changed"]
+[connection signal="updateSKILL" from="MarginContainer/GridContainer/FUE_bonus" to="." method="_on_fue_bonus_update_skill"]
+[connection signal="text_changed" from="MarginContainer/GridContainer/DES_num" to="MarginContainer/GridContainer/DES_bonus" method="_on_des_num_text_changed"]
+[connection signal="updateDES" from="MarginContainer/GridContainer/DES_bonus" to="." method="_on_des_bonus_update_des"]
+[connection signal="text_changed" from="MarginContainer/GridContainer/CON_num" to="MarginContainer/GridContainer/CON_bonus" method="_on_con_num_text_changed"]
+[connection signal="updateCON" from="MarginContainer/GridContainer/CON_bonus" to="." method="_on_con_bonus_update_con"]
+[connection signal="text_changed" from="MarginContainer/GridContainer/INT_num" to="MarginContainer/GridContainer/INT_bonus" method="_on_int_num_text_changed"]
+[connection signal="updateINT" from="MarginContainer/GridContainer/INT_bonus" to="." method="_on_int_bonus_update_int"]
+[connection signal="text_changed" from="MarginContainer/GridContainer/SAB_num" to="MarginContainer/GridContainer/SAB_bonus" method="_on_sab_num_text_changed"]
+[connection signal="updateSAB" from="MarginContainer/GridContainer/SAB_bonus" to="." method="_on_sab_bonus_update_sab"]
+[connection signal="text_changed" from="MarginContainer/GridContainer/CAR_num" to="MarginContainer/GridContainer/CAR_bonus" method="_on_car_num_text_changed"]
+[connection signal="updateCAR" from="MarginContainer/GridContainer/CAR_bonus" to="." method="_on_car_bonus_update_car"]

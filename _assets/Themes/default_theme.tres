@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://gk8yrqt5iopc"]
+
+[ext_resource type="FontFile" uid="uid://s64tvl31747e" path="res://_assets/Fonts/Cabin-VariableFont_wdth,wght.ttf" id="1_15r3k"]
+[ext_resource type="StyleBox" uid="uid://br71kevxdgqjk" path="res://_assets/Themes/boxStyle/perfil.tres" id="2_xdyop"]
+
+[resource]
+Button/fonts/font = ExtResource("1_15r3k")
+Button/styles/normal = ExtResource("2_xdyop")
+Label/fonts/font = ExtResource("1_15r3k")

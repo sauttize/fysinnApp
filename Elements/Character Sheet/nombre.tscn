@@ -1,0 +1,115 @@
+[gd_scene load_steps=11 format=3 uid="uid://olalpaiw6d5r"]
+
+[ext_resource type="PackedScene" uid="uid://brxpiqlksqnb4" path="res://Elements/Character Sheet/name_window.tscn" id="1_cyti3"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/NombreNode.gd" id="1_eia5l"]
+[ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="2_ljb57"]
+[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_2d31m"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/nameText.gd" id="3_8sm4v"]
+[ext_resource type="Texture2D" uid="uid://b6bpfuex47bpt" path="res://_assets/Icons/Edit/writing.png" id="5_arjww"]
+[ext_resource type="Texture2D" uid="uid://crencrgf1ohy" path="res://_assets/Icons/Edit/writingPressed.png" id="6_ldetq"]
+[ext_resource type="Texture2D" uid="uid://dssacddfmf7qg" path="res://_assets/Icons/Edit/writingHover.png" id="7_t0ks7"]
+[ext_resource type="Texture2D" uid="uid://d04b8kacvr3km" path="res://_assets/Icons/Edit/writingDisable.png" id="8_d5hx4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf2b7"]
+bg_color = Color(0.298039, 0.298039, 0.298039, 1)
+corner_radius_bottom_right = 20
+
+[node name="Nombre" type="Control" node_paths=PackedStringArray("nameLabel")]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 320.0
+offset_bottom = 70.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_eia5l")
+nameLabel = NodePath("DisplayBox/Name")
+
+[node name="NameWindow" parent="." instance=ExtResource("1_cyti3")]
+visible = false
+popup_window = false
+
+[node name="Box" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.772549)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yf2b7")
+
+[node name="DisplayBox" type="ColorRect" parent="."]
+modulate = Color(1, 1, 1, 0.772549)
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -13.0
+offset_right = -43.0
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0.0941176, 0.0941176, 0.0941176, 1)
+
+[node name="Name" type="Label" parent="DisplayBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ljb57")
+text = "Test"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_8sm4v")
+player_data = ExtResource("3_2d31m")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -13.0
+offset_right = 96.0
+offset_bottom = 13.0
+grow_vertical = 2
+theme = ExtResource("2_ljb57")
+text = "Nombre:"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="TextureButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -10.0
+offset_right = -12.0
+offset_bottom = 10.0
+grow_horizontal = 0
+grow_vertical = 2
+texture_normal = ExtResource("5_arjww")
+texture_pressed = ExtResource("6_ldetq")
+texture_hover = ExtResource("7_t0ks7")
+texture_disabled = ExtResource("8_d5hx4")
+ignore_texture_size = true
+stretch_mode = 4
+
+[connection signal="close_requested" from="NameWindow" to="NameWindow" method="_on_close_requested"]
+[connection signal="close_requested" from="NameWindow" to="DisplayBox/Name" method="_on_name_window_close_requested"]
+[connection signal="visibility_changed" from="NameWindow" to="DisplayBox/Name" method="_on_name_window_visibility_changed"]
+[connection signal="button_up" from="TextureButton" to="NameWindow" method="_on_texture_button_button_up"]
