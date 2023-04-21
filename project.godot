@@ -26,6 +26,8 @@ window/size/viewport_width=700
 window/size/viewport_height=800
 window/size/resizable=false
 window/subwindows/embed_subwindows=false
+window/stretch/aspect="ignore"
+window/handheld/orientation=1
 
 [editor]
 

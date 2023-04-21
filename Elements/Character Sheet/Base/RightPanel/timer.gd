@@ -20,9 +20,9 @@ const RED = 0.25
 var orangeValue : float = 50
 var redValue : float = 25
 # Colors itself
-@export var orangeColor : Color = Color.DARK_ORANGE
-@export var redColor : Color = Color.DARK_RED
-@export var desactivatedTimerColor : Color = Color.DIM_GRAY
+@export var orangeColor : Color = Color("#fcc82b")
+@export var redColor : Color = Color("#b70200")
+@export var desactivatedTimerColor : Color = Color("#181818")
 
 
 func _ready() -> void:

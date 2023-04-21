@@ -519,11 +519,9 @@ vertical_alignment = 1
 script = ExtResource("16_7650a")
 timer = NodePath("Timer")
 activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
+statusType = 1
 currentNum = 20
 minutesUntilZero = 1
-orangeColor = Color(0.988235, 0.784314, 0.168627, 1)
-redColor = Color(0.717647, 0.00784314, 0, 1)
-desactivatedTimerColor = Color(0.0941176, 0.0941176, 0.0941176, 1)
 
 [node name="Timer" type="Timer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño/num"]
 
@@ -541,13 +539,19 @@ texture = ExtResource("14_b57mx")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed"]
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed" node_paths=PackedStringArray("timer", "activateButton")]
 texture_filter = 1
 layout_mode = 2
 text = "100
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("16_7650a")
+timer = NodePath("Timer")
+activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
+statusType = 2
+
+[node name="Timer" type="Timer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed/num"]
 
 [node name="ColorRect" type="ColorRect" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed"]
 custom_minimum_size = Vector2(1, 0.1)
@@ -563,13 +567,18 @@ texture = ExtResource("15_83kv6")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre"]
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre" node_paths=PackedStringArray("timer", "activateButton")]
 texture_filter = 1
 layout_mode = 2
 text = "100
 "
 horizontal_alignment = 1
 vertical_alignment = 1
+script = ExtResource("16_7650a")
+timer = NodePath("Timer")
+activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
+
+[node name="Timer" type="Timer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre/num"]
 
 [node name="ColorRect" type="ColorRect" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre"]
 custom_minimum_size = Vector2(1, 0.1)
@@ -585,7 +594,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="picture" type="Control" parent="Structure/Row1/RightPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -660,6 +668,7 @@ access = 2
 filters = PackedStringArray("*.png", "*.jpg")
 
 [node name="stats" type="Control" parent="Structure/Row1/RightPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

@@ -6,9 +6,9 @@ func _checkData():
 	text = str(_playerData.maxLife + _playerData.modifiers[2])
 
 func _add_maxlife(value : int):
-	var textToInt = int(text)
-	textToInt += value
-	_playerData.maxLife = textToInt
+	#var textToInt = int(text)
+	#textToInt += value
+	_playerData.maxLife += value 
 	_checkData()
 
 func _update_maxlife(value : int):

@@ -47,11 +47,19 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 expand_margin_bottom = 6.0
 
-[node name="Player manager" type="Node"]
+[node name="Player manager" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_fd83x")
 _playerData = ExtResource("2_yymf8")
 
 [node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -60,6 +68,7 @@ grow_vertical = 2
 color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
