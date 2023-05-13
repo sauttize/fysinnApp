@@ -14,7 +14,7 @@ config/name="Fysinn: Player Management"
 run/main_scene="res://Scenes/PlayerScene.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.0", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Icono.png"
 
 [autoload]
 
