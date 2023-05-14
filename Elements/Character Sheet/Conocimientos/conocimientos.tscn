@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ddp7y6gn35b86"]
+
+[node name="Conocimientos" type="MarginContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 680)
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
