@@ -5,3 +5,6 @@ visible = false
 custom_minimum_size = Vector2(0, 680)
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
+
+[node name="HBOX" type="HBoxContainer" parent="."]
+layout_mode = 2

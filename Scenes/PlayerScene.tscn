@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=20 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://br4spa7odwlg8" path="res://Elements/Character Sheet/exp.tscn" id="6_nsmno"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/TabsManager.gd" id="7_eonce"]
 [ext_resource type="PackedScene" uid="uid://uyc0kutjxwxt" path="res://Elements/Character Sheet/Base/base.tscn" id="9_p74o1"]
+[ext_resource type="PackedScene" uid="uid://ddp7y6gn35b86" path="res://Elements/Character Sheet/Conocimientos/conocimientos.tscn" id="12_mioef"]
 
 [sub_resource type="SystemFont" id="SystemFont_xkiv0"]
 
@@ -200,13 +201,8 @@ script = ExtResource("7_eonce")
 [node name="Base" parent="MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("9_p74o1")]
 layout_mode = 2
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/TabContainer"]
-visible = false
+[node name="Conocimientos" parent="MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("12_mioef")]
 layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/TabContainer/MarginContainer2"]
-layout_mode = 2
-text = "Tab 2."
 
 [node name="LoadResource" type="FileDialog" parent="."]
 title = "Open a File"
