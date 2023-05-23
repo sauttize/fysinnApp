@@ -101,4 +101,5 @@ text = "Debes colocar datos en ambas casillas."
 
 [connection signal="visibility_changed" from="ExpWindow" to="." method="_on_exp_window_visibility_changed"]
 [connection signal="visibility_changed" from="ExpWindow" to="HBoxContainer/DisplayBox/Name" method="_on_exp_window_visibility_changed"]
+[connection signal="button_up" from="HBoxContainer/EditButton" to="ExpWindow" method="_on_edit_button_button_up"]
 [connection signal="close_requested" from="Aviso" to="Aviso" method="_on_close_requested"]

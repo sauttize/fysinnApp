@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://j2hvjpuehvno"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Elements.gd" id="1_18ycc"]
+
+[resource]
+script = ExtResource("1_18ycc")
+element = 6
+strength = Array[int]([2, 3])
+weakness = Array[int]([8, 0])

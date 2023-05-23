@@ -26,11 +26,7 @@ func _on_button_button_up():
 		aviso.popup_centered_clamped()
 
 # Shows windows when edit button pressed.
-func _on_texture_button_2_button_up():
+func _on_edit_button_button_up() -> void:
 	popup_centered_clamped()
 func _on_close_requested():
 	hide()
-
-
-
-

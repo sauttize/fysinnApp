@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://cm1fqbb73gg4e"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Elements.gd" id="1_up4jx"]
+
+[resource]
+script = ExtResource("1_up4jx")
+element = 8
+strength = Array[int]([1, 6, 0])
+weakness = Array[int]([2, 9])

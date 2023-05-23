@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Element" load_steps=2 format=3 uid="uid://duod8fad86nnu"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Elements.gd" id="1_cmato"]
+
+[resource]
+script = ExtResource("1_cmato")
+element = 1
+strength = Array[int]([4, 3, 5])
+weakness = Array[int]([8, 9, 7])

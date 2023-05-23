@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://uyc0kutjxwxt"]
+[gd_scene load_steps=44 format=3 uid="uid://uyc0kutjxwxt"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -25,6 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://bskd6y34g3loh" path="res://_assets/Tweens/position_tween.tscn" id="21_0ymhn"]
 [ext_resource type="Texture2D" uid="uid://cjahaw24b70hy" path="res://_assets/Icons/Skull/human-skull.png" id="21_d31vl"]
 [ext_resource type="PackedScene" uid="uid://b8xhfve5kr8cj" path="res://_assets/Tweens/aplha_tween.tscn" id="23_qsonh"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/fameCrime.gd" id="24_7ldrk"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/PlayerElement.gd" id="26_fimq4"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/ElementoInfo.gd" id="27_taj1i"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/tablaElemental.gd" id="28_ksdwd"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk3gq"]
 bg_color = Color(0.309804, 0.470588, 0.756863, 1)
@@ -72,6 +76,37 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc6r4"]
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vobv4"]
+bg_color = Color(0.478431, 0.54902, 0.564706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w24ln"]
+bg_color = Color(0.345098, 0.67451, 0.541176, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smx1g"]
+bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1eauq"]
+bg_color = Color(0.92549, 0.239216, 0.454902, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoreh"]
+bg_color = Color(0.345098, 0.345098, 0.345098, 1)
 
 [node name="Base" type="MarginContainer"]
 custom_minimum_size = Vector2(0, 680)
@@ -509,7 +544,7 @@ texture = ExtResource("13_cxsms")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño" node_paths=PackedStringArray("timer", "activateButton")]
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sueño" node_paths=PackedStringArray("timer", "activateButton", "newDayButton")]
 texture_filter = 1
 layout_mode = 2
 text = "100
@@ -519,6 +554,7 @@ vertical_alignment = 1
 script = ExtResource("16_7650a")
 timer = NodePath("Timer")
 activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
+newDayButton = NodePath("../../../../../stats/vbox/Nuevo dia")
 statusType = 1
 currentNum = 20
 minutesUntilZero = 1
@@ -539,7 +575,7 @@ texture = ExtResource("14_b57mx")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed" node_paths=PackedStringArray("timer", "activateButton")]
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed" node_paths=PackedStringArray("timer", "activateButton", "newDayButton")]
 texture_filter = 1
 layout_mode = 2
 text = "100
@@ -549,6 +585,7 @@ vertical_alignment = 1
 script = ExtResource("16_7650a")
 timer = NodePath("Timer")
 activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
+newDayButton = NodePath("../../../../../stats/vbox/Nuevo dia")
 statusType = 2
 
 [node name="Timer" type="Timer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Sed/num"]
@@ -567,7 +604,7 @@ texture = ExtResource("15_83kv6")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre" node_paths=PackedStringArray("timer", "activateButton")]
+[node name="num" type="Label" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre" node_paths=PackedStringArray("timer", "activateButton", "newDayButton")]
 texture_filter = 1
 layout_mode = 2
 text = "100
@@ -577,6 +614,7 @@ vertical_alignment = 1
 script = ExtResource("16_7650a")
 timer = NodePath("Timer")
 activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
+newDayButton = NodePath("../../../../../stats/vbox/Nuevo dia")
 
 [node name="Timer" type="Timer" parent="Structure/Row1/RightPanel/topPanel/cont1/hbox/Hambre/num"]
 
@@ -691,10 +729,15 @@ offset_bottom = 55.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="hbox" type="HBoxContainer" parent="Structure/Row1/RightPanel/stats/vbox"]
+[node name="hbox" type="HBoxContainer" parent="Structure/Row1/RightPanel/stats/vbox" node_paths=PackedStringArray("raceName", "fameNode", "crimeNode")]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 40
+script = ExtResource("24_7ldrk")
+playerData = ExtResource("3_xdtbq")
+raceName = NodePath("../hboxRaza/razaName")
+fameNode = NodePath("fama/num")
+crimeNode = NodePath("danger/num")
 
 [node name="fama" type="VBoxContainer" parent="Structure/Row1/RightPanel/stats/vbox/hbox"]
 layout_mode = 2
@@ -774,6 +817,161 @@ text = "Nuevo Dia"
 node = NodePath("..")
 duration = 1.6
 
+[node name="Row2" type="HBoxContainer" parent="Structure"]
+layout_mode = 2
+
+[node name="Spells" type="Control" parent="Structure/Row2"]
+layout_mode = 2
+
+[node name="AplhaTween" parent="Structure/Row2/Spells" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
+node = NodePath("..")
+
+[node name="bg" type="Panel" parent="Structure/Row2/Spells"]
+layout_mode = 0
+offset_left = -71.0
+offset_top = 8.0
+offset_right = 213.0
+offset_bottom = 258.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_rc6r4")
+
+[node name="elementPanel" type="Panel" parent="Structure/Row2/Spells"]
+layout_mode = 0
+offset_left = -13.0
+offset_top = 15.0
+offset_right = 194.0
+offset_bottom = 42.0
+
+[node name="conexión" type="HBoxContainer" parent="Structure/Row2/Spells/elementPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="conexion" type="Label" parent="Structure/Row2/Spells/elementPanel/conexión"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 15
+text = "Conexión:"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="elemento" type="Label" parent="Structure/Row2/Spells/elementPanel/conexión" node_paths=PackedStringArray("infoWindow")]
+layout_mode = 2
+theme_override_font_sizes/font_size = 15
+text = "none"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("26_fimq4")
+playerData = ExtResource("3_xdtbq")
+hoverColor = Color(0.360784, 0.556863, 1, 1)
+infoWindow = NodePath("../../Info Elemento")
+
+[node name="Info Elemento" type="Window" parent="Structure/Row2/Spells/elementPanel" node_paths=PackedStringArray("fortalezasText", "debilidadesText")]
+title = "Elemento"
+size = Vector2i(400, 300)
+visible = false
+transient = true
+exclusive = true
+unresizable = true
+script = ExtResource("27_taj1i")
+playerData = ExtResource("3_xdtbq")
+fortalezasText = NodePath("container/vbox/hbox/fortalezas/lista")
+debilidadesText = NodePath("container/vbox/hbox/debilidades/lista")
+
+[node name="bg" type="Panel" parent="Structure/Row2/Spells/elementPanel/Info Elemento"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vobv4")
+
+[node name="container" type="MarginContainer" parent="Structure/Row2/Spells/elementPanel/Info Elemento"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+
+[node name="vbox" type="VBoxContainer" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="hbox" type="HBoxContainer" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox"]
+custom_minimum_size = Vector2(0, 260)
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="fortalezas" type="VBoxContainer" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/hbox"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="Label" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/hbox/fortalezas"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.964706, 0.964706, 0.964706, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_w24ln")
+text = "FORTALEZAS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lista" type="RichTextLabel" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/hbox/fortalezas"]
+layout_mode = 2
+text = "
+"
+fit_content = true
+
+[node name="divisor" type="Panel" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/hbox"]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_smx1g")
+
+[node name="debilidades" type="VBoxContainer" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/hbox"]
+layout_mode = 2
+alignment = 1
+
+[node name="title" type="Label" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/hbox/debilidades"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.964706, 0.964706, 0.964706, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_1eauq")
+text = "DEBILIDADES"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lista" type="RichTextLabel" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/hbox/debilidades"]
+layout_mode = 2
+text = "
+"
+fit_content = true
+
+[node name="vDivider" type="Panel" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xoreh")
+
+[node name="boton" type="MarginContainer" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_top = 3
+
+[node name="tabla" type="Button" parent="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/boton"]
+layout_mode = 2
+text = "Tabla completa"
+script = ExtResource("28_ksdwd")
+
+[node name="skillsPanel" type="Panel" parent="Structure/Row2/Spells"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 49.0
+offset_right = 195.0
+offset_bottom = 248.0
+
 [connection signal="updateBaseData" from="." to="Structure/Row1/Skills" method="_on_base_update_base_data"]
 [connection signal="updateBaseData" from="." to="Structure/Row1/ArmorVida/Armadura/Normal" method="_on_base_update_base_data"]
 [connection signal="updateBaseData" from="." to="Structure/Row1/ArmorVida/Vida/Labels/Actuales/ptsActuales" method="_on_base_update_base_data"]
@@ -793,3 +991,4 @@ duration = 1.6
 [connection signal="button_up" from="Structure/Row1/RightPanel/topPanel/cont1/hbox/Change" to="Structure/Row1/RightPanel" method="_on_change_button_up"]
 [connection signal="button_up" from="Structure/Row1/RightPanel/picture/EditButton" to="Structure/Row1/RightPanel" method="_on_edit_button_button_up"]
 [connection signal="file_selected" from="Structure/Row1/RightPanel/picture/FileDialog" to="Structure/Row1/RightPanel" method="_on_file_dialog_file_selected"]
+[connection signal="button_up" from="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/boton/tabla" to="Structure/Row2/Spells/elementPanel/Info Elemento/container/vbox/boton/tabla" method="_on_button_up"]
