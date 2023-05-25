@@ -15,7 +15,7 @@ func _update_maxlife(value : int):
 	if (int(value)): text = str(value)
 	
 #Sets max life from save file
-func _on_base_update_base_data(data):
+func _on_base_update_base_data(_data):
 	#_update_maxlife(data.maxLife)
 	_checkData()
 

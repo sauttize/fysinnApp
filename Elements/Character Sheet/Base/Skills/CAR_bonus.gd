@@ -10,5 +10,5 @@ func _check_text(new_text):
 func _on_car_num_text_changed(new_text):
 	_check_text(new_text)
 
-func _on_control_update_bonuses(fue, des, con, inte, sab, car):
-	updateCAR.emit(self, car)
+func _on_control_update_bonuses(_fue, _des, _con, _inte, _sab, _car):
+	updateCAR.emit(self, _car)

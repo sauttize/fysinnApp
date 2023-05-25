@@ -24,13 +24,13 @@ func getString() -> String:
 	return ELEMENTS.keys()[element]
 
 func getSrengthString() -> Array[String]:
-	var arrayStr : Array[String]
+	var arrayStr : Array[String] = []
 	for n in strength.size():
 		arrayStr.append(ELEMENTS.keys()[strength[n]]) 
 	return arrayStr
 
 func getWeaknessString() -> Array[String]:
-	var arrayStr : Array[String]
+	var arrayStr : Array[String] = []
 	for n in weakness.size():
 		arrayStr.append(ELEMENTS.keys()[weakness[n]]) 
 	return arrayStr

@@ -13,6 +13,6 @@ func _update_armor(newArmor : int):
 	text = str(newArmor)
 
 # Sets save values
-func _on_base_update_base_data(data):
+func _on_base_update_base_data(_data):
 	#ARMOR IN PROGRESS
 	pass

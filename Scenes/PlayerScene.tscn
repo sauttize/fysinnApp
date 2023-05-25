@@ -212,12 +212,14 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.tres")
+show_hidden_files = true
 
 [node name="SaveResource" type="FileDialog" parent="."]
 size = Vector2i(700, 500)
 ok_button_text = "Save"
 access = 2
 filters = PackedStringArray("*.tres")
+show_hidden_files = true
 
 [connection signal="updateAllInfo" from="." to="MarginContainer/VBoxContainer/Basic Info/Nombre" method="_on_player_manager_update_all_info"]
 [connection signal="updateAllInfo" from="." to="MarginContainer/VBoxContainer/Basic Info/Seccion Nivel/Nivel" method="_on_player_manager_update_all_info"]

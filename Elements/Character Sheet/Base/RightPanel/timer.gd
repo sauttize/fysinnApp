@@ -46,7 +46,7 @@ func update_data():
 	orangeValue = currentNum * ORANGE
 	
 	#This is the seconds until a change in number
-	waitSeconds = SecFromMin / currentNum
+	waitSeconds = SecFromMin / float(currentNum)
 	timer.wait_time = waitSeconds
 	
 	# Mostly for debuging. Should only start by button.

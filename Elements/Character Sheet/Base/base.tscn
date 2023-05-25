@@ -704,6 +704,7 @@ ok_button_text = "Open"
 file_mode = 0
 access = 2
 filters = PackedStringArray("*.png", "*.jpg")
+show_hidden_files = true
 
 [node name="stats" type="Control" parent="Structure/Row1/RightPanel"]
 visible = false

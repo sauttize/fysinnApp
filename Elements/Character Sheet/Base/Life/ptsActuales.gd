@@ -27,7 +27,7 @@ func _update_lifepoints(value : int):
 		_checkData()
 
 #Sets points in save file
-func _on_base_update_base_data(data):
+func _on_base_update_base_data(_data):
 	#_update_lifepoints(data.currentLife)
 	_checkData()
 
