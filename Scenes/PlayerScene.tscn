@@ -58,6 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fd83x")
 _playerData = ExtResource("2_yymf8")
+smallerWindow = true
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
