@@ -9,6 +9,7 @@ const NEW_DAY_THIRST = (-20)
 
 # Change currentNum to a save 
 @export_category("Dependencies")
+@export var playerData : PlayerData
 @export var timer : Timer 
 @export var activateButton : Button
 @export var newDayButton : Button
@@ -33,6 +34,7 @@ var redValue : float = 25
 
 
 func _ready() -> void:
+	extract_data()
 	update_data()
 	timer.timeout.connect(on_timeout_reached)
 	activateButton.button_up.connect(on_activate_button_pressed)
@@ -42,16 +44,17 @@ func update_data():
 	# Sets data
 	text = str(currentNum)
 	var SecFromMin = minutesUntilZero * 60
-	redValue = currentNum * RED
-	orangeValue = currentNum * ORANGE
 	
 	#This is the seconds until a change in number
-	waitSeconds = SecFromMin / float(currentNum)
+	waitSeconds = SecFromMin / float(100)
 	timer.wait_time = waitSeconds
 	
 	# Mostly for debuging. Should only start by button.
-	if activated: timer_runnning()
-	else: timer_stopped()
+	if activated: 
+		timer_runnning()
+		update_colors()
+	else: 
+		timer_stopped()
 
 func substraction():
 	currentNum -= 1
@@ -59,11 +62,23 @@ func substraction():
 func update_number():
 	text = str(currentNum)
 	
+	match statusType:
+		StatusTimers.HUNGER:
+			playerData.hungerMeter = currentNum
+		StatusTimers.SLEEP:
+			playerData.sleepMeter = currentNum
+		StatusTimers.THIRST:
+			playerData.thirstMeter = currentNum
+	
+	if activated: update_colors()
+
+
+func update_colors():
 	if currentNum < orangeValue && currentNum > redValue:
 		add_theme_color_override("font_color", orangeColor)
 	elif currentNum < redValue:
 		add_theme_color_override("font_color", redColor)
-	
+
 func timer_stopped():
 	add_theme_color_override("font_color", desactivatedTimerColor)
 	timer.stop()
@@ -100,3 +115,12 @@ func on_newDay_button_pressed():
 		StatusTimers.THIRST:
 			currentNum += NEW_DAY_THIRST
 			update_number()
+
+func extract_data():
+	match statusType:
+		StatusTimers.HUNGER:
+			currentNum = playerData.hungerMeter
+		StatusTimers.SLEEP:
+			currentNum = playerData.sleepMeter
+		StatusTimers.THIRST:
+			currentNum = playerData.thirstMeter

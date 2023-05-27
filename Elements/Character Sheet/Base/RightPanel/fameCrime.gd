@@ -8,7 +8,10 @@ extends HBoxContainer
 @export var crimeNode : Label
 
 func _ready() -> void:
-	raceName.text = playerData.raza
+	updateInfo()
+
+func updateInfo():
+	raceName.text = playerData.raza.name
 	
 	fameNode.text = str(playerData.famePercentage)
 	crimeNode.text = str(playerData.criminalPercentage)

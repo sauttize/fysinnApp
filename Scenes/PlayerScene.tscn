@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=21 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -8,10 +8,12 @@
 [ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_yymf8"]
 [ext_resource type="StyleBox" uid="uid://c1x0il1aghljq" path="res://_assets/Themes/boxStyle/conocimientos.tres" id="3_v5lg0"]
 [ext_resource type="PackedScene" uid="uid://d3fmuxtj85tyo" path="res://Elements/Character Sheet/nivel.tscn" id="5_2tphf"]
+[ext_resource type="Script" path="res://Scenes/optionsPopUp.gd" id="5_bdmeo"]
 [ext_resource type="PackedScene" uid="uid://br4spa7odwlg8" path="res://Elements/Character Sheet/exp.tscn" id="6_nsmno"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/TabsManager.gd" id="7_eonce"]
-[ext_resource type="PackedScene" uid="uid://uyc0kutjxwxt" path="res://Elements/Character Sheet/Base/base.tscn" id="9_p74o1"]
+[ext_resource type="PackedScene" uid="uid://cgv0xmq1b22ap" path="res://Elements/Character Sheet/Base/base.tscn" id="9_p74o1"]
 [ext_resource type="PackedScene" uid="uid://ddp7y6gn35b86" path="res://Elements/Character Sheet/Conocimientos/conocimientos.tscn" id="12_mioef"]
+[ext_resource type="Script" path="res://Scenes/exitHandler.gd" id="13_jfxcr"]
 
 [sub_resource type="SystemFont" id="SystemFont_xkiv0"]
 
@@ -21,8 +23,6 @@ keycode = 70
 
 [sub_resource type="Shortcut" id="Shortcut_bforp"]
 events = [SubResource("InputEventKey_2sl3x")]
-
-[sub_resource type="SystemFont" id="SystemFont_i0jaq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip31c"]
 bg_color = Color(0.533333, 0.580392, 0.835294, 1)
@@ -58,7 +58,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fd83x")
 _playerData = ExtResource("2_yymf8")
-smallerWindow = true
+
+[node name="ExitHandler" type="Node" parent="."]
+script = ExtResource("13_jfxcr")
+playerData = ExtResource("2_yymf8")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -69,7 +72,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Window" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -77,25 +80,24 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="Container" type="VBoxContainer" parent="Window"]
 layout_mode = 2
 
-[node name="App Options" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="GeneralOptions" type="MarginContainer" parent="Window/Container"]
 layout_mode = 2
 theme_override_constants/margin_bottom = 0
 
-[node name="Background" type="ColorRect" parent="MarginContainer/VBoxContainer/App Options"]
+[node name="Background" type="ColorRect" parent="Window/Container/GeneralOptions"]
 layout_mode = 2
 color = Color(0.27451, 0.647059, 0.619608, 0.309804)
 
-[node name="Margin Box" type="MarginContainer" parent="MarginContainer/VBoxContainer/App Options"]
+[node name="OptionList" type="HBoxContainer" parent="Window/Container/GeneralOptions"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_bottom = -2
 
-[node name="MenuBar" type="MenuButton" parent="MarginContainer/VBoxContainer/App Options/Margin Box"]
+[node name="Archivo" type="MenuButton" parent="Window/Container/GeneralOptions/OptionList"]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_fonts/font = SubResource("SystemFont_xkiv0")
@@ -114,22 +116,29 @@ popup/item_3/id = 1
 script = ExtResource("2_ch6v8")
 player_data = ExtResource("2_yymf8")
 
-[node name="Titulo" type="Label" parent="MarginContainer/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 30)
+[node name="Opciones" type="MenuButton" parent="Window/Container/GeneralOptions/OptionList" node_paths=PackedStringArray("timer")]
+custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
-theme = ExtResource("1_186vv")
-theme_override_fonts/font = SubResource("SystemFont_i0jaq")
-text = "PLAYER COMPANION APP"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_horizontal = 0
+theme_override_fonts/font = SubResource("SystemFont_xkiv0")
+theme_override_font_sizes/font_size = 12
+shortcut = SubResource("Shortcut_bforp")
+text = "Opciones"
+item_count = 1
+popup/item_0/text = "Auto Guardado"
+popup/item_0/checkable = 1
+popup/item_0/checked = true
+popup/item_0/id = 0
+script = ExtResource("5_bdmeo")
+playerData = ExtResource("2_yymf8")
+timer = NodePath("../../../../../AutoSave")
 
-[node name="Tabs" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Tabs" type="HBoxContainer" parent="Window/Container"]
 layout_mode = 2
 theme_override_constants/separation = 3
 alignment = 1
 
-[node name="btn_Base" type="Button" parent="MarginContainer/VBoxContainer/Tabs"]
+[node name="btn_Base" type="Button" parent="Window/Container/Tabs"]
 custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
@@ -137,7 +146,7 @@ theme_override_styles/normal = ExtResource("2_1wv8b")
 text = "Base"
 expand_icon = true
 
-[node name="btn_Conocimientos" type="Button" parent="MarginContainer/VBoxContainer/Tabs"]
+[node name="btn_Conocimientos" type="Button" parent="Window/Container/Tabs"]
 custom_minimum_size = Vector2(130, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
@@ -145,7 +154,7 @@ theme_override_styles/normal = ExtResource("3_v5lg0")
 text = "Conocimientos"
 expand_icon = true
 
-[node name="btn_Mascotas" type="Button" parent="MarginContainer/VBoxContainer/Tabs"]
+[node name="btn_Mascotas" type="Button" parent="Window/Container/Tabs"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
@@ -153,7 +162,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ip31c")
 text = "Mascotas"
 expand_icon = true
 
-[node name="btn_Relaciones" type="Button" parent="MarginContainer/VBoxContainer/Tabs"]
+[node name="btn_Relaciones" type="Button" parent="Window/Container/Tabs"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
@@ -162,7 +171,7 @@ text = "Relaciones
 "
 expand_icon = true
 
-[node name="btn_Notas" type="Button" parent="MarginContainer/VBoxContainer/Tabs"]
+[node name="btn_Notas" type="Button" parent="Window/Container/Tabs"]
 custom_minimum_size = Vector2(70, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
@@ -171,38 +180,38 @@ text = "Notas
 "
 expand_icon = true
 
-[node name="Basic Info" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="BasicInfoSection" type="MarginContainer" parent="Window/Container"]
 layout_mode = 2
 theme_override_constants/margin_top = -5
 
-[node name="Background" type="ColorRect" parent="MarginContainer/VBoxContainer/Basic Info"]
+[node name="Background" type="ColorRect" parent="Window/Container/BasicInfoSection"]
 layout_mode = 2
 color = Color(0.0823529, 0.0823529, 0.0823529, 1)
 
-[node name="Nombre" parent="MarginContainer/VBoxContainer/Basic Info" instance=ExtResource("1_vpgdq")]
+[node name="Nombre" parent="Window/Container/BasicInfoSection" instance=ExtResource("1_vpgdq")]
 layout_mode = 2
 
-[node name="Seccion Nivel" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Basic Info"]
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="Nivel" parent="MarginContainer/VBoxContainer/Basic Info/Seccion Nivel" instance=ExtResource("5_2tphf")]
+[node name="Seccion Nivel" type="HBoxContainer" parent="Window/Container/BasicInfoSection"]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="Exp" parent="MarginContainer/VBoxContainer/Basic Info/Seccion Nivel" instance=ExtResource("6_nsmno")]
+[node name="Nivel" parent="Window/Container/BasicInfoSection/Seccion Nivel" instance=ExtResource("5_2tphf")]
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Exp" parent="Window/Container/BasicInfoSection/Seccion Nivel" instance=ExtResource("6_nsmno")]
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="TabContainer" type="TabContainer" parent="Window/Container"]
 layout_mode = 2
 tabs_visible = false
 script = ExtResource("7_eonce")
 
-[node name="Base" parent="MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("9_p74o1")]
+[node name="Base" parent="Window/Container/TabContainer" instance=ExtResource("9_p74o1")]
 layout_mode = 2
 
-[node name="Conocimientos" parent="MarginContainer/VBoxContainer/TabContainer" instance=ExtResource("12_mioef")]
+[node name="Conocimientos" parent="Window/Container/TabContainer" instance=ExtResource("12_mioef")]
 layout_mode = 2
 
 [node name="LoadResource" type="FileDialog" parent="."]
@@ -221,15 +230,23 @@ access = 2
 filters = PackedStringArray("*.tres")
 show_hidden_files = true
 
-[connection signal="updateAllInfo" from="." to="MarginContainer/VBoxContainer/Basic Info/Nombre" method="_on_player_manager_update_all_info"]
-[connection signal="updateAllInfo" from="." to="MarginContainer/VBoxContainer/Basic Info/Seccion Nivel/Nivel" method="_on_player_manager_update_all_info"]
-[connection signal="updateAllInfo" from="." to="MarginContainer/VBoxContainer/Basic Info/Seccion Nivel/Exp" method="_on_player_manager_update_all_info"]
-[connection signal="updateAllInfo" from="." to="MarginContainer/VBoxContainer/TabContainer/Base" method="_on_player_manager_update_all_info"]
-[connection signal="loadFile" from="MarginContainer/VBoxContainer/App Options/Margin Box/MenuBar" to="." method="_on_menu_bar_load_file"]
-[connection signal="reSaveFile" from="MarginContainer/VBoxContainer/App Options/Margin Box/MenuBar" to="." method="_on_menu_bar_re_save_file"]
-[connection signal="saveFile" from="MarginContainer/VBoxContainer/App Options/Margin Box/MenuBar" to="." method="_on_menu_bar_save_file"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/Tabs/btn_Base" to="MarginContainer/VBoxContainer/TabContainer" method="_on_btn_base_button_up"]
-[connection signal="button_up" from="MarginContainer/VBoxContainer/Tabs/btn_Conocimientos" to="MarginContainer/VBoxContainer/TabContainer" method="_on_btn_conocimientos_button_up"]
-[connection signal="exp_updated" from="MarginContainer/VBoxContainer/Basic Info/Seccion Nivel/Exp" to="MarginContainer/VBoxContainer/Basic Info/Seccion Nivel/Nivel" method="_on_exp_exp_updated"]
+[node name="ExitConfirmation" type="ConfirmationDialog" parent="."]
+title = "Guardá, bobo."
+size = Vector2i(713, 109)
+unresizable = true
+ok_button_text = "Guardar y salir"
+dialog_text = "¿Desea guardar los cambios generados?
+De no guardar se perdera cualquier modificación hecha, incluido timers, objetos y pasivas."
+dialog_autowrap = true
+cancel_button_text = "Irme sin guardar"
+
+[node name="AutoSave" type="Timer" parent="."]
+
+[connection signal="loadFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_load_file"]
+[connection signal="reSaveFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_re_save_file"]
+[connection signal="saveFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_save_file"]
+[connection signal="button_up" from="Window/Container/Tabs/btn_Base" to="Window/Container/TabContainer" method="_on_btn_base_button_up"]
+[connection signal="button_up" from="Window/Container/Tabs/btn_Conocimientos" to="Window/Container/TabContainer" method="_on_btn_conocimientos_button_up"]
+[connection signal="exp_updated" from="Window/Container/BasicInfoSection/Seccion Nivel/Exp" to="Window/Container/BasicInfoSection/Seccion Nivel/Nivel" method="_on_exp_exp_updated"]
 [connection signal="file_selected" from="LoadResource" to="." method="_on_load_resource_file_selected"]
 [connection signal="file_selected" from="SaveResource" to="." method="_on_save_resource_file_selected"]

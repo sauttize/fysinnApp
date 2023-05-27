@@ -1,13 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://bddgh2tf2lob8"]
+[gd_scene load_steps=4 format=3 uid="uid://bddgh2tf2lob8"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/SkillsManager.gd" id="1_ylu36"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/FUE_bonus.gd" id="2_8ov4a"]
 [ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_33d57"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/CON_bonus.gd" id="4_4nnux"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/DES_bonus.gd" id="4_st43u"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/INT_bonus.gd" id="5_qmx1w"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/SAB_bonus.gd" id="6_h08y0"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/CAR_bonus.gd" id="7_s7nvc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii5t1"]
 bg_color = Color(0.2, 0.411765, 0.376471, 1)
@@ -16,7 +10,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 1
 
-[node name="Control" type="Control" node_paths=PackedStringArray("fue_num", "des_num", "con_num", "int_num", "sab_num", "car_num")]
+[node name="Stats" type="Control" node_paths=PackedStringArray("fue_num", "des_num", "con_num", "int_num", "sab_num", "car_num", "fue_MOD", "des_MOD", "con_MOD", "int_MOD", "sab_MOD", "car_MOD")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +27,12 @@ con_num = NodePath("MarginContainer/GridContainer/CON_num")
 int_num = NodePath("MarginContainer/GridContainer/INT_num")
 sab_num = NodePath("MarginContainer/GridContainer/SAB_num")
 car_num = NodePath("MarginContainer/GridContainer/CAR_num")
+fue_MOD = NodePath("MarginContainer/GridContainer/FUE_bonus")
+des_MOD = NodePath("MarginContainer/GridContainer/DES_bonus")
+con_MOD = NodePath("MarginContainer/GridContainer/CON_bonus")
+int_MOD = NodePath("MarginContainer/GridContainer/INT_bonus")
+sab_MOD = NodePath("MarginContainer/GridContainer/SAB_bonus")
+car_MOD = NodePath("MarginContainer/GridContainer/CAR_bonus")
 
 [node name="bg" type="Panel" parent="."]
 layout_mode = 1
@@ -73,7 +73,6 @@ layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
-script = ExtResource("2_8ov4a")
 
 [node name="DES_num" type="LineEdit" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -90,7 +89,6 @@ layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
-script = ExtResource("4_st43u")
 
 [node name="CON_num" type="LineEdit" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -107,7 +105,6 @@ layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
-script = ExtResource("4_4nnux")
 
 [node name="INT_num" type="LineEdit" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -124,7 +121,6 @@ layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
-script = ExtResource("5_qmx1w")
 
 [node name="SAB_num" type="LineEdit" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -141,7 +137,6 @@ layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
-script = ExtResource("6_h08y0")
 
 [node name="CAR_num" type="LineEdit" parent="MarginContainer/GridContainer"]
 layout_mode = 2
@@ -158,23 +153,3 @@ layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
-script = ExtResource("7_s7nvc")
-
-[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/FUE_bonus" method="_on_control_update_bonuses"]
-[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/DES_bonus" method="_on_control_update_bonuses"]
-[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/CON_bonus" method="_on_control_update_bonuses"]
-[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/INT_bonus" method="_on_control_update_bonuses"]
-[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/SAB_bonus" method="_on_control_update_bonuses"]
-[connection signal="updateBonuses" from="." to="MarginContainer/GridContainer/CAR_bonus" method="_on_control_update_bonuses"]
-[connection signal="text_changed" from="MarginContainer/GridContainer/FUE_num" to="MarginContainer/GridContainer/FUE_bonus" method="_on_fue_num_text_changed"]
-[connection signal="updateSKILL" from="MarginContainer/GridContainer/FUE_bonus" to="." method="_on_fue_bonus_update_skill"]
-[connection signal="text_changed" from="MarginContainer/GridContainer/DES_num" to="MarginContainer/GridContainer/DES_bonus" method="_on_des_num_text_changed"]
-[connection signal="updateDES" from="MarginContainer/GridContainer/DES_bonus" to="." method="_on_des_bonus_update_des"]
-[connection signal="text_changed" from="MarginContainer/GridContainer/CON_num" to="MarginContainer/GridContainer/CON_bonus" method="_on_con_num_text_changed"]
-[connection signal="updateCON" from="MarginContainer/GridContainer/CON_bonus" to="." method="_on_con_bonus_update_con"]
-[connection signal="text_changed" from="MarginContainer/GridContainer/INT_num" to="MarginContainer/GridContainer/INT_bonus" method="_on_int_num_text_changed"]
-[connection signal="updateINT" from="MarginContainer/GridContainer/INT_bonus" to="." method="_on_int_bonus_update_int"]
-[connection signal="text_changed" from="MarginContainer/GridContainer/SAB_num" to="MarginContainer/GridContainer/SAB_bonus" method="_on_sab_num_text_changed"]
-[connection signal="updateSAB" from="MarginContainer/GridContainer/SAB_bonus" to="." method="_on_sab_bonus_update_sab"]
-[connection signal="text_changed" from="MarginContainer/GridContainer/CAR_num" to="MarginContainer/GridContainer/CAR_bonus" method="_on_car_num_text_changed"]
-[connection signal="updateCAR" from="MarginContainer/GridContainer/CAR_bonus" to="." method="_on_car_bonus_update_car"]

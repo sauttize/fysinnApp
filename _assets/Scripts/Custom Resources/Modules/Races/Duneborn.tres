@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Race" load_steps=2 format=3 uid="uid://dtea7iqdajgj6"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Races.gd" id="1_8xcfm"]
+
+[resource]
+script = ExtResource("1_8xcfm")
+name = "Duneborn"

@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://olalpaiw6d5r"]
+[gd_scene load_steps=10 format=3 uid="uid://olalpaiw6d5r"]
 
 [ext_resource type="PackedScene" uid="uid://brxpiqlksqnb4" path="res://Elements/Character Sheet/name_window.tscn" id="1_cyti3"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/NombreNode.gd" id="1_eia5l"]
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="2_ljb57"]
 [ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_2d31m"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/nameText.gd" id="3_8sm4v"]
@@ -14,7 +13,7 @@
 bg_color = Color(0.298039, 0.298039, 0.298039, 1)
 corner_radius_bottom_right = 20
 
-[node name="Nombre" type="Control" node_paths=PackedStringArray("nameLabel")]
+[node name="Nombre" type="Control"]
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 3
 anchors_preset = 0
@@ -24,8 +23,6 @@ offset_right = 320.0
 offset_bottom = 70.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-script = ExtResource("1_eia5l")
-nameLabel = NodePath("DisplayBox/Name")
 
 [node name="NameWindow" parent="." instance=ExtResource("1_cyti3")]
 visible = false

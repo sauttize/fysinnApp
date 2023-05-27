@@ -32,7 +32,7 @@ enum DICE {
 
 @export var level : int = 1
 
-@export_flags("None", "All", "", "") var classRestriction
+@export_flags("None", "All", "z", "s") var classRestriction
 #@export var classRestriction : CLASS = CLASS.ALL
 
 @export_subgroup("Type")

@@ -6,8 +6,6 @@ extends Control
 @export var picNode : Control
 @export var statsNode : Control
 
-#LABELS
-@export var raza : Label
 #IMAGE
 @export var currentPic : TextureRect
 
@@ -17,9 +15,7 @@ var isPicShowing = true
 func _ready():
 	_updateData()
 
-
 func _updateData():
-	raza.text = playerData.raza
 	if (playerData.imagen):
 		currentPic.texture = playerData.imagen
 	else:

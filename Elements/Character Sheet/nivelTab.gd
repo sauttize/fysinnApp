@@ -17,6 +17,3 @@ func _on_exp_exp_updated():
 			player_data.nivel = (n + 1) # Plus 1 bc is an array and starts in 0.
 			emit_signal("level_up")
 
-
-func _on_player_manager_update_all_info(data):
-	$Box/HBoxContainer/SpinBox.value = data.nivel

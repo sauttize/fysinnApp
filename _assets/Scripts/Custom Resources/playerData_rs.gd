@@ -7,8 +7,7 @@ class_name PlayerData
 @export var nombre : String = "name"
 @export var nivel : int = 1
 @export var exp : int = 0
-@export_enum("Humano", "Draconite", "Naiad", "Raincaster", "Duneborn", "None") 
-var raza : String = "None"
+@export var raza : Race
 @export var elemento : Element
 @export var imagen : ImageTexture
 
@@ -16,10 +15,11 @@ var raza : String = "None"
 @export_category("-- Base --")
 @export var currentLife : int = 0
 @export var maxLife : int = 0
+@export var actionPoints : int = 4
+@export var velocity : int = 30
+@export var initiativeNum : int = 1
 @export_subgroup("Skills")
-@export var skills : Array[int] = [0, 0, 0, 0, 0, 0]
-@export_subgroup("Modifiers")
-@export var modifiers : Array[int] = [0, 0, 0, 0, 0, 0]
+@export var stats : Stats
 
 #METERS
 @export_category("-- Meters --")
@@ -33,7 +33,11 @@ var raza : String = "None"
 @export_range(1, 100) var famePercentage : int = 0
 
 #SPELLS
-
+@export_category("Spells")
+@export_subgroup("All")
+@export var spells : Array[Spell]
+@export_subgroup("Active")
+@export var activeSpelss : Array[Spell]
 
 func updateExp(newExp : int):
 	exp += newExp

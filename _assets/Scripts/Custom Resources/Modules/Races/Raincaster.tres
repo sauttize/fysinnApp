@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Race" load_steps=2 format=3 uid="uid://c7f3isuy2vqmv"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Races.gd" id="1_ipcdy"]
+
+[resource]
+script = ExtResource("1_ipcdy")
+name = "Raincaster"

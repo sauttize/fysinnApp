@@ -1,13 +1,21 @@
 extends Control
 
 @export var _playerData : PlayerData
-@export_category("Skills numbers")
+@export_category("Nodes")
+@export_subgroup("Stats")
 @export var fue_num : LineEdit
 @export var des_num : LineEdit
 @export var con_num : LineEdit
 @export var int_num : LineEdit
 @export var sab_num : LineEdit
 @export var car_num : LineEdit
+@export_subgroup("MOD")
+@export var fue_MOD : SpinBox
+@export var des_MOD : SpinBox
+@export var con_MOD : SpinBox
+@export var int_MOD : SpinBox
+@export var sab_MOD : SpinBox
+@export var car_MOD : SpinBox
 
 var fue : int
 var des : int
@@ -16,100 +24,66 @@ var inte : int
 var sab : int
 var car : int
 
-signal updateBonuses(fue:int, des:int, con:int, inte:int, sab:int, car:int)
+signal updateMaxLife
 
 func _ready():
-	update_data(_playerData)
-
-func update_data(playerData : PlayerData):
-	fue = playerData.skills[0]
-	des = playerData.skills[1]
-	con = playerData.skills[2]
-	inte = playerData.skills[3]
-	sab = playerData.skills[4]
-	car = playerData.skills[5]
+	set_localStats_fromFile()
+	set_lineEdit_fromLocalVar()
+	update_modifiers()
 	
+	fue_num.text_changed.connect(stat_changed)
+	des_num.text_changed.connect(stat_changed)
+	con_num.text_changed.connect(stat_changed)
+	int_num.text_changed.connect(stat_changed)
+	sab_num.text_changed.connect(stat_changed)
+	car_num.text_changed.connect(stat_changed)
+	
+func set_localStats_fromFile():
+	fue = _playerData.stats.strength
+	des = _playerData.stats.dexterity
+	con = _playerData.stats.constitution
+	inte = _playerData.stats.intelligence
+	sab = _playerData.stats.wisdom
+	car = _playerData.stats.charisma
+
+func set_lineEdit_fromLocalVar():
 	fue_num.text = str(fue)
 	des_num.text = str(des)
 	con_num.text = str(con)
 	int_num.text = str(inte)
 	sab_num.text = str(sab)
 	car_num.text = str(car)
-	
-	updateBonuses.emit(fue, des, con, inte, sab, car)
 
-#Updates data when new file is loaded.
-func _on_base_update_base_data(data):
-	update_data(data)
+func set_fileStats_fromLineEdit():
+	_playerData.stats.strength = int(fue_num.text)
+	_playerData.stats.dexterity = int(des_num.text)
+	_playerData.stats.constitution = int(con_num.text)
+	_playerData.stats.intelligence = int(int_num.text)
+	_playerData.stats.wisdom = int(sab_num.text)
+	_playerData.stats.charisma = int(car_num.text)
 
-func reloadData():
-	GameManager.save_and_reload()
+func update_modifiers():
+	fue_MOD.value = _playerData.stats.stat_to_mod(fue)
+	des_MOD.value = _playerData.stats.stat_to_mod(des)
+	con_MOD.value = _playerData.stats.stat_to_mod(con)
+	int_MOD.value = _playerData.stats.stat_to_mod(inte)
+	sab_MOD.value = _playerData.stats.stat_to_mod(sab)
+	car_MOD.value = _playerData.stats.stat_to_mod(car)
 
-#Bonus calculator
-func do_math(number : int):
-	match number:
-			1:
-				return (-5)
-			2, 3:
-				return (-4)
-			4,5:
-				return (-3)
-			6,7:
-				return (-2)
-			8,9:
-				return (-1)
-			10,11:
-				return 0
-			12,13:
-				return 1
-			14,15:
-				return 2
-			16,17:
-				return 3
-			18, 19:
-				return 4
-			20, 21:
-				return 5
-			22,23:
-				return 6
-			24,25:
-				return 7
-			26,27:
-				return 8
-			28,29:
-				return 9
-			30:
-				return 10
-			_:
-				return 0
+func set_localMOD_toFile():
+	_playerData.stats.strengthMOD = int(fue_MOD.value)
+	_playerData.stats.dexterityMOD = int(des_MOD.value)
+	_playerData.stats.constitutionMOD = int(con_MOD.value)
+	_playerData.stats.intelligenceMOD = int(int_MOD.value)
+	_playerData.stats.wisdomMOD = int(sab_MOD.value)
+	_playerData.stats.charismaMOD = int(car_MOD.value)
 
-#Update FUE
-func _on_fue_bonus_update_skill(node, number):
-	node.value = do_math(number)
-	_playerData.modifiers[0] = do_math(number)
-	_playerData.skills[0] = number
-#Update DES
-func _on_des_bonus_update_des(node, number):
-	node.value = do_math(number)
-	_playerData.modifiers[1] = do_math(number)
-	_playerData.skills[1] = number
-#Update CON
-func _on_con_bonus_update_con(node, number):
-	node.value = do_math(number)
-	_playerData.modifiers[2] = do_math(number)
-	_playerData.skills[2] = number
-#Update INT
-func _on_int_bonus_update_int(node, number):
-	node.value = do_math(number)
-	_playerData.modifiers[3] = do_math(number)
-	_playerData.skills[3] = number
-#Update SAB
-func _on_sab_bonus_update_sab(node, number):
-	node.value = do_math(number)
-	_playerData.modifiers[4] = do_math(number)
-	_playerData.skills[4] = number
-#Update CAR
-func _on_car_bonus_update_car(node, number):
-	node.value = do_math(number)
-	_playerData.modifiers[5] = do_math(number)
-	_playerData.skills[5] = number
+#Stats chage signals
+func stat_changed(text : String):
+	if (int(text)):
+		set_fileStats_fromLineEdit()
+		set_localStats_fromFile()
+		update_modifiers()
+		set_localMOD_toFile()
+		
+		updateMaxLife.emit()

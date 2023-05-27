@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Race" load_steps=2 format=3 uid="uid://dkfrwgu1yybyw"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Races.gd" id="1_gvxkm"]
+
+[resource]
+script = ExtResource("1_gvxkm")
+name = "Humano"
