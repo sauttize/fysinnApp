@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
-[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_xdtbq"]
+[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_xdtbq"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Armor/armaduraNormal.gd" id="4_uyb8g"]
 [ext_resource type="Texture2D" uid="uid://bhnp62mlcjmnf" path="res://_assets/Icons/Shield/2x/outline_shield_white_24dp.png" id="4_ye1em"]
 [ext_resource type="PackedScene" uid="uid://digv3ro3tv7pw" path="res://Elements/Buttons/edit_button.tscn" id="5_uo5e2"]
@@ -26,11 +26,13 @@
 [ext_resource type="PackedScene" uid="uid://b8xhfve5kr8cj" path="res://_assets/Tweens/aplha_tween.tscn" id="23_qsonh"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/fameCrime.gd" id="24_7ldrk"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/PlayerElement.gd" id="26_fimq4"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/ElementoInfo.gd" id="27_taj1i"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/tablaElemental.gd" id="28_ksdwd"]
+[ext_resource type="PackedScene" uid="uid://c2716bym8p7gy" path="res://Elements/Character Sheet/Base/Spells/info_elemento.tscn" id="27_wsl5o"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/SpellManager.gd" id="29_pvy43"]
 [ext_resource type="PackedScene" uid="uid://b5odqdcajm5u0" path="res://Elements/Character Sheet/Base/Spells/spell.tscn" id="30_0ijt3"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/spellsInfo.gd" id="31_6hd6d"]
+[ext_resource type="PackedScene" uid="uid://d14an1q771opv" path="res://Elements/Character Sheet/Base/Spells/edit_active_spells.tscn" id="31_niqo8"]
 [ext_resource type="Texture2D" uid="uid://eay888uawfq8" path="res://_assets/Icons/Wing/feathered-wing.256x243.png" id="32_8uolb"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/ClassInfo/ClassPanel.gd" id="33_ja71m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk3gq"]
 bg_color = Color(0.309804, 0.470588, 0.756863, 1)
@@ -80,37 +82,23 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc6r4"]
+bg_color = Color(0.368627, 0.329412, 0.631373, 1)
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vobv4"]
-bg_color = Color(0.478431, 0.54902, 0.564706, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w24ln"]
-bg_color = Color(0.345098, 0.67451, 0.541176, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 5.0
-expand_margin_right = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smx1g"]
-bg_color = Color(0.345098, 0.345098, 0.345098, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1eauq"]
-bg_color = Color(0.92549, 0.239216, 0.454902, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-expand_margin_left = 5.0
-expand_margin_right = 5.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoreh"]
-bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ot2fb"]
+bg_color = Color(0.121569, 0.12549, 0.180392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_morrj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r12m"]
+bg_color = Color(0.403922, 0.403922, 0.403922, 1)
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx4y0"]
+bg_color = Color(0.203922, 0.176471, 0.141176, 1)
+corner_radius_bottom_right = 20
 
 [node name="Base" type="MarginContainer" node_paths=PackedStringArray("editLife", "editArmor")]
 custom_minimum_size = Vector2(0, 680)
@@ -130,6 +118,7 @@ editArmor = NodePath("Container/FirstRow/ArmorVida/Armadura/AddTempArmor")
 [node name="Container" type="VBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_constants/separation = 15
 
 [node name="FirstRow" type="HBoxContainer" parent="Container"]
 layout_mode = 2
@@ -834,27 +823,42 @@ duration = 1.6
 layout_mode = 2
 
 [node name="Spells" type="Control" parent="Container/SecondRow"]
+custom_minimum_size = Vector2(284, 250)
 layout_mode = 2
 
 [node name="AplhaTween" parent="Container/SecondRow/Spells" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
 node = NodePath("..")
 
 [node name="bg" type="Panel" parent="Container/SecondRow/Spells"]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -71.0
-offset_top = 8.0
-offset_right = 213.0
-offset_bottom = 258.0
+offset_right = -72.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rc6r4")
 
-[node name="elementPanel" type="Panel" parent="Container/SecondRow/Spells"]
-layout_mode = 0
-offset_left = -13.0
-offset_top = 15.0
-offset_right = 194.0
-offset_bottom = 42.0
+[node name="container" type="VBoxContainer" parent="Container/SecondRow/Spells"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -153.0
+offset_top = -117.0
+offset_right = 61.0
+offset_bottom = 117.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="conexión" type="HBoxContainer" parent="Container/SecondRow/Spells/elementPanel"]
+[node name="elementPanel" type="Panel" parent="Container/SecondRow/Spells/container"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="conexión" type="HBoxContainer" parent="Container/SecondRow/Spells/container/elementPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -863,7 +867,7 @@ offset_left = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="conexion" type="Label" parent="Container/SecondRow/Spells/elementPanel/conexión"]
+[node name="conexion" type="Label" parent="Container/SecondRow/Spells/container/elementPanel/conexión"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 15
@@ -871,7 +875,7 @@ text = "Conexión:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="elemento" type="Label" parent="Container/SecondRow/Spells/elementPanel/conexión" node_paths=PackedStringArray("infoWindow")]
+[node name="elemento" type="Label" parent="Container/SecondRow/Spells/container/elementPanel/conexión" node_paths=PackedStringArray("infoWindow")]
 layout_mode = 2
 theme_override_font_sizes/font_size = 15
 text = "none"
@@ -882,110 +886,13 @@ playerData = ExtResource("3_xdtbq")
 hoverColor = Color(0.360784, 0.556863, 1, 1)
 infoWindow = NodePath("../../Info Elemento")
 
-[node name="Info Elemento" type="Window" parent="Container/SecondRow/Spells/elementPanel" node_paths=PackedStringArray("fortalezasText", "debilidadesText")]
-title = "Elemento"
-size = Vector2i(400, 300)
-visible = false
-transient = true
-exclusive = true
-unresizable = true
-script = ExtResource("27_taj1i")
-playerData = ExtResource("3_xdtbq")
-fortalezasText = NodePath("container/vbox/hbox/fortalezas/lista")
-debilidadesText = NodePath("container/vbox/hbox/debilidades/lista")
+[node name="Info Elemento" parent="Container/SecondRow/Spells/container/elementPanel" instance=ExtResource("27_wsl5o")]
 
-[node name="bg" type="Panel" parent="Container/SecondRow/Spells/elementPanel/Info Elemento"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vobv4")
-
-[node name="container" type="MarginContainer" parent="Container/SecondRow/Spells/elementPanel/Info Elemento"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 0
-
-[node name="vbox" type="VBoxContainer" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container"]
+[node name="skillsPanel" type="Panel" parent="Container/SecondRow/Spells/container"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
-theme_override_constants/separation = 0
 
-[node name="hbox" type="HBoxContainer" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox"]
-custom_minimum_size = Vector2(0, 260)
-layout_mode = 2
-theme_override_constants/separation = 50
-alignment = 1
-
-[node name="fortalezas" type="VBoxContainer" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/hbox"]
-layout_mode = 2
-alignment = 1
-
-[node name="title" type="Label" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/hbox/fortalezas"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.964706, 0.964706, 0.964706, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_w24ln")
-text = "FORTALEZAS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="lista" type="RichTextLabel" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/hbox/fortalezas"]
-layout_mode = 2
-text = "
-"
-fit_content = true
-
-[node name="divisor" type="Panel" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/hbox"]
-custom_minimum_size = Vector2(2, 0)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_smx1g")
-
-[node name="debilidades" type="VBoxContainer" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/hbox"]
-layout_mode = 2
-alignment = 1
-
-[node name="title" type="Label" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/hbox/debilidades"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.964706, 0.964706, 0.964706, 1)
-theme_override_styles/normal = SubResource("StyleBoxFlat_1eauq")
-text = "DEBILIDADES"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="lista" type="RichTextLabel" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/hbox/debilidades"]
-layout_mode = 2
-text = "
-"
-fit_content = true
-
-[node name="vDivider" type="Panel" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox"]
-custom_minimum_size = Vector2(0, 2)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xoreh")
-
-[node name="boton" type="MarginContainer" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/margin_top = 3
-
-[node name="tabla" type="Button" parent="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/boton"]
-layout_mode = 2
-text = "Tabla completa"
-script = ExtResource("28_ksdwd")
-
-[node name="skillsPanel" type="Panel" parent="Container/SecondRow/Spells"]
-layout_mode = 0
-offset_left = -12.0
-offset_top = 49.0
-offset_right = 195.0
-offset_bottom = 248.0
-
-[node name="vertical" type="VBoxContainer" parent="Container/SecondRow/Spells/skillsPanel"]
+[node name="vertical" type="VBoxContainer" parent="Container/SecondRow/Spells/container/skillsPanel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -999,15 +906,51 @@ offset_bottom = 93.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpellList" type="VFlowContainer" parent="Container/SecondRow/Spells/skillsPanel/vertical"]
+[node name="SpellList" type="VBoxContainer" parent="Container/SecondRow/Spells/container/skillsPanel/vertical" node_paths=PackedStringArray("editWindow", "editWindowButton", "spellNode1", "spellNode2", "spellNode3", "spellNode4")]
 custom_minimum_size = Vector2(190, 152)
 layout_mode = 2
 size_flags_horizontal = 4
+script = ExtResource("29_pvy43")
+playerData = ExtResource("3_xdtbq")
+editWindow = NodePath("EditActiveSpells")
+editWindowButton = NodePath("bg/editList")
+spellNode1 = NodePath("Slot1")
+spellNode2 = NodePath("Slot2")
+spellNode3 = NodePath("Slot3")
+spellNode4 = NodePath("Slot4")
 
-[node name="Spell" parent="Container/SecondRow/Spells/skillsPanel/vertical/SpellList" instance=ExtResource("30_0ijt3")]
+[node name="Slot1" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList" instance=ExtResource("30_0ijt3")]
 layout_mode = 2
 
-[node name="info" type="Control" parent="Container/SecondRow/Spells/skillsPanel/vertical" node_paths=PackedStringArray("actionPointsNumber", "velocityNumber", "initiativeNumber")]
+[node name="Slot2" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList" instance=ExtResource("30_0ijt3")]
+layout_mode = 2
+
+[node name="Slot3" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList" instance=ExtResource("30_0ijt3")]
+layout_mode = 2
+
+[node name="Slot4" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList" instance=ExtResource("30_0ijt3")]
+layout_mode = 2
+
+[node name="bg" type="Panel" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList"]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ot2fb")
+
+[node name="editList" type="Button" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList/bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 10
+text = "edit
+"
+
+[node name="EditActiveSpells" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList" instance=ExtResource("31_niqo8")]
+visible = false
+
+[node name="info" type="Control" parent="Container/SecondRow/Spells/container/skillsPanel/vertical" node_paths=PackedStringArray("actionPointsNumber", "velocityNumber", "initiativeNumber")]
 custom_minimum_size = Vector2(190, 30)
 layout_mode = 2
 tooltip_text = "- 'Action Points' para usar por turno.
@@ -1019,12 +962,12 @@ actionPointsNumber = NodePath("hz/apNum")
 velocityNumber = NodePath("hz/velNum")
 initiativeNumber = NodePath("hz/ipNum")
 
-[node name="hz" type="HBoxContainer" parent="Container/SecondRow/Spells/skillsPanel/vertical/info"]
+[node name="hz" type="HBoxContainer" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info"]
 layout_mode = 2
 offset_right = 190.0
 offset_bottom = 30.0
 
-[node name="actionPoints" type="Label" parent="Container/SecondRow/Spells/skillsPanel/vertical/info/hz"]
+[node name="actionPoints" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 mouse_filter = 0
@@ -1033,20 +976,20 @@ text = "AP:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="apNum" type="Label" parent="Container/SecondRow/Spells/skillsPanel/vertical/info/hz"]
+[node name="apNum" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="divider" type="Panel" parent="Container/SecondRow/Spells/skillsPanel/vertical/info/hz"]
+[node name="divider" type="Panel" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(2, 20)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_morrj")
 
-[node name="velocityIcon" type="TextureRect" parent="Container/SecondRow/Spells/skillsPanel/vertical/info/hz"]
+[node name="velocityIcon" type="TextureRect" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(0, 25)
 layout_mode = 2
 size_flags_vertical = 4
@@ -1055,38 +998,107 @@ mouse_default_cursor_shape = 7
 texture = ExtResource("32_8uolb")
 expand_mode = 2
 
-[node name="velNum" type="Label" parent="Container/SecondRow/Spells/skillsPanel/vertical/info/hz"]
+[node name="velNum" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="divider2" type="Panel" parent="Container/SecondRow/Spells/skillsPanel/vertical/info/hz"]
+[node name="divider2" type="Panel" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(2, 20)
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_morrj")
 
-[node name="initiative" type="Label" parent="Container/SecondRow/Spells/skillsPanel/vertical/info/hz"]
+[node name="initiative" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "IP:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ipNum" type="Label" parent="Container/SecondRow/Spells/skillsPanel/vertical/info/hz"]
+[node name="ipNum" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="bg" type="Panel" parent="Container/SecondRow/Spells/skillsPanel/vertical/info"]
+[node name="bg" type="Panel" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info"]
 layout_mode = 2
 offset_right = 190.0
 offset_bottom = 30.0
 mouse_filter = 1
+
+[node name="ThirdRow" type="HBoxContainer" parent="Container"]
+layout_mode = 2
+
+[node name="Class Info" type="Control" parent="Container/ThirdRow" node_paths=PackedStringArray("className", "namePanel")]
+custom_minimum_size = Vector2(210, 230)
+layout_mode = 2
+script = ExtResource("33_ja71m")
+className = NodePath("bg/className/classLabel")
+namePanel = NodePath("bg/className")
+
+[node name="bg" type="Panel" parent="Container/ThirdRow/Class Info"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -62.0
+offset_right = 221.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_7r12m")
+
+[node name="className" type="Panel" parent="Container/ThirdRow/Class Info/bg"]
+layout_mode = 1
+offset_left = 28.0
+offset_right = 405.0
+offset_bottom = 29.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_vx4y0")
+
+[node name="classLabel" type="Label" parent="Container/ThirdRow/Class Info/bg/className"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 21.0
+offset_top = -13.0
+offset_right = 67.0
+offset_bottom = 13.0
+grow_vertical = 2
+text = "Clase:"
+vertical_alignment = 1
+
+[node name="badStrike" type="Panel" parent="Container/ThirdRow/Class Info/bg"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -197.5
+offset_top = -45.0
+offset_right = -6.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="godStrike" type="Panel" parent="Container/ThirdRow/Class Info/bg"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 25.5
+offset_top = -45.0
+offset_right = 216.5
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [connection signal="updateBaseData" from="." to="Container/FirstRow/ArmorVida/Vida/Puntos/Maximos/ptsMaximos" method="_on_base_update_base_data"]
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Armadura/EditButton" to="." method="_on_edit_button_button_up"]
@@ -1102,4 +1114,3 @@ mouse_filter = 1
 [connection signal="button_up" from="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Change" to="Container/FirstRow/RightPanel" method="_on_change_button_up"]
 [connection signal="button_up" from="Container/FirstRow/RightPanel/picture/EditButton" to="Container/FirstRow/RightPanel" method="_on_edit_button_button_up"]
 [connection signal="file_selected" from="Container/FirstRow/RightPanel/picture/FileDialog" to="Container/FirstRow/RightPanel" method="_on_file_dialog_file_selected"]
-[connection signal="button_up" from="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/boton/tabla" to="Container/SecondRow/Spells/elementPanel/Info Elemento/container/vbox/boton/tabla" method="_on_button_up"]

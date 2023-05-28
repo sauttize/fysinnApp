@@ -1,9 +1,10 @@
 extends Window
+class_name Info_Elemental
 
-@export var playerData : PlayerData
-@export_category("RichTextLabel")
-@export var fortalezasText : RichTextLabel
-@export var debilidadesText : RichTextLabel
+@export var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
+@onready var fortalezasText : RichTextLabel = $container/vbox/hbox/fortalezas/lista
+@onready var debilidadesText : RichTextLabel = $container/vbox/hbox/debilidades/lista
+var disposable : bool = false
 
 func _ready() -> void:
 	self.close_requested.connect(closeWindow)
@@ -15,7 +16,18 @@ func loadData():
 		for element in playerData.elemento.getWeaknessString():
 			debilidadesText.text += "- " + element + "\n"
 
+func readElement(elemento : Element):
+	disposable = true
+	if elemento.element == Element.ELEMENTS.Propio:
+		loadData()
+	else:
+		for element in elemento.getSrengthString():
+				fortalezasText.text += "- " + element + "\n"
+		for element in elemento.getWeaknessString():
+			debilidadesText.text += "- " + element + "\n"
+
 func closeWindow():
 	hide()
 	fortalezasText.text = ""
 	debilidadesText.text = ""
+	if disposable: queue_free()

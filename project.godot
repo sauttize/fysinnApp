@@ -23,7 +23,7 @@ GameManager="*res://_assets/Scripts/GameManager.gd"
 [display]
 
 window/size/viewport_width=700
-window/size/viewport_height=800
+window/size/viewport_height=900
 window/size/resizable=false
 window/subwindows/embed_subwindows=false
 window/handheld/orientation=1

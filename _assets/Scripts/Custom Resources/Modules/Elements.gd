@@ -2,6 +2,7 @@ extends Resource
 
 class_name Element
 
+## List of all possible elements
 enum ELEMENTS {
 	Acido,
 	Agua,
@@ -13,7 +14,8 @@ enum ELEMENTS {
 	Planta,
 	Rayo,
 	Tierra,
-	None
+	None,
+	Propio ## Implies that it uses the same element as player.
 }
 
 @export var element : ELEMENTS = ELEMENTS.None

@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=3 format=3 uid="uid://hi8ctj8esheo"]
+
+[ext_resource type="Resource" uid="uid://dbwvpwnmgaawl" path="res://_assets/Scripts/Custom Resources/Modules/Elements/Propia.tres" id="1_40xyw"]
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Spell.gd" id="2_5wi1i"]
+
+[resource]
+script = ExtResource("2_5wi1i")
+spellName = "Ataque elemental básico"
+combat = true
+level = 1
+races = Array[int]([0])
+spellType = Array[int]([1, 2])
+throwMultiplier = "1"
+throwDice = "d6"
+rangeDistance = 0
+saveThrow = "none"
+description = "Todos los personajes comienzan con este ataque, a excepción de la clase Elemental."
+isElemental = true
+element = ExtResource("1_40xyw")
+buffMuliplier = "_3"
+buffElementalDice = "d10"
+debuffMuliplier = "- '2"
+debuffElementalDice = "d6"
+infoLink = "https://www.notion.so/sauttize/Ataque-elemental-b-sico-a88d8ff8afb041c3b7b4a9a3904394c1"

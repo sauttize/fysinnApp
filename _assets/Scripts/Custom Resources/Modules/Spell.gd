@@ -1,50 +1,66 @@
 extends Resource
 
-class_name Spell 
+## Spell resource with all its data.
+class_name Spell
 
-enum TYPE {
-	NONE,
-	BASE,
-	ATTACK,
-	DEFENSE,
-	UTILITY,
-	TERRAIN,
-	OTHER
+enum TYPES {
+	NONE, 
+	BASE, 
+	ATAQUE,
+	DEFENSA,
+	UTILIDAD, 
+	OTRO
 }
-
-enum CLASS {
-	ALL
-}
-
-enum DICE {
-	NONE,
-	D6,
-	D8,
-	D12,
-	D20
-}
-
-@export var active : bool = false
-@export var activable : bool = false
 
 @export var spellName : String = "none"
 
+#@export var active : bool = false #if active then show up in spelllist
+@export var combat : bool = false
 
-@export var level : int = 1
+@export_range(0, 20) var level : int = 1
+@export var races : Array[Race.RACES]
 
-@export_flags("None", "All", "z", "s") var classRestriction
+#@export var classRestriction : Array[]
 #@export var classRestriction : CLASS = CLASS.ALL
 
-@export_subgroup("Type")
-@export_flags("None", "Base", "Attack", "Defense", "Utility", "Terrain", "Other") var spellType
-# @export var spellType : TYPE = TYPE.NONE
+## Array list with all the spell types.
+## To use the strings within use [method getTypesAsString]
+@export var spellType : Array[TYPES]
+@export var throwMultiplier : String = "1"
+@export_enum("d4", "d6", "d8", "d10", "d12", "d20", "none") var throwDice : String = "d4"
+@export_range(0, 200) var rangeDistance : int = 0
+@export_enum("FUE", "DES", "CON", "INT", "SAB", "CAR", "none") var saveThrow : String = "none"
+@export_multiline var description : String
 
 @export_category("Elemental")
-@export var boostElemental : DICE = DICE.NONE
-@export var boostLower : bool = false
-@export var nerfElemental : DICE = DICE.NONE
-@export var nerfGreater : bool = false
+@export var isElemental : bool = false
+@export var element : Element
+## Multipliers are strings because they can hold other information in their prefixes such as:
+## _ : Take the lowest of the dices thrown
+## ' : Take the largest of the dices thrown
+## - : Negative number
+@export var buffMuliplier : String = "1"
+@export_enum("d4", "d6", "d8", "d10", "d12", "d20", "none") var buffElementalDice : String = "d4"
+@export var debuffMuliplier : String = "1"
+@export_enum("d4", "d6", "d8", "d10", "d12", "d20", "none") var debuffElementalDice : String = "d4"
 
+@export_category("Other")
 @export var passive : Passive
+@export var infoLink : String
 
+## This returns an Array[String]. 
+func getTypesAsString():
+	var stringList : Array[String] = []
+	for n in spellType.size():
+		stringList.append(TYPES.keys()[spellType[n]]) 
+	return stringList
 
+## This returns an Array[String]. 
+func getRacesAsString():
+	var stringList : Array[String] = []
+	for n in races.size():
+		stringList.append(Race.RACES.keys()[races[n]]) 
+	return stringList
+
+func goToLink():
+	if (infoLink): OS.shell_open(infoLink)

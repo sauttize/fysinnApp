@@ -8,6 +8,7 @@ class_name PlayerData
 @export var nivel : int = 1
 @export var exp : int = 0
 @export var raza : Race
+@export var classtype : ClassType
 @export var elemento : Element
 @export var imagen : ImageTexture
 
@@ -37,7 +38,7 @@ class_name PlayerData
 @export_subgroup("All")
 @export var spells : Array[Spell]
 @export_subgroup("Active")
-@export var activeSpelss : Array[Spell]
+@export var activeSpells : Array[Spell]
 
 func updateExp(newExp : int):
 	exp += newExp

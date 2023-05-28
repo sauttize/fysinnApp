@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://olalpaiw6d5r" path="res://Elements/Character Sheet/nombre.tscn" id="1_vpgdq"]
 [ext_resource type="StyleBox" uid="uid://br71kevxdgqjk" path="res://_assets/Themes/boxStyle/perfil.tres" id="2_1wv8b"]
 [ext_resource type="Script" path="res://Scenes/filePopUpManager.gd" id="2_ch6v8"]
-[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_yymf8"]
+[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_yymf8"]
 [ext_resource type="StyleBox" uid="uid://c1x0il1aghljq" path="res://_assets/Themes/boxStyle/conocimientos.tres" id="3_v5lg0"]
 [ext_resource type="PackedScene" uid="uid://d3fmuxtj85tyo" path="res://Elements/Character Sheet/nivel.tscn" id="5_2tphf"]
 [ext_resource type="Script" path="res://Scenes/optionsPopUp.gd" id="5_bdmeo"]
@@ -209,9 +209,11 @@ tabs_visible = false
 script = ExtResource("7_eonce")
 
 [node name="Base" parent="Window/Container/TabContainer" instance=ExtResource("9_p74o1")]
+custom_minimum_size = Vector2(0, 780)
 layout_mode = 2
 
 [node name="Conocimientos" parent="Window/Container/TabContainer" instance=ExtResource("12_mioef")]
+custom_minimum_size = Vector2(0, 780)
 layout_mode = 2
 
 [node name="LoadResource" type="FileDialog" parent="."]

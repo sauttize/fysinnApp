@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://d3fmuxtj85tyo"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/nivelTab.gd" id="1_5pqjf"]
-[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_4wuh0"]
+[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_4wuh0"]
 [ext_resource type="PackedScene" uid="uid://c0iadyufud2mk" path="res://Elements/Character Sheet/level_up_alert.tscn" id="3_u7msg"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/level_up_alert.gd" id="4_mpswc"]
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="5_m7x0b"]

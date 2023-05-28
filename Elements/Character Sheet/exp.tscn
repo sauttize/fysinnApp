@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Elements/Character Sheet/expTab.gd" id="1_3hte6"]
 [ext_resource type="PackedScene" uid="uid://biumurf27h45e" path="res://Elements/Character Sheet/exp_window.tscn" id="2_bhqen"]
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="3_8u5gs"]
-[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_kduvn"]
+[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_kduvn"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/expText.gd" id="4_40t1k"]
 [ext_resource type="PackedScene" uid="uid://digv3ro3tv7pw" path="res://Elements/Buttons/edit_button.tscn" id="6_n6rif"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/noEXPAviso.gd" id="10_fad4a"]

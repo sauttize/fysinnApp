@@ -1,0 +1,251 @@
+[gd_scene load_steps=8 format=3 uid="uid://dg020eras2o4r"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/SpellInfoWindow.gd" id="1_rflab"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmphv"]
+bg_color = Color(0.403922, 0.372549, 0.588235, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayser"]
+bg_color = Color(0.607843, 0.403922, 0.470588, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7055f"]
+bg_color = Color(0.572549, 0.584314, 0.439216, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oudx6"]
+bg_color = Color(0.6, 0.6, 0.6, 0.564706)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hxbw2"]
+bg_color = Color(0.203922, 0.462745, 0.364706, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 4.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_333vb"]
+bg_color = Color(0.658824, 0.258824, 0.211765, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 2.0
+expand_margin_right = 4.0
+anti_aliasing = false
+
+[node name="SpellInfo" type="Window"]
+title = "Información sobre el hechizo"
+size = Vector2i(400, 400)
+visible = false
+transient = true
+exclusive = true
+unresizable = true
+script = ExtResource("1_rflab")
+
+[node name="Container" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 10
+
+[node name="vertical" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Titulo" type="Label" parent="Container/vertical"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "Datos del hechizo:
+"
+horizontal_alignment = 1
+
+[node name="divider" type="ColorRect" parent="Container/vertical"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.548963, 0.548963, 0.548962, 0.498039)
+
+[node name="boxName" type="HBoxContainer" parent="Container/vertical"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="lblName" type="Label" parent="Container/vertical/boxName"]
+layout_mode = 2
+text = "Nombre:"
+
+[node name="name" type="Label" parent="Container/vertical/boxName"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xmphv")
+text = "name"
+
+[node name="boxElement" type="HBoxContainer" parent="Container/vertical"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="lblElement" type="Label" parent="Container/vertical/boxElement"]
+layout_mode = 2
+text = "Elemento:"
+
+[node name="element" type="Label" parent="Container/vertical/boxElement"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_xmphv")
+text = "-
+"
+
+[node name="info" type="Button" parent="Container/vertical/boxElement"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "?"
+
+[node name="divider2" type="ColorRect" parent="Container/vertical"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.54902, 0.54902, 0.54902, 0.498039)
+
+[node name="tabla" type="GridContainer" parent="Container/vertical"]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 3
+columns = 4
+
+[node name="lblType" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+text = "Tipo:"
+
+[node name="type" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ayser")
+text = "type"
+
+[node name="lblLevel" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+text = "Nivel:"
+
+[node name="level" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ayser")
+text = "level"
+
+[node name="lblCombate" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+text = "Combate?:"
+
+[node name="isCombat" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_7055f")
+text = "-"
+
+[node name="lblRaza" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+text = "Raza:"
+
+[node name="race" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ayser")
+text = "race"
+
+[node name="lblTirada" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+text = "Tirada:"
+
+[node name="dice" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ayser")
+text = "??"
+
+[node name="lblAlcance" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+text = "Alcance:"
+
+[node name="range" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ayser")
+text = "range
+"
+
+[node name="lblSalvacion" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+text = "Salvacion:"
+
+[node name="saveThrow" type="Label" parent="Container/vertical/tabla"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_ayser")
+text = "-
+"
+
+[node name="divider3" type="ColorRect" parent="Container/vertical"]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+color = Color(0.54902, 0.54902, 0.54902, 0.498039)
+
+[node name="extraInfo" type="RichTextLabel" parent="Container/vertical"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+focus_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_oudx6")
+text = "adad"
+selection_enabled = true
+
+[node name="elementalEffect" type="HBoxContainer" parent="Container/vertical"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="lblBuff" type="Label" parent="Container/vertical/elementalEffect"]
+layout_mode = 2
+text = "Buff:"
+
+[node name="buff" type="Label" parent="Container/vertical/elementalEffect"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_hxbw2")
+text = "-"
+
+[node name="lblDebuff" type="Label" parent="Container/vertical/elementalEffect"]
+layout_mode = 2
+text = "Debuff:"
+
+[node name="debuff" type="Label" parent="Container/vertical/elementalEffect"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_333vb")
+text = "-"
+
+[node name="activatePassive" type="Button" parent="Container/vertical/elementalEffect"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Activar Pasiva"
+
+[node name="goToNotion" type="Button" parent="Container/vertical/elementalEffect"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 10
+text = "Pagina Notion"

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://brxpiqlksqnb4" path="res://Elements/Character Sheet/name_window.tscn" id="1_cyti3"]
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="2_ljb57"]
-[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_2d31m"]
+[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_2d31m"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/nameText.gd" id="3_8sm4v"]
 [ext_resource type="Texture2D" uid="uid://b6bpfuex47bpt" path="res://_assets/Icons/Edit/writing.png" id="5_arjww"]
 [ext_resource type="Texture2D" uid="uid://crencrgf1ohy" path="res://_assets/Icons/Edit/writingPressed.png" id="6_ldetq"]

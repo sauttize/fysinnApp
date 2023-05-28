@@ -1,28 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5odqdcajm5u0"]
+[gd_scene load_steps=5 format=3 uid="uid://0xtlchy0fx1e"]
 
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/SpellClass.gd" id="1_loncs"]
-[ext_resource type="Texture2D" uid="uid://d1mpkgsjxix6v" path="res://_assets/Icons/Info/information.256x255.png" id="2_r68im"]
-[ext_resource type="PackedScene" uid="uid://dg020eras2o4r" path="res://Elements/Character Sheet/Base/Spells/spell_info_window.tscn" id="3_fg7do"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/SpellClass.gd" id="1_8h6su"]
+[ext_resource type="Texture2D" uid="uid://d1mpkgsjxix6v" path="res://_assets/Icons/Info/information.256x255.png" id="2_cvykl"]
+[ext_resource type="PackedScene" uid="uid://dg020eras2o4r" path="res://Elements/Character Sheet/Base/Spells/spell_info_window.tscn" id="3_mpw2j"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q2nnl"]
 bg_color = Color(0.164706, 0.164706, 0.164706, 1)
 
 [node name="Spell" type="Control"]
-custom_minimum_size = Vector2(190, 30)
+custom_minimum_size = Vector2(230, 50)
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -95.0
-offset_top = -15.0
+offset_left = -135.0
+offset_top = -35.0
 offset_right = 95.0
 offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 0
-script = ExtResource("1_loncs")
+script = ExtResource("1_8h6su")
 
 [node name="bg" type="Panel" parent="."]
 layout_mode = 1
@@ -44,6 +43,7 @@ theme_override_constants/margin_left = 8
 
 [node name="container" type="HBoxContainer" parent="margin"]
 layout_mode = 2
+alignment = 1
 
 [node name="labels" type="VBoxContainer" parent="margin/container"]
 custom_minimum_size = Vector2(150, 0)
@@ -54,22 +54,22 @@ alignment = 1
 [node name="spellName" type="Label" parent="margin/container/labels"]
 clip_contents = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 13
 text = "-"
 vertical_alignment = 3
 clip_text = true
 
 [node name="nivel" type="Label" parent="margin/container/labels"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 10
 text = "niv:"
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="margin/container"]
-custom_minimum_size = Vector2(23, 0)
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 2
-icon = ExtResource("2_r68im")
+icon = ExtResource("2_cvykl")
 flat = true
 expand_icon = true
 
-[node name="SpellInfo" parent="." instance=ExtResource("3_fg7do")]
+[node name="SpellInfo" parent="." instance=ExtResource("3_mpw2j")]
