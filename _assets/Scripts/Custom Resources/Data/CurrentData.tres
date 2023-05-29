@@ -1,0 +1,6 @@
+[gd_resource type="Resource" script_class="DataFile" load_steps=2 format=3 uid="uid://dm5hehvf88ljf"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Data/Data.gd" id="1_mvxxb"]
+
+[resource]
+script = ExtResource("1_mvxxb")

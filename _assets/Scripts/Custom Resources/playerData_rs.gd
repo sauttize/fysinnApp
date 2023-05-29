@@ -24,9 +24,9 @@ class_name PlayerData
 
 #METERS
 @export_category("-- Meters --")
-@export_range(0, 100) var sleepMeter : int = 100
-@export var hungerMeter : int = 100
-@export var thirstMeter : int = 100
+@export_range(0, 100) var sleepMeter : float = 100
+@export var hungerMeter : float = 100
+@export var thirstMeter : float = 100
 
 #FAME AND CRIME
 @export_category("-- Fame & Crime --")

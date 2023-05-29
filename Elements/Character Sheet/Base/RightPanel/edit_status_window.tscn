@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3 uid="uid://lp8awvh7kc7g"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/StatusManager.gd" id="1_osicb"]
+
+[node name="EditStatus" type="Window"]
+title = "Viajar en el tiempo"
+size = Vector2i(300, 150)
+transient = true
+exclusive = true
+unresizable = true
+script = ExtResource("1_osicb")
+
+[node name="- margin -" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="- vbox -" type="VBoxContainer" parent="- margin -"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="- inputs -" type="HBoxContainer" parent="- margin -/- vbox -"]
+layout_mode = 2
+
+[node name="number" type="SpinBox" parent="- margin -/- vbox -/- inputs -"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[node name="options" type="OptionButton" parent="- margin -/- vbox -/- inputs -"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "hs"
+popup/item_0/id = 0
+popup/item_1/text = "min"
+popup/item_1/id = 1
+
+[node name="- sleep check -" type="HBoxContainer" parent="- margin -/- vbox -"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="- margin -/- vbox -/- sleep check -"]
+layout_mode = 2
+text = "¿Durmió?"
+
+[node name="CheckBox" type="CheckBox" parent="- margin -/- vbox -/- sleep check -"]
+layout_mode = 2
+
+[node name="okButton" type="Button" parent="- margin -/- vbox -"]
+layout_mode = 2
+text = "ok
+"

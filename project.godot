@@ -19,6 +19,7 @@ config/icon="res://Icono.png"
 [autoload]
 
 GameManager="*res://_assets/Scripts/GameManager.gd"
+Utilities="*res://Scenes/Autoloads/Utilities.gd"
 
 [display]
 

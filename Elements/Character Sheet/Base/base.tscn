@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=51 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -14,18 +14,20 @@
 [ext_resource type="Texture2D" uid="uid://o8mlpwuru3bn" path="res://_assets/Icons/Sleep/2x/outline_hotel_white_36dp.png" id="13_cxsms"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/RightPanel.gd" id="13_v3jk2"]
 [ext_resource type="Texture2D" uid="uid://or46kprkgmj4" path="res://_assets/Icons/Water/2x/outline_local_drink_white_36dp.png" id="14_b57mx"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/StatusLabel.gd" id="15_7dxcs"]
 [ext_resource type="Texture2D" uid="uid://bftjailqhhj3" path="res://_assets/Icons/Hunger/2x/outline_local_dining_white_36dp.png" id="15_83kv6"]
-[ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/timer.gd" id="16_7650a"]
 [ext_resource type="Texture2D" uid="uid://b3cqwgttxmky3" path="res://_assets/Icons/Arrow Right/2x/outline_play_arrow_white_36dp.png" id="16_x4nk2"]
 [ext_resource type="Texture2D" uid="uid://gc6d0ae3bpav" path="res://_assets/Icons/Arrow Right/2x/selected.png" id="17_swiu6"]
 [ext_resource type="Texture2D" uid="uid://cw26f6kx5th4t" path="res://_assets/Icons/Arrow Right/2x/hover.png" id="18_cnp5t"]
 [ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="19_741qg"]
 [ext_resource type="Texture2D" uid="uid://cbf2k5qxaivmx" path="res://_assets/Icons/Crown/crown.png" id="20_mx7hn"]
 [ext_resource type="PackedScene" uid="uid://bskd6y34g3loh" path="res://_assets/Tweens/position_tween.tscn" id="21_0ymhn"]
+[ext_resource type="PackedScene" uid="uid://lp8awvh7kc7g" path="res://Elements/Character Sheet/Base/RightPanel/edit_status_window.tscn" id="21_3htxs"]
 [ext_resource type="Texture2D" uid="uid://cjahaw24b70hy" path="res://_assets/Icons/Skull/human-skull.png" id="21_d31vl"]
 [ext_resource type="PackedScene" uid="uid://b8xhfve5kr8cj" path="res://_assets/Tweens/aplha_tween.tscn" id="23_qsonh"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/fameCrime.gd" id="24_7ldrk"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/PlayerElement.gd" id="26_fimq4"]
+[ext_resource type="Texture2D" uid="uid://dd5i10lj383qw" path="res://_assets/Icons/Clock/clock_white.png" id="27_486jh"]
 [ext_resource type="PackedScene" uid="uid://c2716bym8p7gy" path="res://Elements/Character Sheet/Base/Spells/info_elemento.tscn" id="27_wsl5o"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/SpellManager.gd" id="29_pvy43"]
 [ext_resource type="PackedScene" uid="uid://b5odqdcajm5u0" path="res://Elements/Character Sheet/Base/Spells/spell.tscn" id="30_0ijt3"]
@@ -33,6 +35,8 @@
 [ext_resource type="PackedScene" uid="uid://d14an1q771opv" path="res://Elements/Character Sheet/Base/Spells/edit_active_spells.tscn" id="31_niqo8"]
 [ext_resource type="Texture2D" uid="uid://eay888uawfq8" path="res://_assets/Icons/Wing/feathered-wing.256x243.png" id="32_8uolb"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/ClassInfo/ClassPanel.gd" id="33_ja71m"]
+[ext_resource type="Script" path="res://_assets/Tweens/aplha_tween.gd" id="36_hcgwt"]
+[ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="37_7fw64"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk3gq"]
 bg_color = Color(0.309804, 0.470588, 0.756863, 1)
@@ -517,7 +521,7 @@ offset_right = 254.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gnahd")
 
-[node name="cont1" type="MarginContainer" parent="Container/FirstRow/RightPanel/topPanel"]
+[node name="status" type="MarginContainer" parent="Container/FirstRow/RightPanel/topPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -527,103 +531,87 @@ grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 40
 
-[node name="hbox" type="HBoxContainer" parent="Container/FirstRow/RightPanel/topPanel/cont1"]
+[node name="hbox" type="HBoxContainer" parent="Container/FirstRow/RightPanel/topPanel/status"]
 layout_mode = 2
 
-[node name="Sueño" type="HBoxContainer" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox"]
+[node name="Sueño" type="HBoxContainer" parent="Container/FirstRow/RightPanel/topPanel/status/hbox"]
 layout_mode = 2
 
-[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Sueño"]
+[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Sueño"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("13_cxsms")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="num" type="Label" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Sueño" node_paths=PackedStringArray("timer", "activateButton", "newDayButton")]
+[node name="num" type="Label" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Sueño"]
 texture_filter = 1
 layout_mode = 2
 text = "100
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("16_7650a")
-playerData = ExtResource("3_xdtbq")
-timer = NodePath("sleepTimer")
-activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
-newDayButton = NodePath("../../../../../stats/vbox/Nuevo dia")
-statusType = 1
-currentNum = 20
-minutesUntilZero = 10
+script = ExtResource("15_7dxcs")
 
-[node name="sleepTimer" type="Timer" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Sueño/num"]
+[node name="sleepTimer" type="Timer" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Sueño/num"]
 
-[node name="ColorRect" type="ColorRect" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Sueño"]
+[node name="ColorRect" type="ColorRect" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Sueño"]
 custom_minimum_size = Vector2(1, 0.1)
 layout_mode = 2
 
-[node name="Sed" type="HBoxContainer" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox"]
+[node name="Sed" type="HBoxContainer" parent="Container/FirstRow/RightPanel/topPanel/status/hbox"]
 layout_mode = 2
 
-[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Sed"]
+[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Sed"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("14_b57mx")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="num" type="Label" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Sed" node_paths=PackedStringArray("timer", "activateButton", "newDayButton")]
+[node name="num" type="Label" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Sed"]
 texture_filter = 1
 layout_mode = 2
 text = "100
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("16_7650a")
-playerData = ExtResource("3_xdtbq")
-timer = NodePath("sedTimer")
-activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
-newDayButton = NodePath("../../../../../stats/vbox/Nuevo dia")
-statusType = 2
-minutesUntilZero = 10
+script = ExtResource("15_7dxcs")
+type = 2
 
-[node name="sedTimer" type="Timer" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Sed/num"]
+[node name="sedTimer" type="Timer" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Sed/num"]
 
-[node name="ColorRect" type="ColorRect" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Sed"]
+[node name="ColorRect" type="ColorRect" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Sed"]
 custom_minimum_size = Vector2(1, 0.1)
 layout_mode = 2
 
-[node name="Hambre" type="HBoxContainer" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox"]
+[node name="Hambre" type="HBoxContainer" parent="Container/FirstRow/RightPanel/topPanel/status/hbox"]
 layout_mode = 2
 
-[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Hambre"]
+[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Hambre"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 texture = ExtResource("15_83kv6")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="num" type="Label" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Hambre" node_paths=PackedStringArray("timer", "activateButton", "newDayButton")]
+[node name="num" type="Label" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Hambre"]
 texture_filter = 1
 layout_mode = 2
 text = "100
 "
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("16_7650a")
-playerData = ExtResource("3_xdtbq")
-timer = NodePath("hambreTimer")
-activateButton = NodePath("../../../../../stats/vbox/Play  Stop")
-newDayButton = NodePath("../../../../../stats/vbox/Nuevo dia")
-minutesUntilZero = 10
+script = ExtResource("15_7dxcs")
+type = 1
 
-[node name="hambreTimer" type="Timer" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Hambre/num"]
+[node name="hambreTimer" type="Timer" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Hambre/num"]
 
-[node name="ColorRect" type="ColorRect" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Hambre"]
+[node name="ColorRect" type="ColorRect" parent="Container/FirstRow/RightPanel/topPanel/status/hbox/Hambre"]
 custom_minimum_size = Vector2(1, 0.1)
 layout_mode = 2
 
-[node name="Change" type="TextureButton" parent="Container/FirstRow/RightPanel/topPanel/cont1/hbox"]
+[node name="Change" type="TextureButton" parent="Container/FirstRow/RightPanel/topPanel/status/hbox"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture_normal = ExtResource("16_x4nk2")
@@ -805,15 +793,18 @@ text = "Naiad
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Play  Stop" type="Button" parent="Container/FirstRow/RightPanel/stats/vbox"]
+[node name="TimePass" type="Button" parent="Container/FirstRow/RightPanel/stats/vbox"]
 texture_filter = 1
+custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
-text = "Play / Stop"
+size_flags_horizontal = 4
+icon = ExtResource("27_486jh")
+icon_alignment = 1
+expand_icon = true
 
-[node name="Nuevo dia" type="Button" parent="Container/FirstRow/RightPanel/stats/vbox"]
-texture_filter = 1
-layout_mode = 2
-text = "Nuevo Dia"
+[node name="EditStatus" parent="Container/FirstRow/RightPanel/stats/vbox" node_paths=PackedStringArray("showButton") instance=ExtResource("21_3htxs")]
+visible = false
+showButton = NodePath("../TimePass")
 
 [node name="AplhaTween" parent="Container/FirstRow/RightPanel" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
 node = NodePath("..")
@@ -1046,8 +1037,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -62.0
-offset_right = 221.0
+offset_left = -100.0
+offset_right = 183.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7r12m")
@@ -1100,6 +1091,21 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="PositionTween" type="Node" parent="Container/ThirdRow/Class Info/bg" node_paths=PackedStringArray("node")]
+script = ExtResource("37_7fw64")
+node = NodePath("..")
+parallelToPrevious = true
+transitionType = 5
+newStartingPosition = true
+fromPosition2D = Vector2(-300, 0)
+toPosition2D = Vector2(-62, 0)
+
+[node name="AlphaTween" type="Node" parent="Container/ThirdRow/Class Info" node_paths=PackedStringArray("node")]
+script = ExtResource("36_hcgwt")
+node = NodePath("..")
+parallelToPrevious = true
+duration = 1.5
+
 [connection signal="updateBaseData" from="." to="Container/FirstRow/ArmorVida/Vida/Puntos/Maximos/ptsMaximos" method="_on_base_update_base_data"]
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Armadura/EditButton" to="." method="_on_edit_button_button_up"]
 [connection signal="close_requested" from="Container/FirstRow/ArmorVida/Armadura/AddTempArmor" to="." method="_on_add_temp_armor_close_requested"]
@@ -1111,6 +1117,6 @@ grow_vertical = 0
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox/curarbtn" to="Container/FirstRow/ArmorVida/Vida/EditLife" method="_on_curarbtn_button_up"]
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox/herirbtn" to="Container/FirstRow/ArmorVida/Vida/EditLife" method="_on_herirbtn_button_up"]
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Vida/EditLife/VSplitContainer/BottomPanel/VBox/maxBtn" to="Container/FirstRow/ArmorVida/Vida/EditLife" method="_on_max_btn_button_up"]
-[connection signal="button_up" from="Container/FirstRow/RightPanel/topPanel/cont1/hbox/Change" to="Container/FirstRow/RightPanel" method="_on_change_button_up"]
+[connection signal="button_up" from="Container/FirstRow/RightPanel/topPanel/status/hbox/Change" to="Container/FirstRow/RightPanel" method="_on_change_button_up"]
 [connection signal="button_up" from="Container/FirstRow/RightPanel/picture/EditButton" to="Container/FirstRow/RightPanel" method="_on_edit_button_button_up"]
 [connection signal="file_selected" from="Container/FirstRow/RightPanel/picture/FileDialog" to="Container/FirstRow/RightPanel" method="_on_file_dialog_file_selected"]

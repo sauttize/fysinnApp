@@ -19,9 +19,6 @@ func setName():
 
 func setClassColors():
 	#panel
-	var new_stylebox_panel = namePanel.get_theme_stylebox("panel").duplicate()
-	new_stylebox_panel.bg_color = classType.primaryColor
-	namePanel.add_theme_stylebox_override("panel", new_stylebox_panel)
-	
+	Utilities.changeFlatboxColor_Panel(namePanel, classType.primaryColor)
 	#label
-	className.add_theme_color_override("font_color", classType.secundaryColor)
+	Utilities.changeFontColor_Label(className, classType.secundaryColor)

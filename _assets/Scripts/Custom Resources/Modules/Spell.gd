@@ -45,7 +45,7 @@ enum TYPES {
 @export_enum("d4", "d6", "d8", "d10", "d12", "d20", "none") var debuffElementalDice : String = "d4"
 
 @export_category("Other")
-@export var passive : Passive
+@export var passive : Effect
 @export var infoLink : String
 
 ## This returns an Array[String]. 
