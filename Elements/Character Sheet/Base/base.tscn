@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=53 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -29,6 +29,7 @@
 [ext_resource type="Script" path="res://Elements/Buttons/TextureButton.gd" id="25_vn034"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/PlayerElement.gd" id="26_fimq4"]
 [ext_resource type="Texture2D" uid="uid://dd5i10lj383qw" path="res://_assets/Icons/Clock/clock_white.png" id="27_486jh"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/RightPanel/editFame_Danger.gd" id="27_pvq4t"]
 [ext_resource type="PackedScene" uid="uid://c2716bym8p7gy" path="res://Elements/Character Sheet/Base/Spells/info_elemento.tscn" id="27_wsl5o"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/SpellManager.gd" id="29_pvy43"]
 [ext_resource type="PackedScene" uid="uid://b5odqdcajm5u0" path="res://Elements/Character Sheet/Base/Spells/spell.tscn" id="30_0ijt3"]
@@ -622,7 +623,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="picture" type="Control" parent="Container/FirstRow/RightPanel"]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -698,6 +698,7 @@ filters = PackedStringArray("*.png", "*.jpg")
 show_hidden_files = true
 
 [node name="stats" type="Control" parent="Container/FirstRow/RightPanel"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -734,7 +735,7 @@ crimeNode = NodePath("danger/num")
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/fama"]
+[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/fama" node_paths=PackedStringArray("openWindow")]
 custom_minimum_size = Vector2(38, 40)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -742,6 +743,8 @@ texture = ExtResource("20_mx7hn")
 expand_mode = 1
 stretch_mode = 5
 script = ExtResource("25_vn034")
+hoverColor = Color(0.592157, 0.305882, 0.415686, 1)
+openWindow = NodePath("../../editNum")
 
 [node name="num" type="Label" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/fama"]
 texture_filter = 1
@@ -755,13 +758,16 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/danger"]
+[node name="icon" type="TextureRect" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/danger" node_paths=PackedStringArray("openWindow")]
 custom_minimum_size = Vector2(34, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 texture = ExtResource("21_d31vl")
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("25_vn034")
+hoverColor = Color(0.59272, 0.305705, 0.414215, 1)
+openWindow = NodePath("../../editNum")
 
 [node name="num" type="Label" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/danger"]
 texture_filter = 1
@@ -770,6 +776,49 @@ theme_override_font_sizes/font_size = 20
 text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="editNum" type="Window" parent="Container/FirstRow/RightPanel/stats/vbox/hbox" node_paths=PackedStringArray("fameLabel", "criminalLabel")]
+title = "Editar"
+size = Vector2i(200, 140)
+visible = false
+transient = true
+exclusive = true
+unresizable = true
+script = ExtResource("27_pvq4t")
+fameLabel = NodePath("../fama/num")
+criminalLabel = NodePath("../danger/num")
+
+[node name="vbox" type="VBoxContainer" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/editNum"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.5
+offset_top = -15.5
+offset_right = 41.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="number" type="SpinBox" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/editNum/vbox"]
+layout_mode = 2
+min_value = -100.0
+rounded = true
+
+[node name="options" type="OptionButton" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/editNum/vbox"]
+layout_mode = 2
+item_count = 2
+popup/item_0/text = "Fama"
+popup/item_0/id = 0
+popup/item_1/text = "Indice búsqueda"
+popup/item_1/id = 1
+
+[node name="ok" type="Button" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/editNum/vbox"]
+layout_mode = 2
+text = "ok"
 
 [node name="hLine" type="ColorRect" parent="Container/FirstRow/RightPanel/stats/vbox"]
 custom_minimum_size = Vector2(0, 2)

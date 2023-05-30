@@ -18,20 +18,26 @@ class_name PlayerData
 @export var maxLife : int = 0
 @export var actionPoints : int = 4
 @export var velocity : int = 30
-@export var initiativeNum : int = 1
+@export var initiativeNum : int = 1:
+	set(num): initiativeNum = clamp(num, 1, 5)
 @export_subgroup("Skills")
 @export var stats : Stats
 
 #METERS
 @export_category("-- Meters --")
-@export_range(0, 100) var sleepMeter : float = 100
-@export var hungerMeter : float = 100
-@export var thirstMeter : float = 100
+@export var sleepMeter : float = 100:
+	set(num): sleepMeter = clamp(num, -10, 100)
+@export var hungerMeter : float = 100:
+	set(num): hungerMeter = clamp(num, -10, 100)
+@export var thirstMeter : float = 100:
+	set(num): thirstMeter = clamp(num, -10, 100)
 
 #FAME AND CRIME
 @export_category("-- Fame & Crime --")
-@export_range(1, 100) var criminalPercentage : int = 0
-@export_range(1, 100) var famePercentage : int = 0
+@export var criminalPercentage : int = 0:
+	set(num): criminalPercentage = clamp(num, 0, 100)
+@export var famePercentage : int = 0:
+	set(num): famePercentage = clamp(num, 0, 100)
 
 #SPELLS
 @export_category("Spells")

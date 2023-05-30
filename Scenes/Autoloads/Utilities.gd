@@ -18,7 +18,7 @@ func changeFontColor_Label(labelNode : Label, newColor : Color) -> void:
 	labelNode.add_theme_color_override("font_color", newColor)
 
 ## Gets an event and return true if is left mouse click pressed
-func is_event_mouse_pressed(event : InputEvent, type : MOUSE_BUTTON):
+func is_event_mouse_pressed(event : InputEvent, type : MOUSE_BUTTON) -> bool:
 	var button : int
 	match type:
 		MOUSE_BUTTON.LEFT:
@@ -28,7 +28,8 @@ func is_event_mouse_pressed(event : InputEvent, type : MOUSE_BUTTON):
 		MOUSE_BUTTON.MIDDLE:
 			button = MOUSE_BUTTON_MIDDLE
 	
-	if !(event == InputEventMouseButton): return false
+	if !(event is InputEventMouseButton): return false
 	var mouseEvent : InputEventMouseButton = event
 	if !(mouseEvent.button_index == button): return false
-	if mouseEvent.presse: return true
+	if !(mouseEvent.is_pressed()) : return false
+	return true
