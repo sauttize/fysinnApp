@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="Knowledge" load_steps=3 format=3 uid="uid://cm82xlvl7ps34"]
+
+[ext_resource type="Resource" uid="uid://dm5hehvf88ljf" path="res://_assets/Scripts/Custom Resources/Data/CurrentData.tres" id="1_b88rc"]
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd" id="1_ucxvg"]
+
+[resource]
+script = ExtResource("1_ucxvg")
+dataDump = ExtResource("1_b88rc")
+knowledgeName = "Cocina"
+currentPercentage = 0.0
+currentLevel = 1
+minPercentage = 1.0
+maxPercentage = 100.0
+failAttempts = 0
+motivation = 0
+proficiencyType = 0
+associatedStat = 0
+associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
+associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

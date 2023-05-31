@@ -1,6 +1,12 @@
-[gd_resource type="Resource" script_class="DataFile" load_steps=2 format=3 uid="uid://dm5hehvf88ljf"]
+[gd_resource type="Resource" script_class="DataFile" load_steps=5 format=3 uid="uid://dm5hehvf88ljf"]
 
 [ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Data/Data.gd" id="1_mvxxb"]
+[ext_resource type="Curve" uid="uid://cp56mejcve5a4" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Curves/LearningCurveAcademy.tres" id="1_nwse5"]
+[ext_resource type="Curve" uid="uid://h8pvjksahcbg" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Curves/LearningCurveBook.tres" id="2_vjvyx"]
+[ext_resource type="Curve" uid="uid://dbbjhbuk8yqpu" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Curves/LearningCurvePractice.tres" id="3_7057o"]
 
 [resource]
 script = ExtResource("1_mvxxb")
+K_CURVE_PRACTICE = ExtResource("3_7057o")
+K_CURVE_BOOK = ExtResource("2_vjvyx")
+K_CURVE_ACADEMY = ExtResource("1_nwse5")

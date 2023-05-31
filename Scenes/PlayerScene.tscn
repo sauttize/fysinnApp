@@ -213,6 +213,7 @@ custom_minimum_size = Vector2(0, 780)
 layout_mode = 2
 
 [node name="Conocimientos" parent="Window/Container/TabContainer" instance=ExtResource("12_mioef")]
+visible = false
 custom_minimum_size = Vector2(0, 780)
 layout_mode = 2
 

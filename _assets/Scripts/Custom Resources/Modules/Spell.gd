@@ -30,6 +30,7 @@ enum TYPES {
 @export_enum("d4", "d6", "d8", "d10", "d12", "d20", "none") var throwDice : String = "d4"
 @export_range(0, 200) var rangeDistance : int = 0
 @export_enum("FUE", "DES", "CON", "INT", "SAB", "CAR", "none") var saveThrow : String = "none"
+@export var saveNumber : int = 1
 @export_multiline var description : String
 
 @export_category("Elemental")

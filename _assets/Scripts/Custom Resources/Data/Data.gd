@@ -3,17 +3,24 @@ class_name DataFile
 
 # STATUS VALUES
 enum STATUS {SLEEP, HUNGER, THIRST}
-const HUNGER_HOURS : float = 2.5 ## Hunger taken each hour
-const HUNGER_MINUTES : float = 0.04 ## Each minute
+var HUNGER_HOURS : float = 2.5 ## Hunger taken each hour
+var HUNGER_MINUTES : float = 0.04 ## Each minute
 # Thirst
-const THIRST_HOURS : float = 3.33 ## Thirst taken each hour
-const THIRST_MINUTES : float = 0.05 ## Each minute
+var THIRST_HOURS : float = 3.33 ## Thirst taken each hour
+var THIRST_MINUTES : float = 0.05 ## Each minute
 # Sleep
-const SLEEP_HOURS : float = 12.5 ## Each hour you sleep, the amount you get back
-const SLEEP_MINUTES : float = 0.2 ## Each minute
+var SLEEP_HOURS : float = 12.5 ## Each hour you sleep, the amount you get back
+var SLEEP_MINUTES : float = 0.2 ## Each minute
 # Did not sleep
-const NOT_SLEEP_HOURS : float = 6.66 ## Each hour that passed, sleep got taken
-const NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
+var NOT_SLEEP_HOURS : float = 6.66 ## Each hour that passed, sleep got taken
+var NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
+
+# KNOWLEDGE LIST
+const KNOWLEDGE_LIST : Array[String] = []
+@export_category("Learning curves")
+@export var K_CURVE_PRACTICE : Curve
+@export var K_CURVE_BOOK : Curve
+@export var K_CURVE_ACADEMY : Curve
 
 # STATUS METHODS
 ## Get the number of time and depending if it's hours or minutes and if the

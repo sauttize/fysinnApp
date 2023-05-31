@@ -1,6 +1,8 @@
 extends Resource
 class_name Stats
 
+enum STATS {FUE, DES, CON, INT, SAB, CAR}
+
 #Abilty Score
 @export_subgroup("Ability Scores")
 @export_range(1,30) var strength : int = 0
