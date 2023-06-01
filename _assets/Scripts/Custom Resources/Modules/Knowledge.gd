@@ -14,12 +14,13 @@ enum PROFICIENCY {NONE, PROFICIENCY, HALF_PROFICIENCY, EXPERTISE}
 @export var maxPercentage : float = 100
 @export var failAttempts : int = 0
 @export var motivation : int = 0
-@export var proficiencyType : PROFICIENCY = PROFICIENCY.NONE:
-	get:
-		return PROFICIENCY.keys()[proficiencyType]  # String
+@export var proficiencyType : PROFICIENCY = PROFICIENCY.NONE
 @export var associatedStat : Stats.STATS
 @export var associatedClasses : Array[ClassType]
 @export var associatedEffects : Array[Effect]
+
+func get_proficiency_string():
+	return PROFICIENCY.keys()[proficiencyType]
 
 # func learn (gets percentage of success from code)
 # func learn by book (pass dataDump) could be all in one.

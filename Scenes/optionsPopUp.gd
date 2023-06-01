@@ -1,10 +1,11 @@
 extends MenuButton
 
 var popup : PopupMenu
+var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
+var dataDump : DataFile = preload("res://_assets/Scripts/Custom Resources/Data/CurrentData.tres")
 
 # AutoGuardado:
 @export_category("AutoSave")
-@export var playerData : PlayerData
 var isCheck : bool
 @export var timer : Timer
 @export var intervalMin : float = 5 #min
@@ -24,6 +25,8 @@ func click_op(id : int):
 		isCheck = !popup.is_item_checked(0)
 		popup.set_item_checked(0, isCheck)
 		update_autosave(isCheck)
+	elif (id == 1):
+		new_knowledge_list()
 
 # --- AutoSave ---
 func autosave():
@@ -37,3 +40,8 @@ func update_autosave_interval(minutes : float):
 	var intervalSeconds = minutes * 60 # min to sec
 	timer.wait_time = intervalSeconds
 # -----------------
+
+# --- Clean Knowledge ---
+# Sets a new list with default values
+func new_knowledge_list():
+	playerData.myKnowledgeList = dataDump.KNOWLEDGE_LIST

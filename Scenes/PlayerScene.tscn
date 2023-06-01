@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=25 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -11,9 +11,11 @@
 [ext_resource type="Script" path="res://Scenes/optionsPopUp.gd" id="5_bdmeo"]
 [ext_resource type="PackedScene" uid="uid://br4spa7odwlg8" path="res://Elements/Character Sheet/exp.tscn" id="6_nsmno"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/TabsManager.gd" id="7_eonce"]
+[ext_resource type="FontFile" uid="uid://s64tvl31747e" path="res://_assets/Fonts/Cabin-VariableFont_wdth,wght.ttf" id="9_0miko"]
 [ext_resource type="PackedScene" uid="uid://cgv0xmq1b22ap" path="res://Elements/Character Sheet/Base/base.tscn" id="9_p74o1"]
 [ext_resource type="PackedScene" uid="uid://ddp7y6gn35b86" path="res://Elements/Character Sheet/Conocimientos/conocimientos.tscn" id="12_mioef"]
 [ext_resource type="Script" path="res://Scenes/exitHandler.gd" id="13_jfxcr"]
+[ext_resource type="PackedScene" uid="uid://r1el5plw4yls" path="res://Elements/Debug/consoleTab.tscn" id="16_jijpf"]
 
 [sub_resource type="SystemFont" id="SystemFont_xkiv0"]
 
@@ -42,6 +44,19 @@ expand_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vwkr"]
 bg_color = Color(0.596078, 0.627451, 0.34902, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_bottom = 6.0
+
+[sub_resource type="Theme" id="Theme_yg2qg"]
+Button/fonts/font = ExtResource("9_0miko")
+Button/styles/normal = ExtResource("2_1wv8b")
+Label/fonts/font = ExtResource("9_0miko")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eaw4f"]
+bg_color = Color(0.4, 0.156863, 0.156863, 1)
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
@@ -124,17 +139,19 @@ theme_override_fonts/font = SubResource("SystemFont_xkiv0")
 theme_override_font_sizes/font_size = 12
 shortcut = SubResource("Shortcut_bforp")
 text = "Opciones"
-item_count = 1
+item_count = 2
 popup/item_0/text = "Auto Guardado"
 popup/item_0/checkable = 1
 popup/item_0/checked = true
 popup/item_0/id = 0
+popup/item_1/text = "Limpiar Conocimientos"
+popup/item_1/id = 1
 script = ExtResource("5_bdmeo")
-playerData = ExtResource("2_yymf8")
 timer = NodePath("../../../../../AutoSave")
 
 [node name="Tabs" type="HBoxContainer" parent="Window/Container"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_constants/separation = 3
 alignment = 1
 
@@ -180,6 +197,13 @@ text = "Notas
 "
 expand_icon = true
 
+[node name="btn_Consola" type="Button" parent="Window/Container/Tabs"]
+custom_minimum_size = Vector2(20, 30)
+layout_mode = 2
+theme = SubResource("Theme_yg2qg")
+theme_override_styles/normal = SubResource("StyleBoxFlat_eaw4f")
+expand_icon = true
+
 [node name="BasicInfoSection" type="MarginContainer" parent="Window/Container"]
 layout_mode = 2
 theme_override_constants/margin_top = -5
@@ -203,10 +227,16 @@ size_flags_horizontal = 8
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="TabContainer" type="TabContainer" parent="Window/Container"]
+[node name="TabContainer" type="TabContainer" parent="Window/Container" node_paths=PackedStringArray("baseButton", "conocimientosButton", "mascotasButton", "relacionesButton", "notasButton", "consoleButton")]
 layout_mode = 2
 tabs_visible = false
 script = ExtResource("7_eonce")
+baseButton = NodePath("../Tabs/btn_Base")
+conocimientosButton = NodePath("../Tabs/btn_Conocimientos")
+mascotasButton = NodePath("../Tabs/btn_Mascotas")
+relacionesButton = NodePath("../Tabs/btn_Relaciones")
+notasButton = NodePath("../Tabs/btn_Notas")
+consoleButton = NodePath("../Tabs/btn_Consola")
 
 [node name="Base" parent="Window/Container/TabContainer" instance=ExtResource("9_p74o1")]
 custom_minimum_size = Vector2(0, 780)
@@ -215,6 +245,10 @@ layout_mode = 2
 [node name="Conocimientos" parent="Window/Container/TabContainer" instance=ExtResource("12_mioef")]
 visible = false
 custom_minimum_size = Vector2(0, 780)
+layout_mode = 2
+
+[node name="Console" parent="Window/Container/TabContainer" instance=ExtResource("16_jijpf")]
+visible = false
 layout_mode = 2
 
 [node name="LoadResource" type="FileDialog" parent="."]
@@ -248,8 +282,6 @@ cancel_button_text = "Irme sin guardar"
 [connection signal="loadFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_load_file"]
 [connection signal="reSaveFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_re_save_file"]
 [connection signal="saveFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_save_file"]
-[connection signal="button_up" from="Window/Container/Tabs/btn_Base" to="Window/Container/TabContainer" method="_on_btn_base_button_up"]
-[connection signal="button_up" from="Window/Container/Tabs/btn_Conocimientos" to="Window/Container/TabContainer" method="_on_btn_conocimientos_button_up"]
 [connection signal="exp_updated" from="Window/Container/BasicInfoSection/Seccion Nivel/Exp" to="Window/Container/BasicInfoSection/Seccion Nivel/Nivel" method="_on_exp_exp_updated"]
 [connection signal="file_selected" from="LoadResource" to="." method="_on_load_resource_file_selected"]
 [connection signal="file_selected" from="SaveResource" to="." method="_on_save_resource_file_selected"]

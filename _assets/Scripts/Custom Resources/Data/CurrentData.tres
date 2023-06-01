@@ -1,12 +1,37 @@
-[gd_resource type="Resource" script_class="DataFile" load_steps=5 format=3 uid="uid://dm5hehvf88ljf"]
+[gd_resource type="Resource" script_class="DataFile" load_steps=29 format=3 uid="uid://dm5hehvf88ljf"]
 
 [ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Data/Data.gd" id="1_mvxxb"]
 [ext_resource type="Curve" uid="uid://cp56mejcve5a4" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Curves/LearningCurveAcademy.tres" id="1_nwse5"]
+[ext_resource type="Resource" uid="uid://bwvhwql7q22wi" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Acrobacia.tres" id="1_s4j2c"]
+[ext_resource type="Resource" uid="uid://ugmkp1g54y1f" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Arte_Escenicas.tres" id="2_vgwm8"]
 [ext_resource type="Curve" uid="uid://h8pvjksahcbg" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Curves/LearningCurveBook.tres" id="2_vjvyx"]
 [ext_resource type="Curve" uid="uid://dbbjhbuk8yqpu" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Curves/LearningCurvePractice.tres" id="3_7057o"]
+[ext_resource type="Resource" uid="uid://dvx8d4a5erepy" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Busqueda.tres" id="3_enamm"]
+[ext_resource type="Resource" uid="uid://cm82xlvl7ps34" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Cocina.tres" id="4_8n7yg"]
+[ext_resource type="Resource" uid="uid://b5pwuk4kcxyvp" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Herreria.tres" id="5_vyh0u"]
+[ext_resource type="Resource" uid="uid://ct88xet7ouiaf" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Imponencia.tres" id="6_u0cit"]
+[ext_resource type="Resource" uid="uid://buddcjcdqbiur" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Intuicion.tres" id="7_oqovf"]
+[ext_resource type="Resource" uid="uid://d2tcb2ccuc80m" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Lectura_enemiga.tres" id="8_cqpfa"]
+[ext_resource type="Resource" uid="uid://rwrrwkicav21" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Medicina.tres" id="9_qa0ys"]
+[ext_resource type="Resource" uid="uid://42jkft2dqtay" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Meditacion.tres" id="10_oirkh"]
+[ext_resource type="Resource" uid="uid://bqtc52q5q1tac" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Memoria.tres" id="11_qw268"]
+[ext_resource type="Resource" uid="uid://djqqdink48wob" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Naturaleza.tres" id="12_8x3u4"]
+[ext_resource type="Resource" uid="uid://c06aerv5gl07h" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Pociones.tres" id="13_40sgk"]
+[ext_resource type="Resource" uid="uid://bpwe0tuoqhsy3" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Religion.tres" id="14_mwg0v"]
+[ext_resource type="Resource" uid="uid://sycg4l0by4lt" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Seduccion.tres" id="15_bjlkv"]
+[ext_resource type="Resource" uid="uid://du8d4jwlr835b" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Sigilo.tres" id="16_cbrs0"]
+[ext_resource type="Resource" uid="uid://coid4p2i11sjr" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Suerte.tres" id="17_n6b6d"]
+[ext_resource type="Resource" uid="uid://btybyh8u41v18" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Supervivencia.tres" id="18_s0olg"]
+[ext_resource type="Resource" uid="uid://cx5f4d32sro0j" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Deporte.tres" id="19_w0d8t"]
+[ext_resource type="Resource" uid="uid://v1ixv6gyd7qc" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Energia_Magica.tres" id="20_rsd1k"]
+[ext_resource type="Resource" uid="uid://cusypb1e5mnp7" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Enfoque.tres" id="21_i4xxy"]
+[ext_resource type="Resource" uid="uid://c0f2rjg2ii0s" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Manos_Ligeras.tres" id="22_2r2vx"]
+[ext_resource type="Resource" uid="uid://bsnpvf4nkl7f3" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Mentira.tres" id="23_6ue7a"]
+[ext_resource type="Resource" uid="uid://by03abqnbk5yv" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Trato_Animal.tres" id="24_4dfxe"]
 
 [resource]
 script = ExtResource("1_mvxxb")
+KNOWLEDGE_LIST = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd")]([ExtResource("1_s4j2c"), ExtResource("2_vgwm8"), ExtResource("3_enamm"), ExtResource("4_8n7yg"), ExtResource("5_vyh0u"), ExtResource("6_u0cit"), ExtResource("7_oqovf"), ExtResource("8_cqpfa"), ExtResource("9_qa0ys"), ExtResource("10_oirkh"), ExtResource("11_qw268"), ExtResource("12_8x3u4"), ExtResource("13_40sgk"), ExtResource("14_mwg0v"), ExtResource("15_bjlkv"), ExtResource("16_cbrs0"), ExtResource("17_n6b6d"), ExtResource("18_s0olg"), ExtResource("19_w0d8t"), ExtResource("20_rsd1k"), ExtResource("21_i4xxy"), ExtResource("22_2r2vx"), ExtResource("23_6ue7a"), ExtResource("24_4dfxe")])
 K_CURVE_PRACTICE = ExtResource("3_7057o")
 K_CURVE_BOOK = ExtResource("2_vjvyx")
 K_CURVE_ACADEMY = ExtResource("1_nwse5")

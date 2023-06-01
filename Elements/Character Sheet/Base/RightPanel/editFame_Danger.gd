@@ -16,9 +16,9 @@ func update_number():
 	if option.selected == -1 : return
 	
 	if option.selected == 0: # Fame
-		playerData.famePercentage += float(number.value)
+		playerData.famePercentage += int(number.value)
 	elif option.selected == 1: # Criminality
-		playerData.criminalPercentage += float(number.value)
+		playerData.criminalPercentage += int(number.value)
 	update_labels()
 	hide()
 

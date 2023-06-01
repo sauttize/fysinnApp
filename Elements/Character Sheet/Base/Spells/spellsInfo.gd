@@ -9,6 +9,6 @@ extends Control
 
 func _ready() -> void:
 	actionPointsNumber.text = str(playerData.actionPoints)
-	velocityNumber.text = str(playerData.velocity)
+	velocityNumber.text = str(playerData.speed)
 	initiativeNumber.text = str(playerData.initiativeNum)
 

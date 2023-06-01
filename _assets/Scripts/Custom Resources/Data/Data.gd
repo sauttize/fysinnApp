@@ -16,8 +16,15 @@ var NOT_SLEEP_HOURS : float = 6.66 ## Each hour that passed, sleep got taken
 var NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
 
 # KNOWLEDGE LIST
-const KNOWLEDGE_LIST : Array[String] = []
-@export_category("Learning curves")
+@export_category("Knowledge related")
+@export var KNOWLEDGE_LIST : Array[Knowledge]:
+	get: # Gives a copy of the list, not related to the og's
+		var newList : Array[Knowledge]
+		for knowl in KNOWLEDGE_LIST:
+			var copy : Knowledge = knowl.duplicate()
+			newList.append(copy)
+		return newList
+@export_subgroup("Learning curves")
 @export var K_CURVE_PRACTICE : Curve
 @export var K_CURVE_BOOK : Curve
 @export var K_CURVE_ACADEMY : Curve

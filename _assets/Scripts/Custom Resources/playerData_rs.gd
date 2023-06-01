@@ -17,7 +17,7 @@ class_name PlayerData
 @export var currentLife : int = 0
 @export var maxLife : int = 0
 @export var actionPoints : int = 4
-@export var velocity : int = 30
+@export var speed : int = 30
 @export var initiativeNum : int = 1:
 	set(num): initiativeNum = clamp(num, 1, 5)
 @export_subgroup("Skills")
@@ -40,11 +40,15 @@ class_name PlayerData
 	set(num): famePercentage = clamp(num, 0, 100)
 
 #SPELLS
-@export_category("Spells")
+@export_category("-- Spells --")
 @export_subgroup("All")
 @export var spells : Array[Spell]
 @export_subgroup("Active")
 @export var activeSpells : Array[Spell]
+
+#KNOWLEDGE RELATED
+@export_category("-- Knowledge --")
+@export var myKnowledgeList : Array[Knowledge]
 
 func updateExp(newExp : int):
 	exp += newExp

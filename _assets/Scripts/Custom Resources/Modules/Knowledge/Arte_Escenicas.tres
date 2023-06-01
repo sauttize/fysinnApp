@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Knowledge" load_steps=2 format=3 uid="uid://cm82xlvl7ps34"]
+[gd_resource type="Resource" script_class="Knowledge" load_steps=2 format=3 uid="uid://ugmkp1g54y1f"]
 
-[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd" id="1_ucxvg"]
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd" id="1_mfg17"]
 
 [resource]
-script = ExtResource("1_ucxvg")
-knowledgeName = "Cocina"
+script = ExtResource("1_mfg17")
+knowledgeName = "Artes Escénicas"
 currentPercentage = 0.0
 currentLevel = 1
 minPercentage = 1.0
