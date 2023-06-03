@@ -31,7 +31,8 @@
 
 [resource]
 script = ExtResource("1_mvxxb")
-KNOWLEDGE_LIST = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd")]([ExtResource("1_s4j2c"), ExtResource("2_vgwm8"), ExtResource("3_enamm"), ExtResource("4_8n7yg"), ExtResource("5_vyh0u"), ExtResource("6_u0cit"), ExtResource("7_oqovf"), ExtResource("8_cqpfa"), ExtResource("9_qa0ys"), ExtResource("10_oirkh"), ExtResource("11_qw268"), ExtResource("12_8x3u4"), ExtResource("13_40sgk"), ExtResource("14_mwg0v"), ExtResource("15_bjlkv"), ExtResource("16_cbrs0"), ExtResource("17_n6b6d"), ExtResource("18_s0olg"), ExtResource("19_w0d8t"), ExtResource("20_rsd1k"), ExtResource("21_i4xxy"), ExtResource("22_2r2vx"), ExtResource("23_6ue7a"), ExtResource("24_4dfxe")])
+KNOWLEDGE_LIST = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd")]([ExtResource("1_s4j2c"), ExtResource("2_vgwm8"), ExtResource("3_enamm"), ExtResource("4_8n7yg"), ExtResource("19_w0d8t"), ExtResource("20_rsd1k"), ExtResource("21_i4xxy"), ExtResource("5_vyh0u"), ExtResource("6_u0cit"), ExtResource("7_oqovf"), ExtResource("8_cqpfa"), ExtResource("22_2r2vx"), ExtResource("9_qa0ys"), ExtResource("10_oirkh"), ExtResource("11_qw268"), ExtResource("23_6ue7a"), ExtResource("12_8x3u4"), ExtResource("13_40sgk"), ExtResource("14_mwg0v"), ExtResource("15_bjlkv"), ExtResource("16_cbrs0"), ExtResource("17_n6b6d"), ExtResource("18_s0olg"), ExtResource("24_4dfxe")])
 K_CURVE_PRACTICE = ExtResource("3_7057o")
 K_CURVE_BOOK = ExtResource("2_vjvyx")
 K_CURVE_ACADEMY = ExtResource("1_nwse5")
+bgConsoleColor = Color(0.0196078, 0, 0.345098, 0.352941)

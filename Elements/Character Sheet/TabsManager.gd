@@ -9,12 +9,12 @@ extends TabContainer
 @export var consoleButton : Button
 
 func _ready() -> void:
-	baseButton.button_up.connect(changeTab.bind(0))
-	conocimientosButton.button_up.connect(changeTab.bind(1))
+	baseButton.pressed.connect(changeTab.bind(0))
+	conocimientosButton.pressed.connect(changeTab.bind(1))
 #	mascotasButton.button_up.connect(changeTab(2))
 #	relacionesButton.button_up.connect(changeTab(3))
 #	notasButton.button_up.connect(changeTab(4))
-	consoleButton.button_up.connect(changeTab.bind(2))
+	consoleButton.pressed.connect(changeTab.bind(2))
 
 func changeTab (tab_num : int):
 	set_current_tab(tab_num)

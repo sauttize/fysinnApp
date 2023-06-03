@@ -1,6 +1,6 @@
 extends Node
 
-const TEMP_FILE = "res://_assets/Scripts/Custom Resources/temp.tres"
+#const TEMP_FILE = "res://_assets/Scripts/Custom Resources/temp.tres"
 const SAVE_ROUTE = "res://_assets/Scripts/Custom Resources/PlayerSave.tres"
 
 var save_file_path = "res://_assets/Scripts/Custom Resources/"

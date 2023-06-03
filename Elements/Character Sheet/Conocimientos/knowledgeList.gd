@@ -1,6 +1,7 @@
 extends ItemList
 
 var dataDump : DataFile = preload("res://_assets/Scripts/Custom Resources/Data/CurrentData.tres")
+var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
 @export_category("Level Stars")
 @export var starContainer : HBoxContainer
 var starNodes : Array = []
@@ -11,10 +12,12 @@ func _ready() -> void:
 	get_star_nodes()
 	clear()
 	clear_level_stars()
+	update_list_of_knowledge()
 
 ## Updates all knowledges
-func get_list_of_knowledge():
-	pass
+func update_list_of_knowledge():
+	for k in playerData.myKnowledgeList:
+		add_item(k.knowledgeName)
 
 ## Stars
 func get_star_nodes():

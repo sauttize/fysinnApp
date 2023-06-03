@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=33 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -19,12 +19,41 @@
 
 [sub_resource type="SystemFont" id="SystemFont_xkiv0"]
 
-[sub_resource type="InputEventKey" id="InputEventKey_2sl3x"]
+[sub_resource type="InputEventKey" id="InputEventKey_wx7ls"]
+device = -1
 ctrl_pressed = true
 keycode = 70
+unicode = 102
 
 [sub_resource type="Shortcut" id="Shortcut_bforp"]
-events = [SubResource("InputEventKey_2sl3x")]
+events = [SubResource("InputEventKey_wx7ls")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_nn748"]
+device = -1
+ctrl_pressed = true
+keycode = 79
+unicode = 111
+
+[sub_resource type="Shortcut" id="Shortcut_ko37a"]
+events = [SubResource("InputEventKey_nn748")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_iqxje"]
+device = -1
+ctrl_pressed = true
+keycode = 66
+unicode = 98
+
+[sub_resource type="Shortcut" id="Shortcut_meanf"]
+events = [SubResource("InputEventKey_iqxje")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_n2awt"]
+device = -1
+ctrl_pressed = true
+keycode = 75
+unicode = 107
+
+[sub_resource type="Shortcut" id="Shortcut_jew5d"]
+events = [SubResource("InputEventKey_n2awt")]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ip31c"]
 bg_color = Color(0.533333, 0.580392, 0.835294, 1)
@@ -62,6 +91,15 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 expand_margin_bottom = 6.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_xryiw"]
+device = -1
+ctrl_pressed = true
+keycode = 82
+unicode = 114
+
+[sub_resource type="Shortcut" id="Shortcut_maann"]
+events = [SubResource("InputEventKey_xryiw")]
 
 [node name="Player manager" type="Control"]
 clip_contents = true
@@ -137,7 +175,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 theme_override_fonts/font = SubResource("SystemFont_xkiv0")
 theme_override_font_sizes/font_size = 12
-shortcut = SubResource("Shortcut_bforp")
+shortcut = SubResource("Shortcut_ko37a")
 text = "Opciones"
 item_count = 2
 popup/item_0/text = "Auto Guardado"
@@ -160,6 +198,7 @@ custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
 theme_override_styles/normal = ExtResource("2_1wv8b")
+shortcut = SubResource("Shortcut_meanf")
 text = "Base"
 expand_icon = true
 
@@ -168,6 +207,7 @@ custom_minimum_size = Vector2(130, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
 theme_override_styles/normal = ExtResource("3_v5lg0")
+shortcut = SubResource("Shortcut_jew5d")
 text = "Conocimientos"
 expand_icon = true
 
@@ -188,13 +228,12 @@ text = "Relaciones
 "
 expand_icon = true
 
-[node name="btn_Notas" type="Button" parent="Window/Container/Tabs"]
-custom_minimum_size = Vector2(70, 30)
+[node name="btn_Personal" type="Button" parent="Window/Container/Tabs"]
+custom_minimum_size = Vector2(80, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
 theme_override_styles/normal = SubResource("StyleBoxFlat_6vwkr")
-text = "Notas
-"
+text = "Personal"
 expand_icon = true
 
 [node name="btn_Consola" type="Button" parent="Window/Container/Tabs"]
@@ -202,6 +241,7 @@ custom_minimum_size = Vector2(20, 30)
 layout_mode = 2
 theme = SubResource("Theme_yg2qg")
 theme_override_styles/normal = SubResource("StyleBoxFlat_eaw4f")
+shortcut = SubResource("Shortcut_maann")
 expand_icon = true
 
 [node name="BasicInfoSection" type="MarginContainer" parent="Window/Container"]
@@ -235,7 +275,7 @@ baseButton = NodePath("../Tabs/btn_Base")
 conocimientosButton = NodePath("../Tabs/btn_Conocimientos")
 mascotasButton = NodePath("../Tabs/btn_Mascotas")
 relacionesButton = NodePath("../Tabs/btn_Relaciones")
-notasButton = NodePath("../Tabs/btn_Notas")
+notasButton = NodePath("../Tabs/btn_Personal")
 consoleButton = NodePath("../Tabs/btn_Consola")
 
 [node name="Base" parent="Window/Container/TabContainer" instance=ExtResource("9_p74o1")]

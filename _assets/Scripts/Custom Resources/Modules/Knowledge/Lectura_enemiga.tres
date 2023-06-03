@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_cq3df")
-knowledgeName = "Lectura_enemiga"
+knowledgeName = "Lectura Enemiga"
 currentPercentage = 0.0
 currentLevel = 1
 minPercentage = 1.0

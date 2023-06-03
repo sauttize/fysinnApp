@@ -17,19 +17,26 @@ var NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
 
 # KNOWLEDGE LIST
 @export_category("Knowledge related")
-@export var KNOWLEDGE_LIST : Array[Knowledge]:
-	get: # Gives a copy of the list, not related to the og's
-		var newList : Array[Knowledge]
-		for knowl in KNOWLEDGE_LIST:
-			var copy : Knowledge = knowl.duplicate()
-			newList.append(copy)
-		return newList
+@export var KNOWLEDGE_LIST : Array[Knowledge]
 @export_subgroup("Learning curves")
 @export var K_CURVE_PRACTICE : Curve
 @export var K_CURVE_BOOK : Curve
 @export var K_CURVE_ACADEMY : Curve
 
-# STATUS METHODS
+@export_category("Console")
+@export var bgConsoleColor : Color = Color(0, 0, 0, 0.25)
+
+## KNOWLEDGE METHODS
+## Gives a copy of the list, not related to the og's
+func get_duplicate_list_knowledge() -> Array[Knowledge]:
+	var newList : Array[Knowledge]
+	for knowl in KNOWLEDGE_LIST:
+		var copy : Knowledge = knowl.duplicate()
+		newList.append(copy)
+	return newList
+
+
+## STATUS METHODS
 ## Get the number of time and depending if it's hours or minutes and if the
 ## user slept or not, returns the corresponding number.
 func get_new_sleep_number(time : float, isHours : bool, didSleep : bool) -> float:

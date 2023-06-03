@@ -18,10 +18,16 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 script = ExtResource("1_j67dm")
-helpList = PackedStringArray("clear: clears the log", "k_default: all knowledge from playerData go to default")
+helpList = PackedStringArray("clear: clears the log", "console_color: change background color of console. {*}", "k_default: all knowledge from playerData go to default", "reload_data: reloads the save file of player. {*}", "\'name\', \'my_name\', \'whoami\': shows you the correct current name you have in your save file", "\'newname\', \'new_name\', \'nameTo\': to change player name. {*} {!}", "level: shows current level", "newlevel: change level to a new number. {*} {!}", "\'reload\', \'reload_s\': reloads the scene to check changes added to the save file.", "", "---- (*) means you should write at least one argument after the command ----", "---- {!} means you may not see changes until you reload scene ----")
+helpChangeColor = PackedStringArray("default: default bg color", "blue", "pink", "", "\'-re\' [after color]: to remember color even after closing application")
+helpReloadData = PackedStringArray("\'true\', \'-y\', \'reload\': reload scene also", "\'false\', \'-n\': doesn\'t reload the scene. (Default value)")
+helpReload = PackedStringArray("\'-r\', \'reload\', \'true\', \'-y\' [after value]: to change and reload")
 arrowColor = Color(0.752941, 0.262745, 0.454902, 1)
 outputColor = Color(0.407843, 0.72549, 0.372549, 0.776471)
 doneColor = Color(0.772549, 0.333333, 0.835294, 1)
+helpColor = Color(0.545098, 0.545098, 0.545098, 1)
+errorAltColor = Color(0.87451, 0.4, 0.329412, 1)
+bgColors = PackedColorArray(0, 0, 0, 0.239216, 0.0196078, 0, 0.345098, 0.352941, 0.34902, 0.0313726, 0.14902, 0.352941)
 
 [node name="consoleElements" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -39,7 +45,9 @@ offset_top = 4.0
 offset_right = 665.0
 offset_bottom = 404.0
 theme_override_fonts/normal_font = ExtResource("2_ofw6k")
+theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
+scroll_following = true
 
 [node name="writeLine" type="LineEdit" parent="consoleElements"]
 layout_mode = 2
