@@ -16,7 +16,9 @@ class_name PlayerData
 @export_category("-- Base --")
 @export var currentLife : int = 0
 @export var maxLife : int = 0
-@export var actionPoints : int = 4
+var casillasMov : int = 0:
+	get:
+		return int(speed / 5)
 @export var speed : int = 30
 @export var initiativeNum : int = 1:
 	set(num): initiativeNum = clamp(num, 1, 5)
@@ -50,9 +52,15 @@ class_name PlayerData
 @export_category("-- Knowledge --")
 @export var myKnowledgeList : Array[Knowledge]
 
+#OTHER
+@export_category("Other")
+@export var lastSaved : String
+
 func updateExp(newExp : int):
 	exp += newExp
 	
 func updateName(newName : String):
 	nombre = newName
 	
+func newSave():
+	lastSaved = Time.get_datetime_string_from_system()

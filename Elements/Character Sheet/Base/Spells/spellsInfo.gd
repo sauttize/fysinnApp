@@ -3,12 +3,12 @@ extends Control
 @export var playerData : PlayerData
 @export_category("Dependencies")
 @export_subgroup("Variables")
-@export var actionPointsNumber : Label
+@export var casillasNumber : Label
 @export var velocityNumber : Label
 @export var initiativeNumber : Label
 
 func _ready() -> void:
-	actionPointsNumber.text = str(playerData.actionPoints)
+	casillasNumber.text = str(playerData.casillasMov)
 	velocityNumber.text = str(playerData.speed)
 	initiativeNumber.text = str(playerData.initiativeNum)
 

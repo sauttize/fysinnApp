@@ -35,4 +35,4 @@ KNOWLEDGE_LIST = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/
 K_CURVE_PRACTICE = ExtResource("3_7057o")
 K_CURVE_BOOK = ExtResource("2_vjvyx")
 K_CURVE_ACADEMY = ExtResource("1_nwse5")
-bgConsoleColor = Color(0.0196078, 0, 0.345098, 0.352941)
+bgConsoleColor = Color(0, 0, 0, 0.239216)

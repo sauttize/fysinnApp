@@ -992,15 +992,15 @@ text = "edit
 [node name="EditActiveSpells" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList" instance=ExtResource("31_niqo8")]
 visible = false
 
-[node name="info" type="Control" parent="Container/SecondRow/Spells/container/skillsPanel/vertical" node_paths=PackedStringArray("actionPointsNumber", "velocityNumber", "initiativeNumber")]
+[node name="info" type="Control" parent="Container/SecondRow/Spells/container/skillsPanel/vertical" node_paths=PackedStringArray("casillasNumber", "velocityNumber", "initiativeNumber")]
 custom_minimum_size = Vector2(190, 30)
 layout_mode = 2
-tooltip_text = "- 'Action Points' para usar por turno.
+tooltip_text = "- 'Casillas de Movimiento' transforma tu velocidad en casillas que puedes moverte por turno.
 - Velocidad en pies.
 - Initiative point/number. Default es 1. Cada añadido implica esperar un turno menos que el resto."
 script = ExtResource("31_6hd6d")
 playerData = ExtResource("3_xdtbq")
-actionPointsNumber = NodePath("hz/apNum")
+casillasNumber = NodePath("hz/casNum")
 velocityNumber = NodePath("hz/velNum")
 initiativeNumber = NodePath("hz/ipNum")
 
@@ -1018,16 +1018,16 @@ offset_bottom = 15.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="actionPoints" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
+[node name="casillasMov" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
 mouse_filter = 0
 mouse_default_cursor_shape = 4
-text = "AP:"
+text = "CM:"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="apNum" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
+[node name="casNum" type="Label" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/info/hz"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 text = "0"

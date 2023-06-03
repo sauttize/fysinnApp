@@ -31,6 +31,7 @@ func _ready():
 		get_window().position = Vector2i(centerPos)
 
 func save_file():
+	_playerData.newSave()
 	ResourceSaver.save(_playerData, save_file_path + save_file_name)
 	
 func save_and_reload():
@@ -60,11 +61,13 @@ func _on_menu_bar_re_save_file():
 
 # SAVE NEW FILE
 func _on_save_resource_file_selected(save_path):
+	_playerData.newSave()
 	ResourceSaver.save(_playerData, save_path)
 
 # LOAD FILE FROM DISK
 func _on_load_resource_file_selected(load_path):
 	playerData = ResourceLoader.load(load_path).duplicate(true)
+	playerData.newSave()
 	playerData.take_over_path(SAVE_ROUTE)
 	ResourceSaver.save(playerData, SAVE_ROUTE)
 	

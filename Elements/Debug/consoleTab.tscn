@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://r1el5plw4yls"]
+[gd_scene load_steps=7 format=3 uid="uid://r1el5plw4yls"]
 
 [ext_resource type="Script" path="res://Elements/Debug/ConsoleManager.gd" id="1_j67dm"]
-[ext_resource type="FontFile" uid="uid://btw8oqfk3julq" path="res://_assets/Fonts/CourierPrime-Regular.ttf" id="2_ofw6k"]
+[ext_resource type="FontFile" uid="uid://btw8oqfk3julq" path="res://_assets/Fonts/CourierPrime/CourierPrime-Regular.ttf" id="2_omhxn"]
+[ext_resource type="FontFile" uid="uid://cpg6of36yvab3" path="res://_assets/Fonts/CourierPrime/CourierPrime-Bold.ttf" id="3_xhml7"]
+[ext_resource type="FontFile" uid="uid://b4v62ckpb2mwu" path="res://_assets/Fonts/CourierPrime/CourierPrime-Italic.ttf" id="4_yi10b"]
+[ext_resource type="FontFile" uid="uid://dijfx5gr3toa6" path="res://_assets/Fonts/CourierPrime/CourierPrime-BoldItalic.ttf" id="5_1uymt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8ad2"]
 bg_color = Color(0, 0, 0, 0.239216)
@@ -18,16 +21,17 @@ theme_override_constants/margin_top = 12
 theme_override_constants/margin_right = 12
 theme_override_constants/margin_bottom = 12
 script = ExtResource("1_j67dm")
-helpList = PackedStringArray("clear: clears the log", "console_color: change background color of console. {*}", "k_default: all knowledge from playerData go to default", "reload_data: reloads the save file of player. {*}", "\'name\', \'my_name\', \'whoami\': shows you the correct current name you have in your save file", "\'newname\', \'new_name\', \'nameTo\': to change player name. {*} {!}", "level: shows current level", "newlevel: change level to a new number. {*} {!}", "\'reload\', \'reload_s\': reloads the scene to check changes added to the save file.", "", "---- (*) means you should write at least one argument after the command ----", "---- {!} means you may not see changes until you reload scene ----")
-helpChangeColor = PackedStringArray("default: default bg color", "blue", "pink", "", "\'-re\' [after color]: to remember color even after closing application")
-helpReloadData = PackedStringArray("\'true\', \'-y\', \'reload\': reload scene also", "\'false\', \'-n\': doesn\'t reload the scene. (Default value)")
-helpReload = PackedStringArray("\'-r\', \'reload\', \'true\', \'-y\' [after value]: to change and reload")
+helpList = PackedStringArray("[b]clear:[/b] clears the log", "[b]console_color:[/b] change background color of console. {*}", "[b]k_default:[/b] all knowledge from playerData go to default", "[b]\'saveFile\', \'save_data\':[/b] new data save in the save file of player. {*}", "[b]\'name\', \'my_name\', \'whoami\':[/b] shows you the correct current name you have in your save file", "[b]stat:[/b] shows you the number and modifier of any stat given. {*}", "[b]\'newname\', \'new_name\', \'nameTo\':[/b] to change player name. {*} {!}", "[b]level:[/b] shows current level", "[b]\'last\', \'lastsave\':[/b] check date from last time you saved.", "[b]newlevel:[/b] change level to a new number. {*} {!}", "[b]\'reload\', \'reload_s\':[/b] reloads the scene to check changes added.", "[b]\'d\', \'dice\':[/b] throw the dices. use help for syntaxis. {*}", "", "---- (*) [i]means you should write at least one argument after the command [/i]----", "---- {!} [i]means you may not see changes until you reload scene [/i]----", "[b][/b]")
+helpChangeColor = PackedStringArray("[b]default: [/b]default bg color", "[b]blue[/b]", "[b]pink[/b]", "[b]green[/b]", "", "[i]\'-re\', \'-s\', \'remember\' [after color]: to remember color even after closing application[/i]")
+helpSaveFile = PackedStringArray("\'-r\', \'reload\', \'true\', \'-y\' [after value]: to change and reload")
+helpReload = PackedStringArray("\'-r\', \'reload\', \'true\', \'-y\' [after value]: to change and reload", "\'-re\', \'-s\', \'remember\': save the change to saveFile.")
+helpDiceThrow = PackedStringArray("Syntax:", "d [type] [i][multiplier] [stat][/i]", "", "[b][type]:[/b] 4, 8, 10, 12, 20", "^[b][multiplier]:[/b] how many times", "^[b][stat]: [/b] add a stat modifier", "", "^: [i]optional arguments [/i]")
 arrowColor = Color(0.752941, 0.262745, 0.454902, 1)
 outputColor = Color(0.407843, 0.72549, 0.372549, 0.776471)
 doneColor = Color(0.772549, 0.333333, 0.835294, 1)
 helpColor = Color(0.545098, 0.545098, 0.545098, 1)
 errorAltColor = Color(0.87451, 0.4, 0.329412, 1)
-bgColors = PackedColorArray(0, 0, 0, 0.239216, 0.0196078, 0, 0.345098, 0.352941, 0.34902, 0.0313726, 0.14902, 0.352941)
+bgColors = PackedColorArray(0, 0, 0, 0.239216, 0.0196078, 0, 0.345098, 0.352941, 0.34902, 0.0313726, 0.14902, 0.235294, 0.282353, 0.333333, 0.160784, 0.352941, 0.545098, 0.384314, 0.768627, 0.196078)
 
 [node name="consoleElements" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -38,13 +42,15 @@ layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_x8ad2")
 
 [node name="consoleLog" type="RichTextLabel" parent="consoleElements/logPanel"]
-custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 offset_left = 10.0
 offset_top = 4.0
 offset_right = 665.0
-offset_bottom = 404.0
-theme_override_fonts/normal_font = ExtResource("2_ofw6k")
+offset_bottom = 394.0
+theme_override_fonts/normal_font = ExtResource("2_omhxn")
+theme_override_fonts/bold_font = ExtResource("3_xhml7")
+theme_override_fonts/italics_font = ExtResource("4_yi10b")
+theme_override_fonts/bold_italics_font = ExtResource("5_1uymt")
 theme_override_font_sizes/normal_font_size = 14
 bbcode_enabled = true
 scroll_following = true
