@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=55 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -88,7 +88,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc6r4"]
-bg_color = Color(0.368627, 0.329412, 0.631373, 1)
+bg_color = Color(0.380392, 0.341176, 0.647059, 1)
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 
@@ -96,6 +96,11 @@ corner_radius_bottom_right = 10
 bg_color = Color(0.121569, 0.12549, 0.180392, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_morrj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yuwhr"]
+bg_color = Color(0.670588, 0.364706, 0.196078, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_right = 10
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r12m"]
 bg_color = Color(0.403922, 0.403922, 0.403922, 1)
@@ -105,6 +110,13 @@ corner_radius_bottom_right = 15
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx4y0"]
 bg_color = Color(0.203922, 0.176471, 0.141176, 1)
 corner_radius_bottom_right = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ftec"]
+bg_color = Color(0.380706, 0.341302, 0.648213, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
 [node name="Base" type="MarginContainer" node_paths=PackedStringArray("editLife", "editArmor")]
 custom_minimum_size = Vector2(0, 680)
@@ -861,12 +873,16 @@ showButton = NodePath("../TimePass")
 node = NodePath("..")
 duration = 1.6
 
-[node name="SecondRow" type="HBoxContainer" parent="Container"]
+[node name="SecondRow" type="Control" parent="Container"]
+custom_minimum_size = Vector2(0, 248)
 layout_mode = 2
 
 [node name="Spells" type="Control" parent="Container/SecondRow"]
 custom_minimum_size = Vector2(284, 250)
 layout_mode = 2
+anchors_preset = 0
+offset_right = 284.0
+offset_bottom = 250.0
 
 [node name="AplhaTween" parent="Container/SecondRow/Spells" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
 node = NodePath("..")
@@ -1083,31 +1099,75 @@ offset_right = 190.0
 offset_bottom = 30.0
 mouse_filter = 1
 
-[node name="ThirdRow" type="HBoxContainer" parent="Container"]
+[node name="Items" type="Control" parent="Container/SecondRow"]
+anchors_preset = 0
+offset_left = 221.0
+offset_top = 1.0
+offset_right = 434.0
+offset_bottom = 252.0
+
+[node name="PositionTween" type="Node" parent="Container/SecondRow/Items" node_paths=PackedStringArray("node")]
+script = ExtResource("37_7fw64")
+node = NodePath("../bg")
+duration = 2.2
+transitionType = 2
+newStartingPosition = true
+fromPosition2D = Vector2(500, 0)
+
+[node name="AlphaTween" type="Node" parent="Container/SecondRow/Items" node_paths=PackedStringArray("node")]
+script = ExtResource("36_hcgwt")
+node = NodePath("../bg")
+duration = 2.0
+
+[node name="bg" type="Panel" parent="Container/SecondRow/Items"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_yuwhr")
+
+[node name="ThirdRow" type="Control" parent="Container"]
 layout_mode = 2
 
 [node name="Class Info" type="Control" parent="Container/ThirdRow" node_paths=PackedStringArray("className", "namePanel")]
 custom_minimum_size = Vector2(210, 230)
 layout_mode = 2
+anchors_preset = 0
+offset_right = 210.0
+offset_bottom = 230.0
 script = ExtResource("33_ja71m")
 className = NodePath("bg/className/classLabel")
 namePanel = NodePath("bg/className")
 
+[node name="PositionTween" type="Node" parent="Container/ThirdRow/Class Info" node_paths=PackedStringArray("node")]
+script = ExtResource("37_7fw64")
+node = NodePath("../bg")
+parallelToPrevious = true
+transitionType = 5
+newStartingPosition = true
+fromPosition2D = Vector2(-300, 0)
+toPosition2D = Vector2(-67, 0)
+
 [node name="bg" type="Panel" parent="Container/ThirdRow/Class Info"]
+layout_direction = 1
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -100.0
-offset_right = 183.0
+offset_left = -67.0
+offset_right = 221.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7r12m")
 
 [node name="className" type="Panel" parent="Container/ThirdRow/Class Info/bg"]
 layout_mode = 1
-offset_left = 28.0
-offset_right = 405.0
+offset_left = 26.0
+offset_right = 414.0
 offset_bottom = 29.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vx4y0")
 
@@ -1131,9 +1191,9 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -197.5
+offset_left = -181.5
 offset_top = -45.0
-offset_right = -6.5
+offset_right = 9.5
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
@@ -1145,27 +1205,53 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 25.5
+offset_left = 34.5
 offset_top = -45.0
-offset_right = 216.5
+offset_right = 225.5
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="PositionTween" type="Node" parent="Container/ThirdRow/Class Info/bg" node_paths=PackedStringArray("node")]
-script = ExtResource("37_7fw64")
-node = NodePath("..")
-parallelToPrevious = true
-transitionType = 5
-newStartingPosition = true
-fromPosition2D = Vector2(-300, 0)
-toPosition2D = Vector2(-62, 0)
 
 [node name="AlphaTween" type="Node" parent="Container/ThirdRow/Class Info" node_paths=PackedStringArray("node")]
 script = ExtResource("36_hcgwt")
 node = NodePath("..")
 parallelToPrevious = true
 duration = 1.5
+
+[node name="Effects" type="Control" parent="Container/ThirdRow"]
+layout_mode = 2
+anchors_preset = 0
+offset_left = 444.0
+offset_top = -259.0
+offset_right = 700.0
+offset_bottom = 231.0
+
+[node name="PositionTween" type="Node" parent="Container/ThirdRow/Effects" node_paths=PackedStringArray("node")]
+script = ExtResource("37_7fw64")
+node = NodePath("../bg")
+parallelToPrevious = true
+transitionType = 3
+newStartingPosition = true
+fromPosition2D = Vector2(0, 320)
+toPosition2D = Vector2(0, -4)
+
+[node name="AlphaTween" type="Node" parent="Container/ThirdRow/Effects" node_paths=PackedStringArray("node")]
+script = ExtResource("36_hcgwt")
+node = NodePath("../bg")
+parallelToPrevious = true
+duration = 2.0
+transitionType = 5
+
+[node name="bg" type="Panel" parent="Container/ThirdRow/Effects"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -4.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3ftec")
 
 [connection signal="updateBaseData" from="." to="Container/FirstRow/ArmorVida/Vida/Puntos/Maximos/ptsMaximos" method="_on_base_update_base_data"]
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Armadura/EditButton" to="." method="_on_edit_button_button_up"]

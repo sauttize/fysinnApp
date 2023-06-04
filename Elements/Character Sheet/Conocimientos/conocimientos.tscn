@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddp7y6gn35b86"]
+[gd_scene load_steps=21 format=3 uid="uid://ddp7y6gn35b86"]
 
+[ext_resource type="Script" path="res://Elements/Character Sheet/Conocimientos/ConocimientosTab.gd" id="1_5adb3"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Conocimientos/knowledgeList.gd" id="1_gfvjb"]
 [ext_resource type="Texture2D" uid="uid://cfurpr3rikh6w" path="res://_assets/Icons/Star/2x/outline_star_white_24dp.png" id="2_b5ilc"]
+[ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="3_bgbqo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq0kr"]
 content_margin_left = 15.0
@@ -11,29 +13,135 @@ border_width_left = 5
 border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
-border_color = Color(0.741176, 0.462745, 0.72549, 1)
+border_color = Color(0.721569, 0.533333, 0.372549, 0.462745)
 border_blend = true
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Conocimientos" type="MarginContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71r3g"]
+bg_color = Color(0.12549, 0.282353, 0.482353, 0.384314)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7h2q0"]
+bg_color = Color(0.913725, 0.309804, 0.835294, 0.32549)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1ix8"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.419608)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_phwu1"]
+bg_color = Color(0.478431, 0.662745, 0.341176, 0.32549)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jdm4m"]
+bg_color = Color(0.847059, 0.470588, 0.521569, 0.32549)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjdtn"]
+bg_color = Color(0.0666667, 0.0431373, 0.00392157, 0.690196)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x172u"]
+bg_color = Color(0.607843, 0.458824, 0.305882, 0.756863)
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aou7w"]
+bg_color = Color(0, 0, 0, 0.454902)
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yiyk"]
+bg_color = Color(0.305882, 0.137255, 0.129412, 0.603922)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tnfav"]
+bg_color = Color(0, 0, 0, 0.407843)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_621hj"]
+bg_color = Color(0, 0, 0, 0.282353)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_right = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_apq8h"]
+bg_color = Color(0.254902, 0.478431, 0.313726, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oa65o"]
+bg_color = Color(0.360784, 0.639216, 0.431373, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7n60f"]
+bg_color = Color(0.168627, 0.333333, 0.211765, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpc2j"]
+bg_color = Color(0.27451, 0.352941, 0.47451, 0.572549)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+expand_margin_right = 100.0
+
+[node name="Conocimientos" type="MarginContainer" node_paths=PackedStringArray("historialPanelPos")]
 custom_minimum_size = Vector2(0, 680)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 10
+script = ExtResource("1_5adb3")
+historialPanelPos = NodePath("VBOX/ThirdRow/Historial/PositionTween")
 
-[node name="vbox" type="VBoxContainer" parent="."]
+[node name="VBOX" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 7
 
-[node name="knowledgeList" type="ItemList" parent="vbox" node_paths=PackedStringArray("starContainer")]
-custom_minimum_size = Vector2(20, 230)
+[node name="knowledgeList" type="ItemList" parent="VBOX" node_paths=PackedStringArray("starContainer", "perActual", "perMinimo", "perMaximo")]
+custom_minimum_size = Vector2(20, 200)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
 theme_override_styles/panel = SubResource("StyleBoxFlat_wq0kr")
@@ -42,23 +150,30 @@ fixed_column_width = 200
 script = ExtResource("1_gfvjb")
 starContainer = NodePath("../knInfo/levelStars")
 noLevelColor = Color(0.768627, 0.831373, 0.843137, 1)
+perActual = NodePath("../knInfo/actuales/actualNum")
+perMinimo = NodePath("../knInfo/minimos/minimoNum")
+perMaximo = NodePath("../knInfo/maximos/maximoNum")
 
-[node name="knInfo" type="HBoxContainer" parent="vbox"]
+[node name="knInfo" type="HBoxContainer" parent="VBOX"]
 layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 15
 
-[node name="nivelLabel" type="Label" parent="vbox/knInfo"]
-custom_minimum_size = Vector2(80, 0)
+[node name="nivelLabel" type="Label" parent="VBOX/knInfo"]
+custom_minimum_size = Vector2(60, 35)
 layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_71r3g")
 text = "Nivel"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="levelStars" type="HBoxContainer" parent="vbox/knInfo"]
-custom_minimum_size = Vector2(350, 0)
+[node name="levelStars" type="HBoxContainer" parent="VBOX/knInfo"]
+custom_minimum_size = Vector2(290, 0)
 layout_mode = 2
 alignment = 1
 
-[node name="star1" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star1" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -66,7 +181,7 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star2" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star2" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -74,7 +189,7 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star3" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star3" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -82,7 +197,7 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star4" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star4" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -90,7 +205,7 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star5" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star5" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -98,7 +213,7 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star6" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star6" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -106,7 +221,7 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star7" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star7" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -114,7 +229,7 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star8" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star8" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -122,7 +237,7 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star9" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star9" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
@@ -130,10 +245,380 @@ expand_mode = 1
 stretch_mode = 5
 flip_h = true
 
-[node name="star10" type="TextureRect" parent="vbox/knInfo/levelStars"]
+[node name="star10" type="TextureRect" parent="VBOX/knInfo/levelStars"]
 custom_minimum_size = Vector2(25, 0)
 layout_mode = 2
 texture = ExtResource("2_b5ilc")
 expand_mode = 1
 stretch_mode = 5
 flip_h = true
+
+[node name="actuales" type="VBoxContainer" parent="VBOX/knInfo"]
+layout_mode = 2
+
+[node name="perActual" type="Label" parent="VBOX/knInfo/actuales"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Porcentaje actual."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_7h2q0")
+text = "Act."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="actualNum" type="Label" parent="VBOX/knInfo/actuales"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Porcentaje actual."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1ix8")
+text = "% 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="minimos" type="VBoxContainer" parent="VBOX/knInfo"]
+layout_mode = 2
+
+[node name="perMinimo" type="Label" parent="VBOX/knInfo/minimos"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Porcentaje actual."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_phwu1")
+text = "Min"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="minimoNum" type="Label" parent="VBOX/knInfo/minimos"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Porcentaje actual."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1ix8")
+text = "% 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="maximos" type="VBoxContainer" parent="VBOX/knInfo"]
+layout_mode = 2
+
+[node name="perMaximo" type="Label" parent="VBOX/knInfo/maximos"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Porcentaje actual."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_jdm4m")
+text = "Max"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="maximoNum" type="Label" parent="VBOX/knInfo/maximos"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+tooltip_text = "Porcentaje actual."
+mouse_filter = 1
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1ix8")
+text = "% 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Information" type="Control" parent="VBOX"]
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 2
+
+[node name="bg" type="Panel" parent="VBOX/Information"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -330.0
+offset_top = -100.0
+offset_right = 330.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jjdtn")
+
+[node name="elements" type="VBoxContainer" parent="VBOX/Information/bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Description" type="MarginContainer" parent="VBOX/Information/bg/elements"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+
+[node name="upperPanel" type="Panel" parent="VBOX/Information/bg/elements"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x172u")
+
+[node name="aprenderBttn" type="Button" parent="VBOX/Information/bg/elements/upperPanel"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+offset_left = 516.5
+offset_top = 2.0
+offset_right = 626.5
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 12
+text = "Aprender"
+
+[node name="elements" type="HBoxContainer" parent="VBOX/Information/bg/elements/upperPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -292.0
+offset_top = -13.0
+offset_right = 136.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="fallosLabel" type="Label" parent="VBOX/Information/bg/elements/upperPanel/elements"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+text = "Nro. Fallos:"
+horizontal_alignment = 1
+
+[node name="fallosNum" type="Label" parent="VBOX/Information/bg/elements/upperPanel/elements"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+theme_override_styles/normal = SubResource("StyleBoxFlat_aou7w")
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="motLabel" type="Label" parent="VBOX/Information/bg/elements/upperPanel/elements"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+text = "Motivación"
+horizontal_alignment = 1
+
+[node name="motivacionNum" type="Label" parent="VBOX/Information/bg/elements/upperPanel/elements"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+theme_override_styles/normal = SubResource("StyleBoxFlat_aou7w")
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="ThirdRow" type="Control" parent="VBOX"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+
+[node name="Historial" type="Panel" parent="VBOX/ThirdRow"]
+custom_minimum_size = Vector2(262, 0)
+layout_mode = 2
+offset_bottom = 300.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3yiyk")
+
+[node name="PositionTween" type="Node" parent="VBOX/ThirdRow/Historial" node_paths=PackedStringArray("node")]
+script = ExtResource("3_bgbqo")
+node = NodePath("..")
+startAtReady = false
+duration = 1.0
+transitionType = 7
+newStartingPosition = true
+fromPosition2D = Vector2(-200, 0)
+
+[node name="vbox" type="VBoxContainer" parent="VBOX/ThirdRow/Historial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="titlePanel" type="Panel" parent="VBOX/ThirdRow/Historial/vbox"]
+custom_minimum_size = Vector2(262, 36)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_tnfav")
+
+[node name="Title" type="Label" parent="VBOX/ThirdRow/Historial/vbox/titlePanel"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -15.0
+offset_right = 33.0
+offset_bottom = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.835294)
+text = "Historial
+"
+vertical_alignment = 1
+
+[node name="margin" type="MarginContainer" parent="VBOX/ThirdRow/Historial/vbox"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 8
+
+[node name="historial" type="VFlowContainer" parent="VBOX/ThirdRow/Historial/vbox/margin"]
+custom_minimum_size = Vector2(0, 245)
+layout_mode = 2
+
+[node name="Otros" type="Panel" parent="VBOX/ThirdRow"]
+layout_mode = 2
+offset_left = 280.0
+offset_top = 64.0
+offset_right = 679.0
+offset_bottom = 300.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jjdtn")
+
+[node name="Margin" type="MarginContainer" parent="VBOX/ThirdRow/Otros"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 10
+
+[node name="vbox" type="VBoxContainer" parent="VBOX/ThirdRow/Otros/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="habilidad" type="HBoxContainer" parent="VBOX/ThirdRow/Otros/Margin/vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="habAsociada" type="Label" parent="VBOX/ThirdRow/Otros/Margin/vbox/habilidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+theme_override_styles/normal = SubResource("StyleBoxFlat_621hj")
+text = "Habilidad asociada:"
+horizontal_alignment = 1
+
+[node name="ability" type="Label" parent="VBOX/ThirdRow/Otros/Margin/vbox/habilidad"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+text = "ABL (+2)"
+horizontal_alignment = 1
+
+[node name="tirarHab" type="Button" parent="VBOX/ThirdRow/Otros/Margin/vbox/habilidad"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Tirar con hab."
+
+[node name="proficiency" type="HBoxContainer" parent="VBOX/ThirdRow/Otros/Margin/vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="habAsociada" type="Label" parent="VBOX/ThirdRow/Otros/Margin/vbox/proficiency"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+theme_override_styles/normal = SubResource("StyleBoxFlat_621hj")
+text = "Proficiency:"
+horizontal_alignment = 1
+
+[node name="options" type="OptionButton" parent="VBOX/ThirdRow/Otros/Margin/vbox/proficiency"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="efecto" type="HBoxContainer" parent="VBOX/ThirdRow/Otros/Margin/vbox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="effectLBL" type="Label" parent="VBOX/ThirdRow/Otros/Margin/vbox/efecto"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+theme_override_styles/normal = SubResource("StyleBoxFlat_621hj")
+text = "Effecto:"
+horizontal_alignment = 1
+
+[node name="effect" type="Label" parent="VBOX/ThirdRow/Otros/Margin/vbox/efecto"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.788235)
+text = "effect"
+horizontal_alignment = 1
+
+[node name="activarEfecto" type="Button" parent="VBOX/ThirdRow/Otros/Margin/vbox/efecto"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Activar efecto"
+
+[node name="Tirar" type="Control" parent="VBOX/ThirdRow"]
+anchors_preset = 0
+offset_left = 286.0
+offset_top = 4.0
+offset_right = 673.0
+offset_bottom = 48.0
+
+[node name="elementos" type="HBoxContainer" parent="VBOX/ThirdRow/Tirar"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -17.0
+offset_right = 358.0
+offset_bottom = 17.0
+grow_vertical = 2
+theme_override_constants/separation = 80
+
+[node name="aprenderBttn" type="Button" parent="VBOX/ThirdRow/Tirar/elementos"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_apq8h")
+theme_override_styles/hover = SubResource("StyleBoxFlat_oa65o")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7n60f")
+text = "Tirar"
+
+[node name="resultado2" type="HBoxContainer" parent="VBOX/ThirdRow/Tirar/elementos"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="resLabel" type="Label" parent="VBOX/ThirdRow/Tirar/elementos/resultado2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.835294)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("StyleBoxFlat_vpc2j")
+text = "Resultado:
+"
+vertical_alignment = 1
+
+[node name="resultado" type="Label" parent="VBOX/ThirdRow/Tirar/elementos/resultado2"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.992157, 0.356863, 0.835294)
+theme_override_font_sizes/font_size = 18
+text = "success"
+horizontal_alignment = 1
+vertical_alignment = 1

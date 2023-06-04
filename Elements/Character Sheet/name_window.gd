@@ -10,7 +10,7 @@ func _on_button_button_up():
 	$ConfirmationDialog.popup_centered_clamped()
 ## Confirman cambio.
 func _on_confirmation_dialog_confirmed():
-	player_data.updateName(newName)
+	player_data.nombre = newName
 	hide()
 
 

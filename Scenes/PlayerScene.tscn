@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=34 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scenes/filePopUpManager.gd" id="2_ch6v8"]
 [ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_yymf8"]
 [ext_resource type="StyleBox" uid="uid://c1x0il1aghljq" path="res://_assets/Themes/boxStyle/conocimientos.tres" id="3_v5lg0"]
+[ext_resource type="Script" path="res://Scenes/AnimationHandler.gd" id="4_wnf7i"]
 [ext_resource type="PackedScene" uid="uid://d3fmuxtj85tyo" path="res://Elements/Character Sheet/nivel.tscn" id="5_2tphf"]
 [ext_resource type="Script" path="res://Scenes/optionsPopUp.gd" id="5_bdmeo"]
 [ext_resource type="PackedScene" uid="uid://br4spa7odwlg8" path="res://Elements/Character Sheet/exp.tscn" id="6_nsmno"]
@@ -115,6 +116,9 @@ _playerData = ExtResource("2_yymf8")
 [node name="ExitHandler" type="Node" parent="."]
 script = ExtResource("13_jfxcr")
 playerData = ExtResource("2_yymf8")
+
+[node name="AnimationHandler" type="Node" parent="."]
+script = ExtResource("4_wnf7i")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1

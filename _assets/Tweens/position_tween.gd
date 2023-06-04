@@ -11,7 +11,7 @@ class_name PositionTween
 @export var transitionType : Tween.TransitionType = Tween.TRANS_BACK
 @export var newStartingPosition : bool = false
 @export var fromPosition2D : Vector2 = Vector2(0, 0)
-@export var toPosition2D : Vector2 = Vector2(1, 1)
+@export var toPosition2D : Vector2 = Vector2(0, 0)
 
 func _ready():
 	if(node && startAtReady):

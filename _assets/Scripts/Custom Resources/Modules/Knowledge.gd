@@ -22,6 +22,11 @@ enum PROFICIENCY {NONE, PROFICIENCY, HALF_PROFICIENCY, EXPERTISE}
 func get_proficiency_string():
 	return PROFICIENCY.keys()[proficiencyType]
 
+func return_by_name(knowlName : String):
+	if knowlName == knowledgeName:
+		return self
+	else: return null
+
 # func learn (gets percentage of success from code)
 # func learn by book (pass dataDump) could be all in one.
 # func learn by practice (pass dataDump)

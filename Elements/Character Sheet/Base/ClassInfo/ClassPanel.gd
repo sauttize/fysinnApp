@@ -15,7 +15,7 @@ func _ready() -> void:
 	setName()
 
 func setName():
-	className.text = "Clase: " + classType.getString().replacen("_", " ")
+	className.text = "Clase: " + classType.getString(true, true)
 
 func setClassColors():
 	#panel

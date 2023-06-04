@@ -6,9 +6,9 @@
 script = ExtResource("1_wh4ha")
 knowledgeName = "Acrobacia"
 currentPercentage = 0.0
-currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+currentLevel = 2
+minPercentage = 12.0
+maxPercentage = 35.0
 failAttempts = 0
 motivation = 0
 proficiencyType = 0

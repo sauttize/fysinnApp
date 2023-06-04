@@ -6,4 +6,4 @@
 script = ExtResource("1_ec33k")
 type = 8
 primaryColor = Color(0.121569, 0.407843, 0.741176, 1)
-secundaryColor = Color(0.968627, 0.815686, 0.733333, 1)
+secundaryColor = Color(1, 1, 1, 1)

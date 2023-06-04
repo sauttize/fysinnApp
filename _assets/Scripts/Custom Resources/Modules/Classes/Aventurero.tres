@@ -6,4 +6,4 @@
 script = ExtResource("1_juat6")
 type = 2
 primaryColor = Color(0.430513, 0.157457, 0.150502, 1)
-secundaryColor = Color(0.713726, 0.713726, 0.713726, 1)
+secundaryColor = Color(1, 1, 1, 1)

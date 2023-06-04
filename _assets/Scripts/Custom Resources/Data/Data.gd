@@ -29,7 +29,7 @@ var NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
 ## KNOWLEDGE METHODS
 ## Gives a copy of the list, not related to the og's
 func get_duplicate_list_knowledge() -> Array[Knowledge]:
-	var newList : Array[Knowledge]
+	var newList : Array[Knowledge] = []
 	for knowl in KNOWLEDGE_LIST:
 		var copy : Knowledge = knowl.duplicate()
 		newList.append(copy)

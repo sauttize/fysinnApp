@@ -54,13 +54,16 @@ var casillasMov : int = 0:
 
 #OTHER
 @export_category("Other")
-@export var lastSaved : String
+var lastSaved : Dictionary
 
 func updateExp(newExp : int):
 	exp += newExp
 	
-func updateName(newName : String):
-	nombre = newName
-	
 func newSave():
-	lastSaved = Time.get_datetime_string_from_system()
+	lastSaved = Time.get_datetime_dict_from_system()
+
+func last_save_hour() -> String:
+	return str(lastSaved['hour']) + ":" + str(lastSaved["minute"]) + ":" + str(lastSaved["second"])
+
+func last_save_date() -> String:
+	return str(lastSaved['day']) + "/" + str(lastSaved['month']) + "/" + str(lastSaved['year'])

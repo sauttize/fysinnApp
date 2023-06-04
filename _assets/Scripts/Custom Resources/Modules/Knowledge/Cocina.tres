@@ -6,9 +6,9 @@
 script = ExtResource("1_ucxvg")
 knowledgeName = "Cocina"
 currentPercentage = 0.0
-currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+currentLevel = 5
+minPercentage = 55.0
+maxPercentage = 99.0
 failAttempts = 0
 motivation = 0
 proficiencyType = 0

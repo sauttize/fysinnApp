@@ -33,3 +33,17 @@ func is_event_mouse_pressed(event : InputEvent, type : MOUSE_BUTTON) -> bool:
 	if !(mouseEvent.button_index == button): return false
 	if !(mouseEvent.is_pressed()) : return false
 	return true
+
+func FULL_DATE() -> String:
+	return Time.get_datetime_string_from_system()
+
+## NOT FINSHED
+func get_date_diff(current : Dictionary, old : Dictionary, getHour : bool = false):
+	if !current['year'] || !current['month'] || !current['day']: return
+	if !current['hour'] || !current['minute'] || !current['second']: return
+	if !old['year'] || !old['month'] || !old['day']: return
+	if !old['hour'] || !old['minute'] || !old['second']: return
+	
+	if (current['year'] == old['year']) && (current['month'] == old['month']):
+		if (current['day'] == old['day']) && (current['hour'] == old['hour']):
+			pass

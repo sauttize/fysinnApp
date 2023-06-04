@@ -20,5 +20,9 @@ enum CLASSES {
 @export var primaryColor : Color = Color.DIM_GRAY
 @export var secundaryColor : Color = Color.BLACK # for text, ie
 
-func getString() -> String:
-	return CLASSES.keys()[type]
+func getString(capitalize : bool = true, upperCase : bool = false) -> String:
+	var str : String = ""
+	str = (CLASSES.keys()[type])
+	if capitalize: str = str.capitalize()
+	if upperCase: str = str.to_upper()
+	return str
