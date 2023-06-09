@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SaveFilesManager" load_steps=3 format=3 uid="uid://bqba3iusmolay"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Data/Other/Save_Files.gd" id="1_2v580"]
+[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="1_4y3cg"]
+
+[resource]
+script = ExtResource("1_2v580")
+save_files = Array[Resource("res://_assets/Scripts/Custom Resources/playerData_rs.gd")]([ExtResource("1_4y3cg")])

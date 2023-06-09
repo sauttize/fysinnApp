@@ -16,8 +16,9 @@ class_name PositionTween
 func _ready():
 	if(node && startAtReady):
 		play_Tween()
-	else: 
+	elif (startAtReady): 
 		print("Node not assign in Tween Animation.")
+		print(get_path())
 
 func play_Tween():
 	var tween = create_tween().set_ease(easeType).set_trans(transitionType)

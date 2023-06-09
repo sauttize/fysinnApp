@@ -1,52 +1,34 @@
 extends Node
 
-#const TEMP_FILE = "res://_assets/Scripts/Custom Resources/temp.tres"
-const SAVE_ROUTE = "res://_assets/Scripts/Custom Resources/PlayerSave.tres"
+const MANAGER_ROUTE = "user://saves/SaveFiles.tres"
+const SAVE_ROUTE = "user://saves/CurrentPlayer.tres"
 
-var save_file_path = "res://_assets/Scripts/Custom Resources/"
-var save_file_name = "PlayerSave.tres"
-var load_file_tmp = "temp.tres"
+var save_file_path = "user://saves/"
+var save_file_path_dg = "res://_assets/Scripts/Custom Resources/"
 
-@export var _playerData : PlayerData
-var playerData = PlayerData.new()
-
-@export var smallerWindow : bool = false
+@onready var _playerData : PlayerData = GetCurrentSaveFile()
+#@onready var _saveManager : SaveFilesManager = GetManager()
 
 var saving : bool = false
 
-func _ready():
+func _init() -> void:
 	verify_save_directory(save_file_path)
-	_playerData = get_file(_playerData)
-	
-	if smallerWindow:
-		var smallerSize = Vector2i(600, 700)
-		get_window().size = smallerSize
-		
-		var screenSize = DisplayServer.screen_get_size()
-		var windowSize = get_window().size
-		var centerX = (screenSize.x - windowSize.x) / 2
-		var centerY = (screenSize.y - windowSize.y) / 2
-		var centerPos = Vector2i(centerX, centerY)
-		
-		get_window().position = Vector2i(centerPos)
+#	if !OS.is_debug_build(): verify_save_file(SAVE_ROUTE, true)
 
 func save_file():
-	_playerData.newSave()
-	ResourceSaver.save(_playerData, save_file_path + save_file_name)
-	
-func save_and_reload():
-	save_file()
-
-#In case PlayerData is losted.
-func get_file(data):
-	if (!data):
-		return ResourceLoader.load(SAVE_ROUTE)
-	else:
-		return data
+#	_playerData.newSave()
+	ResourceSaver.save(_playerData, SAVE_ROUTE)
 
 # If it doesnt exist, it creates it.
 func verify_save_directory(path: String):
 	DirAccess.make_dir_absolute(path)
+func verify_save_file(path : String, createFile : bool = false):
+	if FileAccess.file_exists(path): return true
+	elif createFile:
+		print("save file created because it didn't exist")
+		save_file()
+	print(DirAccess.get_open_error())
+	return false
 
 #MenuBar Options
 func _on_menu_bar_save_file():
@@ -57,21 +39,28 @@ func _on_menu_bar_load_file():
 
 # SAVE FILE FROM MENU
 func _on_menu_bar_re_save_file():
-	save_and_reload()
+	save_file()
 
-# SAVE NEW FILE
+# SAVE NEW FILE IN CUSTOM PATH
 func _on_save_resource_file_selected(save_path):
 	_playerData.newSave()
 	ResourceSaver.save(_playerData, save_path)
 
 # LOAD FILE FROM DISK
 func _on_load_resource_file_selected(load_path):
-	playerData = ResourceLoader.load(load_path).duplicate(true)
+	var playerData = ResourceLoader.load(load_path).duplicate(true)
 	playerData.newSave()
 	playerData.take_over_path(SAVE_ROUTE)
 	ResourceSaver.save(playerData, SAVE_ROUTE)
 	
 	get_tree().reload_current_scene()
-	#updateAllInfo.emit()
-	#updateSaveFile.emit()
 
+func GetCurrentSaveFile() -> PlayerData:
+	if !verify_save_file(SAVE_ROUTE, true): return PlayerData.new()
+	var currentSave = ResourceLoader.load(SAVE_ROUTE)
+	return currentSave
+
+func GetManager() -> SaveFilesManager:
+	if !verify_save_file(MANAGER_ROUTE): return SaveFilesManager.new()
+	var getManager = ResourceLoader.load(MANAGER_ROUTE)
+	return getManager

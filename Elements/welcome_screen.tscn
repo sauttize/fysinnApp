@@ -1,0 +1,377 @@
+[gd_scene load_steps=9 format=3 uid="uid://uip4pdnqeu7s"]
+
+[ext_resource type="Script" path="res://Elements/welcome_screen.gd" id="1_1gfly"]
+[ext_resource type="FontFile" uid="uid://s64tvl31747e" path="res://_assets/Fonts/Cabin-VariableFont_wdth,wght.ttf" id="1_h77tp"]
+[ext_resource type="FontFile" uid="uid://btw8oqfk3julq" path="res://_assets/Fonts/CourierPrime/CourierPrime-Regular.ttf" id="3_s7ox8"]
+[ext_resource type="PackedScene" uid="uid://b4iijbpl3b73l" path="res://Elements/WelcomeScreen/slot.tscn" id="4_dqthb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dtft"]
+bg_color = Color(0.572549, 0.623529, 0.490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_627a8"]
+bg_color = Color(0.392157, 0.470588, 0.513726, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgv5u"]
+bg_color = Color(1, 1, 1, 0.184314)
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+expand_margin_left = 12.0
+expand_margin_top = 5.0
+expand_margin_right = 12.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t12a1"]
+bg_color = Color(0.270588, 0.454902, 0.309804, 1)
+
+[node name="WelcomeScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1gfly")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 46.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("1_h77tp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_5dtft")
+text = "Fyssin
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="botones" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -35.0
+offset_right = 75.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="newSave" type="Button" parent="botones"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h77tp")
+theme_override_font_sizes/font_size = 20
+text = "Nuevo Personaje"
+
+[node name="loadSave" type="Button" parent="botones"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h77tp")
+theme_override_font_sizes/font_size = 20
+text = "Cargar Personaje"
+
+[node name="manageSaves" type="Button" parent="botones"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h77tp")
+theme_override_font_sizes/font_size = 20
+text = "Administrar Personajes"
+
+[node name="dmTools" type="Button" parent="botones"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h77tp")
+theme_override_font_sizes/font_size = 20
+disabled = true
+text = "DM Tools"
+
+[node name="version" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 10
+text = "ver 0.1"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="New Player" type="Window" parent="."]
+initial_position = 1
+title = "Crear nuevo personaje"
+size = Vector2i(500, 600)
+visible = false
+
+[node name="bg" type="Panel" parent="New Player"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_627a8")
+
+[node name="Control" type="Control" parent="New Player"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="label" type="Label" parent="New Player/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -290.0
+offset_right = 400.0
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.501961, 0.905882, 0.941176, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_vgv5u")
+text = "¡Bienvenidx a tu nueva aventura!
+Contame un poco de vos..."
+horizontal_alignment = 1
+
+[node name="form" type="VBoxContainer" parent="New Player/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.5
+offset_top = -13.0
+offset_right = 63.5
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="name" type="HBoxContainer" parent="New Player/Control/form"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="New Player/Control/form/name"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_s7ox8")
+text = "Nombre:"
+vertical_alignment = 1
+
+[node name="nombre" type="LineEdit" parent="New Player/Control/form/name"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+placeholder_text = "Pepa Pig"
+alignment = 1
+max_length = 30
+expand_to_text_length = true
+
+[node name="race" type="HBoxContainer" parent="New Player/Control/form"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="New Player/Control/form/race"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_s7ox8")
+text = "Raza:"
+vertical_alignment = 1
+
+[node name="raza" type="OptionButton" parent="New Player/Control/form/race"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+alignment = 1
+item_count = 5
+selected = 2
+popup/item_0/text = "Draconite"
+popup/item_0/id = 0
+popup/item_1/text = "Duneborn"
+popup/item_1/id = 1
+popup/item_2/text = "Humano"
+popup/item_2/id = 2
+popup/item_3/text = "Naiad"
+popup/item_3/id = 3
+popup/item_4/text = "Raincaster"
+popup/item_4/id = 4
+
+[node name="class" type="HBoxContainer" parent="New Player/Control/form"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="New Player/Control/form/class"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_s7ox8")
+text = "Clase:"
+vertical_alignment = 1
+
+[node name="raza" type="OptionButton" parent="New Player/Control/form/class"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+alignment = 1
+item_count = 11
+selected = 3
+popup/item_0/text = "Guerrero"
+popup/item_0/id = 0
+popup/item_1/text = "Mago de Sangre"
+popup/item_1/id = 1
+popup/item_2/text = "Domador de Bestias"
+popup/item_2/id = 2
+popup/item_3/text = "Aventurero"
+popup/item_3/id = 3
+popup/item_4/text = "Alquimista Herrero"
+popup/item_4/id = 4
+popup/item_5/text = "Asesino"
+popup/item_5/id = 5
+popup/item_6/text = "Cazarrecompensas"
+popup/item_6/id = 6
+popup/item_7/text = "Arquero"
+popup/item_7/id = 7
+popup/item_8/text = "Elemental"
+popup/item_8/id = 8
+popup/item_9/text = "Artista"
+popup/item_9/id = 9
+popup/item_10/text = "Médico de Campo"
+popup/item_10/id = 10
+
+[node name="element" type="HBoxContainer" parent="New Player/Control/form"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="New Player/Control/form/element"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_s7ox8")
+text = "Conexión:"
+vertical_alignment = 1
+
+[node name="elemento" type="OptionButton" parent="New Player/Control/form/element"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+alignment = 1
+
+[node name="photo" type="HBoxContainer" parent="New Player/Control/form"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Label" type="Label" parent="New Player/Control/form/photo"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_s7ox8")
+text = "Foto:"
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="New Player/Control/form/photo"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+text = "Elegir foto"
+
+[node name="elegida" type="Label" parent="New Player/Control/form/photo"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_s7ox8")
+text = "x"
+vertical_alignment = 1
+
+[node name="SaveManager" type="Window" parent="."]
+initial_position = 1
+title = "Crear nuevo personaje"
+size = Vector2i(500, 600)
+visible = false
+
+[node name="bg" type="Panel" parent="SaveManager"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t12a1")
+
+[node name="Control" type="Control" parent="SaveManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="label" type="Label" parent="SaveManager/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -290.0
+offset_right = 400.0
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.890196, 0.807843, 0.8, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_styles/normal = SubResource("StyleBoxFlat_vgv5u")
+text = "PARTIDAS GUARDADAS"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SaveManager/Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -150.0
+offset_right = 154.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="partidas" type="VBoxContainer" parent="SaveManager/Control/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+alignment = 1
+
+[node name="Slot" parent="SaveManager/Control/ScrollContainer/partidas" instance=ExtResource("4_dqthb")]
+layout_mode = 2

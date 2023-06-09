@@ -21,12 +21,15 @@ func _ready() -> void:
 	update_autosave(isCheck)
 	
 func click_op(id : int):
-	if (id == 0):
-		isCheck = !popup.is_item_checked(0)
-		popup.set_item_checked(0, isCheck)
-		update_autosave(isCheck)
-	elif (id == 1):
-		new_knowledge_list()
+	match id:
+		0:
+			isCheck = !popup.is_item_checked(0)
+			popup.set_item_checked(0, isCheck)
+			update_autosave(isCheck)
+		1:
+			new_knowledge_list()
+		2:
+			DisplayServer.window_set_size(Vector2i(700, 900))
 
 # --- AutoSave ---
 func autosave():

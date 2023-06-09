@@ -27,6 +27,7 @@ helpSaveFile = PackedStringArray("\'-r\', \'reload\', \'true\', \'-y\' [after va
 helpReload = PackedStringArray("\'-r\', \'reload\', \'true\', \'-y\' [after value]: to change and reload", "\'-re\', \'-s\', \'remember\': save the change to saveFile.")
 helpDiceThrow = PackedStringArray("Syntax:", "d [type] [i][multiplier] [stat][/i]", "", "[b][type]:[/b] 4, 8, 10, 12, 20", "^[b][multiplier]:[/b] how many times", "^[b][stat]: [/b] add a stat modifier", "", "^: [i]optional arguments [/i]")
 helpInfo = PackedStringArray("[b]\'player\':[/b] information about player.", "-- shortcut: [i]\'player\', \'me\'[/i]", "-- args: [b]- s [/b] (show stats), [b] -l [/b] (expanded), [b]full [/b] (all info)")
+helpShortCuts = PackedStringArray("----- TABS -----", "[b]ctrl + R:[/b] open console tab", "[b]ctrl + B:[/b] open base tab", "[b]ctrl + K:[/b] open knowledge (\'conocimientos\') tab", "----- WINDOW -----", "[b]ctrl + S:[/b] default window size")
 arrowColor = Color(0.752941, 0.262745, 0.454902, 1)
 outputColor = Color(0.537255, 0.760784, 0.529412, 0.776471)
 doneColor = Color(0.772549, 0.333333, 0.835294, 1)

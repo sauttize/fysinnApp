@@ -1,0 +1,108 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4iijbpl3b73l"]
+
+[ext_resource type="Script" path="res://Elements/WelcomeScreen/SaveSlot.gd" id="1_lxtl5"]
+[ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="2_hfh6m"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_se25t"]
+bg_color = Color(0, 0, 0, 0.486275)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Slot" type="Control"]
+custom_minimum_size = Vector2(300, 70)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lxtl5")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_se25t")
+
+[node name="profilePic" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(70, 60)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 5.0
+offset_top = -30.0
+offset_right = 75.0
+offset_bottom = 30.0
+grow_vertical = 2
+texture = ExtResource("2_hfh6m")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="datos" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 70.0
+offset_top = -30.0
+offset_right = 155.0
+offset_bottom = 24.0
+grow_vertical = 2
+theme_override_constants/separation = -6
+
+[node name="nombre" type="Label" parent="datos"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Nombre"
+
+[node name="razaClase" type="HBoxContainer" parent="datos"]
+layout_mode = 2
+
+[node name="raza" type="Label" parent="datos/razaClase"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "RAZA"
+
+[node name="divider" type="Label" parent="datos/razaClase"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "//"
+
+[node name="clase" type="Label" parent="datos/razaClase"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "CLASE"
+
+[node name="nivel" type="Label" parent="datos"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 12
+text = "lvl 1"
+
+[node name="buttons" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -20.0
+offset_bottom = 20.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="enter" type="Button" parent="buttons"]
+visible = false
+layout_mode = 2
+text = "->"
+
+[node name="delete" type="Button" parent="buttons"]
+visible = false
+layout_mode = 2
+text = "X"

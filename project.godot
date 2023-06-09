@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="Fysinn: Player Management"
-run/main_scene="res://Scenes/PlayerScene.tscn"
+run/main_scene="res://Elements/welcome_screen.tscn"
 config/use_custom_user_dir=true
 config/features=PackedStringArray("4.0", "GL Compatibility")
+boot_splash/show_image=false
 config/icon="res://Icono.png"
 
 [autoload]
@@ -25,8 +26,8 @@ Utilities="*res://Scenes/Autoloads/Utilities.gd"
 
 window/size/viewport_width=700
 window/size/viewport_height=900
-window/size/resizable=false
 window/subwindows/embed_subwindows=false
+window/stretch/mode="viewport"
 window/handheld/orientation=1
 
 [editor]
@@ -36,6 +37,6 @@ version_control/autoload_on_startup=true
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
+textures/canvas_textures/default_texture_filter=2
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

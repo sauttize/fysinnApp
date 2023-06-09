@@ -55,6 +55,7 @@ var casillasMov : int = 0:
 #OTHER
 @export_category("Other")
 var lastSaved : Dictionary
+var saveManagerIndex : int = -1
 
 func updateExp(newExp : int):
 	exp += newExp

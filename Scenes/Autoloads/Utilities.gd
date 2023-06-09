@@ -47,3 +47,22 @@ func get_date_diff(current : Dictionary, old : Dictionary, getHour : bool = fals
 	if (current['year'] == old['year']) && (current['month'] == old['month']):
 		if (current['day'] == old['day']) && (current['hour'] == old['hour']):
 			pass
+
+## Create popup Window with simple text message
+func create_PopUp(message : String = "hello"):
+	var window = Window.new()
+	window.transient = true
+	window.wrap_controls = true
+	window.exclusive = true
+	window.unresizable = true
+	var label = Label.new()
+	label.text = message
+	add_child(window)
+	window.add_child(label)
+	window.get_child(0).set_anchors_preset(Control.PRESET_CENTER)
+	window.child_controls_changed()
+	window.close_requested.connect(window.hide)
+	window.close_requested.connect(erase_PopUp.bind(window))
+	window.popup_centered_clamped()
+func erase_PopUp(window : Window):
+	window.queue_free()

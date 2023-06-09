@@ -102,7 +102,7 @@ unicode = 114
 [sub_resource type="Shortcut" id="Shortcut_maann"]
 events = [SubResource("InputEventKey_xryiw")]
 
-[node name="Player manager" type="Control"]
+[node name="Player manager" type="Control" groups=["Managers"]]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15
@@ -111,11 +111,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_fd83x")
-_playerData = ExtResource("2_yymf8")
 
 [node name="ExitHandler" type="Node" parent="."]
 script = ExtResource("13_jfxcr")
-playerData = ExtResource("2_yymf8")
 
 [node name="AnimationHandler" type="Node" parent="."]
 script = ExtResource("4_wnf7i")
@@ -181,13 +179,16 @@ theme_override_fonts/font = SubResource("SystemFont_xkiv0")
 theme_override_font_sizes/font_size = 12
 shortcut = SubResource("Shortcut_ko37a")
 text = "Opciones"
-item_count = 2
+item_count = 3
 popup/item_0/text = "Auto Guardado"
 popup/item_0/checkable = 1
 popup/item_0/checked = true
 popup/item_0/id = 0
 popup/item_1/text = "Limpiar Conocimientos"
 popup/item_1/id = 1
+popup/item_1/disabled = true
+popup/item_2/text = "Volver a tamaño default"
+popup/item_2/id = 2
 script = ExtResource("5_bdmeo")
 timer = NodePath("../../../../../AutoSave")
 

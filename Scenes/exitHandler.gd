@@ -1,6 +1,7 @@
 extends Node
 @onready var exitDialog : ConfirmationDialog = $"../ExitConfirmation"
-@export var playerData : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
+@onready var savesManager : SaveFilesManager = GameManager.GetManager()
 
 func _ready() -> void:
 	# So I doesn't close automatically
@@ -16,6 +17,13 @@ func _notification(what: int) -> void:
 func canceled_saveOnExit():
 	get_tree().quit()
 func accepted_saveOnExit():
-	ResourceSaver.save(playerData, GameManager.save_file_path + GameManager.save_file_name)
-	get_tree().quit()
+	ResourceSaver.save(playerData, GameManager.SAVE_ROUTE)
+	if savesManager.numberOfSaves > 0:
+		var getDuplicate = playerData.duplicate()
+		var saveIndex = playerData.saveManagerIndex ##
+		if saveIndex != -1:
+			savesManager.save_files[saveIndex] = getDuplicate
+			get_tree().quit()
+		else:
+			Utilities.create_PopUp("Save not assigned in save manager \n Not saving nor exiting! ...") 
 # ----------------------------------

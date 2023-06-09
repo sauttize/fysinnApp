@@ -1,6 +1,7 @@
 extends Node
 
-const SAVE_ROUTE = "res://_assets/Scripts/Custom Resources/PlayerSave.tres"
+const SAVE_ROUTE = "User://saves/PlayerSave.tres"
+const SAVE_ROUTE_DG = "res://_assets/Scripts/Custom Resources/PlayerSave.tres"
 const DATA_ROUTE = "res://_assets/Scripts/Custom Resources/Data/CurrentData.tres"
 var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
 var dataDump : DataFile = preload("res://_assets/Scripts/Custom Resources/Data/CurrentData.tres")
@@ -25,7 +26,9 @@ var commandList : Dictionary = {
 	"info": "info_about", "about": "info_about", "i": "info_about",
 	"player": "get_player_data", "me": "get_player_data",
 	"secret": "easter_egg", "easter_egg": "easter_egg", "rick": "easter_egg", "hack": "easter_egg", "hola": "easter_egg",
-	"link": "external_link", "go": "external_link"
+	"link": "external_link", "go": "external_link",
+	"release": "force_release_mode", "rls": "force_release_mode",
+	"sc": "shortcut_list", "short": "shortcut_list", "cut": "shortcut_list", "shortcut": "shortcut_list", "shortcuts": "shortcut_list"
 }
 
 @onready var argumentList : Dictionary = {
@@ -50,6 +53,7 @@ var commandList : Dictionary = {
 @export var helpReload : PackedStringArray # to any function that implements reload
 @export var helpDiceThrow : PackedStringArray # dice_throw
 @export var helpInfo : PackedStringArray # info_about
+@export var helpShortCuts : PackedStringArray # shortcut_list
 @export_category("Colors")
 @export_subgroup("Basics")
 @export var normalColor : Color = Color.ANTIQUE_WHITE
@@ -61,6 +65,7 @@ var commandList : Dictionary = {
 @export var errorAltColor : Color
 @export var bgColors : PackedColorArray
 @export_category("Functionality")
+@export var releaseVersion : bool = false
 @export_range(1, 50) var MAX_DICE_MULTIPLIER : int = 20
 
 func _ready() -> void:
@@ -216,13 +221,21 @@ func get_stat_given(argument : PackedStringArray) -> STATS:
 func reload_scene():
 	get_tree().reload_current_scene()
 func save_dataDump():
-	playerData.newSave()
+	if !OS.is_debug_build(): 
+		show_error("Not available in released version.", errorAltColor)
+		return
 	dataDump.take_over_path(DATA_ROUTE)
 	ResourceSaver.save(dataDump, DATA_ROUTE)
 func save_playerData():
 	playerData.newSave()
-	playerData.take_over_path(SAVE_ROUTE)
-	ResourceSaver.save(playerData, SAVE_ROUTE)
+	if OS.is_debug_build() && !releaseVersion:
+		playerData.take_over_path(SAVE_ROUTE_DG)
+		ResourceSaver.save(playerData, SAVE_ROUTE_DG)
+		print_line("debug")
+	else:
+		playerData.take_over_path(SAVE_ROUTE)
+		ResourceSaver.save(playerData, SAVE_ROUTE)
+		print_line("released")
 
 func get_stat_num(stat : STATS, getMod : bool = false) -> int:
 	match stat:
@@ -265,6 +278,9 @@ func simple_change(argument : PackedStringArray, change : String, doneMessage : 
 
 	if reload: reload_scene()
 	show_done_message(doneMessage + " " + argument[0])
+
+func check_path_or_create(path : String):
+	DirAccess.make_dir_absolute(path)
 
 ## ----------- COMMANDS -------------
 # ----------- console related -------------
@@ -319,8 +335,12 @@ func change_level(argument : PackedStringArray = []):
 	simple_change(argument, 'level', "New level is:")
 	if (was_save_asked_arg2(argument)): save_playerData()
 	if (was_reload_asked_arg2(argument)): reload_scene()
-
-# ----------- show attributes -------------
+func force_release_mode(argument : PackedStringArray = []):
+	if check_args_tooMany(argument, 0): return
+	releaseVersion = !releaseVersion
+	if releaseVersion: show_done_message("Release version mode activated!")
+	else: show_done_message("DEBUG version mode activated!")
+# ----------- show stuff -------------
 func show_name(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
 	print_line("Your current name is: [b]" + playerData.nombre + "[/b]", outputColor)
@@ -343,6 +363,9 @@ func last_saved(argument : PackedStringArray = []):
 	print_line("[b]Date: [/b]" + playerData.last_save_date(), outputColor)
 	print_line("")
 	print_line("Current time: " + Time.get_datetime_string_from_system(), outputColor)
+func shortcut_list(argument : PackedStringArray = []):
+	check_args_tooMany(argument, 0, helpShortCuts)
+	show_this_help(helpShortCuts)
 
 # ----------- functionality -------------
 func throw_dice(argument : PackedStringArray = []):
