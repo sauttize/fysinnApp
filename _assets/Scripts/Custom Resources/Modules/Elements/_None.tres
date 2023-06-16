@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_qey1m")
-element = "none"
-strength = Array[ExtResource("1_qey1m")]([])
-weakness = Array[ExtResource("1_qey1m")]([])
+element = 10
+strength = Array[int]([10])
+weakness = Array[int]([10])

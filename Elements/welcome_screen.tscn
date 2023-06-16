@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://uip4pdnqeu7s"]
+[gd_scene load_steps=10 format=3 uid="uid://uip4pdnqeu7s"]
 
 [ext_resource type="Script" path="res://Elements/welcome_screen.gd" id="1_1gfly"]
 [ext_resource type="FontFile" uid="uid://s64tvl31747e" path="res://_assets/Fonts/Cabin-VariableFont_wdth,wght.ttf" id="1_h77tp"]
+[ext_resource type="Script" path="res://Elements/WelcomeScreen/NewPlayerWindow.gd" id="3_ahbc7"]
 [ext_resource type="FontFile" uid="uid://btw8oqfk3julq" path="res://_assets/Fonts/CourierPrime/CourierPrime-Regular.ttf" id="3_s7ox8"]
 [ext_resource type="PackedScene" uid="uid://b4iijbpl3b73l" path="res://Elements/WelcomeScreen/slot.tscn" id="4_dqthb"]
 
@@ -122,6 +123,11 @@ initial_position = 1
 title = "Crear nuevo personaje"
 size = Vector2i(500, 600)
 visible = false
+wrap_controls = true
+transient = true
+exclusive = true
+unresizable = true
+script = ExtResource("3_ahbc7")
 
 [node name="bg" type="Panel" parent="New Player"]
 anchors_preset = 15
@@ -153,7 +159,7 @@ offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.501961, 0.905882, 0.941176, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxFlat_vgv5u")
 text = "¡Bienvenidx a tu nueva aventura!
@@ -238,7 +244,7 @@ theme_override_fonts/font = ExtResource("3_s7ox8")
 text = "Clase:"
 vertical_alignment = 1
 
-[node name="raza" type="OptionButton" parent="New Player/Control/form/class"]
+[node name="clase" type="OptionButton" parent="New Player/Control/form/class"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 alignment = 1
@@ -310,9 +316,33 @@ theme_override_fonts/font = ExtResource("3_s7ox8")
 text = "x"
 vertical_alignment = 1
 
+[node name="createCharacter" type="Button" parent="New Player/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -29.5
+offset_top = -190.0
+offset_right = 29.5
+offset_bottom = -159.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "CREAR"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a File"
+size = Vector2i(700, 500)
+unresizable = true
+ok_button_text = "Open"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.jpg")
+
 [node name="SaveManager" type="Window" parent="."]
 initial_position = 1
-title = "Crear nuevo personaje"
+title = "Cargar Personaje"
 size = Vector2i(500, 600)
 visible = false
 

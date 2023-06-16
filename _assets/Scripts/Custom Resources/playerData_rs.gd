@@ -55,7 +55,7 @@ var casillasMov : int = 0:
 #OTHER
 @export_category("Other")
 var lastSaved : Dictionary
-var saveManagerIndex : int = -1
+var UNIQUE_ID : int = -1
 
 func updateExp(newExp : int):
 	exp += newExp
@@ -68,3 +68,11 @@ func last_save_hour() -> String:
 
 func last_save_date() -> String:
 	return str(lastSaved['day']) + "/" + str(lastSaved['month']) + "/" + str(lastSaved['year'])
+
+func generate_id(compareWith : Array[PlayerData]):
+	var cantBe : Array[int] = []
+	for data in compareWith:
+		cantBe.push_back(data.UNIQUE_ID)
+	if UNIQUE_ID != -1:
+		var number = RandomNumberGenerator.new().randi_range(1, 1000000)
+		UNIQUE_ID = number

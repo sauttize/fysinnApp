@@ -1,6 +1,9 @@
 extends Node
 
-const MANAGER_ROUTE = "user://saves/SaveFiles.tres"
+const DATA_DUMP_ROUTE = "user://data/DataContainer.tres"
+const DATA_DUMP_BACKUP = "res://_assets/Scripts/Custom Resources/Data/CurrentData.tres"
+
+const SAVES_FOLDER_ROUTE = "user://saves/files/"
 const SAVE_ROUTE = "user://saves/CurrentPlayer.tres"
 
 var save_file_path = "user://saves/"
@@ -60,7 +63,30 @@ func GetCurrentSaveFile() -> PlayerData:
 	var currentSave = ResourceLoader.load(SAVE_ROUTE)
 	return currentSave
 
-func GetManager() -> SaveFilesManager:
-	if !verify_save_file(MANAGER_ROUTE): return SaveFilesManager.new()
-	var getManager = ResourceLoader.load(MANAGER_ROUTE)
-	return getManager
+func GetAllSaves() -> Array[PlayerData]:
+	var allSaves : Array[PlayerData] = []
+	var pathList : PackedStringArray = DirAccess.get_files_at(SAVES_FOLDER_ROUTE)
+	pathList = updatePathList(pathList)
+	for path in pathList:
+		var playerData
+		playerData = ResourceLoader.load(path)
+		if playerData is PlayerData:
+			allSaves.push_back(playerData)
+	return allSaves
+
+func updatePathList(array : PackedStringArray) -> PackedStringArray:
+	for n in array.size():
+		array[n] = SAVES_FOLDER_ROUTE + array[n]
+	return array
+
+func GetDataDump() -> DataFile:
+	var getDataDump : DataFile
+	if !verify_save_file(DATA_DUMP_ROUTE): 
+		getDataDump = ResourceLoader.load(DATA_DUMP_BACKUP)
+	else:
+		getDataDump = ResourceLoader.load(DATA_DUMP_ROUTE)
+	return getDataDump
+
+func UpdateCurrentPD(data : PlayerData):
+	ResourceSaver.save(data, SAVE_ROUTE)
+	data.take_over_path(SAVE_ROUTE)

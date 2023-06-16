@@ -19,8 +19,8 @@ enum ELEMENTS {
 }
 
 @export var element : ELEMENTS = ELEMENTS.None
-@export var strength : Array[ELEMENTS] 
-@export var weakness : Array[ELEMENTS]
+@export var strength : Array[ELEMENTS] = []
+@export var weakness : Array[ELEMENTS] = []
 
 func getString() -> String:
 	return ELEMENTS.keys()[element]

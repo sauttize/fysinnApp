@@ -1,6 +1,8 @@
 extends Resource
 class_name DataFile
 
+enum DICES {d4, d8, d10, d12, d20}
+
 # STATUS VALUES
 enum STATUS {SLEEP, HUNGER, THIRST}
 var HUNGER_HOURS : float = 2.5 ## Hunger taken each hour
@@ -14,6 +16,16 @@ var SLEEP_MINUTES : float = 0.2 ## Each minute
 # Did not sleep
 var NOT_SLEEP_HOURS : float = 6.66 ## Each hour that passed, sleep got taken
 var NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
+
+@export var SAVES_INDEX : int = -1
+
+# LISTS
+@export_category("Lists")
+@export var RACES_LIST : Array[Race]
+@export var CLASSES_LIST : Array[ClassType]
+@export var ELEMENT_LIST : Array[Element]
+@export var EFFECTS_LIST : Array[Effect]
+@export var SPELLS_LIST : Array[Spell]
 
 # KNOWLEDGE LIST
 @export_category("Knowledge related")
@@ -34,6 +46,34 @@ func get_duplicate_list_knowledge() -> Array[Knowledge]:
 		var copy : Knowledge = knowl.duplicate()
 		newList.append(copy)
 	return newList
+
+## GET METHODS
+## Gets the class type by the string name
+func stringToClass(className : String) -> ClassType:
+	var classType : ClassType = ClassType.new()
+
+	className = className.to_upper()
+	className = className.replacen(" ", "_")
+	var enumType = ClassType.CLASSES[className]
+	for c in CLASSES_LIST:
+		if c.type == enumType: classType = c
+	return classType
+## Gets the race type by the string name
+func stringToRace(raceName : String) -> Race:
+	var race : Race = Race.new()
+	
+	raceName = raceName.capitalize()
+	for r in RACES_LIST:
+		if raceName == r.name: race = r
+	return race
+## Gets the element type by the string name
+func stringToElement(elementName : String) -> Element:
+	var element : Element = Element.new()
+	
+	elementName = elementName.capitalize()
+	for e in ELEMENT_LIST:
+		if elementName == e.getString(): element = e
+	return element
 
 
 ## STATUS METHODS

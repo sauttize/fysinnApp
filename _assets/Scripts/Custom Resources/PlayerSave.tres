@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://dkfrwgu1yybyw" path="res://_assets/Scripts/Custom Resources/Modules/Races/Humano.tres" id="2_mrt5q"]
 [ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd" id="3_0ihgd"]
 [ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Stats.gd" id="3_w0eiv"]
-[ext_resource type="Resource" uid="uid://hi8ctj8esheo" path="res://_assets/Scripts/Custom Resources/Modules/Spells/000 Ataque Basico Elemental.tres" id="4_4d2wf"]
+[ext_resource type="Resource" uid="uid://hi8ctj8esheo" path="res://_assets/Scripts/Custom Resources/Spells/000 Ataque Basico Elemental.tres" id="4_4d2wf"]
 
 [sub_resource type="Image" id="Image_gmmb4"]
 data = {

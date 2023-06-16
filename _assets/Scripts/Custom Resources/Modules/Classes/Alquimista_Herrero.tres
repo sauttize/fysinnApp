@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ClassType" load_steps=4 format=3 uid="uid://bfu2urrgyqry2"]
+
+[ext_resource type="Resource" uid="uid://b5pwuk4kcxyvp" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Herreria.tres" id="1_2uyn8"]
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Class.gd" id="1_cvbc8"]
+[ext_resource type="Resource" uid="uid://c06aerv5gl07h" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge/Pociones.tres" id="2_4yq05"]
+
+[resource]
+script = ExtResource("1_cvbc8")
+type = 4
+hitPointMultiplier = 1
+hitPointDice = 10
+knowledgeList = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd")]([ExtResource("1_2uyn8"), ExtResource("2_4yq05")])
+starterPack = Array[Resource]([])
+starterEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])
+primaryColor = Color(0.54902, 0.313726, 0.517647, 1)
+secundaryColor = Color(0, 0, 0, 1)
