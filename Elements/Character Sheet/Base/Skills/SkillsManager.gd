@@ -1,6 +1,6 @@
 extends Control
 
-@export var _playerData : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @export_category("Nodes")
 @export_subgroup("Stats")
 @export var fue_num : LineEdit
@@ -39,12 +39,12 @@ func _ready():
 	car_num.text_changed.connect(stat_changed)
 	
 func set_localStats_fromFile():
-	fue = _playerData.stats.strength
-	des = _playerData.stats.dexterity
-	con = _playerData.stats.constitution
-	inte = _playerData.stats.intelligence
-	sab = _playerData.stats.wisdom
-	car = _playerData.stats.charisma
+	fue = playerData.stats.strength
+	des = playerData.stats.dexterity
+	con = playerData.stats.constitution
+	inte = playerData.stats.intelligence
+	sab = playerData.stats.wisdom
+	car = playerData.stats.charisma
 
 func set_lineEdit_fromLocalVar():
 	fue_num.text = str(fue)
@@ -55,28 +55,28 @@ func set_lineEdit_fromLocalVar():
 	car_num.text = str(car)
 
 func set_fileStats_fromLineEdit():
-	_playerData.stats.strength = int(fue_num.text)
-	_playerData.stats.dexterity = int(des_num.text)
-	_playerData.stats.constitution = int(con_num.text)
-	_playerData.stats.intelligence = int(int_num.text)
-	_playerData.stats.wisdom = int(sab_num.text)
-	_playerData.stats.charisma = int(car_num.text)
+	playerData.stats.strength = int(fue_num.text)
+	playerData.stats.dexterity = int(des_num.text)
+	playerData.stats.constitution = int(con_num.text)
+	playerData.stats.intelligence = int(int_num.text)
+	playerData.stats.wisdom = int(sab_num.text)
+	playerData.stats.charisma = int(car_num.text)
 
 func update_modifiers():
-	fue_MOD.value = _playerData.stats.stat_to_mod(fue)
-	des_MOD.value = _playerData.stats.stat_to_mod(des)
-	con_MOD.value = _playerData.stats.stat_to_mod(con)
-	int_MOD.value = _playerData.stats.stat_to_mod(inte)
-	sab_MOD.value = _playerData.stats.stat_to_mod(sab)
-	car_MOD.value = _playerData.stats.stat_to_mod(car)
+	fue_MOD.value = playerData.stats.stat_to_mod(fue)
+	des_MOD.value = playerData.stats.stat_to_mod(des)
+	con_MOD.value = playerData.stats.stat_to_mod(con)
+	int_MOD.value = playerData.stats.stat_to_mod(inte)
+	sab_MOD.value = playerData.stats.stat_to_mod(sab)
+	car_MOD.value = playerData.stats.stat_to_mod(car)
 
 func set_localMOD_toFile():
-	_playerData.stats.strengthMOD = int(fue_MOD.value)
-	_playerData.stats.dexterityMOD = int(des_MOD.value)
-	_playerData.stats.constitutionMOD = int(con_MOD.value)
-	_playerData.stats.intelligenceMOD = int(int_MOD.value)
-	_playerData.stats.wisdomMOD = int(sab_MOD.value)
-	_playerData.stats.charismaMOD = int(car_MOD.value)
+	playerData.stats.strengthMOD = int(fue_MOD.value)
+	playerData.stats.dexterityMOD = int(des_MOD.value)
+	playerData.stats.constitutionMOD = int(con_MOD.value)
+	playerData.stats.intelligenceMOD = int(int_MOD.value)
+	playerData.stats.wisdomMOD = int(sab_MOD.value)
+	playerData.stats.charismaMOD = int(car_MOD.value)
 
 #Stats chage signals
 func stat_changed(text : String):

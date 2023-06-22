@@ -1,6 +1,6 @@
 extends Control
 
-@export var playerData : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @export var editWindow : Window
 @export var editWindowButton : Button
 

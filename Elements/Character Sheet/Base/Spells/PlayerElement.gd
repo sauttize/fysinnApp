@@ -1,6 +1,6 @@
 extends Label
 
-@export var playerData : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @export var hoverColor : Color
 @export var infoWindow : Window
 

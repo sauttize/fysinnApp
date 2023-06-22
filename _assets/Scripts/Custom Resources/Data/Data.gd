@@ -17,8 +17,6 @@ var SLEEP_MINUTES : float = 0.2 ## Each minute
 var NOT_SLEEP_HOURS : float = 6.66 ## Each hour that passed, sleep got taken
 var NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
 
-@export var SAVES_INDEX : int = -1
-
 # LISTS
 @export_category("Lists")
 @export var RACES_LIST : Array[Race]

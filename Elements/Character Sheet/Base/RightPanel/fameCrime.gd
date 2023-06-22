@@ -1,6 +1,6 @@
 extends HBoxContainer
 
-@export var playerData : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @export_category("Label")
 @export var raceName : Label
 

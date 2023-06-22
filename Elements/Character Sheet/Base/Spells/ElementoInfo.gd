@@ -1,7 +1,7 @@
 extends Window
 class_name Info_Elemental
 
-@export var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @onready var fortalezasText : RichTextLabel = $container/vbox/hbox/fortalezas/lista
 @onready var debilidadesText : RichTextLabel = $container/vbox/hbox/debilidades/lista
 var disposable : bool = false

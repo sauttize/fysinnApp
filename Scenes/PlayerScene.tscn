@@ -1,11 +1,10 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=33 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
 [ext_resource type="PackedScene" uid="uid://olalpaiw6d5r" path="res://Elements/Character Sheet/nombre.tscn" id="1_vpgdq"]
 [ext_resource type="StyleBox" uid="uid://br71kevxdgqjk" path="res://_assets/Themes/boxStyle/perfil.tres" id="2_1wv8b"]
 [ext_resource type="Script" path="res://Scenes/filePopUpManager.gd" id="2_ch6v8"]
-[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_yymf8"]
 [ext_resource type="StyleBox" uid="uid://c1x0il1aghljq" path="res://_assets/Themes/boxStyle/conocimientos.tres" id="3_v5lg0"]
 [ext_resource type="Script" path="res://Scenes/AnimationHandler.gd" id="4_wnf7i"]
 [ext_resource type="PackedScene" uid="uid://d3fmuxtj85tyo" path="res://Elements/Character Sheet/nivel.tscn" id="5_2tphf"]
@@ -160,7 +159,7 @@ theme_override_font_sizes/font_size = 12
 shortcut = SubResource("Shortcut_bforp")
 text = "Archivo"
 item_count = 4
-popup/item_0/text = "Nuevo"
+popup/item_0/text = "Volver"
 popup/item_0/id = 2
 popup/item_1/text = "Guardar"
 popup/item_1/id = 3
@@ -169,7 +168,6 @@ popup/item_2/id = 0
 popup/item_3/text = "Cargar"
 popup/item_3/id = 1
 script = ExtResource("2_ch6v8")
-player_data = ExtResource("2_yymf8")
 
 [node name="Opciones" type="MenuButton" parent="Window/Container/GeneralOptions/OptionList" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(80, 0)

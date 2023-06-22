@@ -1,7 +1,7 @@
 extends ItemList
 
-var dataDump : DataFile = preload("res://_assets/Scripts/Custom Resources/Data/CurrentData.tres")
-var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
+@onready var dataDump : DataFile = GameManager.GetDataDump()
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @export_category("Level Stars")
 @export var starContainer : HBoxContainer
 var starNodes : Array = []

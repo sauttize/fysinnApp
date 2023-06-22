@@ -1,6 +1,6 @@
 extends Control
 
-@export var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 var classType : ClassType
 
 @export_category("Nodes")

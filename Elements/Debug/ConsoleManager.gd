@@ -3,8 +3,8 @@ extends Node
 const SAVE_ROUTE = "User://saves/PlayerSave.tres"
 const SAVE_ROUTE_DG = "res://_assets/Scripts/Custom Resources/PlayerSave.tres"
 const DATA_ROUTE = "res://_assets/Scripts/Custom Resources/Data/CurrentData.tres"
-var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
-var dataDump : DataFile = preload("res://_assets/Scripts/Custom Resources/Data/CurrentData.tres")
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
+@onready var dataDump : DataFile = GameManager.GetDataDump()
 
 enum STATS {FUE, DES, CON, INT, SAB, CAR, NONE}
 var strSTATS : PackedStringArray = ['fue', 'str', 'des','dex', 'con', 'int', 'sab', 'wis', 'car', 'cha']
@@ -228,14 +228,7 @@ func save_dataDump():
 	ResourceSaver.save(dataDump, DATA_ROUTE)
 func save_playerData():
 	playerData.newSave()
-	if OS.is_debug_build() && !releaseVersion:
-		playerData.take_over_path(SAVE_ROUTE_DG)
-		ResourceSaver.save(playerData, SAVE_ROUTE_DG)
-		print_line("debug")
-	else:
-		playerData.take_over_path(SAVE_ROUTE)
-		ResourceSaver.save(playerData, SAVE_ROUTE)
-		print_line("released")
+	GameManager.UpdateOriginalSaveFile()
 
 func get_stat_num(stat : STATS, getMod : bool = false) -> int:
 	match stat:

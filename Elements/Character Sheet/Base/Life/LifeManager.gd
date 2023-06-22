@@ -8,10 +8,9 @@ extends Control
 var currentLife : int
 var maxLife : int
 
-@export var _playerData : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 
 func _ready() -> void:
-	_playerData = GameManager.get_file(_playerData)
 	updateMaxLife()
 	updateCurrentLife()
 	compare_current_with_max()
@@ -26,8 +25,8 @@ func _ready() -> void:
 
 # Current Life
 func updateCurrentLife():
-	currentLifeLabel.text = str(_playerData.currentLife)
-	currentLife = _playerData.currentLife
+	currentLifeLabel.text = str(playerData.currentLife)
+	currentLife = playerData.currentLife
 
 func add_lifepoints(value : int):
 	currentLife += value
@@ -40,7 +39,7 @@ func sub_lifepoints(value : int):
 func compare_current_with_max():
 	if (currentLife > maxLife):
 		currentLife = maxLife
-	_playerData.currentLife = currentLife
+	playerData.currentLife = currentLife
 	updateCurrentLife()
 
 # Max Life
@@ -49,11 +48,11 @@ func mod_changes():
 	updateMaxLife()
 
 func updateMaxLife():
-	maxLife = _playerData.maxLife + _playerData.stats.constitutionMOD
+	maxLife = playerData.maxLife + playerData.stats.constitutionMOD
 	maxLifeLabel.text = str(maxLife)
 
 func add_maxlife(value : int):
-	_playerData.maxLife += value 
+	playerData.maxLife += value 
 	updateMaxLife()
 
 	

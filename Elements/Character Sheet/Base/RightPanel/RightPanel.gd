@@ -1,6 +1,6 @@
 extends Control
 
-@export var playerData : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 
 #TABS
 @export var picNode : Control

@@ -7,10 +7,10 @@ const DEFAULT_SAVES_FOLDER : String = 'user://saves/files/'
 const DEFAULT_SAVE_FILE : String = 'user://saves/CurrentPlayer.tres'
 
 var saveManager : Array[PlayerData]
-var saveFile : PlayerData
+var saveFile : CurrentSaveFile
 
 @onready var newPlayer : Button = $botones/newSave
-@onready var loadPlayer : Button = $botones/loadSave
+@onready var continueBtn : Button = $botones/continue
 @onready var manageSaves : Button = $botones/manageSaves
 @onready var dmTools : Button = $botones/dmTools
 
@@ -20,13 +20,17 @@ var saveFile : PlayerData
 @onready var saveSlot = preload("res://Elements/WelcomeScreen/slot.tscn")
 
 func _ready() -> void:
+	get_tree().set_auto_accept_quit(true)
 	check_folders()
 	check_data_dump()
 	saveManager = GameManager.GetAllSaves()
 	check_save_file()
 	
-	if(saveManager.size() > 0): loadPlayer.disabled = false
-	else: loadPlayer.disabled = true
+	if(saveFile.saveFile): continueBtn.disabled = false
+	else: continueBtn.disabled = true
+	
+	# Continue
+	continueBtn.pressed.connect(continue_last_save)
 	
 	# NewPlayer Window
 	newPlayer.pressed.connect(newPlayerWindow.popup_centered_clamped)
@@ -49,7 +53,7 @@ func check_save_file():
 	if (FileAccess.file_exists(DEFAULT_SAVE_FILE)):
 		saveFile = ResourceLoader.load(DEFAULT_SAVE_FILE)
 	else:
-		var newSaveFile = PlayerData.new()
+		var newSaveFile = CurrentSaveFile.new()
 		saveFile = newSaveFile
 		ResourceSaver.save(newSaveFile, DEFAULT_SAVE_FILE)
 		newSaveFile.take_over_path(DEFAULT_SAVE_FILE)
@@ -72,3 +76,8 @@ func update_saves(showEnter : bool = false, showDelete : bool = false):
 		var newSlot = saveSlot.instantiate()
 		saveList.add_child(newSlot)
 		newSlot.set_data(s, showEnter, showDelete)
+
+## //// Continue
+func continue_last_save():
+	queue_free()
+	get_tree().change_scene_to_file("res://Scenes/PlayerScene.tscn")

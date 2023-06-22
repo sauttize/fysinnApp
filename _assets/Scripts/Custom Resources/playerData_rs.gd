@@ -23,7 +23,7 @@ var casillasMov : int = 0:
 @export var initiativeNum : int = 1:
 	set(num): initiativeNum = clamp(num, 1, 5)
 @export_subgroup("Skills")
-@export var stats : Stats
+@export var stats : Stats = Stats.new()
 
 #METERS
 @export_category("-- Meters --")
@@ -55,6 +55,7 @@ var casillasMov : int = 0:
 #OTHER
 @export_category("Other")
 var lastSaved : Dictionary
+var PATH : String = ""
 var UNIQUE_ID : int = -1
 
 func updateExp(newExp : int):
@@ -76,3 +77,6 @@ func generate_id(compareWith : Array[PlayerData]):
 	if UNIQUE_ID != -1:
 		var number = RandomNumberGenerator.new().randi_range(1, 1000000)
 		UNIQUE_ID = number
+		
+func new_knowledge_list(from : DataFile):
+	myKnowledgeList = from.get_duplicate_list_knowledge()

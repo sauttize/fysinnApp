@@ -1,6 +1,6 @@
 extends Window
 
-@onready var dataDump : DataFile = preload("res://_assets/Scripts/Custom Resources/Data/CurrentData.tres")
+@onready var dataDump : DataFile = GameManager.GetDataDump()
 @export_category("Input")
 @export var showButton : Button
 

@@ -1,8 +1,7 @@
-[gd_scene load_steps=55 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=54 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
-[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_xdtbq"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Armor/armaduraNormal.gd" id="4_uyb8g"]
 [ext_resource type="Texture2D" uid="uid://bhnp62mlcjmnf" path="res://_assets/Icons/Shield/2x/outline_shield_white_24dp.png" id="4_ye1em"]
 [ext_resource type="PackedScene" uid="uid://digv3ro3tv7pw" path="res://Elements/Buttons/edit_button.tscn" id="5_uo5e2"]
@@ -326,7 +325,6 @@ editLifeWindow = NodePath("../EditLife")
 statsNode = NodePath("../../../Stats")
 currentLifeLabel = NodePath("Actuales/ptsActuales")
 maxLifeLabel = NodePath("Maximos/ptsMaximos")
-_playerData = ExtResource("3_xdtbq")
 
 [node name="Actuales" type="VBoxContainer" parent="Container/FirstRow/ArmorVida/Vida/Puntos"]
 layout_mode = 2
@@ -514,7 +512,6 @@ duration = 1.2
 custom_minimum_size = Vector2(210, 240)
 layout_mode = 2
 script = ExtResource("13_v3jk2")
-playerData = ExtResource("3_xdtbq")
 picNode = NodePath("picture")
 statsNode = NodePath("stats")
 currentPic = NodePath("picture/bgFoto/profilePic")
@@ -738,7 +735,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 40
 script = ExtResource("24_7ldrk")
-playerData = ExtResource("3_xdtbq")
 raceName = NodePath("../hboxRaza/razaName")
 fameNode = NodePath("fama/num")
 crimeNode = NodePath("danger/num")
@@ -940,7 +936,6 @@ text = "none"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("26_fimq4")
-playerData = ExtResource("3_xdtbq")
 hoverColor = Color(0.360784, 0.556863, 1, 1)
 infoWindow = NodePath("../../Info Elemento")
 
@@ -969,7 +964,6 @@ custom_minimum_size = Vector2(190, 152)
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("29_pvy43")
-playerData = ExtResource("3_xdtbq")
 editWindow = NodePath("EditActiveSpells")
 editWindowButton = NodePath("bg/editList")
 spellNode1 = NodePath("Slot1")
@@ -1015,7 +1009,6 @@ tooltip_text = "- 'Casillas de Movimiento' transforma tu velocidad en casillas q
 - Velocidad en pies.
 - Initiative point/number. Default es 1. Cada añadido implica esperar un turno menos que el resto."
 script = ExtResource("31_6hd6d")
-playerData = ExtResource("3_xdtbq")
 casillasNumber = NodePath("hz/casNum")
 velocityNumber = NodePath("hz/velNum")
 initiativeNumber = NodePath("hz/ipNum")

@@ -1,6 +1,6 @@
 extends Control
 
-@export var playerData : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @export_category("Dependencies")
 @export_subgroup("Variables")
 @export var casillasNumber : Label

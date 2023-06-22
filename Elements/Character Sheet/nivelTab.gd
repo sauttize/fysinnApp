@@ -2,7 +2,7 @@ extends Control
 
 @export_category("Level Up System")
 # Player data
-@export var player_data : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 #@export var leveling_up : Dictionary
 # Contains exp needed to level up
 @export_group("Level up exp")
@@ -12,8 +12,8 @@ signal level_up()
 
 #Check if exp to level up was obtained.
 func _on_exp_exp_updated():
-	for n in range(player_data.nivel, exp_needed.size(), 1):
-		if player_data.exp >= exp_needed[n]:
-			player_data.nivel = (n + 1) # Plus 1 bc is an array and starts in 0.
+	for n in range(playerData.nivel, exp_needed.size(), 1):
+		if playerData.exp >= exp_needed[n]:
+			playerData.nivel = (n + 1) # Plus 1 bc is an array and starts in 0.
 			emit_signal("level_up")
 

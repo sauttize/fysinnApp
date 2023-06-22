@@ -72,10 +72,9 @@ func create_SaveFile():
 		newPlayerData.imagen = newPhoto
 		
 		newPlayerData.generate_id(GameManager.GetAllSaves())
-		ResourceSaver.save(newPlayerData, GameManager.SAVES_FOLDER_ROUTE + SAVE_NAME + str(dataDump.SAVES_INDEX) + EXT)
-		dataDump.SAVES_INDEX = dataDump.SAVES_INDEX + 1
-		ResourceSaver.save(dataDump, GameManager.DATA_DUMP_ROUTE)
-		dataDump.take_over_path(GameManager.DATA_DUMP_ROUTE)
+		newPlayerData.new_knowledge_list(GameManager.GetDataDump())
+#		ResourceSaver.save(newPlayerData, GameManager.SAVES_FOLDER_ROUTE + SAVE_NAME + str(dataDump.SAVES_INDEX) + EXT)
+		GameManager.NewSave(newPlayerData)
 		Utilities.create_PopUp("¡Tu personaje ha sido creado!")
 		close_requested.emit()
 ## FILE DIALOG

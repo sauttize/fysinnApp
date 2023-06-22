@@ -72,17 +72,17 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="continue" type="Button" parent="botones"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_h77tp")
+theme_override_font_sizes/font_size = 20
+text = "Continuar"
+
 [node name="newSave" type="Button" parent="botones"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_h77tp")
 theme_override_font_sizes/font_size = 20
 text = "Nuevo Personaje"
-
-[node name="loadSave" type="Button" parent="botones"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_h77tp")
-theme_override_font_sizes/font_size = 20
-text = "Cargar Personaje"
 
 [node name="manageSaves" type="Button" parent="botones"]
 layout_mode = 2

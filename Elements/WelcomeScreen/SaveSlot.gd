@@ -27,4 +27,6 @@ func set_data(playerData : PlayerData, isEnterButton : bool = false, isDeleteBut
 	if isDeleteButton: deleteButton.visible = true
 
 func enter_pressed():
-	pass
+	GameManager.UpdateCurrentPD(thisPlayerData)
+	get_parent().queue_free()
+	get_tree().change_scene_to_file("res://Scenes/PlayerScene.tscn")

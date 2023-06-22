@@ -1,6 +1,6 @@
 extends Window
 
-@export var player_data : PlayerData
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 var newName
 
 # Change player name.
@@ -10,7 +10,7 @@ func _on_button_button_up():
 	$ConfirmationDialog.popup_centered_clamped()
 ## Confirman cambio.
 func _on_confirmation_dialog_confirmed():
-	player_data.nombre = newName
+	playerData.nombre = newName
 	hide()
 
 

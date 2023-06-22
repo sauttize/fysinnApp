@@ -1,8 +1,8 @@
 extends MenuButton
 
 var popup : PopupMenu
-var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
-var dataDump : DataFile = preload("res://_assets/Scripts/Custom Resources/Data/CurrentData.tres")
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
+@onready var dataDump : DataFile = GameManager.GetDataDump()
 
 # AutoGuardado:
 @export_category("AutoSave")
@@ -33,7 +33,7 @@ func click_op(id : int):
 
 # --- AutoSave ---
 func autosave():
-	ResourceSaver.save(playerData, GameManager.SAVE_ROUTE)
+	GameManager.UpdateOriginalSaveFile()
 
 func update_autosave(isActive : bool):
 	if isActive: timer.start()
