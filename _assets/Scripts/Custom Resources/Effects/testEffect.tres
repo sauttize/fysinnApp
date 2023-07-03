@@ -5,3 +5,14 @@
 [resource]
 script = ExtResource("1_5n8xk")
 effectName = "Cola de chancho"
+effectType = "Temporal"
+effectDescription = "-"
+time_hs = 0.0
+uses = 0
+functionName = &"-"
+scriptDir = ""
+test = 6.23487
+effectKind = "Good"
+goodColor = Color(0, 0.643137, 0.443137, 1)
+badColor = Color(0.737255, 0, 0.490196, 1)
+neutralColor = Color(0.321569, 0.321569, 0.321569, 1)

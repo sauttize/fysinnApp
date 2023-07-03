@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=57 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -38,6 +38,8 @@
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/ClassInfo/ClassPanel.gd" id="33_ja71m"]
 [ext_resource type="Script" path="res://_assets/Tweens/aplha_tween.gd" id="36_hcgwt"]
 [ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="37_7fw64"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Effects/effect_list.gd" id="39_ir3b0"]
+[ext_resource type="PackedScene" uid="uid://cjsqbq8oeyc3w" path="res://Elements/Character Sheet/Base/Effects/effect_slot.tscn" id="39_l70f3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk3gq"]
 bg_color = Color(0.309804, 0.470588, 0.756863, 1)
@@ -116,6 +118,13 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bsrh"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.615686)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="Base" type="MarginContainer" node_paths=PackedStringArray("editLife", "editArmor")]
 custom_minimum_size = Vector2(0, 680)
@@ -1221,16 +1230,16 @@ offset_bottom = 231.0
 
 [node name="PositionTween" type="Node" parent="Container/ThirdRow/Effects" node_paths=PackedStringArray("node")]
 script = ExtResource("37_7fw64")
-node = NodePath("../bg")
+node = NodePath("..")
 parallelToPrevious = true
 transitionType = 3
 newStartingPosition = true
-fromPosition2D = Vector2(0, 320)
-toPosition2D = Vector2(0, -4)
+fromPosition2D = Vector2(700, -259)
+toPosition2D = Vector2(444, -259)
 
 [node name="AlphaTween" type="Node" parent="Container/ThirdRow/Effects" node_paths=PackedStringArray("node")]
 script = ExtResource("36_hcgwt")
-node = NodePath("../bg")
+node = NodePath("..")
 parallelToPrevious = true
 duration = 2.0
 transitionType = 5
@@ -1245,6 +1254,32 @@ offset_bottom = 36.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3ftec")
+
+[node name="effectsTitle" type="Label" parent="Container/ThirdRow/Effects"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 220.0
+offset_bottom = 28.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_6bsrh")
+text = "Efectos activos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="lista" type="VFlowContainer" parent="Container/ThirdRow/Effects"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 35.0
+offset_right = 216.0
+offset_bottom = 502.0
+script = ExtResource("39_ir3b0")
+
+[node name="efectos" type="VBoxContainer" parent="Container/ThirdRow/Effects/lista"]
+layout_mode = 2
+alignment = 1
+
+[node name="effectSlot" parent="Container/ThirdRow/Effects/lista/efectos" instance=ExtResource("39_l70f3")]
+layout_mode = 2
 
 [connection signal="updateBaseData" from="." to="Container/FirstRow/ArmorVida/Vida/Puntos/Maximos/ptsMaximos" method="_on_base_update_base_data"]
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Armadura/EditButton" to="." method="_on_edit_button_button_up"]

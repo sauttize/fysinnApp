@@ -6,8 +6,7 @@ const DATA_DUMP_BACKUP = "res://_assets/Scripts/Custom Resources/Data/CurrentDat
 const SAVES_FOLDER_ROUTE = "user://saves/files/"
 const SAVE_ROUTE = "user://saves/CurrentPlayer.tres"
 
-var save_file_path = "user://saves/"
-var save_file_path_dg = "res://_assets/Scripts/Custom Resources/"
+const EFFECTS_ROUTE = "res://_assets/Scripts/Custom Resources/Effects/"
 
 var saving : bool = false
 

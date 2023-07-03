@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://cjsqbq8oeyc3w"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Effects/effect_slot.gd" id="1_7ocew"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgehm"]
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 0.639216)
+corner_radius_top_left = 7
+corner_radius_bottom_right = 7
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[node name="effectSlot" type="MarginContainer"]
+custom_minimum_size = Vector2(200, 0)
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+script = ExtResource("1_7ocew")
+
+[node name="bg" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bgehm")
+
+[node name="elements" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="texto" type="RichTextLabel" parent="elements"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+bbcode_enabled = true
+text = "[b]Nombre:[/b]
+[b]Tipo:[/b]
+[b]Descripción:[/b]
+"
+fit_content = true
+
+[node name="buttons" type="HBoxContainer" parent="elements"]
+layout_mode = 2
+
+[node name="activar" type="Button" parent="elements/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "Activar"
+
+[node name="eliminar" type="Button" parent="elements/buttons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+text = "Eliminar"

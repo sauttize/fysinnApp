@@ -48,6 +48,10 @@ var casillasMov : int = 0:
 @export_subgroup("Active")
 @export var activeSpells : Array[Spell]
 
+#EFFECTS
+@export_category("Effects")
+@export var active_effects : Array[Effect]
+
 #KNOWLEDGE RELATED
 @export_category("-- Knowledge --")
 @export var myKnowledgeList : Array[Knowledge]
