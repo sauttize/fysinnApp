@@ -10,12 +10,12 @@ var thisEffect : Effect = Effect.new()
 const NOMBRE : String = "[b]Nombre: [/b]"
 const TIPO : String = "[b]Tipo: [/b]"
 const DESCRIPCION : String = "[b]Descripción: [/b]"
-const NL : String = "/n"
+const NL : String = "\n"
 
 func update_effect(effect : Effect):
 	thisEffect = effect
-	text.append_text(NOMBRE + effect.effectName)
-	text.append_text(TIPO + effect.effectType)
+	text.append_text(NOMBRE + effect.effectName + NL)
+	text.append_text(TIPO + effect.effectType + NL)
 	text.append_text(DESCRIPCION + effect.effectDescription)
 	
 	Utilities.changeFlatboxColor_Panel(bgPanel, effect.getColor())

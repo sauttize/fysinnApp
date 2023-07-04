@@ -100,10 +100,16 @@ func GetDataDump() -> DataFile:
 		getDataDump = ResourceLoader.load(DATA_DUMP_ROUTE)
 	return getDataDump
 
+func GetMainDataDump() -> DataFile:
+	var dataDumpOG : DataFile
+	dataDumpOG = ResourceLoader.load(DATA_DUMP_ROUTE)
+	return dataDumpOG
+
 func UpdateOriginalSaveFile():
 	var currentManager : CurrentSaveFile = GetCurrentSaveManager()
 	var currentSave : PlayerData = currentManager.saveFile
-	var search = GetSaveFileAt(currentSave.PATH)
+	var search = PlayerData.new() # I don't even think it's necessary but I don't want to delete it bc idk who knows
+	if GetSaveFileAt(currentSave.PATH): search = GetSaveFileAt(currentSave.PATH)
 	if (currentSave == search):
 		ResourceSaver.save(currentSave, currentSave.PATH)
 		currentSave.take_over_path(currentSave.PATH)
@@ -123,3 +129,13 @@ func UpdateCurrentPD(data : PlayerData):
 	ResourceSaver.save(currentSave, SAVE_ROUTE)
 	currentSave.take_over_path(SAVE_ROUTE)
 
+# Full lists of data
+func GetAllEffects() -> Array[Effect]:
+	var allEffects : Array[Effect] = []
+	var pathList : PackedStringArray = DirAccess.get_files_at(EFFECTS_ROUTE)
+	for path in pathList:
+		var thisEffect
+		thisEffect = ResourceLoader.load(EFFECTS_ROUTE + path)
+		if thisEffect is Effect:
+			allEffects.push_back(thisEffect)
+	return allEffects

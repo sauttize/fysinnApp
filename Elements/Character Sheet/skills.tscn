@@ -1,14 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bddgh2tf2lob8"]
+[gd_scene load_steps=3 format=3 uid="uid://bddgh2tf2lob8"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Skills/SkillsManager.gd" id="1_ylu36"]
-[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_33d57"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii5t1"]
 bg_color = Color(0.2, 0.411765, 0.376471, 1)
-corner_radius_top_left = 1
+corner_radius_top_left = 20
 corner_radius_top_right = 12
 corner_radius_bottom_right = 12
-corner_radius_bottom_left = 1
+corner_radius_bottom_left = 20
 
 [node name="Stats" type="Control" node_paths=PackedStringArray("fue_num", "des_num", "con_num", "int_num", "sab_num", "car_num", "fue_MOD", "des_MOD", "con_MOD", "int_MOD", "sab_MOD", "car_MOD")]
 layout_mode = 3
@@ -20,7 +19,6 @@ offset_bottom = -560.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ylu36")
-_playerData = ExtResource("2_33d57")
 fue_num = NodePath("MarginContainer/GridContainer/FUE_num")
 des_num = NodePath("MarginContainer/GridContainer/DES_num")
 con_num = NodePath("MarginContainer/GridContainer/CON_num")

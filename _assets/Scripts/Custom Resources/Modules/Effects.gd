@@ -12,15 +12,15 @@ class_name Effect
 #@export_file var scriptDir : String
 var effectAction : Callable = Callable(self, functionName)
 @export_category("Kind and Color")
-@export_enum("Bad", "Good", "Neutral") var effectKind : String = "Good"
+@export_enum("Bad", "Good", "Neutral") var effectNature : String = "Good"
 @export_group("Color List")
-@export var goodColor : Color = Color("#00a471")
-@export var badColor : Color = Color("#bc007d")
-@export var neutralColor : Color = Color("#525252")
+@export var goodColor : Color = Color("#00a471", 0.4)
+@export var badColor : Color = Color("#bc007d", 0.4)
+@export var neutralColor : Color = Color("#525252", 0.4)
 
 
 func getColor() -> Color:
-	match effectKind:
+	match effectNature:
 		"Good":
 			return goodColor
 		"Bad":

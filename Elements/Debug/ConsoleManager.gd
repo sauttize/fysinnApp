@@ -5,6 +5,8 @@ const SAVE_ROUTE_DG = "res://_assets/Scripts/Custom Resources/PlayerSave.tres"
 const DATA_ROUTE = "res://_assets/Scripts/Custom Resources/Data/CurrentData.tres"
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @onready var dataDump : DataFile = GameManager.GetDataDump()
+@onready var dataDumpOG : DataFile = GameManager.GetDataDump()
+@onready var allEffects : Array[Effect] = GameManager.GetAllEffects()
 
 enum STATS {FUE, DES, CON, INT, SAB, CAR, NONE}
 var strSTATS : PackedStringArray = ['fue', 'str', 'des','dex', 'con', 'int', 'sab', 'wis', 'car', 'cha']
@@ -28,7 +30,11 @@ var commandList : Dictionary = {
 	"secret": "easter_egg", "easter_egg": "easter_egg", "rick": "easter_egg", "hack": "easter_egg", "hola": "easter_egg",
 	"link": "external_link", "go": "external_link",
 	"release": "force_release_mode", "rls": "force_release_mode",
-	"sc": "shortcut_list", "short": "shortcut_list", "cut": "shortcut_list", "shortcut": "shortcut_list", "shortcuts": "shortcut_list"
+	"sc": "shortcut_list", "short": "shortcut_list", "cut": "shortcut_list", "shortcut": "shortcut_list", "shortcuts": "shortcut_list",
+	"add_effect": "add_effect", "newe": "add_effect", "neweffect": "add_effect",
+	"effect": "show_effect", "eff" : "show_effect",
+	"myeff": "show_active_effects", "myeffects": "show_active_effects", "mye" : "show_active_effects",
+	"master": "master_tools"
 }
 
 @onready var argumentList : Dictionary = {
@@ -54,6 +60,7 @@ var commandList : Dictionary = {
 @export var helpDiceThrow : PackedStringArray # dice_throw
 @export var helpInfo : PackedStringArray # info_about
 @export var helpShortCuts : PackedStringArray # shortcut_list
+@export var helpMaster : PackedStringArray # Master tools
 @export_category("Colors")
 @export_subgroup("Basics")
 @export var normalColor : Color = Color.ANTIQUE_WHITE
@@ -253,6 +260,20 @@ func get_stat_num(stat : STATS, getMod : bool = false) -> int:
 		_:
 			return 1313
 
+func get_effect(argument : PackedStringArray):
+	var effect : Effect
+	var nameGiven : String = ""
+	for n in argument.size():
+		if argument[n] == "save" || argument[n] == "s": continue
+		nameGiven = nameGiven + argument[n]
+		if n != argument.size() - 1 && (argument[n + 1] !=  "save" && argument[n + 1] != "s") : 
+			nameGiven = nameGiven + ' '
+	for effectTemp in allEffects:
+		if effectTemp.effectName.to_lower() == nameGiven.to_lower():
+			effect = effectTemp
+	if effect: return effect
+	else: return null
+
 func simple_change(argument : PackedStringArray, change : String, doneMessage : String = "Changed sucessfully!"):
 	if no_arguments(argument, true): return
 	elif is_help(argument[0]): 
@@ -333,6 +354,15 @@ func force_release_mode(argument : PackedStringArray = []):
 	releaseVersion = !releaseVersion
 	if releaseVersion: show_done_message("Release version mode activated!")
 	else: show_done_message("DEBUG version mode activated!")
+func add_effect(argument : PackedStringArray = []):
+	if no_arguments(argument, true) : return
+	var effect : Effect
+	if get_effect(argument): effect = get_effect(argument)
+	if effect:
+		playerData.active_effects.push_back(effect)
+		show_done_message("Effect added! (use eff command to see more details)")
+		if was_generic_asked(argument, ["save", "s"], true, "File saved!"): save_playerData()
+	else: show_error("That effect doesn't exist.")
 # ----------- show stuff -------------
 func show_name(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
@@ -348,6 +378,25 @@ func show_stat(argument : PackedStringArray = []):
 	if stat != STATS.NONE:
 		show_done_message("STAT NUMBER: [b]" + str(get_stat_num(stat)) + "[/b]")
 		show_done_message("MODIFIER: [b]" + str(get_stat_num(stat, true)) + "[/b]")
+func show_effect(argument : PackedStringArray = []):
+	if no_arguments(argument, true): return
+	var effect : Effect
+	if get_effect(argument): effect = get_effect(argument) as Effect
+	else: 
+		show_error("Effect doesn't exist. Check if name's correct. To see full list use allEffect or alle")
+		return
+	
+	print_line(" ---- EFFECT INFO:", outputColor)
+	print_line("[b]Name: [/b]" + effect.effectName, outputColor)
+	print_line("[b]Type: [/b]" + effect.effectType, outputColor)
+	print_line("[b]Description: [/b]" + effect.effectDescription, outputColor)
+	print_line("[b]Nature: [/b]" + effect.effectNature, outputColor)
+func show_active_effects(argument : PackedStringArray = []):
+	no_arguments_needed(argument)
+	
+	print_line(" ---- ACTIVE EFFECTS:", outputColor)
+	for eff in playerData.active_effects:
+		print_line("[b]" + eff.effectName + "[/b]")
 func last_saved(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
 	
@@ -469,13 +518,26 @@ func external_link(argument : PackedStringArray = []):
 	if was_generic_asked(argument, ["raincaster", "raincasters", 'rayitos', 'rayos', 'tss', 'relampagos','lluvias']):
 		OS.shell_open('https://www.notion.so/sauttize/Raincasters-380369da3cd34138bf876bfc56bf3bf7')
 		return
-	if was_generic_asked(argument, ["spells", "hechizos", 'magia', 'magic', 'harry', 'sp']):
+	if was_generic_asked(argument, ["spells", "hechizos", 'magia', 'magic', 'harry', 'sp', 'harrysosunmago']):
 		OS.shell_open('https://www.notion.so/sauttize/ccb9780c015a48149f3fa5ba78be2dcd?v=82469155beec4981bd2c28dae707a5a8')
 		return
 	if was_generic_asked(argument, ["classes", "clases", 'class', 'clase']):
 		OS.shell_open('https://www.notion.so/sauttize/Clases-83b67d58e95b4ae389074bfecaf74943')
 		return
 	show_error("Search failed! Try another term.")
+# ----------- MASTER TOOLS -------------
+func master_tools(argument : PackedStringArray = []):
+	if was_generic_asked(argument, ["help"]) || no_arguments(argument): show_this_help(helpMaster)
+	if was_generic_asked(argument, ["help_bu", "backup"]):
+		dataDumpOG.helpList = helpList
+		dataDumpOG.helpChangeColor = helpChangeColor
+		dataDumpOG.helpSaveFile = helpSaveFile
+		dataDumpOG.helpReload = helpReload
+		dataDumpOG.helpDiceThrow = helpDiceThrow
+		dataDumpOG.helpInfo = helpInfo
+		dataDumpOG.helpShortCuts = helpShortCuts
+		dataDumpOG.helpMaster = helpMaster
+		show_done_message("All arrays were updated and saved!")
 # ----------- funsies -------------
 func easter_egg(argument : PackedStringArray = []):
 	show_error("No deberias andar husmeando comandos secretos...")

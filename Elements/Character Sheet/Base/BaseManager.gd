@@ -3,8 +3,13 @@ extends MarginContainer
 @export var editLife : Window
 @export var editArmor : Window
 
-
 signal updateBaseData()
+
+func _ready():
+	visibility_changed.connect(refresh_data)
+
+func refresh_data():
+	$Container/ThirdRow/Effects/lista.updateEffects()
 
 # SKILLS
 #Sets Skills data

@@ -4,15 +4,15 @@
 
 [resource]
 script = ExtResource("1_5n8xk")
-effectName = "Cola de chancho"
+effectName = "Testo"
 effectType = "Temporal"
-effectDescription = "-"
+effectDescription = "Descripcion super larga que indica muchas cosas, mas que nada para probar como quedaria una descripcion bien bien largota. Pero bueno , incluso podria venir hasta aca."
 time_hs = 0.0
 uses = 0
 functionName = &"-"
-scriptDir = ""
-test = 6.23487
-effectKind = "Good"
-goodColor = Color(0, 0.643137, 0.443137, 1)
-badColor = Color(0.737255, 0, 0.490196, 1)
-neutralColor = Color(0.321569, 0.321569, 0.321569, 1)
+isActivable = false
+isRemovable = true
+effectNature = "Good"
+goodColor = Color(0, 0.643137, 0.443137, 0.4)
+badColor = Color(0.737255, 0, 0.490196, 0.4)
+neutralColor = Color(0.321569, 0.321569, 0.321569, 0.4)

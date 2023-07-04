@@ -101,7 +101,7 @@ unicode = 114
 [sub_resource type="Shortcut" id="Shortcut_maann"]
 events = [SubResource("InputEventKey_xryiw")]
 
-[node name="Player manager" type="Control" groups=["Managers"]]
+[node name="Player manager" type="Control"]
 clip_contents = true
 layout_mode = 3
 anchors_preset = 15

@@ -50,7 +50,6 @@
 
 [resource]
 script = ExtResource("1_mvxxb")
-SAVES_INDEX = 0
 RACES_LIST = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Races.gd")]([ExtResource("42_n6ro1"), ExtResource("43_rb01g"), ExtResource("44_ufsdo"), ExtResource("45_dwe7h"), ExtResource("46_ph3l5")])
 CLASSES_LIST = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([ExtResource("1_m0c6g"), ExtResource("2_k52f4")])
 ELEMENT_LIST = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Elements.gd")]([ExtResource("3_n8rhr"), ExtResource("4_o485y"), ExtResource("5_wtb0d"), ExtResource("6_ad78s"), ExtResource("7_4t5mo"), ExtResource("8_dky77"), ExtResource("9_f3rfv"), ExtResource("10_jmruc"), ExtResource("11_6brtt"), ExtResource("12_lgeum"), ExtResource("13_pljed"), ExtResource("14_ohplt")])
@@ -61,3 +60,10 @@ K_CURVE_PRACTICE = ExtResource("3_7057o")
 K_CURVE_BOOK = ExtResource("2_vjvyx")
 K_CURVE_ACADEMY = ExtResource("1_nwse5")
 bgConsoleColor = Color(0, 0, 0, 0.239216)
+helpList = PackedStringArray()
+helpChangeColor = PackedStringArray()
+helpSaveFile = PackedStringArray()
+helpReload = PackedStringArray()
+helpDiceThrow = PackedStringArray()
+helpInfo = PackedStringArray()
+helpShortCuts = PackedStringArray()

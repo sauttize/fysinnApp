@@ -35,6 +35,15 @@ var NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
 
 @export_category("Console")
 @export var bgConsoleColor : Color = Color(0, 0, 0, 0.25)
+@export_group("Help array backups")
+@export var helpList : PackedStringArray # General
+@export var helpChangeColor : PackedStringArray # change_color
+@export var helpSaveFile : PackedStringArray # reload_PlayerData
+@export var helpReload : PackedStringArray # to any function that implements reload
+@export var helpDiceThrow : PackedStringArray # dice_throw
+@export var helpInfo : PackedStringArray # info_about
+@export var helpShortCuts : PackedStringArray # shortcut_list
+@export var helpMaster : PackedStringArray # Master tools
 
 ## KNOWLEDGE METHODS
 ## Gives a copy of the list, not related to the og's
