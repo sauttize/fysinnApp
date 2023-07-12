@@ -19,7 +19,10 @@ var saveFile : CurrentSaveFile
 @onready var saveList : VBoxContainer = $SaveManager/Control/ScrollContainer/partidas
 @onready var saveSlot = preload("res://Elements/WelcomeScreen/slot.tscn")
 
+@export var window_size : Vector2i = Vector2i(450, 500)
+
 func _ready() -> void:
+	Utilities.resize_window(window_size)
 	get_tree().set_auto_accept_quit(true)
 	check_folders()
 	check_data_dump()
@@ -33,13 +36,14 @@ func _ready() -> void:
 	continueBtn.pressed.connect(continue_last_save)
 	
 	# NewPlayer Window
-	newPlayer.pressed.connect(newPlayerWindow.popup_centered_clamped)
+	newPlayer.pressed.connect(newPlayerWindow.show)
 	newPlayerWindow.close_requested.connect(update_scene)
 	newPlayerWindow.close_requested.connect(newPlayerWindow.hide)
 	
 	# SaveManager Window
-	manageSaves.pressed.connect(saveManagerWindow.popup_centered_clamped)
-	manageSaves.pressed.connect(update_saves.bind(true))
+	manageSaves.pressed.connect(saveManagerWindow.show)
+	manageSaves.pressed.connect(update_saves)
+	saveManagerWindow.close_requested.connect(update_scene)
 	saveManagerWindow.close_requested.connect(saveManagerWindow.hide)
 
 ## Check folders and creates them if neccesary
@@ -68,7 +72,7 @@ func check_data_dump():
 func update_scene():
 	get_tree().reload_current_scene()
 ## //// Save Manager
-func update_saves(showEnter : bool = false, showDelete : bool = false):
+func update_saves(showEnter : bool = true, showDelete : bool = true):
 	for n in saveList.get_children():
 		saveList.remove_child(n)
 		n.queue_free()
@@ -79,5 +83,7 @@ func update_saves(showEnter : bool = false, showDelete : bool = false):
 
 ## //// Continue
 func continue_last_save():
-	queue_free()
 	get_tree().change_scene_to_file("res://Scenes/PlayerScene.tscn")
+	hide()
+	queue_free()
+

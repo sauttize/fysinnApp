@@ -13,18 +13,18 @@ bg_color = Color(0.572549, 0.623529, 0.490196, 1)
 bg_color = Color(0.392157, 0.470588, 0.513726, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgv5u"]
-bg_color = Color(1, 1, 1, 0.184314)
+bg_color = Color(0.619608, 0.180392, 0.188235, 0.764706)
 corner_radius_top_left = 13
 corner_radius_top_right = 13
 corner_radius_bottom_right = 13
 corner_radius_bottom_left = 13
-expand_margin_left = 12.0
-expand_margin_top = 5.0
-expand_margin_right = 12.0
-expand_margin_bottom = 5.0
+expand_margin_left = 5.0
+expand_margin_top = 3.0
+expand_margin_right = 5.0
+expand_margin_bottom = 3.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t12a1"]
-bg_color = Color(0.270588, 0.454902, 0.309804, 1)
+bg_color = Color(0.109804, 0.294118, 0.345098, 1)
 
 [node name="WelcomeScreen" type="Control"]
 layout_mode = 3
@@ -119,8 +119,8 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="New Player" type="Window" parent="."]
-initial_position = 1
 title = "Crear nuevo personaje"
+initial_position = 1
 size = Vector2i(500, 600)
 visible = false
 wrap_controls = true
@@ -333,8 +333,11 @@ text = "CREAR"
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"
+initial_position = 1
 size = Vector2i(700, 500)
-unresizable = true
+transient = false
+exclusive = false
+always_on_top = true
 ok_button_text = "Open"
 file_mode = 0
 access = 2
@@ -342,10 +345,13 @@ filters = PackedStringArray("*.png", "*.jpg")
 show_hidden_files = true
 
 [node name="SaveManager" type="Window" parent="."]
-initial_position = 1
 title = "Cargar Personaje"
+initial_position = 1
 size = Vector2i(500, 600)
 visible = false
+transient = true
+exclusive = true
+unresizable = true
 
 [node name="bg" type="Panel" parent="SaveManager"]
 anchors_preset = 15
@@ -377,11 +383,16 @@ offset_bottom = -238.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.890196, 0.807843, 0.8, 1)
-theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.176471)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/line_spacing = 7
+theme_override_font_sizes/font_size = 20
 theme_override_styles/normal = SubResource("StyleBoxFlat_vgv5u")
 text = "PARTIDAS GUARDADAS"
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="ScrollContainer" type="ScrollContainer" parent="SaveManager/Control"]
 layout_mode = 1
@@ -390,10 +401,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -154.0
-offset_top = -150.0
-offset_right = 154.0
-offset_bottom = 150.0
+offset_left = -180.0
+offset_top = -200.0
+offset_right = 180.0
+offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0

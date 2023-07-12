@@ -24,9 +24,16 @@ func set_data(playerData : PlayerData, isEnterButton : bool = false, isDeleteBut
 	if isEnterButton: 
 		enterButton.visible = true
 		enterButton.pressed.connect(enter_pressed)
-	if isDeleteButton: deleteButton.visible = true
+	if isDeleteButton: 
+		deleteButton.visible = true
+		deleteButton.pressed.connect(delete_pressed)
 
 func enter_pressed():
 	GameManager.UpdateCurrentPD(thisPlayerData)
 	get_parent().queue_free()
 	get_tree().change_scene_to_file("res://Scenes/PlayerScene.tscn")
+
+func delete_pressed():
+	GameManager.DeleteSave(thisPlayerData)
+	Utilities.create_PopUp("Archivo eliminado")
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://b4iijbpl3b73l"]
+[gd_scene load_steps=10 format=3 uid="uid://b4iijbpl3b73l"]
 
 [ext_resource type="Script" path="res://Elements/WelcomeScreen/SaveSlot.gd" id="1_lxtl5"]
 [ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="2_hfh6m"]
@@ -16,6 +16,41 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k50vp"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 0.764706)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfwfw"]
+bg_color = Color(0.184314, 0.556863, 0.494118, 0.764706)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5xj0u"]
+bg_color = Color(0.0941176, 0.333333, 0.294118, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gqf17"]
+bg_color = Color(0.589771, 0.168994, 0.176774, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqei3"]
+bg_color = Color(0.513726, 0.133333, 0.101961, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
 [node name="Slot" type="Control"]
 custom_minimum_size = Vector2(300, 70)
 layout_mode = 3
@@ -27,6 +62,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_se25t")
@@ -113,18 +149,25 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -40.0
+offset_left = 1.0
 offset_top = -20.0
+offset_right = 46.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 
 [node name="enter" type="Button" parent="buttons"]
-visible = false
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_k50vp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wfwfw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_5xj0u")
 text = "->"
 
 [node name="delete" type="Button" parent="buttons"]
-visible = false
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_k50vp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gqf17")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_aqei3")
 text = "X"

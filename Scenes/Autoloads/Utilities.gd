@@ -56,6 +56,15 @@ func create_PopUp(message : String = "hello", color : Color = Color.WHITE, bgCol
 	add_child(instance)
 	instance.updateNode(message, color, bgColor)
 	instance.child_controls_changed()
-	instance.popup_centered_clamped()
+	instance.show()
 func erase_PopUp(window : Window):
 	window.queue_free()
+
+
+## Display management
+func resize_window(window_size : Vector2i):
+	var screen_size = DisplayServer.screen_get_size()
+	DisplayServer.window_set_size(window_size)
+	var actual_size = DisplayServer.window_get_size_with_decorations()
+	var centered = Vector2(screen_size.x / 2 - actual_size.x / 2, screen_size.y / 2 - actual_size.y / 2)
+	DisplayServer.window_set_position(centered)

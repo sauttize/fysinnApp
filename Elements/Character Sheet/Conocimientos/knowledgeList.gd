@@ -57,8 +57,8 @@ func clear_level_stars():
 		star.modulate = noLevelColor
 
 ## Functionality
-func get_knowledge_by_name(name : String):
+func get_knowledge_by_name(name_search : String):
 	for k in playerData.myKnowledgeList:
-		if k.return_by_name(selectedName):
+		if k.return_by_name(name_search):
 			selectedKnowl = k
 			return

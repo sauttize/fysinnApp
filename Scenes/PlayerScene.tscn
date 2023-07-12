@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=34 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ddp7y6gn35b86" path="res://Elements/Character Sheet/Conocimientos/conocimientos.tscn" id="12_mioef"]
 [ext_resource type="Script" path="res://Scenes/exitHandler.gd" id="13_jfxcr"]
 [ext_resource type="PackedScene" uid="uid://r1el5plw4yls" path="res://Elements/Debug/consoleTab.tscn" id="16_jijpf"]
+[ext_resource type="Script" path="res://Elements/WindowSize_player.gd" id="17_4c601"]
 
 [sub_resource type="SystemFont" id="SystemFont_xkiv0"]
 
@@ -321,6 +322,9 @@ dialog_autowrap = true
 cancel_button_text = "Irme sin guardar"
 
 [node name="AutoSave" type="Timer" parent="."]
+
+[node name="WindowSize" type="Node" parent="."]
+script = ExtResource("17_4c601")
 
 [connection signal="loadFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_load_file"]
 [connection signal="reSaveFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_re_save_file"]

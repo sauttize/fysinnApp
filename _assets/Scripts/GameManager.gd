@@ -52,11 +52,19 @@ func NewSave(data : PlayerData):
 	var newName = "playerData" + str(numberOfSaves) + ".tres"
 	while verify_save_file(SAVES_FOLDER_ROUTE + newName):
 		numberOfSaves = numberOfSaves + 1
-		newName = "playerData" + numberOfSaves + ".tres"
+		newName = "playerData" + str(numberOfSaves) + ".tres"
 	var path = SAVES_FOLDER_ROUTE + newName
 	UpdateFilePath(data, path)
 	ResourceSaver.save(data, path)
 	return path
+
+func DeleteSave(saveFile : PlayerData):
+	var saveManager = GetCurrentSaveManager()
+	if saveFile == saveManager.saveFile: 
+		saveManager.saveFile = null
+		ResourceSaver.save(saveManager, SAVE_ROUTE)
+		saveManager.take_over_path(SAVE_ROUTE)
+	DirAccess.remove_absolute(saveFile.PATH)
 
 func GetCurrentSaveManager() -> CurrentSaveFile:
 	if !verify_save_file(SAVE_ROUTE): return CurrentSaveFile.new()
@@ -65,8 +73,8 @@ func GetCurrentSaveManager() -> CurrentSaveFile:
 
 func GetCurrentSaveFile() -> PlayerData:
 	if !verify_save_file(SAVE_ROUTE): 
-		return PlayerData.new()
 		print("ERROR LOADING FROM MANAGER")
+		return PlayerData.new()
 	var currentSave = ResourceLoader.load(SAVE_ROUTE)
 	if currentSave.saveFile: return currentSave.saveFile
 	else: return PlayerData.new()
@@ -79,6 +87,8 @@ func GetAllSaves() -> Array[PlayerData]:
 		var playerData
 		playerData = ResourceLoader.load(path)
 		if playerData is PlayerData:
+			playerData.PATH = path
+			ResourceSaver.save(playerData, playerData.PATH)
 			allSaves.push_back(playerData)
 	return allSaves
 
@@ -108,17 +118,18 @@ func GetMainDataDump() -> DataFile:
 func UpdateOriginalSaveFile():
 	var currentManager : CurrentSaveFile = GetCurrentSaveManager()
 	var currentSave : PlayerData = currentManager.saveFile
-	var search = PlayerData.new() # I don't even think it's necessary but I don't want to delete it bc idk who knows
-	if GetSaveFileAt(currentSave.PATH): search = GetSaveFileAt(currentSave.PATH)
-	if (currentSave == search):
-		ResourceSaver.save(currentSave, currentSave.PATH)
-		currentSave.take_over_path(currentSave.PATH)
-	else:
-		var allSaves = GetAllSaves()
-		for save in allSaves:
-			if save == currentSave: 
-				ResourceSaver.save(currentSave, save.PATH)
-				currentSave.take_over_path(save.PATH)
+	var allSaves = GetAllSaves()
+	for save in allSaves:
+		if save == currentSave: 
+			print("Save found")
+			ResourceSaver.save(currentSave, save.PATH)
+			currentSave.take_over_path(save.PATH)
+#	var search = PlayerData.new() # I don't even think it's necessary but I don't want to delete it bc idk who knows
+#	if GetSaveFileAt(currentSave.PATH): search = GetSaveFileAt(currentSave.PATH)
+#	if (currentSave == search):
+#		print("got here")
+#		ResourceSaver.save(currentSave, currentSave.PATH)
+#		currentSave.take_over_path(currentSave.PATH)
 
 func UpdateFilePath(data : PlayerData, path : String):
 	data.PATH = path

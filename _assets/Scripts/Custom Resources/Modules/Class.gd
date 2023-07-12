@@ -26,8 +26,8 @@ enum CLASSES {
 @export var secundaryColor : Color = Color.BLACK # for text, ie
 
 func getString(capitalize : bool = true, upperCase : bool = false) -> String:
-	var str : String = ""
-	str = (CLASSES.keys()[type])
-	if capitalize: str = str.capitalize()
-	if upperCase: str = str.to_upper()
-	return str
+	var str_ : String = ""
+	str_ = (CLASSES.keys()[type])
+	if capitalize: str_ = str_.capitalize()
+	if upperCase: str_ = str_.to_upper()
+	return str_

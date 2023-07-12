@@ -6,7 +6,7 @@ class_name PlayerData
 @export_category("-- Basic --")
 @export var nombre : String = "name"
 @export var nivel : int = 1
-@export var exp : int = 0
+@export var experiencia : int = 0
 @export var raza : Race
 @export var classtype : ClassType
 @export var elemento : Element
@@ -63,7 +63,7 @@ var PATH : String = ""
 var UNIQUE_ID : int = -1
 
 func updateExp(newExp : int):
-	exp += newExp
+	experiencia += newExp
 	
 func newSave():
 	lastSaved = Time.get_datetime_dict_from_system()

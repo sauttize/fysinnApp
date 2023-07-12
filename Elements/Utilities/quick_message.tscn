@@ -6,9 +6,8 @@
 initial_position = 1
 size = Vector2i(300, 120)
 wrap_controls = true
-transient = true
-exclusive = true
 unresizable = true
+always_on_top = true
 script = ExtResource("1_1db87")
 
 [node name="bg" type="Panel" parent="."]

@@ -24,7 +24,7 @@ func _ready() -> void:
 	visibility_changed.connect(set_options)
 	newClass.item_selected.connect(set_color_by_class)
 	
-	getPhotoButton.pressed.connect(fileDialog.popup_centered_clamped)
+	getPhotoButton.pressed.connect(fileDialog.show)
 	fileDialog.close_requested.connect(fileDialog.hide)
 	fileDialog.file_selected.connect(on_photo_chosen)
 	createPlayerButton.pressed.connect(create_SaveFile)
@@ -45,8 +45,8 @@ func set_options():
 	set_color_by_class(0)
 	
 func set_color_by_class(index : int):
-	var str = newClass.get_item_text(index)
-	var getClass = dataDump.stringToClass(str)
+	var str_ = newClass.get_item_text(index)
+	var getClass = dataDump.stringToClass(str_)
 	Utilities.changeFlatboxColor_Panel(bgColor, getClass.primaryColor)
 
 func get_life(fromClass : ClassType) -> int:
@@ -71,8 +71,9 @@ func create_SaveFile():
 		newPlayerData.currentLife = get_life(newPlayerData.classtype)
 		newPlayerData.imagen = newPhoto
 		
-		newPlayerData.generate_id(GameManager.GetAllSaves())
+#		newPlayerData.generate_id(GameManager.GetAllSaves())
 		newPlayerData.new_knowledge_list(GameManager.GetDataDump())
+		newPlayerData.newSave()
 #		ResourceSaver.save(newPlayerData, GameManager.SAVES_FOLDER_ROUTE + SAVE_NAME + str(dataDump.SAVES_INDEX) + EXT)
 		GameManager.NewSave(newPlayerData)
 		Utilities.create_PopUp("¡Tu personaje ha sido creado!")

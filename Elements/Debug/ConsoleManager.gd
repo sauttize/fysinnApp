@@ -456,7 +456,7 @@ func get_player_data(argument : PackedStringArray = [], fromInfo : bool = false)
 	# Basic
 	print_line("[b]Name: [/b]" + playerData.nombre, outputColor)
 	print_line("[b]Level: [/b]" + str(playerData.nivel), outputColor)
-	print_line("[b]EXP pts: [/b]" + str(playerData.exp), outputColor)
+	print_line("[b]EXP pts: [/b]" + str(playerData.experiencia), outputColor)
 	print_line("[b]Race: [/b]" + str(playerData.raza.name), outputColor)
 	print_line("[b]Class: [/b]" + str(playerData.classtype.getString(true)), outputColor)
 	print_line("[b]Element: [/b]" + str(playerData.elemento.getString()), outputColor)
@@ -539,6 +539,6 @@ func master_tools(argument : PackedStringArray = []):
 		dataDumpOG.helpMaster = helpMaster
 		show_done_message("All arrays were updated and saved!")
 # ----------- funsies -------------
-func easter_egg(argument : PackedStringArray = []):
+func easter_egg(_argument : PackedStringArray = []):
 	show_error("No deberias andar husmeando comandos secretos...")
 	OS.shell_open('https://youtu.be/dQw4w9WgXcQ')
