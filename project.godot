@@ -13,7 +13,7 @@ config_version=5
 config/name="Fysinn: Player Management"
 run/main_scene="res://Elements/welcome_screen.tscn"
 config/use_custom_user_dir=true
-config/features=PackedStringArray("4.0", "GL Compatibility")
+config/features=PackedStringArray("4.1", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://Icono.png"
 
@@ -27,7 +27,7 @@ Utilities="*res://Scenes/Autoloads/Utilities.gd"
 window/size/viewport_width=700
 window/size/viewport_height=900
 window/subwindows/embed_subwindows=false
-window/stretch/scale=0.8
+window/stretch/mode="viewport"
 window/handheld/orientation=1
 
 [editor]
@@ -35,8 +35,11 @@ window/handheld/orientation=1
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[gui]
+
+theme/custom_font="res://_assets/Fonts/Rubik/Rubik-Regular.ttf"
+
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

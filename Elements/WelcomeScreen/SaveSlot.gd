@@ -3,7 +3,7 @@ class_name SaveSlot
 
 var thisPlayerData : PlayerData
 
-@onready var savePhoto : TextureRect = $profilePic
+@onready var savePhoto : TextureRect = $picContainer/profilePic
 @onready var saveName : Label = $datos/nombre
 @onready var saveRace : Label = $datos/razaClase/raza
 @onready var saveClass : Label = $datos/razaClase/clase
