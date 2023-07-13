@@ -19,10 +19,8 @@ var saveFile : CurrentSaveFile
 @onready var saveList : VBoxContainer = $SaveManager/Control/ScrollContainer/partidas
 @onready var saveSlot = preload("res://Elements/WelcomeScreen/slot.tscn")
 
-@export var window_size : Vector2i = Vector2i(450, 500)
-
 func _ready() -> void:
-	Utilities.resize_window(window_size)
+	Utilities.create_fake_load_screen(self, 1)
 	get_tree().set_auto_accept_quit(true)
 	check_folders()
 	check_data_dump()

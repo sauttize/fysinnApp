@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=35 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://br71kevxdgqjk" path="res://_assets/Themes/boxStyle/perfil.tres" id="2_1wv8b"]
 [ext_resource type="Script" path="res://Scenes/filePopUpManager.gd" id="2_ch6v8"]
 [ext_resource type="StyleBox" uid="uid://c1x0il1aghljq" path="res://_assets/Themes/boxStyle/conocimientos.tres" id="3_v5lg0"]
-[ext_resource type="Script" path="res://Scenes/AnimationHandler.gd" id="4_wnf7i"]
+[ext_resource type="Script" path="res://Scenes/general_events.gd" id="4_nr7ji"]
 [ext_resource type="PackedScene" uid="uid://d3fmuxtj85tyo" path="res://Elements/Character Sheet/nivel.tscn" id="5_2tphf"]
 [ext_resource type="Script" path="res://Scenes/optionsPopUp.gd" id="5_bdmeo"]
 [ext_resource type="PackedScene" uid="uid://br4spa7odwlg8" path="res://Elements/Character Sheet/exp.tscn" id="6_nsmno"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://ddp7y6gn35b86" path="res://Elements/Character Sheet/Conocimientos/conocimientos.tscn" id="12_mioef"]
 [ext_resource type="Script" path="res://Scenes/exitHandler.gd" id="13_jfxcr"]
 [ext_resource type="PackedScene" uid="uid://r1el5plw4yls" path="res://Elements/Debug/consoleTab.tscn" id="16_jijpf"]
-[ext_resource type="Script" path="res://Elements/WindowSize_player.gd" id="17_4c601"]
 
 [sub_resource type="SystemFont" id="SystemFont_xkiv0"]
 
@@ -37,6 +36,15 @@ unicode = 111
 
 [sub_resource type="Shortcut" id="Shortcut_ko37a"]
 events = [SubResource("InputEventKey_nn748")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_oeg05"]
+device = -1
+shift_pressed = true
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_4nqdh"]
+events = [SubResource("InputEventKey_oeg05")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_iqxje"]
 device = -1
@@ -110,13 +118,16 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fd83x")
 
-[node name="ExitHandler" type="Node" parent="."]
+[node name="Handlers" type="Node" parent="."]
+
+[node name="ExitHandler" type="Node" parent="Handlers" node_paths=PackedStringArray("exitDialog")]
 script = ExtResource("13_jfxcr")
+exitDialog = NodePath("../../ExitConfirmation")
 
-[node name="AnimationHandler" type="Node" parent="."]
-script = ExtResource("4_wnf7i")
+[node name="Events" type="Node" parent="Handlers" node_paths=PackedStringArray("arrayButtons")]
+script = ExtResource("4_nr7ji")
+arrayButtons = [NodePath("../../Window/Container/GeneralOptions/changeSize")]
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
@@ -190,6 +201,11 @@ popup/item_2/text = "Volver a tamaño default"
 popup/item_2/id = 2
 script = ExtResource("5_bdmeo")
 timer = NodePath("../../../../../AutoSave")
+
+[node name="changeSize" type="Button" parent="Window/Container/GeneralOptions"]
+layout_mode = 2
+size_flags_horizontal = 8
+shortcut = SubResource("Shortcut_4nqdh")
 
 [node name="Tabs" type="HBoxContainer" parent="Window/Container"]
 layout_mode = 2
@@ -323,8 +339,8 @@ cancel_button_text = "Irme sin guardar"
 
 [node name="AutoSave" type="Timer" parent="."]
 
-[node name="WindowSize" type="Node" parent="."]
-script = ExtResource("17_4c601")
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("1_fd83x")
 
 [connection signal="loadFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_load_file"]
 [connection signal="reSaveFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_re_save_file"]

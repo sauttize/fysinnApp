@@ -50,7 +50,7 @@ var casillasMov : int = 0:
 
 #EFFECTS
 @export_category("Effects")
-@export var active_effects : Array[Effect]
+@export var activeEffects : Array[Effect]
 
 #KNOWLEDGE RELATED
 @export_category("-- Knowledge --")

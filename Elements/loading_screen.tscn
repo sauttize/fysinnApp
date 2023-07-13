@@ -1,0 +1,265 @@
+[gd_scene load_steps=8 format=3 uid="uid://clhhwm1cy28xs"]
+
+[ext_resource type="Script" path="res://Elements/loading_screen.gd" id="1_jcx77"]
+[ext_resource type="Texture2D" uid="uid://bm6oe28ayos8i" path="res://_assets/Icons/One_Sword.png" id="1_tn3lw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sv7lh"]
+bg_color = Color(0.0392157, 0.00784314, 0.00392157, 1)
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+
+[sub_resource type="Animation" id="Animation_fssuh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Swords/OneSword1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(70, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Swords/OneSword1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Swords/OneSword2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-70, 70)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Swords/OneSword2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Text:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["Cargando"]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath(".:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_gbiry"]
+resource_name = "new_animation"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Swords/OneSword1:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1, 1.3, 1.5, 1.8, 2),
+"transitions": PackedFloat32Array(0.594603, 0.594603, 2.82843, 1, 3.03144, 0.68302, 1),
+"update": 0,
+"values": [Vector2(70, 70), Vector2(0, 0), Vector2(0, -10), Vector2(2.32366, -7.34439), Vector2(0, 0), Vector2(80, 80), Vector2(70, 70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Swords/OneSword1:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.3, 1.5, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 2.82843, 0.63728, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -1.13446, 0.226893, 0.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Swords/OneSword2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 1, 1.3, 1.5, 1.8, 2),
+"transitions": PackedFloat32Array(0.594603, 0.594603, 2.82843, 1, 3.03144, 0.68302, 1),
+"update": 0,
+"values": [Vector2(-70, 70), Vector2(0, 0), Vector2(0, -10), Vector2(-2.32366, -7.34439), Vector2(0, 0), Vector2(-80, 80), Vector2(-70, 70)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Swords/OneSword2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1, 1.3, 1.5, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 2.82843, 0.63728, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 1.13446, -0.226893, 0.0, 0.0, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Text:text")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.4, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": ["Cargando", "Cargando.", "Cargando..", "Cargando..."]
+}
+
+[sub_resource type="Animation" id="Animation_nv4cq"]
+resource_name = "transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.267944, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-900, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(4.59479, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qr5ig"]
+_data = {
+"RESET": SubResource("Animation_fssuh"),
+"new_animation": SubResource("Animation_gbiry"),
+"transition": SubResource("Animation_nv4cq")
+}
+
+[node name="Loading Screen" type="CanvasLayer"]
+script = ExtResource("1_jcx77")
+
+[node name="Dissolve Effect" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 700.0
+offset_bottom = 900.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="bg" type="Panel" parent="Dissolve Effect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_sv7lh")
+
+[node name="Text" type="Label" parent="Dissolve Effect"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.5
+offset_right = 40.5
+offset_bottom = 60.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "Cargando"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Dissolve Effect"]
+libraries = {
+"": SubResource("AnimationLibrary_qr5ig")
+}
+
+[node name="Swords" type="MarginContainer" parent="Dissolve Effect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="OneSword1" type="Sprite2D" parent="Dissolve Effect/Swords"]
+position = Vector2(70, 70)
+scale = Vector2(0.117825, 0.117825)
+texture = ExtResource("1_tn3lw")
+region_enabled = true
+region_rect = Rect2(144.697, 98.3405, 662.583, 686.163)
+
+[node name="OneSword2" type="Sprite2D" parent="Dissolve Effect/Swords"]
+position = Vector2(-70, 70)
+scale = Vector2(0.117825, 0.117825)
+texture = ExtResource("1_tn3lw")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(144.697, 98.3405, 662.583, 686.163)

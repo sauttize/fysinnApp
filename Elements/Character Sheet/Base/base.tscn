@@ -363,9 +363,8 @@ vertical_alignment = 1
 title = "Error"
 size = Vector2i(220, 100)
 visible = false
-transient = true
-exclusive = true
 unresizable = true
+popup_window = true
 
 [node name="Label" type="Label" parent="Container/FirstRow/ArmorVida/Vida/Puntos/Actuales/warning"]
 anchors_preset = 15

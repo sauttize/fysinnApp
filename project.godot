@@ -25,10 +25,12 @@ Utilities="*res://Scenes/Autoloads/Utilities.gd"
 
 [display]
 
-window/size/viewport_width=450
-window/size/viewport_height=500
+window/size/viewport_width=700
+window/size/viewport_height=900
 window/subwindows/embed_subwindows=false
+window/per_pixel_transparency/allowed=true
 window/handheld/orientation=1
+window/transparent_background=true
 
 [editor]
 

@@ -1,5 +1,5 @@
 extends Node
-@onready var exitDialog : ConfirmationDialog = $"../ExitConfirmation"
+@export var exitDialog : ConfirmationDialog
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 
 func _ready() -> void:

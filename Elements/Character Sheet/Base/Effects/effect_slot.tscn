@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjsqbq8oeyc3w"]
+[gd_scene load_steps=4 format=3 uid="uid://cjsqbq8oeyc3w"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Effects/effect_slot.gd" id="1_7ocew"]
+[ext_resource type="Script" path="res://_assets/Tweens/aplha_tween.gd" id="2_esbwr"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgehm"]
 bg_color = Color(0.0627451, 0.0627451, 0.0627451, 0.639216)
@@ -49,3 +50,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Eliminar"
+
+[node name="AlphaTween" type="Node" parent="." node_paths=PackedStringArray("node")]
+script = ExtResource("2_esbwr")
+node = NodePath("..")
+startAtReady = false

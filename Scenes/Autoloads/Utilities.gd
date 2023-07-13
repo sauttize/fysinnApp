@@ -4,6 +4,7 @@ class_name Utility
 enum MOUSE_BUTTON {LEFT, RIGHT, MIDDLE}
 
 var quickMessage = preload("res://Elements/Utilities/quick_message.tscn")
+var loadingScreen = preload("res://Elements/loading_screen.tscn")
 
 ## Script with methods to make easier certain actions.
 
@@ -68,3 +69,22 @@ func resize_window(window_size : Vector2i):
 	var actual_size = DisplayServer.window_get_size_with_decorations()
 	var centered = Vector2(screen_size.x / 2 - actual_size.x / 2, screen_size.y / 2 - actual_size.y / 2)
 	DisplayServer.window_set_position(centered)
+
+func resize_window_not_real(window_size : Vector2i):
+	var screen_size = DisplayServer.screen_get_size()
+	DisplayServer.window_set_size(window_size)
+	var centered = Vector2(screen_size.x / 2 - window_size.x / 2, screen_size.y / 2 - window_size.y / 2)
+	DisplayServer.window_set_position(centered)
+
+func center_window():
+	var screen_size = DisplayServer.screen_get_size()
+	var actual_size = DisplayServer.window_get_size_with_decorations()
+	var centered = Vector2(screen_size.x / 2 - actual_size.x / 2, screen_size.y / 2 - actual_size.y / 2)
+	DisplayServer.window_set_position(centered)
+
+## Load Screen
+
+func create_fake_load_screen(parentNode : Node, duration : int = 1.5):
+	var instance = loadingScreen.instantiate() as LoadingScreen
+	instance.duration = duration
+	parentNode.add_child(instance)

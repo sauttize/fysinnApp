@@ -1,6 +1,8 @@
 extends MarginContainer
+class_name EffectSlot
 
 var thisEffect : Effect = Effect.new()
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 
 @onready var text : RichTextLabel = $elements/texto
 @onready var bgPanel : Panel = $bg
@@ -12,6 +14,8 @@ const TIPO : String = "[b]Tipo: [/b]"
 const DESCRIPCION : String = "[b]Descripción: [/b]"
 const NL : String = "\n"
 
+signal effectDeleted
+
 func update_effect(effect : Effect):
 	thisEffect = effect
 	text.append_text(NOMBRE + effect.effectName + NL)
@@ -21,3 +25,13 @@ func update_effect(effect : Effect):
 	Utilities.changeFlatboxColor_Panel(bgPanel, effect.getColor())
 	activateBttn.show() if effect.isActivable else activateBttn.hide()
 	deleteBttn.show() if effect.isRemovable else deleteBttn.hide()
+	deleteBttn.pressed.connect(delete_effect_from_player)
+
+func delete_effect_from_player():
+	for eff in playerData.activeEffects:
+		if thisEffect == eff:
+			playerData.activeEffects.erase(eff)
+			GameManager.UpdateOriginalSaveFile()
+			effectDeleted.emit()
+			if OS.is_debug_build(): 
+				print(eff.effectName + " sucessfully deleted.")

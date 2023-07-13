@@ -15,7 +15,7 @@ func _on_curarbtn_button_up():
 		addCurrent.emit(int(lifePoints.text))
 		hide()
 	else:
-		_warning.popup_centered_clamped()
+		_warning.show()
 
 #HURT
 func _on_herirbtn_button_up():
@@ -23,7 +23,7 @@ func _on_herirbtn_button_up():
 		subCurrent.emit(int(lifePoints.text))
 		hide()
 	else:
-		_warning.popup_centered_clamped()
+		_warning.show()
 
 #ADD MAX
 func _on_max_btn_button_up():
@@ -31,7 +31,7 @@ func _on_max_btn_button_up():
 		updateMax.emit(int(maxPoints.text))
 		hide()
 	else:
-		_warning.popup_centered_clamped()
+		_warning.show()
 
 #Hides warning window
 func _on_warning_close_requested():

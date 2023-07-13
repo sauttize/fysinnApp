@@ -9,8 +9,9 @@ func _ready() -> void:
 
 func updateEffects():
 	clearList()
-	for effect in playerData.active_effects:
-		var newSlot = effectSlot.instantiate()
+	for effect in playerData.activeEffects:
+		var newSlot = effectSlot.instantiate() as EffectSlot
+		newSlot.effectDeleted.connect(updateEffects)
 		effectList.add_child(newSlot)
 		newSlot.update_effect(effect)
 

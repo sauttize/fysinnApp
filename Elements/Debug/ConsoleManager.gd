@@ -359,7 +359,7 @@ func add_effect(argument : PackedStringArray = []):
 	var effect : Effect
 	if get_effect(argument): effect = get_effect(argument)
 	if effect:
-		playerData.active_effects.push_back(effect)
+		playerData.activeEffects.push_back(effect)
 		show_done_message("Effect added! (use eff command to see more details)")
 		if was_generic_asked(argument, ["save", "s"], true, "File saved!"): save_playerData()
 	else: show_error("That effect doesn't exist.")
@@ -395,7 +395,7 @@ func show_active_effects(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
 	
 	print_line(" ---- ACTIVE EFFECTS:", outputColor)
-	for eff in playerData.active_effects:
+	for eff in playerData.activeEffects:
 		print_line("[b]" + eff.effectName + "[/b]")
 func last_saved(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
