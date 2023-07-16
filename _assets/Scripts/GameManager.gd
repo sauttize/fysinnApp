@@ -7,6 +7,7 @@ const SAVES_FOLDER_ROUTE = "user://saves/files/"
 const SAVE_ROUTE = "user://saves/CurrentPlayer.tres"
 
 const EFFECTS_ROUTE = "res://_assets/Scripts/Custom Resources/Effects/"
+const INFO_ROUTE = "res://_assets/Scripts/Custom Resources/Data/Information/Blocks/"
 
 var saving : bool = false
 
@@ -91,6 +92,16 @@ func GetAllSaves() -> Array[PlayerData]:
 			ResourceSaver.save(playerData, playerData.PATH)
 			allSaves.push_back(playerData)
 	return allSaves
+
+func GetAllInfoBlocks() -> Array[InfoBlock]:
+	var allBlocks : Array[InfoBlock]
+	var pathList : PackedStringArray = DirAccess.get_files_at(INFO_ROUTE)
+	for path in pathList:
+		var infoBlock
+		infoBlock = ResourceLoader.load(INFO_ROUTE + path)
+		if infoBlock is InfoBlock:
+			allBlocks.push_back(infoBlock)
+	return allBlocks
 
 func updatePathList(array : PackedStringArray) -> PackedStringArray:
 	for n in array.size():

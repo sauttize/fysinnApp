@@ -5,8 +5,9 @@ const SAVE_ROUTE_DG = "res://_assets/Scripts/Custom Resources/PlayerSave.tres"
 const DATA_ROUTE = "res://_assets/Scripts/Custom Resources/Data/CurrentData.tres"
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @onready var dataDump : DataFile = GameManager.GetDataDump()
-@onready var dataDumpOG : DataFile = GameManager.GetDataDump()
+@onready var dataDumpOG : DataFile = GameManager.GetMainDataDump()
 @onready var allEffects : Array[Effect] = GameManager.GetAllEffects()
+@onready var allInfoBlocks : Array[InfoBlock] = GameManager.GetAllInfoBlocks()
 
 enum STATS {FUE, DES, CON, INT, SAB, CAR, NONE}
 var strSTATS : PackedStringArray = ['fue', 'str', 'des','dex', 'con', 'int', 'sab', 'wis', 'car', 'cha']
@@ -34,7 +35,8 @@ var commandList : Dictionary = {
 	"add_effect": "add_effect", "newe": "add_effect", "neweffect": "add_effect",
 	"effect": "show_effect", "eff" : "show_effect",
 	"myeff": "show_active_effects", "myeffects": "show_active_effects", "mye" : "show_active_effects",
-	"master": "master_tools"
+	"master": "master_tools",
+	"text" : "change_text"
 }
 
 @onready var argumentList : Dictionary = {
@@ -50,6 +52,8 @@ var commandList : Dictionary = {
 
 @onready var inputLine : LineEdit = $consoleElements/writeLine
 @onready var logScreen : RichTextLabel = $consoleElements/logPanel/consoleLog
+var currentFontSize : int = 14
+var lastCommandSent : String = ""
 @onready var logPanel : Panel = $consoleElements/logPanel
 @export_category("Config")
 @export_subgroup("Help lists")
@@ -66,6 +70,7 @@ var commandList : Dictionary = {
 @export var normalColor : Color = Color.ANTIQUE_WHITE
 @export var arrowColor : Color
 @export var outputColor : Color
+@export var readColor : Color
 @export var doneColor : Color
 @export var helpColor : Color
 @export var errorColor : Color = Color.RED
@@ -78,8 +83,14 @@ var commandList : Dictionary = {
 func _ready() -> void:
 	inputLine.text_submitted.connect(get_text)
 	Utilities.changeFlatboxColor_Panel(logPanel, dataDump.bgConsoleColor)
-	
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("lastCommand"):
+		inputLine.clear()
+		inputLine.text = lastCommandSent
+
 func get_text(textSubmitted : String):
+	lastCommandSent = textSubmitted
 	var textArray : PackedStringArray = textSubmitted.rsplit(" ")
 	inputLine.clear()
 	print_arrow()
@@ -325,6 +336,33 @@ func change_color(argument : PackedStringArray = []):
 	else:
 		show_this_help(helpChangeColor) # HELP
 
+func change_text(argument : PackedStringArray = []):
+	if no_arguments(argument, true): return
+	
+	var invalidArgs : bool = true
+	
+	if was_generic_asked(argument, ["more", "+"]):
+		invalidArgs = false
+		currentFontSize = currentFontSize + 1
+	elif was_generic_asked(argument, ["less", "-"]):
+		invalidArgs = false
+		currentFontSize = currentFontSize - 1
+	elif was_generic_asked(argument, ["default", "normal"]):
+		invalidArgs = false
+		currentFontSize = 14
+	elif was_generic_asked(argument, ["big", "1"]):
+		invalidArgs = false
+		currentFontSize = 20
+	
+	if invalidArgs: 
+		show_error("Invalid option. Try with '+' or '-'.")
+		return
+	
+	logScreen.get_theme_default_font_size()
+	logScreen.add_theme_font_size_override("normal_font_size", currentFontSize)
+	logScreen.add_theme_font_size_override("bold_font_size", currentFontSize + 1)
+	logScreen.add_theme_font_size_override("italics_font_size", currentFontSize)
+	logScreen.add_theme_font_size_override("bold_italics_font_size", currentFontSize)
 # ----------- miscelaneous -------------
 
 func save_PlayerData_cmm(argument : PackedStringArray = []):
@@ -481,9 +519,34 @@ func info_about(argument : PackedStringArray = []):
 		show_this_help(helpInfo)
 		return
 	
-	if was_generic_asked(argument, ["player", "me"]): 
-		get_player_data(argument, true)
-		return
+	var about : String = argument[0]
+	var isExtended : bool = was_generic_asked(argument, ["ext", "extended", "e", "-e"])
+	var isLink : bool = was_generic_asked(argument, ["link", "text", "more"])
+	var isVideo : bool = was_generic_asked(argument, ["video", "mmore", "yt"])
+	
+	for block in allInfoBlocks: 
+		var isThisOne : bool = false
+		if block.infoCalls.has(about): isThisOne = true
+		if isThisOne:
+			if isExtended:
+				print_line(block.infoExtended, readColor)
+				return
+			elif isLink:
+				if block.textLink != "":
+					OS.shell_open(block.textLink)
+					show_done_message("Redirected to link!")
+				else: 
+					print_line("Sorry, there's no link with this one.", errorAltColor)
+				return
+			elif isVideo:
+				if block.videoLink != "":
+					OS.shell_open(block.videoLink)
+					show_done_message("Redirected to video!")
+				else: 
+					print_line("Sorry, there's no video with this one.", errorAltColor)
+				return
+			print_line(block.info, readColor)
+			return
 	
 	show_error("Check help to see list of options.")
 func external_link(argument : PackedStringArray = []):

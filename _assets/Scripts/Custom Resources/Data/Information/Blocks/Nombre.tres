@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InfoBlock" load_steps=2 format=3 uid="uid://bw0snmsemhny5"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Data/Information/InfoBlock.gd" id="1_ex4xi"]
+
+[resource]
+script = ExtResource("1_ex4xi")
+infoCalls = Array[String](["nombre", "nombres", "name", "names"])
+info = "Nombre asignado a tu personaje. Por más información sobre nombres según razas utiliza el argumeno [i]'link'[/i] o [i]'notion'[/i].
+
+[i](Aspecto relacionado al rol).[/i]"
+infoExtended = ""
+textLink = "https://www.notion.so/sauttize/Nombres-43f2fb9f8c864bcb8f998a5b0ab5c340"
+videoLink = ""

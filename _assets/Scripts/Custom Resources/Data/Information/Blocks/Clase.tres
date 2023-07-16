@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InfoBlock" load_steps=2 format=3 uid="uid://dur2g1mj1hyei"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Data/Information/InfoBlock.gd" id="1_6kls8"]
+
+[resource]
+script = ExtResource("1_6kls8")
+infoCalls = Array[String](["clase", "clases", "class"])
+info = "Determina el estilo de juego con el que jugador se desempeñará a lo largo de la campaña. Implica modificaciones en: hechizos obtenibles, habilidades y pasivas que se ganan al subir de nivel, tipos de amras y armaduras con los que tienen ventajas, entre otros.
+
+[i]Esta información está relacionada a las clases como concepto general. Por información sobre clases especificas simplemente busca por su nombre.[/i]"
+infoExtended = ""
+textLink = "https://www.notion.so/sauttize/Clases-83b67d58e95b4ae389074bfecaf74943"
+videoLink = ""
