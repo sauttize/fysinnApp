@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InfoBlock" load_steps=2 format=3 uid="uid://clc3ln8ph7syl"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Data/Information/InfoBlock.gd" id="1_u7quc"]
+
+[resource]
+script = ExtResource("1_u7quc")
+infoCalls = Array[String](["nivel", "niveles", "level", "levels"])
+info = "Nivel actual del personaje. Existen los niveles 1 al 20 (al menos en nuestro caso). Subir de nivel implica una mejora en las estadísticas de personaje y/o nuevas habilidades.
+
+[i](Para ver info especifica de lo que se obtiene por nivel utilizar comando: level + nivel)[/i]"
+infoExtended = ""
+textLink = ""
+videoLink = ""

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=63 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -40,6 +40,12 @@
 [ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="37_7fw64"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Effects/effect_list.gd" id="39_ir3b0"]
 [ext_resource type="PackedScene" uid="uid://cjsqbq8oeyc3w" path="res://Elements/Character Sheet/Base/Effects/effect_slot.tscn" id="39_l70f3"]
+[ext_resource type="Texture2D" uid="uid://coedakhn565j1" path="res://_assets/Icons/Death Strikes/bad strike.png" id="39_wlx4f"]
+[ext_resource type="Texture2D" uid="uid://eu4nv0e6p1e3" path="res://_assets/Icons/Death Strikes/no strike.png" id="40_eemh8"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/ClassInfo/strike_buttons.gd" id="40_vdmwj"]
+[ext_resource type="Texture2D" uid="uid://do4ulpagygwej" path="res://_assets/Icons/Death Strikes/no strike/no strike pressed.png" id="41_vuhha"]
+[ext_resource type="Texture2D" uid="uid://cdr5qgagc3ynw" path="res://_assets/Icons/Death Strikes/no strike/no strike hover.png" id="42_sl5bv"]
+[ext_resource type="Texture2D" uid="uid://cccb3wo4wmrl2" path="res://_assets/Icons/Death Strikes/good strike.png" id="44_te8eu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk3gq"]
 bg_color = Color(0.309804, 0.470588, 0.756863, 1)
@@ -1199,6 +1205,57 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="container" type="HBoxContainer" parent="Container/ThirdRow/Class Info/bg/badStrike"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Container/ThirdRow/Class Info/bg/badStrike/container"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("39_wlx4f")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="srtikes" type="HBoxContainer" parent="Container/ThirdRow/Class Info/bg/badStrike/container"]
+layout_mode = 2
+theme_override_constants/separation = 12
+script = ExtResource("40_vdmwj")
+strikeType = 1
+modulateColor = Color(0.568627, 0.0980392, 0.0980392, 1)
+
+[node name="Srike 1" type="TextureButton" parent="Container/ThirdRow/Class Info/bg/badStrike/container/srtikes"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture_normal = ExtResource("40_eemh8")
+texture_pressed = ExtResource("41_vuhha")
+texture_hover = ExtResource("42_sl5bv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Srike 2" type="TextureButton" parent="Container/ThirdRow/Class Info/bg/badStrike/container/srtikes"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture_normal = ExtResource("40_eemh8")
+texture_pressed = ExtResource("41_vuhha")
+texture_hover = ExtResource("42_sl5bv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Srike 3" type="TextureButton" parent="Container/ThirdRow/Class Info/bg/badStrike/container/srtikes"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture_normal = ExtResource("40_eemh8")
+texture_pressed = ExtResource("41_vuhha")
+texture_hover = ExtResource("42_sl5bv")
+ignore_texture_size = true
+stretch_mode = 5
+
 [node name="godStrike" type="Panel" parent="Container/ThirdRow/Class Info/bg"]
 layout_mode = 1
 anchors_preset = 7
@@ -1212,6 +1269,56 @@ offset_right = 225.5
 offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="container" type="HBoxContainer" parent="Container/ThirdRow/Class Info/bg/godStrike"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="Container/ThirdRow/Class Info/bg/godStrike/container"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("44_te8eu")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="srtikes" type="HBoxContainer" parent="Container/ThirdRow/Class Info/bg/godStrike/container"]
+layout_mode = 2
+theme_override_constants/separation = 12
+script = ExtResource("40_vdmwj")
+modulateColor = Color(0, 0.513726, 0.196078, 1)
+
+[node name="Srike 1" type="TextureButton" parent="Container/ThirdRow/Class Info/bg/godStrike/container/srtikes"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture_normal = ExtResource("40_eemh8")
+texture_pressed = ExtResource("41_vuhha")
+texture_hover = ExtResource("42_sl5bv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Srike 2" type="TextureButton" parent="Container/ThirdRow/Class Info/bg/godStrike/container/srtikes"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture_normal = ExtResource("40_eemh8")
+texture_pressed = ExtResource("41_vuhha")
+texture_hover = ExtResource("42_sl5bv")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Srike 3" type="TextureButton" parent="Container/ThirdRow/Class Info/bg/godStrike/container/srtikes"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture_normal = ExtResource("40_eemh8")
+texture_pressed = ExtResource("41_vuhha")
+texture_hover = ExtResource("42_sl5bv")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="AlphaTween" type="Node" parent="Container/ThirdRow/Class Info" node_paths=PackedStringArray("node")]
 script = ExtResource("36_hcgwt")
@@ -1249,7 +1356,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = -4.0
-offset_bottom = 36.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_3ftec")
@@ -1257,20 +1364,20 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_3ftec")
 [node name="effectsTitle" type="Label" parent="Container/ThirdRow/Effects"]
 layout_mode = 0
 offset_left = 7.0
-offset_top = 2.0
+offset_top = 3.0
 offset_right = 220.0
-offset_bottom = 28.0
+offset_bottom = 29.0
 theme_override_styles/normal = SubResource("StyleBoxFlat_6bsrh")
 text = "Efectos activos"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="lista" type="VFlowContainer" parent="Container/ThirdRow/Effects"]
+[node name="lista" type="ScrollContainer" parent="Container/ThirdRow/Effects"]
 layout_mode = 0
-offset_left = 14.0
+offset_left = 11.0
 offset_top = 35.0
-offset_right = 216.0
-offset_bottom = 502.0
+offset_right = 219.0
+offset_bottom = 476.0
 script = ExtResource("39_ir3b0")
 
 [node name="efectos" type="VBoxContainer" parent="Container/ThirdRow/Effects/lista"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjsqbq8oeyc3w"]
+[gd_scene load_steps=6 format=3 uid="uid://cjsqbq8oeyc3w"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Effects/effect_slot.gd" id="1_7ocew"]
 [ext_resource type="Script" path="res://_assets/Tweens/aplha_tween.gd" id="2_esbwr"]
+[ext_resource type="Texture2D" uid="uid://d1mpkgsjxix6v" path="res://_assets/Icons/Info/information.256x255.png" id="2_lgr1h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgehm"]
 bg_color = Color(0.0627451, 0.0627451, 0.0627451, 0.639216)
@@ -11,6 +12,11 @@ expand_margin_left = 3.0
 expand_margin_top = 3.0
 expand_margin_right = 3.0
 expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qasw"]
+bg_color = Color(0.00392157, 0.00392157, 0.00392157, 0.439216)
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
 
 [node name="effectSlot" type="MarginContainer"]
 custom_minimum_size = Vector2(200, 0)
@@ -51,7 +57,62 @@ size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 10
 text = "Eliminar"
 
+[node name="info" type="Button" parent="elements"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 10
+icon = ExtResource("2_lgr1h")
+flat = true
+icon_alignment = 2
+expand_icon = true
+
 [node name="AlphaTween" type="Node" parent="." node_paths=PackedStringArray("node")]
 script = ExtResource("2_esbwr")
 node = NodePath("..")
 startAtReady = false
+
+[node name="Description" type="Window" parent="."]
+initial_position = 2
+size = Vector2i(300, 200)
+visible = false
+unresizable = true
+always_on_top = true
+popup_window = true
+
+[node name="bg" type="Panel" parent="Description"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Description"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Description/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 14
+
+[node name="Titulo" type="Label" parent="Description/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_4qasw")
+text = "Descripción:"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Descripcion" type="RichTextLabel" parent="Description/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 130)
+layout_mode = 2
+bbcode_enabled = true
+text = "BuenasAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"

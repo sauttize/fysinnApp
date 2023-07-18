@@ -24,7 +24,8 @@ var casillasMov : int = 0:
 	set(num): initiativeNum = clamp(num, 1, 5)
 @export_subgroup("Skills")
 @export var stats : Stats = Stats.new()
-#@export var 
+@export var goodStrike : int = 0
+@export var badStrike : int = 0
 
 #METERS
 @export_category("-- Meters --")

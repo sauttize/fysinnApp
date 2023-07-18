@@ -1,4 +1,4 @@
-extends VFlowContainer
+extends ScrollContainer
 
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @onready var effectSlot = preload("res://Elements/Character Sheet/Base/Effects/effect_slot.tscn")

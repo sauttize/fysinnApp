@@ -529,7 +529,10 @@ func info_about(argument : PackedStringArray = []):
 		if block.infoCalls.has(about): isThisOne = true
 		if isThisOne:
 			if isExtended:
-				print_line(block.infoExtended, readColor)
+				if block.infoExtended != "":
+					print_line(block.infoExtended, readColor)
+				else:
+					print_line("There's no more info about this topic. Check link or video for possible extra resources.", errorAltColor)
 				return
 			elif isLink:
 				if block.textLink != "":
