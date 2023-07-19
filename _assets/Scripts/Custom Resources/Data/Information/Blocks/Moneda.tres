@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="InfoBlock" load_steps=2 format=3 uid="uid://cxb6mysvvf1ea"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Data/Information/InfoBlock.gd" id="1_m0rxa"]
+
+[resource]
+script = ExtResource("1_m0rxa")
+infoCalls = Array[String](["moneda", "dinero", "currency"])
+info = "La moneda que se utiliza en DnD es: Cobre (PC) , Plata (PP) , Electro (PE) , Oro (PO) , Platino (PPT). 
+
+[b]Costo de vida diario promedio: [/b]
+-> Rico: 4 oro
+-> Acomodado: 2 oro
+-> Modeso: 1 oro
+-> Pobre: 2 plata
+-> Miserable: 1 plata
+
+[b]Entonces...[/b]
+Segun el estilo de vida que posean, esos valores son los mínimos que deberían aceptar por trabajos o recompensas. Haciendo cuentas de cuanto le llevará una misión, deberán estimar un precio por sus servicios.
+
+[i]Para información sobre equivalencias, utiliza extended [/i]"
+infoExtended = "[u][b]Tabla de equivalencias[/b][/u]
+
+[table=6]
+[cell][b]Moneda[/b][/cell] [cell][b]PC[/b][/cell] [cell][b]PP[/b][/cell] [cell][b]PE[/b][/cell] [cell][b]PO[/b][/cell] [cell][b]PPT[/b][/cell]
+  
+[cell]Cobre (PC)[/cell] [cell]1[/cell] [cell]1/10[/cell] [cell]1/50[/cell] [cell]1/100[/cell] [cell]1/1000[/cell]
+
+[cell]Plata (PP)[/cell] [cell]10[/cell] [cell]1[/cell] [cell]1/5[/cell] [cell]1/10[/cell] [cell]1/100[/cell]
+
+[cell]Elecro (PE)[/cell] [cell]50[/cell] [cell]5[/cell] [cell]1[/cell] [cell]1/2[/cell] [cell]1/20[/cell]
+
+[cell]Oro (PO)[/cell] [cell]100[/cell] [cell]10[/cell] [cell]2[/cell] [cell]1[/cell] [cell]1/10[/cell]
+
+[cell]Platino (PPT)[/cell] [cell]1000[/cell] [cell]100[/cell] [cell]20[/cell] [cell]10[/cell] [cell]1[/cell]
+[/table]"
+textLink = ""
+videoLink = ""

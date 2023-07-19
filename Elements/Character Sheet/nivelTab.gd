@@ -13,7 +13,7 @@ signal level_up()
 #Check if exp to level up was obtained.
 func _on_exp_exp_updated():
 	for n in range(playerData.nivel, exp_needed.size(), 1):
-		if playerData.exp >= exp_needed[n]:
+		if playerData.experiencia >= exp_needed[n]:
 			playerData.nivel = (n + 1) # Plus 1 bc is an array and starts in 0.
 			emit_signal("level_up")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=66 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -38,6 +38,7 @@
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/ClassInfo/ClassPanel.gd" id="33_ja71m"]
 [ext_resource type="Script" path="res://_assets/Tweens/aplha_tween.gd" id="36_hcgwt"]
 [ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="37_7fw64"]
+[ext_resource type="PackedScene" uid="uid://cxuoh0jlhqui4" path="res://Elements/Character Sheet/Base/Inventory/item_slot_basic.tscn" id="38_vu7k7"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Effects/effect_list.gd" id="39_ir3b0"]
 [ext_resource type="PackedScene" uid="uid://cjsqbq8oeyc3w" path="res://Elements/Character Sheet/Base/Effects/effect_slot.tscn" id="39_l70f3"]
 [ext_resource type="Texture2D" uid="uid://coedakhn565j1" path="res://_assets/Icons/Death Strikes/bad strike.png" id="39_wlx4f"]
@@ -109,6 +110,20 @@ bg_color = Color(0.670588, 0.364706, 0.196078, 1)
 corner_radius_top_left = 10
 corner_radius_bottom_right = 10
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bsrh"]
+bg_color = Color(0.152941, 0.152941, 0.152941, 0.615686)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5m3m"]
+bg_color = Color(0, 0, 0, 0.607843)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r12m"]
 bg_color = Color(0.403922, 0.403922, 0.403922, 1)
 corner_radius_top_right = 15
@@ -118,19 +133,23 @@ corner_radius_bottom_right = 15
 bg_color = Color(0.203922, 0.176471, 0.141176, 1)
 corner_radius_bottom_right = 20
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7duf"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(0, 0, 0, 0.34902)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ftec"]
 bg_color = Color(0.380706, 0.341302, 0.648213, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6bsrh"]
-bg_color = Color(0.152941, 0.152941, 0.152941, 0.615686)
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
 
 [node name="Base" type="MarginContainer" node_paths=PackedStringArray("editLife", "editArmor")]
 custom_minimum_size = Vector2(0, 680)
@@ -151,6 +170,7 @@ editArmor = NodePath("Container/FirstRow/ArmorVida/Armadura/AddTempArmor")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 15
+metadata/_edit_lock_ = true
 
 [node name="FirstRow" type="HBoxContainer" parent="Container"]
 layout_mode = 2
@@ -158,12 +178,14 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="Stats" parent="Container/FirstRow" instance=ExtResource("1_b7ayw")]
 custom_minimum_size = Vector2(210, 240)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
+metadata/_edit_lock_ = true
 
 [node name="AplhaTween" parent="Container/FirstRow/Stats" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
 node = NodePath("..")
@@ -173,11 +195,13 @@ duration = 0.8
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
+metadata/_edit_lock_ = true
 
 [node name="Armadura" type="Control" parent="Container/FirstRow/ArmorVida"]
 custom_minimum_size = Vector2(210, 110)
 layout_mode = 2
 mouse_filter = 1
+metadata/_edit_lock_ = true
 
 [node name="bg" type="Panel" parent="Container/FirstRow/ArmorVida/Armadura"]
 custom_minimum_size = Vector2(200, 0)
@@ -185,6 +209,7 @@ layout_mode = 2
 offset_right = 210.0
 offset_bottom = 110.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_rk3gq")
+metadata/_edit_lock_ = true
 
 [node name="Normal" type="Label" parent="Container/FirstRow/ArmorVida/Armadura"]
 layout_mode = 1
@@ -200,6 +225,7 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_uyb8g")
+metadata/_edit_lock_ = true
 
 [node name="Temporary" type="Label" parent="Container/FirstRow/ArmorVida/Armadura"]
 layout_mode = 1
@@ -217,6 +243,7 @@ theme_override_font_sizes/font_size = 30
 text = "-"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="Container/FirstRow/ArmorVida/Armadura"]
 layout_mode = 1
@@ -232,6 +259,7 @@ offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_ye1em")
+metadata/_edit_lock_ = true
 
 [node name="EditButton" parent="Container/FirstRow/ArmorVida/Armadura" instance=ExtResource("5_uo5e2")]
 modulate = Color(1, 1, 1, 0.541176)
@@ -245,6 +273,7 @@ offset_top = -20.0
 offset_right = 23.0
 offset_bottom = -5.0
 grow_vertical = 0
+metadata/_edit_lock_ = true
 
 [node name="AddTempArmor" type="Window" parent="Container/FirstRow/ArmorVida/Armadura"]
 title = "Defensa temporal"
@@ -296,6 +325,7 @@ text = "Agregar"
 [node name="Vida" type="Control" parent="Container/FirstRow/ArmorVida"]
 custom_minimum_size = Vector2(210, 110)
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="bg" type="Panel" parent="Container/FirstRow/ArmorVida/Vida"]
 layout_mode = 1
@@ -305,6 +335,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_lref1")
+metadata/_edit_lock_ = true
 
 [node name="divider" type="ColorRect" parent="Container/FirstRow/ArmorVida/Vida"]
 custom_minimum_size = Vector2(0, 3)
@@ -323,6 +354,7 @@ grow_vertical = 2
 rotation = -0.436332
 pivot_offset = Vector2(91.1512, 1.24701)
 color = Color(0.984314, 0.74902, 0.701961, 1)
+metadata/_edit_lock_ = true
 
 [node name="Puntos" type="MarginContainer" parent="Container/FirstRow/ArmorVida/Vida" node_paths=PackedStringArray("editLifeWindow", "statsNode", "currentLifeLabel", "maxLifeLabel")]
 layout_mode = 1
@@ -340,6 +372,7 @@ editLifeWindow = NodePath("../EditLife")
 statsNode = NodePath("../../../Stats")
 currentLifeLabel = NodePath("Actuales/ptsActuales")
 maxLifeLabel = NodePath("Maximos/ptsMaximos")
+metadata/_edit_lock_ = true
 
 [node name="Actuales" type="VBoxContainer" parent="Container/FirstRow/ArmorVida/Vida/Puntos"]
 layout_mode = 2
@@ -425,6 +458,7 @@ texture_pressed = ExtResource("8_t5hko")
 texture_hover = ExtResource("9_2m2pc")
 ignore_texture_size = true
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
 [node name="EditLife" type="Window" parent="Container/FirstRow/ArmorVida/Vida" node_paths=PackedStringArray("_warning", "lifePoints", "maxPoints")]
 title = "Editar Vida"
@@ -529,6 +563,7 @@ script = ExtResource("13_v3jk2")
 picNode = NodePath("picture")
 statsNode = NodePath("stats")
 currentPic = NodePath("picture/bgFoto/profilePic")
+metadata/_edit_lock_ = true
 
 [node name="bg" type="Panel" parent="Container/FirstRow/RightPanel"]
 layout_mode = 1
@@ -539,12 +574,14 @@ offset_right = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qdfpp")
+metadata/_edit_lock_ = true
 
 [node name="topPanel" type="Panel" parent="Container/FirstRow/RightPanel"]
 layout_mode = 0
 offset_right = 254.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gnahd")
+metadata/_edit_lock_ = true
 
 [node name="status" type="MarginContainer" parent="Container/FirstRow/RightPanel/topPanel"]
 layout_mode = 1
@@ -752,6 +789,7 @@ script = ExtResource("24_7ldrk")
 raceName = NodePath("../hboxRaza/razaName")
 fameNode = NodePath("fama/num")
 crimeNode = NodePath("danger/num")
+metadata/_edit_lock_ = true
 
 [node name="fama" type="VBoxContainer" parent="Container/FirstRow/RightPanel/stats/vbox/hbox"]
 layout_mode = 2
@@ -846,10 +884,12 @@ text = "ok"
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 color = Color(0.878431, 0.878431, 0.878431, 1)
+metadata/_edit_lock_ = true
 
 [node name="hboxRaza" type="HBoxContainer" parent="Container/FirstRow/RightPanel/stats/vbox"]
 layout_mode = 2
 size_flags_horizontal = 4
+metadata/_edit_lock_ = true
 
 [node name="raza" type="Label" parent="Container/FirstRow/RightPanel/stats/vbox/hboxRaza"]
 texture_filter = 1
@@ -874,6 +914,7 @@ size_flags_horizontal = 4
 icon = ExtResource("27_486jh")
 icon_alignment = 1
 expand_icon = true
+metadata/_edit_lock_ = true
 
 [node name="EditStatus" parent="Container/FirstRow/RightPanel/stats/vbox" node_paths=PackedStringArray("showButton") instance=ExtResource("21_3htxs")]
 visible = false
@@ -886,6 +927,7 @@ duration = 1.6
 [node name="SecondRow" type="Control" parent="Container"]
 custom_minimum_size = Vector2(0, 248)
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="Spells" type="Control" parent="Container/SecondRow"]
 custom_minimum_size = Vector2(284, 250)
@@ -893,6 +935,7 @@ layout_mode = 2
 anchors_preset = 0
 offset_right = 284.0
 offset_bottom = 250.0
+metadata/_edit_lock_ = true
 
 [node name="AplhaTween" parent="Container/SecondRow/Spells" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
 node = NodePath("..")
@@ -1115,15 +1158,16 @@ offset_bottom = 252.0
 
 [node name="PositionTween" type="Node" parent="Container/SecondRow/Items" node_paths=PackedStringArray("node")]
 script = ExtResource("37_7fw64")
-node = NodePath("../bg")
+node = NodePath("..")
 duration = 2.2
 transitionType = 2
 newStartingPosition = true
-fromPosition2D = Vector2(500, 0)
+fromPosition2D = Vector2(721, 1)
+toPosition2D = Vector2(221, 1)
 
 [node name="AlphaTween" type="Node" parent="Container/SecondRow/Items" node_paths=PackedStringArray("node")]
 script = ExtResource("36_hcgwt")
-node = NodePath("../bg")
+node = NodePath("..")
 duration = 2.0
 
 [node name="bg" type="Panel" parent="Container/SecondRow/Items"]
@@ -1136,6 +1180,289 @@ offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_yuwhr")
+
+[node name="elementos" type="VBoxContainer" parent="Container/SecondRow/Items"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 8.0
+offset_top = -116.5
+offset_right = -10.0
+offset_bottom = 117.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inventarioTitle" type="Label" parent="Container/SecondRow/Items/elementos"]
+custom_minimum_size = Vector2(0, 26)
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_6bsrh")
+text = "Inventario"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="inventarioBox" type="ScrollContainer" parent="Container/SecondRow/Items/elementos"]
+custom_minimum_size = Vector2(0, 170)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c5m3m")
+horizontal_scroll_mode = 3
+
+[node name="inventario" type="VBoxContainer" parent="Container/SecondRow/Items/elementos/inventarioBox"]
+custom_minimum_size = Vector2(195, 0)
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+
+[node name="capacidad" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+bbcode_enabled = true
+text = "[i]Capacidad actual: 0kg[/i] "
+fit_content = true
+autowrap_mode = 0
+
+[node name="HSeparator" type="HSeparator" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario"]
+custom_minimum_size = Vector2(170, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="items" type="VBoxContainer" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario"]
+layout_mode = 2
+
+[node name="ItemSlotBasic" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="ItemSlotBasic2" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="ItemSlotBasic3" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="ItemSlotBasic4" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="ItemSlotBasic5" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="ItemSlotBasic6" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="ItemSlotBasic7" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="ItemSlotBasic8" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="ItemSlotBasic9" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
+layout_mode = 2
+
+[node name="currencyBox" type="Button" parent="Container/SecondRow/Items/elementos"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="elementos" type="ScrollContainer" parent="Container/SecondRow/Items/elementos/currencyBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_right = -4.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="labels" type="HBoxContainer" parent="Container/SecondRow/Items/elementos/currencyBox/elementos"]
+custom_minimum_size = Vector2(190, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="cobre" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/elementos/labels"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Cobre"
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 9
+theme_override_font_sizes/bold_font_size = 9
+bbcode_enabled = true
+text = "[b]PC:[/b] 192"
+fit_content = true
+autowrap_mode = 0
+
+[node name="plata" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/elementos/labels"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Plata"
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 9
+theme_override_font_sizes/bold_font_size = 9
+bbcode_enabled = true
+text = "[b]PP:[/b]  1298"
+fit_content = true
+autowrap_mode = 0
+
+[node name="electro" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/elementos/labels"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Electro"
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 9
+theme_override_font_sizes/bold_font_size = 9
+bbcode_enabled = true
+text = "[b]PE:[/b] 0"
+fit_content = true
+autowrap_mode = 0
+
+[node name="oro" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/elementos/labels"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Oro"
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 9
+theme_override_font_sizes/bold_font_size = 9
+bbcode_enabled = true
+text = "[b]PE:[/b] : 12"
+fit_content = true
+autowrap_mode = 0
+
+[node name="platino" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/elementos/labels"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Platino"
+mouse_filter = 1
+theme_override_font_sizes/normal_font_size = 9
+theme_override_font_sizes/bold_font_size = 9
+bbcode_enabled = true
+text = "[b]PPT:[/b]  0"
+fit_content = true
+autowrap_mode = 0
+
+[node name="EditCurrency" type="Window" parent="Container/SecondRow/Items/elementos/currencyBox"]
+title = "Editar dinero"
+initial_position = 2
+size = Vector2i(300, 200)
+visible = false
+
+[node name="margin" type="MarginContainer" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="rows" type="VBoxContainer" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="label3" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows"]
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[b]Cantidad:[/b]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="numero" type="SpinBox" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="label1" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows"]
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "Agregar / Gastar:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="edit" type="HBoxContainer" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows"]
+layout_mode = 2
+alignment = 1
+
+[node name="opciones" type="OptionButton" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows/edit"]
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = "PC"
+popup/item_0/id = 0
+popup/item_1/text = "PP"
+popup/item_1/id = 1
+popup/item_2/text = "PE"
+popup/item_2/id = 2
+popup/item_3/text = "PO"
+popup/item_3/id = 3
+popup/item_4/text = "PPT"
+popup/item_4/id = 4
+
+[node name="editButton" type="Button" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows/edit"]
+layout_mode = 2
+text = "Confirmar"
+
+[node name="label2" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows"]
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "Cambio:"
+fit_content = true
+autowrap_mode = 0
+
+[node name="cambio" type="HBoxContainer" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows"]
+layout_mode = 2
+alignment = 1
+
+[node name="lbl1" type="Label" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows/cambio"]
+layout_mode = 2
+text = "De:"
+
+[node name="de" type="OptionButton" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows/cambio"]
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = "PC"
+popup/item_0/id = 0
+popup/item_1/text = "PP"
+popup/item_1/id = 1
+popup/item_2/text = "PE"
+popup/item_2/id = 2
+popup/item_3/text = "PO"
+popup/item_3/id = 3
+popup/item_4/text = "PPT"
+popup/item_4/id = 4
+
+[node name="lbl2" type="Label" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows/cambio"]
+layout_mode = 2
+text = "A:"
+
+[node name="a" type="OptionButton" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows/cambio"]
+layout_mode = 2
+item_count = 5
+selected = 0
+popup/item_0/text = "PC"
+popup/item_0/id = 0
+popup/item_1/text = "PP"
+popup/item_1/id = 1
+popup/item_2/text = "PE"
+popup/item_2/id = 2
+popup/item_3/text = "PO"
+popup/item_3/id = 3
+popup/item_4/text = "PPT"
+popup/item_4/id = 4
+
+[node name="changeButton" type="Button" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows/cambio"]
+layout_mode = 2
+text = "Cambiar"
 
 [node name="ThirdRow" type="Control" parent="Container"]
 layout_mode = 2
@@ -1319,6 +1646,18 @@ texture_pressed = ExtResource("41_vuhha")
 texture_hover = ExtResource("42_sl5bv")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="Panel" type="RichTextLabel" parent="Container/ThirdRow/Class Info/bg"]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 37.0
+offset_right = 484.0
+offset_bottom = 176.0
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+theme_override_font_sizes/italics_font_size = 13
+theme_override_styles/normal = SubResource("StyleBoxFlat_v7duf")
+text = "info..."
 
 [node name="AlphaTween" type="Node" parent="Container/ThirdRow/Class Info" node_paths=PackedStringArray("node")]
 script = ExtResource("36_hcgwt")

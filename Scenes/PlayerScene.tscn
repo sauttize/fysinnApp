@@ -231,12 +231,12 @@ shortcut = SubResource("Shortcut_jew5d")
 text = "Conocimientos"
 expand_icon = true
 
-[node name="btn_Mascotas" type="Button" parent="Window/Container/Tabs"]
+[node name="btn_Inventario" type="Button" parent="Window/Container/Tabs"]
 custom_minimum_size = Vector2(100, 30)
 layout_mode = 2
 theme = ExtResource("1_186vv")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ip31c")
-text = "Mascotas"
+text = "Inventario"
 expand_icon = true
 
 [node name="btn_Relaciones" type="Button" parent="Window/Container/Tabs"]
@@ -293,7 +293,7 @@ tabs_visible = false
 script = ExtResource("7_eonce")
 baseButton = NodePath("../Tabs/btn_Base")
 conocimientosButton = NodePath("../Tabs/btn_Conocimientos")
-mascotasButton = NodePath("../Tabs/btn_Mascotas")
+mascotasButton = NodePath("../Tabs/btn_Inventario")
 relacionesButton = NodePath("../Tabs/btn_Relaciones")
 notasButton = NodePath("../Tabs/btn_Personal")
 consoleButton = NodePath("../Tabs/btn_Consola")
