@@ -1,3 +1,4 @@
+@tool
 extends Node
 class_name Utility
 
@@ -53,10 +54,9 @@ func get_date_diff(current : Dictionary, old : Dictionary, _getHour : bool = fal
 
 ## Create popup Window with simple text message
 func create_PopUp(message : String = "hello", color : Color = Color.WHITE, bgColor : Color = Color.DIM_GRAY):
-	var instance = quickMessage.instantiate()
+	var instance = quickMessage.instantiate() as QuickMessage
 	add_child(instance)
 	instance.updateNode(message, color, bgColor)
-	instance.child_controls_changed()
 	instance.show()
 func erase_PopUp(window : Window):
 	window.queue_free()

@@ -3,6 +3,8 @@ extends Window
 const SAVE_NAME : String = 'playerData'
 const EXT : String = '.tres'
 
+@export var raceImages : Array[Texture2D]
+
 @onready var bgColor : Panel = $bg
 @onready var fileDialog : FileDialog = $"../FileDialog"
 
@@ -28,6 +30,8 @@ func _ready() -> void:
 	fileDialog.close_requested.connect(fileDialog.hide)
 	fileDialog.file_selected.connect(on_photo_chosen)
 	createPlayerButton.pressed.connect(create_SaveFile)
+	
+	newRace.item_selected.connect(race_selected_anim)
 
 func set_options():
 	dataDump = GameManager.GetDataDump()
@@ -88,3 +92,8 @@ func on_photo_chosen(path : String):
 	else:
 		Utilities.changeFontColor_Label(photoStatusLabel, Color.RED)
 		photoStatusLabel.text = 'x'
+
+func race_selected_anim(index : int):
+	$RazaImagen.texture = raceImages[index]
+	$PositionTween.play_Tween()
+	$AlphaTween.play_Tween()

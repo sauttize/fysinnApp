@@ -1,3 +1,4 @@
+@tool
 extends Node
 
 const DATA_DUMP_ROUTE = "user://data/DataContainer.tres"
@@ -10,6 +11,15 @@ const EFFECTS_ROUTE = "res://_assets/Scripts/Custom Resources/Effects/"
 const INFO_ROUTE = "res://_assets/Scripts/Custom Resources/Data/Information/Blocks/"
 
 var saving : bool = false
+
+var conversionDIC : Dictionary = {
+	"PCPC": 1.0, "PPPP": 1.0, "PEPE": 1.0, "POPO": 1.0, "PPTPPT": 1.0,
+	"PCPP" : 0.1, "PCPE" : 0.02, "PCPO" : 0.01, "PCPPT" : 0.001,
+	"PPPC" : 10.0, "PPPE" : 0.2, "PPPO" : 0.1, "PPPPT" : 0.01,
+	"PEPC" : 50.0, "PEPP" : 5.0, "PEPO" : 0.5, "PEPPT" : 0.05,
+	"POPC" : 100.0, "POPP" : 10.0, "POPE" : 2.0, "POPPT" : 0.1,
+	"PPTPC" : 1000.0, "PPTPP" : 100.0, "PPTPE" : 20.0, "PPTPO" : 10.0
+}
 
 # If it doesnt exist, it creates it.
 func verify_save_directory(path: String):
@@ -161,3 +171,22 @@ func GetAllEffects() -> Array[Effect]:
 		if thisEffect is Effect:
 			allEffects.push_back(thisEffect)
 	return allEffects
+
+# Functionalities
+# Currency related
+func money_needed(to_int : int, from_str : String, to_str : String) -> int:
+	var from_to : String = from_str + to_str
+	var needed_money : float
+	
+	needed_money = to_int / conversionDIC[from_to]
+	if floorf(needed_money) != needed_money:
+		return ceil(needed_money)
+	else: return int(needed_money)
+
+func money_returned(from_int : int, from_str : String, to_str : String) -> int:
+	var from_to : String = from_str + to_str
+	var returned_money: int
+	
+	returned_money = int(from_int * conversionDIC[from_to])
+	
+	return returned_money

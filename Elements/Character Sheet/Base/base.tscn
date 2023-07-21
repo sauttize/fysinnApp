@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=67 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Effects/effect_list.gd" id="39_ir3b0"]
 [ext_resource type="PackedScene" uid="uid://cjsqbq8oeyc3w" path="res://Elements/Character Sheet/Base/Effects/effect_slot.tscn" id="39_l70f3"]
 [ext_resource type="Texture2D" uid="uid://coedakhn565j1" path="res://_assets/Icons/Death Strikes/bad strike.png" id="39_wlx4f"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Inventory/currencyBehavior.gd" id="39_xg4e5"]
 [ext_resource type="Texture2D" uid="uid://eu4nv0e6p1e3" path="res://_assets/Icons/Death Strikes/no strike.png" id="40_eemh8"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/ClassInfo/strike_buttons.gd" id="40_vdmwj"]
 [ext_resource type="Texture2D" uid="uid://do4ulpagygwej" path="res://_assets/Icons/Death Strikes/no strike/no strike pressed.png" id="41_vuhha"]
@@ -1261,9 +1262,22 @@ layout_mode = 2
 [node name="ItemSlotBasic9" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
 layout_mode = 2
 
-[node name="currencyBox" type="Button" parent="Container/SecondRow/Items/elementos"]
+[node name="currencyBox" type="Button" parent="Container/SecondRow/Items/elementos" node_paths=PackedStringArray("pc_label", "pp_label", "pe_label", "po_label", "ppt_label", "editWindow", "numberNode", "addOption", "addButton", "fromOp", "toOp", "changeButton")]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
+script = ExtResource("39_xg4e5")
+pc_label = NodePath("elementos/labels/cobre")
+pp_label = NodePath("elementos/labels/plata")
+pe_label = NodePath("elementos/labels/electro")
+po_label = NodePath("elementos/labels/oro")
+ppt_label = NodePath("elementos/labels/platino")
+editWindow = NodePath("EditCurrency")
+numberNode = NodePath("EditCurrency/margin/rows/numero")
+addOption = NodePath("EditCurrency/margin/rows/edit/opciones")
+addButton = NodePath("EditCurrency/margin/rows/edit/editButton")
+fromOp = NodePath("EditCurrency/margin/rows/cambio/de")
+toOp = NodePath("EditCurrency/margin/rows/cambio/a")
+changeButton = NodePath("EditCurrency/margin/rows/cambio/changeButton")
 
 [node name="elementos" type="ScrollContainer" parent="Container/SecondRow/Items/elementos/currencyBox"]
 layout_mode = 1
@@ -1353,6 +1367,8 @@ title = "Editar dinero"
 initial_position = 2
 size = Vector2i(300, 200)
 visible = false
+transient = true
+unresizable = true
 
 [node name="margin" type="MarginContainer" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency"]
 anchors_preset = 15
@@ -1378,6 +1394,9 @@ autowrap_mode = 0
 [node name="numero" type="SpinBox" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows"]
 layout_mode = 2
 size_flags_horizontal = 3
+rounded = true
+allow_greater = true
+allow_lesser = true
 
 [node name="label1" type="RichTextLabel" parent="Container/SecondRow/Items/elementos/currencyBox/EditCurrency/margin/rows"]
 layout_mode = 2

@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_m0rxa")
-infoCalls = Array[String](["moneda", "dinero", "currency"])
+infoCalls = Array[String](["moneda", "dinero", "currency", "money"])
 info = "La moneda que se utiliza en DnD es: Cobre (PC) , Plata (PP) , Electro (PE) , Oro (PO) , Platino (PPT). 
 
 [b]Costo de vida diario promedio: [/b]

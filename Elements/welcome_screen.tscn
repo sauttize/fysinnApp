@@ -1,10 +1,17 @@
-[gd_scene load_steps=10 format=3 uid="uid://uip4pdnqeu7s"]
+[gd_scene load_steps=17 format=3 uid="uid://uip4pdnqeu7s"]
 
 [ext_resource type="Script" path="res://Elements/welcome_screen.gd" id="1_1gfly"]
 [ext_resource type="FontFile" uid="uid://s64tvl31747e" path="res://_assets/Fonts/Cabin-VariableFont_wdth,wght.ttf" id="1_h77tp"]
 [ext_resource type="Script" path="res://Elements/WelcomeScreen/NewPlayerWindow.gd" id="3_ahbc7"]
 [ext_resource type="FontFile" uid="uid://btw8oqfk3julq" path="res://_assets/Fonts/CourierPrime/CourierPrime-Regular.ttf" id="3_s7ox8"]
 [ext_resource type="PackedScene" uid="uid://b4iijbpl3b73l" path="res://Elements/WelcomeScreen/slot.tscn" id="4_dqthb"]
+[ext_resource type="Texture2D" uid="uid://b8cyfn3oouj3v" path="res://_assets/Images/Razas/humanos.png" id="4_t0x28"]
+[ext_resource type="Texture2D" uid="uid://spmnv4hj0m8o" path="res://_assets/Images/Razas/draconites.png" id="4_ve28j"]
+[ext_resource type="Texture2D" uid="uid://dnhkwwi6u40mf" path="res://_assets/Images/Razas/duneborn.png" id="5_rwwb0"]
+[ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="6_pmusd"]
+[ext_resource type="Texture2D" uid="uid://3886b2dufm2h" path="res://_assets/Images/Razas/naiads.png" id="7_3bf0o"]
+[ext_resource type="Script" path="res://_assets/Tweens/aplha_tween.gd" id="7_nip04"]
+[ext_resource type="Texture2D" uid="uid://do3laa6wbuadt" path="res://_assets/Images/Razas/raincasters.png" id="8_f13t6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dtft"]
 bg_color = Color(0.572549, 0.623529, 0.490196, 1)
@@ -121,13 +128,14 @@ offset_bottom = 40.0
 [node name="New Player" type="Window" parent="."]
 title = "Crear nuevo personaje"
 initial_position = 1
-size = Vector2i(500, 600)
+size = Vector2i(500, 550)
 visible = false
 wrap_controls = true
 transient = true
 exclusive = true
 unresizable = true
 script = ExtResource("3_ahbc7")
+raceImages = Array[Texture2D]([ExtResource("4_ve28j"), ExtResource("5_rwwb0"), ExtResource("4_t0x28"), ExtResource("7_3bf0o"), ExtResource("8_f13t6")])
 
 [node name="bg" type="Panel" parent="New Player"]
 anchors_preset = 15
@@ -136,6 +144,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_627a8")
+
+[node name="RazaImagen" type="TextureRect" parent="New Player"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -133.5
+offset_top = -211.0
+offset_right = 133.5
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("4_t0x28")
 
 [node name="Control" type="Control" parent="New Player"]
 layout_mode = 3
@@ -147,17 +168,14 @@ grow_vertical = 2
 
 [node name="label" type="Label" parent="New Player/Control"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -400.0
-offset_top = -290.0
+offset_top = 20.0
 offset_right = 400.0
-offset_bottom = -238.0
+offset_bottom = 72.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 16
@@ -168,17 +186,14 @@ horizontal_alignment = 1
 
 [node name="form" type="VBoxContainer" parent="New Player/Control"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -63.5
-offset_top = -13.0
-offset_right = 63.5
-offset_bottom = 13.0
+offset_left = -161.0
+offset_top = 120.0
+offset_right = 161.0
+offset_bottom = 266.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="name" type="HBoxContainer" parent="New Player/Control/form"]
 layout_mode = 2
@@ -323,13 +338,31 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -29.5
-offset_top = -190.0
-offset_right = 29.5
-offset_bottom = -159.0
+offset_left = -30.5
+offset_top = -270.0
+offset_right = 30.5
+offset_bottom = -239.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "CREAR"
+
+[node name="PositionTween" type="Node" parent="New Player" node_paths=PackedStringArray("node")]
+script = ExtResource("6_pmusd")
+node = NodePath("../RazaImagen")
+startAtReady = false
+parallelToPrevious = true
+duration = 0.8
+transitionType = 11
+newStartingPosition = true
+fromPosition2D = Vector2(-300, 339)
+toPosition2D = Vector2(116.5, 339)
+
+[node name="AlphaTween" type="Node" parent="New Player" node_paths=PackedStringArray("node")]
+script = ExtResource("7_nip04")
+node = NodePath("../RazaImagen")
+startAtReady = false
+parallelToPrevious = true
+duration = 1.2
 
 [node name="FileDialog" type="FileDialog" parent="."]
 title = "Open a File"

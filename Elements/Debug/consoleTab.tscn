@@ -6,29 +6,25 @@
 [ext_resource type="FontFile" uid="uid://b4v62ckpb2mwu" path="res://_assets/Fonts/CourierPrime/CourierPrime-Italic.ttf" id="4_yi10b"]
 [ext_resource type="FontFile" uid="uid://dijfx5gr3toa6" path="res://_assets/Fonts/CourierPrime/CourierPrime-BoldItalic.ttf" id="5_1uymt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x8ad2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ga4s6"]
 bg_color = Color(0, 0, 0, 0.239216)
 
 [node name="Console" type="MarginContainer"]
-custom_minimum_size = Vector2(0, 780)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
+custom_minimum_size = Vector2(700, 700)
+offset_right = 700.0
+offset_bottom = 700.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
 script = ExtResource("1_j67dm")
-helpList = PackedStringArray("[b]clear:[/b] clears the log", "[b]console_color:[/b] change background color of console. {**}", "[b]k_default:[/b] all knowledge from playerData go to default", "[b]save, saveFile, save_data:[/b] new data save in the save file of player. {*}", "[b]player, me:[/b] get all the data from your player {*} ", "[b]name, my_name, whoami:[/b] shows you the correct current name you have in your save file", "[b]stat, st:[/b] shows you the number and modifier of any stat given. {*}", "[b]newname, new_name, nameTo:[/b] to change player name. {**} {!}", "[b]lvl, level:[/b] shows current level", "[b]last, lastsave:[/b] check date from last time you saved.", "[b]newlevel, newlvl:[/b] change level to a new number. {**} {!}", "[b]re, reload, reload_s:[/b] reloads the scene to check changes added.", "[b]d, dice:[/b] throw the dices. use help for syntaxis. {**}", "[b]info, about, i:[/b] information about... {**}", "[b]link, go:[/b] see notion info about that. [both spanish and eng] {**}", "[b]sc, short, shortcuts:[/b] shows the full list of shortcuts", "[b]add_effect, neweffect, newe: [/b] to add a new effect to your active effect list. (**)", "[b]effect, eff: [/b] shows information about a given effect (**)", "[b]myeff, myeffects, mye: [/b] shows the full list of your active effects.", "[b]text[/b]: use it with \"more\", \"less\" or the list of predifined sizes to change the console text size. (**)", "", "---- (*) [i]means it allows arguments[/i]----", "---- (**) [i]means you must write at least one argument after the command[/i]----", "---- {!} [i]means you may not see changes until you reload scene [/i]----", "[b][/b]")
+helpList = PackedStringArray("[b]clear:[/b] clears the log", "[b]console_color:[/b] change background color of console. {**}", "[b]k_default:[/b] all knowledge from playerData go to default", "[b]save, saveFile, save_data:[/b] new data save in the save file of player. {*}", "[b]player, me:[/b] get all the data from your player {*} ", "[b]name, my_name, whoami:[/b] shows you the correct current name you have in your save file", "[b]stat, st:[/b] shows you the number and modifier of any stat given. {*}", "[b]newname, new_name, nameTo:[/b] to change player name. {**} {!}", "[b]lvl, level:[/b] shows current level", "[b]last, lastsave:[/b] check date from last time you saved.", "[b]newlevel, newlvl:[/b] change level to a new number. {**} {!}", "[b]re, reload, reload_s:[/b] reloads the scene to check changes added.", "[b]d, dice:[/b] throw the dices. use help for syntaxis. {**}", "[b]info, about, i:[/b] information about... {**}", "[b]link, go:[/b] see notion info about that. [both spanish and eng] {**}", "[b]sc, short, shortcuts:[/b] shows the full list of shortcuts", "[b]add_effect, neweffect, newe: [/b] to add a new effect to your active effect list. (**)", "[b]effect, eff: [/b] shows information about a given effect (**)", "[b]myeff, myeffects, mye: [/b] shows the full list of your active effects.", "[b]currency_calc, c_calc, money_c: [/b] calculator to check how much you need from __ currency to __ currency. (**)", "[b]text[/b]: use it with \"more\", \"less\" or the list of predifined sizes to change the console text size. (**)", "", "---- (*) [i]means it allows arguments[/i]----", "---- (**) [i]means you must write at least one argument after the command[/i]----", "---- {!} [i]means you may not see changes until you reload scene [/i]----", "[b][/b]")
 helpChangeColor = PackedStringArray("[b]default: [/b]default bg color", "[b]blue[/b]", "[b]pink[/b]", "[b]green[/b]", "", "[i]\'-re\', \'-s\', \'remember\' [after color]: to remember color even after closing application[/i]")
 helpSaveFile = PackedStringArray("\'-r\', \'reload\', \'true\', \'-y\' [after value]: to change and reload")
 helpReload = PackedStringArray("\'-r\', \'reload\', \'true\', \'-y\' [after value]: to change and reload", "\'-re\', \'-s\', \'remember\': save the change to saveFile.")
 helpDiceThrow = PackedStringArray("Syntax:", "d [type] [i][multiplier] [stat][/i]", "", "[b][type]:[/b] 4, 8, 10, 12, 20", "^[b][multiplier]:[/b] how many times", "^[b][stat]: [/b] add a stat modifier", "", "^: [i]optional arguments [/i]")
 helpInfo = PackedStringArray("[b]\'player\':[/b] information about player.", "-- shortcut: [i]\'player\', \'me\'[/i]", "-- args: [b]- s [/b] (show stats), [b] -l [/b] (expanded), [b]full [/b] (all info)")
 helpShortCuts = PackedStringArray("----- TABS -----", "[b]ctrl + R:[/b] open console tab", "[b]ctrl + B:[/b] open base tab", "[b]ctrl + K:[/b] open knowledge (\'conocimientos\') tab", "----- WINDOW -----", "[b]ctrl + S:[/b] default window size")
-helpMaster = PackedStringArray("[i]Welcome, Nicolas...[/i]", "[b]help_bu, backup: [/b] to back up all help arrays into the data resource.")
+helpMaster = PackedStringArray("[i]Welcome, Nicolas...[/i]", "[b]help_bu, backup: [/b] to back up all help arrays into the data resource.", "[b]editor_mode, editor: [/b] change the size accordingly for the editor.")
 arrowColor = Color(0.752941, 0.262745, 0.454902, 1)
 outputColor = Color(0.537255, 0.760784, 0.529412, 0.776471)
 readColor = Color(0.701961, 0.603922, 0.509804, 1)
@@ -41,16 +37,24 @@ bgColors = PackedColorArray(0, 0, 0, 0.239216, 0.0196078, 0, 0.345098, 0.352941,
 layout_mode = 2
 
 [node name="logPanel" type="Panel" parent="consoleElements"]
-custom_minimum_size = Vector2(0, 700)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_x8ad2")
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ga4s6")
 
-[node name="consoleLog" type="RichTextLabel" parent="consoleElements/logPanel"]
+[node name="margin" type="MarginContainer" parent="consoleElements/logPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="consoleLog" type="RichTextLabel" parent="consoleElements/logPanel/margin"]
 layout_mode = 2
-offset_left = 10.0
-offset_top = 4.0
-offset_right = 665.0
-offset_bottom = 694.0
 theme_override_fonts/normal_font = ExtResource("2_omhxn")
 theme_override_fonts/bold_font = ExtResource("3_xhml7")
 theme_override_fonts/italics_font = ExtResource("4_yi10b")
@@ -64,3 +68,4 @@ scroll_following = true
 
 [node name="writeLine" type="LineEdit" parent="consoleElements"]
 layout_mode = 2
+size_flags_horizontal = 3

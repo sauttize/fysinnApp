@@ -27,6 +27,15 @@ var casillasMov : int = 0:
 @export var goodStrike : int = 0
 @export var badStrike : int = 0
 
+#MONEY AND INVENTORY
+@export_category("-- Money / Inventory --")
+@export_subgroup("Money")
+@export var pc : int = 0
+@export var pp : int = 0
+@export var pe : int = 0
+@export var po : int = 0
+@export var ppt : int = 0
+
 #METERS
 @export_category("-- Meters --")
 @export var sleepMeter : float = 100:

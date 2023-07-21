@@ -113,7 +113,6 @@ size_flags_vertical = 3
 tabs_visible = false
 
 [node name="Activos" type="MarginContainer" parent="Elements/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="bg" type="Panel" parent="Elements/TabContainer/Activos"]
@@ -198,6 +197,7 @@ theme_override_colors/font_hover_color = Color(0.52549, 0.0117647, 0, 1)
 text = "X"
 
 [node name="Aprendidos" type="MarginContainer" parent="Elements/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="bg" type="Panel" parent="Elements/TabContainer/Aprendidos"]

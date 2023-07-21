@@ -1,4 +1,5 @@
-extends Node
+@tool
+extends MarginContainer
 
 const SAVE_ROUTE = "User://saves/PlayerSave.tres"
 const SAVE_ROUTE_DG = "res://_assets/Scripts/Custom Resources/PlayerSave.tres"
@@ -36,7 +37,9 @@ var commandList : Dictionary = {
 	"effect": "show_effect", "eff" : "show_effect",
 	"myeff": "show_active_effects", "myeffects": "show_active_effects", "mye" : "show_active_effects",
 	"master": "master_tools",
-	"text" : "change_text"
+	"text" : "change_text",
+	"editor_mode": "change_to_editor", "editor": "change_to_editor",
+	"currency_calc" : "currency_calculator", "c_calc" : "currency_calculator", "money_c": "currency_calculator"
 }
 
 @onready var argumentList : Dictionary = {
@@ -51,7 +54,7 @@ var commandList : Dictionary = {
 }
 
 @onready var inputLine : LineEdit = $consoleElements/writeLine
-@onready var logScreen : RichTextLabel = $consoleElements/logPanel/consoleLog
+@onready var logScreen : RichTextLabel = $consoleElements/logPanel/margin/consoleLog
 var currentFontSize : int = 14
 var lastCommandSent : String = ""
 @onready var logPanel : Panel = $consoleElements/logPanel
@@ -78,14 +81,18 @@ var lastCommandSent : String = ""
 @export var bgColors : PackedColorArray
 @export_category("Functionality")
 @export var releaseVersion : bool = false
+@export var editorVersion : bool = false
+@export var editorSize : Vector2 = Vector2(1000, 600)
+@export var defaultSize : Vector2 = Vector2(700, 700)
 @export_range(1, 50) var MAX_DICE_MULTIPLIER : int = 20
 
 func _ready() -> void:
+	change_window_size(editorVersion)
 	inputLine.text_submitted.connect(get_text)
 	Utilities.changeFlatboxColor_Panel(logPanel, dataDump.bgConsoleColor)
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("lastCommand"):
+	if event.is_action_pressed("ui_up"):
 		inputLine.clear()
 		inputLine.text = lastCommandSent
 
@@ -117,6 +124,12 @@ func check_command(textArray : PackedStringArray):
 			call(localFunction, arguments)
 	else:
 		show_error("Command doesn't exist. Use 'help' for more info.", errorColor)
+
+func change_window_size(isEditor : bool):
+	if isEditor:
+		custom_minimum_size = editorSize
+	else:
+		custom_minimum_size = defaultSize
 
 func print_array(array, color : Color = normalColor, newLine : bool = true):
 	for line in array:
@@ -363,6 +376,12 @@ func change_text(argument : PackedStringArray = []):
 	logScreen.add_theme_font_size_override("bold_font_size", currentFontSize + 1)
 	logScreen.add_theme_font_size_override("italics_font_size", currentFontSize)
 	logScreen.add_theme_font_size_override("bold_italics_font_size", currentFontSize)
+
+func change_to_editor(argument : PackedStringArray = []):
+	no_arguments_needed(argument)
+	editorVersion = !editorVersion
+	change_window_size(editorVersion)
+	
 # ----------- miscelaneous -------------
 
 func save_PlayerData_cmm(argument : PackedStringArray = []):
@@ -485,7 +504,32 @@ func knowledge_list_to_default(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
 	playerData.myKnowledgeList = dataDump.get_duplicate_list_knowledge()
 	show_done_message("Knowledge list from player save file were set to default sucessfully!")
-
+func currency_calculator(argument : PackedStringArray = []):
+	var validArgs : PackedStringArray = ["PP", "PP", "PE", "PO", "PPT"]
+	var helpArray : PackedStringArray = ["[b]Sintax:[/b] c_calc (money wanted) (from) (to)", 
+	"[b]From/To Options: pc, pp, pe, po, ppt.[/b]", "", 
+	"[i]Remember full numbers. Decimal numbers are not allowed for conversion.[/i]"]
+	
+	if check_args_tooMany(argument, 3, helpArray): return
+	if (no_arguments(argument) || argument.size() < 3): 
+		show_error("The sintax is: c_calc (money wanted) (from) (to) [Check help to see more]")
+		return
+	
+	var from_str = argument[1].to_upper()
+	var to_str = argument[2].to_upper()
+	if !int(argument[0]) || !validArgs.has(from_str) || !validArgs.has(to_str):
+		print_line("Some arguments are not correct. Be sure to check [b]help[/b].", errorAltColor)
+	elif int(argument[0]):
+		var money_arg = int(argument[0])
+		var needed_money : int = GameManager.money_needed(money_arg, from_str, to_str)
+		var returned_money : int = GameManager.money_returned(needed_money, from_str, to_str)
+		
+		print_array(["[b]You want:[/b] %s. (%s)" % [money_arg, to_str],
+		"[b]You need:[/b] %s (%s)." % [needed_money, from_str], "",
+		"[b]You will actually get: [/b] %s (%s)." % [returned_money, to_str]], doneColor)
+	else:
+		show_error("Not a valid number.")
+	
 # ----------- information -------------
 func get_player_data(argument : PackedStringArray = [], fromInfo : bool = false):
 	if fromInfo: check_args_tooMany(argument, 2, ["-"])
