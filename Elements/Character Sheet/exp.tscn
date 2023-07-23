@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://br4spa7odwlg8"]
+[gd_scene load_steps=7 format=3 uid="uid://br4spa7odwlg8"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/expTab.gd" id="1_3hte6"]
 [ext_resource type="PackedScene" uid="uid://biumurf27h45e" path="res://Elements/Character Sheet/exp_window.tscn" id="2_bhqen"]
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="3_8u5gs"]
-[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="3_kduvn"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/expText.gd" id="4_40t1k"]
 [ext_resource type="PackedScene" uid="uid://digv3ro3tv7pw" path="res://Elements/Buttons/edit_button.tscn" id="6_n6rif"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/noEXPAviso.gd" id="10_fad4a"]
@@ -74,18 +73,17 @@ text = "Test"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("4_40t1k")
-player_data = ExtResource("3_kduvn")
 
 [node name="EditButton" parent="HBoxContainer" instance=ExtResource("6_n6rif")]
 layout_mode = 2
 
 [node name="Aviso" type="Window" parent="."]
 title = "Media pila..."
+initial_position = 2
 size = Vector2i(307, 60)
 visible = false
-transient = true
-exclusive = true
 unresizable = true
+popup_window = true
 script = ExtResource("10_fad4a")
 
 [node name="MarginContainer" type="MarginContainer" parent="Aviso"]

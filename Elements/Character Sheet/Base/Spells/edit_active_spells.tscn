@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/edit_active_spells.gd" id="1_bhys5"]
 [ext_resource type="PackedScene" uid="uid://0xtlchy0fx1e" path="res://Elements/Character Sheet/Base/Spells/spellBigger.tscn" id="2_x31vk"]
+[ext_resource type="PackedScene" uid="uid://ddllh341hxnaj" path="res://Elements/Character Sheet/Base/Spells/list_spells.tscn" id="3_vkjpu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t2uu1"]
 bg_color = Color(0.333333, 0.619608, 0.894118, 1)
@@ -65,13 +66,6 @@ expand_margin_top = 4.0
 bg_color = Color(0.101961, 0.0627451, 0.054902, 1)
 expand_margin_top = 3.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylpgt"]
-bg_color = Color(0.294118, 0.211765, 0.282353, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [node name="EditActiveSpells" type="Window"]
 title = "Editar hechizos actuales"
 size = Vector2i(400, 400)
@@ -113,6 +107,7 @@ size_flags_vertical = 3
 tabs_visible = false
 
 [node name="Activos" type="MarginContainer" parent="Elements/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="bg" type="Panel" parent="Elements/TabContainer/Activos"]
@@ -197,64 +192,20 @@ theme_override_colors/font_hover_color = Color(0.52549, 0.0117647, 0, 1)
 text = "X"
 
 [node name="Aprendidos" type="MarginContainer" parent="Elements/TabContainer"]
-visible = false
 layout_mode = 2
 
 [node name="bg" type="Panel" parent="Elements/TabContainer/Aprendidos"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ayfxc")
 
-[node name="margin" type="MarginContainer" parent="Elements/TabContainer/Aprendidos/bg"]
+[node name="ListSpells" parent="Elements/TabContainer/Aprendidos/bg" instance=ExtResource("3_vkjpu")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 5
-theme_override_constants/margin_bottom = 10
-
-[node name="container" type="VBoxContainer" parent="Elements/TabContainer/Aprendidos/bg/margin"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-
-[node name="top" type="HBoxContainer" parent="Elements/TabContainer/Aprendidos/bg/margin/container"]
-layout_mode = 2
-alignment = 1
-
-[node name="Disponibles" type="Label" parent="Elements/TabContainer/Aprendidos/bg/margin/container/top"]
-custom_minimum_size = Vector2(180, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Disponibles: 4"
-
-[node name="filtrar" type="Button" parent="Elements/TabContainer/Aprendidos/bg/margin/container/top"]
-custom_minimum_size = Vector2(80, 0)
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 4
-theme_override_styles/normal = SubResource("StyleBoxFlat_ylpgt")
-text = "Filtrar
-"
-
-[node name="playerList" type="ItemList" parent="Elements/TabContainer/Aprendidos/bg/margin/container"]
-custom_minimum_size = Vector2(320, 190)
-layout_mode = 2
-item_count = 1
-item_0/text = "hola"
-
-[node name="activateSelected" type="Button" parent="Elements/TabContainer/Aprendidos/bg/margin/container"]
-layout_mode = 2
-theme_override_colors/font_pressed_color = Color(0.504723, 0.786442, 0.614779, 1)
-theme_override_colors/font_hover_color = Color(0.309804, 0.545098, 0.403922, 1)
-text = "activar"
-
-[node name="spellInfo" type="Button" parent="Elements/TabContainer/Aprendidos/bg/margin/container"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.486275, 0.45098, 0.698039, 0.211765)
-theme_override_colors/font_pressed_color = Color(0.690511, 0.670248, 0.855979, 1)
-theme_override_colors/font_hover_color = Color(0.486275, 0.45098, 0.698039, 1)
-text = "detalles del hechizo"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -165.0
+offset_top = -149.0
+offset_right = 165.0
+offset_bottom = 149.0

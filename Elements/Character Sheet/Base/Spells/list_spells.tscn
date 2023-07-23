@@ -1,0 +1,281 @@
+[gd_scene load_steps=15 format=3 uid="uid://ddllh341hxnaj"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/list_of_spells.gd" id="1_7oarf"]
+[ext_resource type="Resource" uid="uid://c7f3isuy2vqmv" path="res://_assets/Scripts/Custom Resources/Modules/Races/Raincaster.tres" id="2_s4ilu"]
+[ext_resource type="Resource" uid="uid://68tyucwecfme" path="res://_assets/Scripts/Custom Resources/Modules/Races/Naiad.tres" id="3_y8dcm"]
+[ext_resource type="Resource" uid="uid://dtea7iqdajgj6" path="res://_assets/Scripts/Custom Resources/Modules/Races/Duneborn.tres" id="4_x8jxj"]
+[ext_resource type="Resource" uid="uid://dkfrwgu1yybyw" path="res://_assets/Scripts/Custom Resources/Modules/Races/Humano.tres" id="5_ukeg6"]
+[ext_resource type="Resource" uid="uid://boc80iarlidwg" path="res://_assets/Scripts/Custom Resources/Modules/Races/Draconite.tres" id="6_qie4f"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ylpgt"]
+bg_color = Color(0.294118, 0.211765, 0.282353, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1ij3"]
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mcmx5"]
+bg_color = Color(0.286275, 0.262745, 0.521569, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 2.0
+expand_margin_right = 3.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vi6b8"]
+bg_color = Color(0.0862745, 0.184314, 0.345098, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 2.0
+expand_margin_right = 3.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i1qhd"]
+bg_color = Color(0.137255, 0.364706, 0.537255, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 2.0
+expand_margin_right = 3.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_77e87"]
+bg_color = Color(0.454902, 0.243137, 0.0745098, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 2.0
+expand_margin_right = 3.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bey8l"]
+bg_color = Color(0.172549, 0.34902, 0.25098, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 2.0
+expand_margin_right = 3.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n62sq"]
+bg_color = Color(0.501961, 0.188235, 0.160784, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 2.0
+expand_margin_right = 3.0
+expand_margin_bottom = 2.0
+
+[node name="ListSpells" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 10
+script = ExtResource("1_7oarf")
+racesOrdered = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Races.gd")]([ExtResource("2_s4ilu"), ExtResource("3_y8dcm"), ExtResource("4_x8jxj"), ExtResource("5_ukeg6"), ExtResource("6_qie4f")])
+isCombatList = true
+
+[node name="container" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="top" type="HBoxContainer" parent="container"]
+layout_mode = 2
+alignment = 1
+
+[node name="Disponibles" type="Label" parent="container/top"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Disponibles: 4"
+
+[node name="filtrar" type="Button" parent="container/top"]
+custom_minimum_size = Vector2(80, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_ylpgt")
+text = "Filtrar
+"
+
+[node name="playerList" type="ItemList" parent="container"]
+custom_minimum_size = Vector2(320, 190)
+layout_mode = 2
+item_count = 1
+item_0/text = "hola"
+
+[node name="activateSelected" type="Button" parent="container"]
+layout_mode = 2
+theme_override_colors/font_pressed_color = Color(0.504723, 0.786442, 0.614779, 1)
+theme_override_colors/font_hover_color = Color(0.309804, 0.545098, 0.403922, 1)
+text = "activar"
+
+[node name="spellInfo" type="Button" parent="container"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.486275, 0.45098, 0.698039, 0.211765)
+theme_override_colors/font_pressed_color = Color(0.690511, 0.670248, 0.855979, 1)
+theme_override_colors/font_hover_color = Color(0.486275, 0.45098, 0.698039, 1)
+text = "detalles del hechizo"
+
+[node name="Filters" type="Window" parent="."]
+title = "Filtros"
+initial_position = 2
+size = Vector2i(300, 400)
+visible = false
+wrap_controls = true
+unresizable = true
+always_on_top = true
+
+[node name="bg" type="Panel" parent="Filters"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j1ij3")
+
+[node name="Margin" type="MarginContainer" parent="Filters"]
+custom_minimum_size = Vector2(0, 400)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Elements" type="VBoxContainer" parent="Filters/Margin"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="Title" type="RichTextLabel" parent="Filters/Margin/Elements"]
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[b]Filtrar por...[/b]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="ShowAll" type="CheckBox" parent="Filters/Margin/Elements"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Mostrar todos"
+
+[node name="Level" type="HBoxContainer" parent="Filters/Margin/Elements"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 40
+
+[node name="Nivel" type="Label" parent="Filters/Margin/Elements/Level"]
+layout_mode = 2
+text = "Nivel:"
+
+[node name="Options" type="VBoxContainer" parent="Filters/Margin/Elements/Level"]
+layout_mode = 2
+
+[node name="Min" type="HBoxContainer" parent="Filters/Margin/Elements/Level/Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Filters/Margin/Elements/Level/Options/Min"]
+layout_mode = 2
+text = "MIN:"
+
+[node name="SpinBox" type="SpinBox" parent="Filters/Margin/Elements/Level/Options/Min"]
+layout_mode = 2
+min_value = 1.0
+max_value = 20.0
+value = 1.0
+rounded = true
+
+[node name="Max" type="HBoxContainer" parent="Filters/Margin/Elements/Level/Options"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Filters/Margin/Elements/Level/Options/Max"]
+layout_mode = 2
+text = "MAX:"
+
+[node name="SpinBox" type="SpinBox" parent="Filters/Margin/Elements/Level/Options/Max"]
+layout_mode = 2
+min_value = 2.0
+max_value = 20.0
+value = 20.0
+rounded = true
+
+[node name="Race" type="HBoxContainer" parent="Filters/Margin/Elements"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Filters/Margin/Elements/Race"]
+layout_mode = 2
+text = "Razas:"
+
+[node name="List" type="VBoxContainer" parent="Filters/Margin/Elements/Race"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="Raincaster" type="CheckBox" parent="Filters/Margin/Elements/Race/List"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_mcmx5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vi6b8")
+text = "Raincaster"
+
+[node name="Naiad" type="CheckBox" parent="Filters/Margin/Elements/Race/List"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_i1qhd")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vi6b8")
+text = "Naiad"
+
+[node name="Duneborn" type="CheckBox" parent="Filters/Margin/Elements/Race/List"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_77e87")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vi6b8")
+text = "Duneborn"
+
+[node name="Humano" type="CheckBox" parent="Filters/Margin/Elements/Race/List"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_bey8l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vi6b8")
+text = "Humano"
+
+[node name="Draconite" type="CheckBox" parent="Filters/Margin/Elements/Race/List"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/normal = SubResource("StyleBoxFlat_n62sq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vi6b8")
+text = "Draconite"
+
+[node name="FilterButton" type="Button" parent="Filters/Margin/Elements"]
+layout_mode = 2
+text = "Actualizar lista"

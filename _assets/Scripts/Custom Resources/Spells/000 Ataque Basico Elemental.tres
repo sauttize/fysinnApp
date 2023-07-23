@@ -14,6 +14,7 @@ throwMultiplier = "1"
 throwDice = "d6"
 rangeDistance = 0
 saveThrow = "none"
+saveNumber = 1
 description = "Todos los personajes comienzan con este ataque, a excepción de la clase Elemental."
 isElemental = true
 element = ExtResource("1_40xyw")

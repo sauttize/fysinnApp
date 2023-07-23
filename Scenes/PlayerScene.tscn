@@ -310,8 +310,6 @@ layout_mode = 2
 [node name="Console" parent="Window/Container/TabContainer" instance=ExtResource("16_jijpf")]
 visible = false
 layout_mode = 2
-editorSize = Vector2(1000, 600)
-defaultSize = Vector2(700, 700)
 
 [node name="LoadResource" type="FileDialog" parent="."]
 title = "Open a File"

@@ -1,5 +1,5 @@
 extends Window
-@export var player_data : PlayerData
+@onready var player_data : PlayerData = GameManager.GetCurrentSaveFile()
 @export var base_number_node : OptionButton
 @export var multiplier_node : OptionButton
 @export var aviso : Window

@@ -5,5 +5,10 @@
 [resource]
 script = ExtResource("1_ec33k")
 type = 8
+hitPointMultiplier = 1
+hitPointDice = 4
+knowledgeList = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd")]([])
+starterPack = Array[Resource]([])
+starterEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])
 primaryColor = Color(0.121569, 0.407843, 0.741176, 1)
 secundaryColor = Color(1, 1, 1, 1)

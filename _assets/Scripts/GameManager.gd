@@ -9,6 +9,9 @@ const SAVE_ROUTE = "user://saves/CurrentPlayer.tres"
 
 const EFFECTS_ROUTE = "res://_assets/Scripts/Custom Resources/Effects/"
 const INFO_ROUTE = "res://_assets/Scripts/Custom Resources/Data/Information/Blocks/"
+const SPELLS_ROUTE = "res://_assets/Scripts/Custom Resources/Spells/"
+
+const RACE_NONE = "res://_assets/Scripts/Custom Resources/Modules/Races/_none.tres"
 
 var saving : bool = false
 
@@ -103,16 +106,6 @@ func GetAllSaves() -> Array[PlayerData]:
 			allSaves.push_back(playerData)
 	return allSaves
 
-func GetAllInfoBlocks() -> Array[InfoBlock]:
-	var allBlocks : Array[InfoBlock]
-	var pathList : PackedStringArray = DirAccess.get_files_at(INFO_ROUTE)
-	for path in pathList:
-		var infoBlock
-		infoBlock = ResourceLoader.load(INFO_ROUTE + path)
-		if infoBlock is InfoBlock:
-			allBlocks.push_back(infoBlock)
-	return allBlocks
-
 func updatePathList(array : PackedStringArray) -> PackedStringArray:
 	for n in array.size():
 		array[n] = SAVES_FOLDER_ROUTE + array[n]
@@ -161,6 +154,12 @@ func UpdateCurrentPD(data : PlayerData):
 	ResourceSaver.save(currentSave, SAVE_ROUTE)
 	currentSave.take_over_path(SAVE_ROUTE)
 
+# Get specific kind of data
+func GetRaceNone() -> Race:
+	var raceNone : Race
+	raceNone = ResourceLoader.load(RACE_NONE)
+	return raceNone
+
 # Full lists of data
 func GetAllEffects() -> Array[Effect]:
 	var allEffects : Array[Effect] = []
@@ -171,6 +170,26 @@ func GetAllEffects() -> Array[Effect]:
 		if thisEffect is Effect:
 			allEffects.push_back(thisEffect)
 	return allEffects
+
+func GetAllInfoBlocks() -> Array[InfoBlock]:
+	var allBlocks : Array[InfoBlock]
+	var pathList : PackedStringArray = DirAccess.get_files_at(INFO_ROUTE)
+	for path in pathList:
+		var infoBlock
+		infoBlock = ResourceLoader.load(INFO_ROUTE + path)
+		if infoBlock is InfoBlock:
+			allBlocks.push_back(infoBlock)
+	return allBlocks
+
+func GetAllSpells() -> Array[Spell]:
+	var allSpells : Array[Spell]
+	var pathList : PackedStringArray = DirAccess.get_files_at(SPELLS_ROUTE)
+	for path in pathList:
+		var spell
+		spell = ResourceLoader.load(SPELLS_ROUTE + path)
+		if spell is Spell:
+			allSpells.push_back(spell)
+	return allSpells
 
 # Functionalities
 # Currency related

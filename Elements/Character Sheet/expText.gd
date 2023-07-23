@@ -1,6 +1,6 @@
 extends Label
 
-@export var player_data : PlayerData
+@onready var player_data : PlayerData = GameManager.GetCurrentSaveFile()
 
 func _ready():
 	text = str(player_data.experiencia)

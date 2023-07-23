@@ -81,13 +81,14 @@ bg_color = Color(0.298039, 0.298039, 0.298039, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qdfpp"]
 bg_color = Color(0.2, 0.411765, 0.376471, 1)
 corner_radius_top_left = 12
-corner_radius_top_right = 1
-corner_radius_bottom_right = 1
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gnahd"]
 bg_color = Color(0.686275, 0.341176, 0.301961, 1)
 corner_radius_top_left = 12
+corner_radius_top_right = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4tw0"]
 bg_color = Color(0.2, 0.411765, 0.376471, 1)
@@ -98,8 +99,10 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rc6r4"]
 bg_color = Color(0.380392, 0.341176, 0.647059, 1)
+corner_radius_top_left = 20
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ot2fb"]
 bg_color = Color(0.121569, 0.12549, 0.180392, 1)
@@ -127,11 +130,14 @@ corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r12m"]
 bg_color = Color(0.403922, 0.403922, 0.403922, 1)
+corner_radius_top_left = 20
 corner_radius_top_right = 15
 corner_radius_bottom_right = 15
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vx4y0"]
 bg_color = Color(0.203922, 0.176471, 0.141176, 1)
+corner_radius_top_left = 20
 corner_radius_bottom_right = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v7duf"]
@@ -148,8 +154,8 @@ corner_radius_bottom_left = 5
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ftec"]
 bg_color = Color(0.380706, 0.341302, 0.648213, 1)
 corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
 corner_radius_bottom_left = 10
 
 [node name="Base" type="MarginContainer" node_paths=PackedStringArray("editLife", "editArmor")]
@@ -171,7 +177,6 @@ editArmor = NodePath("Container/FirstRow/ArmorVida/Armadura/AddTempArmor")
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 15
-metadata/_edit_lock_ = true
 
 [node name="FirstRow" type="HBoxContainer" parent="Container"]
 layout_mode = 2
@@ -179,14 +184,12 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 alignment = 1
-metadata/_edit_lock_ = true
 
 [node name="Stats" parent="Container/FirstRow" instance=ExtResource("1_b7ayw")]
 custom_minimum_size = Vector2(210, 240)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-metadata/_edit_lock_ = true
 
 [node name="AplhaTween" parent="Container/FirstRow/Stats" node_paths=PackedStringArray("node") instance=ExtResource("23_qsonh")]
 node = NodePath("..")
@@ -196,7 +199,6 @@ duration = 0.8
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 10
-metadata/_edit_lock_ = true
 
 [node name="Armadura" type="Control" parent="Container/FirstRow/ArmorVida"]
 custom_minimum_size = Vector2(210, 110)
@@ -564,7 +566,6 @@ script = ExtResource("13_v3jk2")
 picNode = NodePath("picture")
 statsNode = NodePath("stats")
 currentPic = NodePath("picture/bgFoto/profilePic")
-metadata/_edit_lock_ = true
 
 [node name="bg" type="Panel" parent="Container/FirstRow/RightPanel"]
 layout_mode = 1
@@ -575,14 +576,12 @@ offset_right = 46.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qdfpp")
-metadata/_edit_lock_ = true
 
 [node name="topPanel" type="Panel" parent="Container/FirstRow/RightPanel"]
 layout_mode = 0
-offset_right = 254.0
+offset_right = 256.0
 offset_bottom = 30.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_gnahd")
-metadata/_edit_lock_ = true
 
 [node name="status" type="MarginContainer" parent="Container/FirstRow/RightPanel/topPanel"]
 layout_mode = 1
@@ -1519,8 +1518,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_7r12m")
 
 [node name="className" type="Panel" parent="Container/ThirdRow/Class Info/bg"]
 layout_mode = 1
-offset_left = 26.0
-offset_right = 414.0
+offset_right = 425.0
 offset_bottom = 29.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_vx4y0")
 
@@ -1529,9 +1527,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 21.0
+offset_left = 49.0
 offset_top = -13.0
-offset_right = 67.0
+offset_right = 95.0
 offset_bottom = 13.0
 grow_vertical = 2
 text = "Clase:"

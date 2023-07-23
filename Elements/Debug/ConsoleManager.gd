@@ -36,7 +36,8 @@ var commandList : Dictionary = {
 	"add_effect": "add_effect", "newe": "add_effect", "neweffect": "add_effect",
 	"effect": "show_effect", "eff" : "show_effect",
 	"myeff": "show_active_effects", "myeffects": "show_active_effects", "mye" : "show_active_effects",
-	"master": "master_tools",
+	"alleff" : "list_of_effects", "alle" : "list_of_effects", "all_effects" : "list_of_effects", "alleffect" : "list_of_effects",
+	"master": "master_tools", "dm" : "master_tools",
 	"text" : "change_text",
 	"editor_mode": "change_to_editor", "editor": "change_to_editor",
 	"currency_calc" : "currency_calculator", "c_calc" : "currency_calculator", "money_c": "currency_calculator"
@@ -319,6 +320,28 @@ func simple_change(argument : PackedStringArray, change : String, doneMessage : 
 
 func check_path_or_create(path : String):
 	DirAccess.make_dir_absolute(path)
+# To get the start and finish indexes of an array given a page number
+func get_index_vector(allElements : Array, page_num) -> Vector4:
+	var elementsSize : int
+	
+	var start_index : int = 0
+	var max_index : int = 0
+	
+	var max_pages : int = 1
+	var final_page : int = 1
+	
+	elementsSize = (allElements.size())
+	max_pages = floori(float(elementsSize) / 10.0) + 1
+	if abs(page_num) > max_pages: 
+		start_index = (max_pages - 1) * 10
+		final_page = max_pages
+	else: 
+		start_index = (abs(page_num) - 1) * 10
+		final_page = abs(page_num)
+	
+	max_index = (start_index + 10) if final_page != max_pages else elementsSize
+	
+	return Vector4(start_index, max_index, final_page, max_pages)
 
 ## ----------- COMMANDS -------------
 # ----------- console related -------------
@@ -378,6 +401,9 @@ func change_text(argument : PackedStringArray = []):
 	logScreen.add_theme_font_size_override("bold_italics_font_size", currentFontSize)
 
 func change_to_editor(argument : PackedStringArray = []):
+	if !OS.is_debug_build():
+		show_error("Command only works in build version.")
+		return
 	no_arguments_needed(argument)
 	editorVersion = !editorVersion
 	change_window_size(editorVersion)
@@ -635,10 +661,27 @@ func external_link(argument : PackedStringArray = []):
 		OS.shell_open('https://www.notion.so/sauttize/Clases-83b67d58e95b4ae389074bfecaf74943')
 		return
 	show_error("Search failed! Try another term.")
+# ----------- list of -------------
+func list_of_effects(argument : PackedStringArray = []):
+	if check_args_tooMany(argument, 1): show_error("Only arguments needed are page number.")
+	var page_num : int = 1
+	if argument.size() != 0 and argument[0]: page_num = int(argument[0])
+	
+	var fullList : Array[Effect] = GameManager.GetAllEffects()
+	var indexes = get_index_vector(fullList, page_num)
+	
+	print_array(["--- LIST OF EFFECTS ---", ""], outputColor)
+	for n in range(indexes.x, indexes.y):
+		var eff = fullList[n]
+		print_line("> [b]%s[/b] (%s, %s)" % [eff.effectName, eff.effectType, eff.effectNature], outputColor)
+	print_array(["","[i]page %s of %s. (%s to %s)[/i]" % [indexes.z, indexes.w, indexes.x, indexes.y]], outputColor)
 # ----------- MASTER TOOLS -------------
 func master_tools(argument : PackedStringArray = []):
 	if was_generic_asked(argument, ["help"]) || no_arguments(argument): show_this_help(helpMaster)
 	if was_generic_asked(argument, ["help_bu", "backup"]):
+		if !OS.is_debug_build():
+			show_error("That command only is available in debug mode.")
+			return
 		dataDumpOG.helpList = helpList
 		dataDumpOG.helpChangeColor = helpChangeColor
 		dataDumpOG.helpSaveFile = helpSaveFile
