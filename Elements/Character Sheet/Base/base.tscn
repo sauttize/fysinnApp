@@ -828,6 +828,7 @@ stretch_mode = 5
 script = ExtResource("25_vn034")
 hoverColor = Color(0.59272, 0.305705, 0.414215, 1)
 openWindow = NodePath("../../editNum")
+internalClose = false
 
 [node name="num" type="Label" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/danger"]
 texture_filter = 1
@@ -871,6 +872,7 @@ rounded = true
 [node name="options" type="OptionButton" parent="Container/FirstRow/RightPanel/stats/vbox/hbox/editNum/vbox"]
 layout_mode = 2
 item_count = 2
+selected = 0
 popup/item_0/text = "Fama"
 popup/item_0/id = 0
 popup/item_1/text = "Indice búsqueda"
@@ -1016,17 +1018,14 @@ offset_bottom = 93.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SpellList" type="VBoxContainer" parent="Container/SecondRow/Spells/container/skillsPanel/vertical" node_paths=PackedStringArray("editWindow", "editWindowButton", "spellNode1", "spellNode2", "spellNode3", "spellNode4")]
+[node name="SpellList" type="VBoxContainer" parent="Container/SecondRow/Spells/container/skillsPanel/vertical" node_paths=PackedStringArray("editWindow", "editWindowButton", "spellNodeList")]
 custom_minimum_size = Vector2(190, 152)
 layout_mode = 2
 size_flags_horizontal = 4
 script = ExtResource("29_pvy43")
 editWindow = NodePath("EditActiveSpells")
 editWindowButton = NodePath("bg/editList")
-spellNode1 = NodePath("Slot1")
-spellNode2 = NodePath("Slot2")
-spellNode3 = NodePath("Slot3")
-spellNode4 = NodePath("Slot4")
+spellNodeList = [NodePath("Slot1"), NodePath("Slot2"), NodePath("Slot3"), NodePath("Slot4")]
 
 [node name="Slot1" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList" instance=ExtResource("30_0ijt3")]
 layout_mode = 2
@@ -1057,7 +1056,6 @@ text = "edit
 "
 
 [node name="EditActiveSpells" parent="Container/SecondRow/Spells/container/skillsPanel/vertical/SpellList" instance=ExtResource("31_niqo8")]
-visible = false
 
 [node name="info" type="Control" parent="Container/SecondRow/Spells/container/skillsPanel/vertical" node_paths=PackedStringArray("casillasNumber", "velocityNumber", "initiativeNumber")]
 custom_minimum_size = Vector2(190, 30)

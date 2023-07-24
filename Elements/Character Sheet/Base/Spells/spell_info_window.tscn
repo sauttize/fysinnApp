@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dg020eras2o4r"]
+[gd_scene load_steps=9 format=3 uid="uid://dg020eras2o4r"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/SpellInfoWindow.gd" id="1_rflab"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2d50t"]
+bg_color = Color(0.0980392, 0.0980392, 0.0980392, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xmphv"]
-bg_color = Color(0.403922, 0.372549, 0.588235, 1)
+bg_color = Color(0.239216, 0.247059, 0.454902, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -13,7 +16,7 @@ expand_margin_right = 4.0
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayser"]
-bg_color = Color(0.607843, 0.403922, 0.470588, 1)
+bg_color = Color(0.419608, 0.294118, 0.345098, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -23,7 +26,7 @@ expand_margin_right = 4.0
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7055f"]
-bg_color = Color(0.572549, 0.584314, 0.439216, 1)
+bg_color = Color(0.192157, 0.392157, 0.372549, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
@@ -33,6 +36,10 @@ expand_margin_right = 4.0
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oudx6"]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
 bg_color = Color(0.6, 0.6, 0.6, 0.564706)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -59,14 +66,38 @@ expand_margin_left = 2.0
 expand_margin_right = 4.0
 anti_aliasing = false
 
-[node name="SpellInfo" type="Window"]
+[node name="SpellInfo" type="Window" node_paths=PackedStringArray("moreInfoElement", "activateEffect", "notionLink", "winName", "winElement", "winType", "winLevel", "winIsCombat", "winRace", "winThrow", "winRange", "winSaveThrow", "winDescription", "winBuff", "winDebuff")]
 title = "Información sobre el hechizo"
+initial_position = 2
 size = Vector2i(400, 400)
 visible = false
-transient = true
-exclusive = true
+wrap_controls = true
 unresizable = true
+always_on_top = true
 script = ExtResource("1_rflab")
+moreInfoElement = NodePath("Container/vertical/boxElement/info")
+activateEffect = NodePath("Container/vertical/elementalEffect/right/activateEffects")
+notionLink = NodePath("Container/vertical/elementalEffect/right/goToNotion")
+winName = NodePath("Container/vertical/boxName/name")
+winElement = NodePath("Container/vertical/boxElement/element")
+winType = NodePath("Container/vertical/tabla/type")
+winLevel = NodePath("Container/vertical/tabla/level")
+winIsCombat = NodePath("Container/vertical/tabla/isCombat")
+winRace = NodePath("Container/vertical/tabla/race")
+winThrow = NodePath("Container/vertical/tabla/dice")
+winRange = NodePath("Container/vertical/tabla/range")
+winSaveThrow = NodePath("Container/vertical/tabla/saveThrow")
+winDescription = NodePath("Container/vertical/extraInfo")
+winBuff = NodePath("Container/vertical/elementalEffect/left/buff")
+winDebuff = NodePath("Container/vertical/elementalEffect/left/debuff")
+
+[node name="bg" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2d50t")
 
 [node name="Container" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -81,7 +112,7 @@ theme_override_constants/margin_bottom = 10
 
 [node name="vertical" type="VBoxContainer" parent="Container"]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 4
 
 [node name="Titulo" type="Label" parent="Container/vertical"]
 layout_mode = 2
@@ -135,7 +166,7 @@ color = Color(0.54902, 0.54902, 0.54902, 0.498039)
 [node name="tabla" type="GridContainer" parent="Container/vertical"]
 layout_mode = 2
 theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 3
+theme_override_constants/v_separation = 4
 columns = 4
 
 [node name="lblType" type="Label" parent="Container/vertical/tabla"]
@@ -213,38 +244,49 @@ custom_minimum_size = Vector2(0, 130)
 layout_mode = 2
 focus_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_oudx6")
-text = "adad"
+bbcode_enabled = true
+text = "Informacion"
 selection_enabled = true
 
 [node name="elementalEffect" type="HBoxContainer" parent="Container/vertical"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 theme_override_constants/separation = 5
 
-[node name="lblBuff" type="Label" parent="Container/vertical/elementalEffect"]
+[node name="left" type="HBoxContainer" parent="Container/vertical/elementalEffect"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="lblBuff" type="Label" parent="Container/vertical/elementalEffect/left"]
 layout_mode = 2
 text = "Buff:"
 
-[node name="buff" type="Label" parent="Container/vertical/elementalEffect"]
+[node name="buff" type="Label" parent="Container/vertical/elementalEffect/left"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_hxbw2")
 text = "-"
 
-[node name="lblDebuff" type="Label" parent="Container/vertical/elementalEffect"]
+[node name="lblDebuff" type="Label" parent="Container/vertical/elementalEffect/left"]
 layout_mode = 2
 text = "Debuff:"
 
-[node name="debuff" type="Label" parent="Container/vertical/elementalEffect"]
+[node name="debuff" type="Label" parent="Container/vertical/elementalEffect/left"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_333vb")
 text = "-"
 
-[node name="activatePassive" type="Button" parent="Container/vertical/elementalEffect"]
+[node name="right" type="HBoxContainer" parent="Container/vertical/elementalEffect"]
+layout_mode = 2
+alignment = 2
+
+[node name="activateEffects" type="Button" parent="Container/vertical/elementalEffect/right"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 10
-text = "Activar Pasiva"
+text = "Activar Efectos"
 
-[node name="goToNotion" type="Button" parent="Container/vertical/elementalEffect"]
+[node name="goToNotion" type="Button" parent="Container/vertical/elementalEffect/right"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 10

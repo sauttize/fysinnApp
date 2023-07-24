@@ -145,7 +145,8 @@ custom_minimum_size = Vector2(20, 200)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
 theme_override_styles/panel = SubResource("StyleBoxFlat_wq0kr")
-max_columns = 3
+max_columns = 0
+same_column_width = true
 fixed_column_width = 200
 script = ExtResource("1_gfvjb")
 starContainer = NodePath("../knInfo/levelStars")
@@ -428,8 +429,9 @@ text = "0
 horizontal_alignment = 1
 
 [node name="ThirdRow" type="Control" parent="VBOX"]
-custom_minimum_size = Vector2(0, 300)
+custom_minimum_size = Vector2(680, 300)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Historial" type="Panel" parent="VBOX/ThirdRow"]
 custom_minimum_size = Vector2(262, 0)

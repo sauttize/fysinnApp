@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://ddllh341hxnaj"]
+[gd_scene load_steps=16 format=3 uid="uid://ddllh341hxnaj"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/list_of_spells.gd" id="1_7oarf"]
+[ext_resource type="PackedScene" uid="uid://dg020eras2o4r" path="res://Elements/Character Sheet/Base/Spells/spell_info_window.tscn" id="2_h5jcw"]
 [ext_resource type="Resource" uid="uid://c7f3isuy2vqmv" path="res://_assets/Scripts/Custom Resources/Modules/Races/Raincaster.tres" id="2_s4ilu"]
 [ext_resource type="Resource" uid="uid://68tyucwecfme" path="res://_assets/Scripts/Custom Resources/Modules/Races/Naiad.tres" id="3_y8dcm"]
 [ext_resource type="Resource" uid="uid://dtea7iqdajgj6" path="res://_assets/Scripts/Custom Resources/Modules/Races/Duneborn.tres" id="4_x8jxj"]
@@ -83,7 +84,7 @@ expand_margin_top = 2.0
 expand_margin_right = 3.0
 expand_margin_bottom = 2.0
 
-[node name="ListSpells" type="MarginContainer"]
+[node name="ListSpells" type="MarginContainer" node_paths=PackedStringArray("spellInfoButton")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -94,6 +95,8 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 10
 script = ExtResource("1_7oarf")
+spellInfoButton = NodePath("container/spellInfo")
+spellInfoWindow = ExtResource("2_h5jcw")
 racesOrdered = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Races.gd")]([ExtResource("2_s4ilu"), ExtResource("3_y8dcm"), ExtResource("4_x8jxj"), ExtResource("5_ukeg6"), ExtResource("6_qie4f")])
 isCombatList = true
 

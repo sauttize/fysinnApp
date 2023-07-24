@@ -1,5 +1,5 @@
 extends Control
-class_name SpellNode
+class_name SpellSlot
 
 @export var spellData : Spell
 
@@ -19,14 +19,20 @@ func _ready() -> void:
 	
 	window.close_requested.connect(hideWindow)
 
-func update_Basics():
-	labName.text = spellData.spellName
-	labLevel.text = "niv: " + str(spellData.level)
+func update_Basics(newSpell):
+	if newSpell == null: 
+		spellData = null
+		labName.text = "-"
+		labLevel.text = "niv: " 
+	else:
+		spellData = newSpell
+		labName.text = spellData.spellName
+		labLevel.text = "niv: " + str(spellData.level)
 
 # WINDOW
 func showWindow():
 	if(spellData):
-		window.popup_centered_clamped()
+		window.show()
 		window.update_Complete(spellData)
 
 func hideWindow():

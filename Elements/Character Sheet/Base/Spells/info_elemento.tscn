@@ -4,31 +4,48 @@
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Spells/tablaElemental.gd" id="3_neny8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vobv4"]
-bg_color = Color(0.478431, 0.54902, 0.564706, 1)
+bg_color = Color(0.14902, 0.152941, 0.168627, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w24ln"]
-bg_color = Color(0.345098, 0.67451, 0.541176, 1)
+bg_color = Color(0.360784, 0.54902, 0.290196, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 5.0
-expand_margin_right = 5.0
+expand_margin_left = 7.0
+expand_margin_top = 1.0
+expand_margin_right = 7.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.431373)
+shadow_size = 5
+shadow_offset = Vector2(0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_smx1g"]
-bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+bg_color = Color(0.584314, 0.584314, 0.584314, 0.227451)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+shadow_color = Color(0, 0, 0, 0.25098)
+shadow_size = 3
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1eauq"]
-bg_color = Color(0.92549, 0.239216, 0.454902, 1)
+bg_color = Color(0.917647, 0.121569, 0.192157, 1)
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-expand_margin_left = 5.0
-expand_margin_right = 5.0
+expand_margin_left = 7.0
+expand_margin_top = 1.0
+expand_margin_right = 7.0
+expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.431373)
+shadow_size = 5
+shadow_offset = Vector2(0, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xoreh"]
-bg_color = Color(0.345098, 0.345098, 0.345098, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u35ep"]
+bg_color = Color(0.584314, 0.584314, 0.584314, 0.227451)
+corner_radius_bottom_left = 12
 
 [node name="Info Elemento" type="Window"]
 title = "Elemento"
@@ -85,7 +102,7 @@ text = "
 fit_content = true
 
 [node name="divisor" type="Panel" parent="container/vbox/hbox"]
-custom_minimum_size = Vector2(2, 0)
+custom_minimum_size = Vector2(5, 0)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_smx1g")
 
@@ -108,9 +125,9 @@ text = "
 fit_content = true
 
 [node name="vDivider" type="Panel" parent="container/vbox"]
-custom_minimum_size = Vector2(0, 2)
+custom_minimum_size = Vector2(0, 3)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_xoreh")
+theme_override_styles/panel = SubResource("StyleBoxFlat_u35ep")
 
 [node name="boton" type="MarginContainer" parent="container/vbox"]
 layout_mode = 2

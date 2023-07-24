@@ -569,8 +569,13 @@ func get_player_data(argument : PackedStringArray = [], fromInfo : bool = false)
 	print_line("[b]Class: [/b]" + str(playerData.classtype.getString(true)), outputColor)
 	print_line("[b]Element: [/b]" + str(playerData.elemento.getString()), outputColor)
 	
+	# Other
+	print_line("")
+	print_line("[b]Fame level: [/b]" + str(playerData.famePercentage), outputColor)
+	print_line("[b]Criminal level: [/b]" + str(playerData.criminalPercentage), outputColor)
+	
 	if was_generic_asked(argument, ["-s", "full"]):
-		print_line("", outputColor)
+		print_line("")
 		print_line("[b]STR: [/b]" + str(playerData.stats.strength) + " ,[b]MOD: [/b]" + str(playerData.stats.strengthMOD), outputColor)
 		print_line("[b]DEX: [/b]" + str(playerData.stats.dexterity) + " ,[b]MOD: [/b]" + str(playerData.stats.dexterityMOD), outputColor)
 		print_line("[b]CON: [/b]" + str(playerData.stats.constitution) + " ,[b]MOD: [/b]" + str(playerData.stats.constitutionMOD), outputColor)
@@ -578,7 +583,7 @@ func get_player_data(argument : PackedStringArray = [], fromInfo : bool = false)
 		print_line("[b]WIS: [/b]" + str(playerData.stats.wisdom) + " ,[b]MOD: [/b]" + str(playerData.stats.wisdomMOD), outputColor)
 		print_line("[b]CHA: [/b]" + str(playerData.stats.charisma) + " ,[b]MOD: [/b]" + str(playerData.stats.charismaMOD), outputColor)
 	if was_generic_asked(argument, ["-l", "full"]):
-		print_line("", outputColor)
+		print_line("")
 		print_line("[b]Current life: [/b]" + str(playerData.currentLife), outputColor)
 		print_line("[b]MAX life: [/b]" + str(playerData.maxLife), outputColor)
 		print_line("[b]Speed: [/b]" + str(playerData.speed) + "(" + str(playerData.speed / 5) + " blocks)", outputColor)

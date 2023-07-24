@@ -1,28 +1,31 @@
 extends Window
+class_name SpellInfoWindow
 
 var spellData : Spell
 
-# PRELOADS
+# PRELOADS AND OTHER
 var info_Elemental = preload("res://Elements/Character Sheet/Base/Spells/info_elemento.tscn")
 
 # BUTTONS
-@onready var moreInfoElement : Button = $Container/vertical/boxElement/info
-@onready var activatePassive : Button = $Container/vertical/elementalEffect/activatePassive
-@onready var notionLink : Button = $Container/vertical/elementalEffect/goToNotion
+@export_subgroup("Buttons")
+@export var moreInfoElement : Button
+@export var activateEffect : Button
+@export var notionLink : Button
 
 # LABELS
-@onready var winName : Label = $Container/vertical/boxName/name
-@onready var winElement : Label = $Container/vertical/boxElement/element
-@onready var winType : Label = $Container/vertical/tabla/type
-@onready var winLevel : Label = $Container/vertical/tabla/level
-@onready var winIsCombat : Label = $Container/vertical/tabla/isCombat
-@onready var winRace : Label = $Container/vertical/tabla/race
-@onready var winThrow : Label = $Container/vertical/tabla/dice
-@onready var winRange : Label = $Container/vertical/tabla/range
-@onready var winSaveThrow : Label = $Container/vertical/tabla/saveThrow
-@onready var winDescription : RichTextLabel = $Container/vertical/extraInfo
-@onready var winBuff : Label = $Container/vertical/elementalEffect/buff
-@onready var winDebuff : Label = $Container/vertical/elementalEffect/debuff
+@export_subgroup("Labels")
+@export var winName : Label
+@export var winElement : Label
+@export var winType : Label
+@export var winLevel : Label
+@export var winIsCombat : Label
+@export var winRace : Label
+@export var winThrow : Label
+@export var winRange : Label
+@export var winSaveThrow : Label
+@export var winDescription : RichTextLabel
+@export var winBuff : Label
+@export var winDebuff : Label
 
 func _ready() -> void:
 	#buttons set up
@@ -38,32 +41,51 @@ func update_Complete(data : Spell):
 		winElement.text = spellData.element.getString()
 		winBuff.text = spellData.buffMuliplier + spellData.buffElementalDice
 		winDebuff.text = spellData.debuffMuliplier + spellData.debuffElementalDice
-		
-		if (spellData.spellType): 
-			var typesString : Array[String] = spellData.getTypesAsString()
-			winType.text = ""
-			for n in typesString.size():
-				winType.text += typesString[n].to_pascal_case()
-				if (n != typesString.size() - 1): winType.text += ", "
-		
-		winLevel.text = str(spellData.level)
-		
-		if (spellData.combat): winIsCombat.text = "Utilizable"
-		else: winIsCombat.text = "No utilizable"
-		
-		
-		if (spellData.races): 
-			var racesString : Array[String] = spellData.getRacesAsString()
-			winRace.text = ""
+	
+	if (spellData.spellType): # Type
+		var typesString : Array[String] = spellData.getTypesAsString()
+		winType.text = ""
+		for n in typesString.size():
+			winType.text += typesString[n].to_pascal_case()
+			if (n != typesString.size() - 1): winType.text += ", "
+	
+	winLevel.text = str(spellData.level) # Level
+	
+	# For combat or not
+	if (spellData.combat): winIsCombat.text = "Utilizable"
+	else: winIsCombat.text = "No utilizable"
+	
+	if (spellData.races): # Races
+		var racesString : Array[String] = spellData.getRacesAsString()
+		winRace.text = ""
+		if racesString.has("All"):
+			winRace.text = "Todas"
+		else:
 			for n in racesString.size():
 				winRace.text += racesString[n].to_pascal_case()
 				if (n != racesString.size() - 1): winRace.text += ", "
-		
-		winThrow.text = spellData.throwMultiplier + spellData.throwDice
-		winRange.text = str(spellData.rangeDistance)
-		if (!spellData.saveThrow == "none"):
-			winSaveThrow.text = spellData.saveThrow
-		winDescription.text = spellData.description
+	
+	# Win, save throw & Range
+	winThrow.text = spellData.throwMultiplier + spellData.throwDice
+	winRange.text = str(spellData.rangeDistance)
+	if (!spellData.saveThrow == "none"):
+		winSaveThrow.text = spellData.saveThrow
+	winDescription.text = spellData.description
+	
+	
+	if spellData.effects.size() == 0:
+		activateEffect.disabled = true
+	else:
+		activateEffect.disabled = false
+		activateEffect.pressed.connect(activate_effect)
+
+func activate_effect():
+	if spellData.effects.size() != 0 && spellData.effects is Array[Effect]:
+		var playerData = GameManager.GetCurrentSaveFile() as PlayerData
+		for eff in spellData.effects:
+			playerData.activeEffects.append(eff)
+		GameManager.UpdateOriginalSaveFile()
+		get_tree().reload_current_scene()
 
 func goToLink():
 	spellData.goToLink()

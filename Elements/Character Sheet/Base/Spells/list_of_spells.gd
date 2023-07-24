@@ -1,6 +1,6 @@
 extends MarginContainer
 
-@onready var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @onready var learnedList : ItemList = $container/playerList
 var spellsCache : Array[Spell]
 var tempCache : Array[Spell]
@@ -28,14 +28,24 @@ var allRaces : Array[Race] = [GameManager.GetRaceNone()]
 
 @onready var applyFilter_button : Button = $Filters/Margin/Elements/FilterButton
 
+@export_subgroup("Information")
+@export var spellInfoButton : Button
+@export var spellInfoWindow : PackedScene
+
 @export_category("Other")
 @export var racesOrdered : Array[Race] # raincaster, naiad, duneborn, humano, draconite
 @export_subgroup("Combat list")
 @export var isCombatList : bool = false
 @onready var availableLabel : Label = $container/top/Disponibles
+@onready var activateButton : Button = $container/activateSelected
 
 func _ready() -> void:
-	if !isCombatList: availableLabel.hide()
+	if !isCombatList: 
+		availableLabel.hide()
+		activateButton.hide()
+	
+	activateButton.pressed.connect(activate_spell)
+	spellInfoButton.pressed.connect(show_information)
 	
 	filter_list()
 	show_by_cache()
@@ -70,26 +80,42 @@ func filter_list(fromLevel:int = 1, toLevel:int = 20, byRace:Array[Race] = allRa
 	else: spellsCache = playerData.spells
 	
 	if !((fromLevel == 1) && (toLevel == 20)) && fromLevel < toLevel:
-		print("1 " + str(fromLevel) + " " + str(toLevel))
 		clear_cache_temporary()
 		for spell in tempCache:
 			if spell.level > fromLevel && spell.level < toLevel:
 				spellsCache.push_back(spell)
 	
 	if !(byRace == allRaces):
-		print("2")
 		clear_cache_temporary()
 		for spell in tempCache:
 			for race in byRace:
 				if spell.races.has(race):
 					spellsCache.push_back(spell)
 
+func activate_spell():
+	if playerData.activeSpells.size() == 4:
+		Utilities.create_PopUp("Ya tienes 4 hechizos activos.")
+		return
+	if learnedList.item_count == 0 || get_current_index() == -1:
+		Utilities.create_PopUp("No has seleccionado ningun hechizo...")
+		return
+	if learnedList.item_count > 0:
+		var selectedIndex : int = learnedList.get_selected_items()[0]
+		var selectedSpellName : String = learnedList.get_item_text(selectedIndex)
+		for spell in spellsCache:
+			if spell.spellName == selectedSpellName :
+				playerData.activeSpells.append(spell)
+				Utilities.create_PopUp("¡%s fue añadido!" % [spell.spellName])
+
+func get_current_index() -> int:
+	if learnedList.item_count <= 0 || !learnedList.is_anything_selected(): return -1
+	var selectedIndex : int = learnedList.get_selected_items()[0]
+	return selectedIndex
+
 func clear_cache_temporary():
-	print(spellsCache)
 	tempCache.clear()
 	tempCache = spellsCache.duplicate()
 	spellsCache.clear()
-	print(tempCache)
 
 func get_level_vector() -> Vector2:
 	var retVector : Vector2
@@ -110,3 +136,15 @@ func get_races_array() -> Array[Race]:
 	
 	if retArray.size() <= 0: return allRaces
 	else: return retArray
+
+func show_information():
+	var index : int = get_current_index()
+	if index == -1:
+		Utilities.create_PopUp("No has seleccionado ningun hechizo...")
+		return
+	var about : Spell = spellsCache[index]
+	var window = spellInfoWindow.instantiate() as SpellInfoWindow
+	window.update_Complete(about)
+	window.close_requested.connect(window.queue_free)
+	add_child(window)
+	window.show()

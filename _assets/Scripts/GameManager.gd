@@ -55,9 +55,12 @@ func _on_save_resource_file_selected(save_path):
 # LOAD FILE FROM DISK
 func _on_load_resource_file_selected(load_path):
 	var playerData = ResourceLoader.load(load_path).duplicate(true)
-	playerData.newSave()
-	UpdateCurrentPD(playerData)
-	NewSave(playerData)
+	if playerData is PlayerData:
+		playerData.newSave()
+		UpdateCurrentPD(playerData)
+		NewSave(playerData)
+	else:
+		Utilities.create_PopUp("Ese archivo no es del tipo correcto. Vuelve a intentarlo.")
 	
 	get_tree().reload_current_scene()
 
@@ -129,13 +132,14 @@ func GetMainDataDump() -> DataFile:
 	dataDumpOG = ResourceLoader.load(DATA_DUMP_ROUTE)
 	return dataDumpOG
 
+## Way of saving the data
 func UpdateOriginalSaveFile():
 	var currentManager : CurrentSaveFile = GetCurrentSaveManager()
 	var currentSave : PlayerData = currentManager.saveFile
 	var allSaves = GetAllSaves()
 	for save in allSaves:
 		if save == currentSave: 
-			print("Save found")
+			if OS.is_debug_build(): print("Save found")
 			ResourceSaver.save(currentSave, save.PATH)
 			currentSave.take_over_path(save.PATH)
 #	var search = PlayerData.new() # I don't even think it's necessary but I don't want to delete it bc idk who knows

@@ -1,6 +1,7 @@
 extends Window
 
-var playerData : PlayerData = preload("res://_assets/Scripts/Custom Resources/PlayerSave.tres")
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
+
 @onready var number : SpinBox = $vbox/number
 @onready var option : OptionButton = $vbox/options
 @onready var okButton : Button = $vbox/ok
@@ -12,7 +13,7 @@ func _ready() -> void:
 	okButton.button_up.connect(update_number)
 
 func update_number():
-	if number.value == null : return
+	if number.value == 0 : return
 	if option.selected == -1 : return
 	
 	if option.selected == 0: # Fame

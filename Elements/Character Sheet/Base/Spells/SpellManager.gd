@@ -6,26 +6,22 @@ extends Control
 
 # NodeList
 @export_category("Spell List")
-@export var spellNode1 : SpellNode
-@export var spellNode2 : SpellNode
-@export var spellNode3 : SpellNode
-@export var spellNode4 : SpellNode
-var spellNodeList : Array[SpellNode]
+@export var spellNodeList : Array[SpellSlot]
 
 func _ready() -> void:
-	spellNodeList.append(spellNode1)
-	spellNodeList.append(spellNode2)
-	spellNodeList.append(spellNode3)
-	spellNodeList.append(spellNode4)
-	
-	var cont = 0
-	for sp in playerData.activeSpells:
-		if sp.combat == true && cont < 4:
-			spellNodeList[cont].spellData = sp
-			spellNodeList[cont].update_Basics()
-			cont += 1
-	
 	editWindowButton.button_up.connect(showWindow)
+	editWindow.close_requested.connect(update_slots)
+	
+	update_slots()
 	
 func showWindow():
 	editWindow.popup_centered_clamped()
+
+func update_slots():
+	clear_slots()
+	for n in playerData.activeSpells.size():
+		spellNodeList[n].update_Basics(playerData.activeSpells[n])
+
+func clear_slots():
+	for slot in spellNodeList:
+		slot.update_Basics(null)

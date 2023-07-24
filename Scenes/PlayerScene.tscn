@@ -162,7 +162,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 
-[node name="Archivo" type="MenuButton" parent="Window/Container/GeneralOptions/OptionList"]
+[node name="Archivo" type="MenuButton" parent="Window/Container/GeneralOptions/OptionList" node_paths=PackedStringArray("loadWindow", "saveWindow")]
 custom_minimum_size = Vector2(80, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -180,6 +180,8 @@ popup/item_2/id = 0
 popup/item_3/text = "Cargar"
 popup/item_3/id = 1
 script = ExtResource("2_ch6v8")
+loadWindow = NodePath("../../../../../LoadResource")
+saveWindow = NodePath("../../../../../SaveResource")
 
 [node name="Opciones" type="MenuButton" parent="Window/Container/GeneralOptions/OptionList" node_paths=PackedStringArray("timer")]
 custom_minimum_size = Vector2(80, 0)
@@ -313,6 +315,7 @@ layout_mode = 2
 
 [node name="LoadResource" type="FileDialog" parent="."]
 title = "Open a File"
+initial_position = 2
 size = Vector2i(700, 500)
 ok_button_text = "Open"
 file_mode = 0
@@ -321,6 +324,8 @@ filters = PackedStringArray("*.tres")
 show_hidden_files = true
 
 [node name="SaveResource" type="FileDialog" parent="."]
+title = "Guarda una copia"
+initial_position = 2
 size = Vector2i(700, 500)
 ok_button_text = "Save"
 access = 2
@@ -342,9 +347,4 @@ cancel_button_text = "Irme sin guardar"
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("1_fd83x")
 
-[connection signal="loadFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_load_file"]
-[connection signal="reSaveFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_re_save_file"]
-[connection signal="saveFile" from="Window/Container/GeneralOptions/OptionList/Archivo" to="." method="_on_menu_bar_save_file"]
 [connection signal="exp_updated" from="Window/Container/BasicInfoSection/Seccion Nivel/Exp" to="Window/Container/BasicInfoSection/Seccion Nivel/Nivel" method="_on_exp_exp_updated"]
-[connection signal="file_selected" from="LoadResource" to="." method="_on_load_resource_file_selected"]
-[connection signal="file_selected" from="SaveResource" to="." method="_on_save_resource_file_selected"]
