@@ -1,7 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://biumurf27h45e"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/exp_window.gd" id="1_o8sgy"]
-[ext_resource type="Resource" uid="uid://c2frdk48kwngm" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_7un2q"]
 
 [node name="Exp Window" type="Window" node_paths=PackedStringArray("base_number_node", "multiplier_node")]
 transparent_bg = true
@@ -15,7 +14,6 @@ popup_window = true
 min_size = Vector2i(160, 130)
 auto_translate = false
 script = ExtResource("1_o8sgy")
-player_data = ExtResource("2_7un2q")
 base_number_node = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Base Number")
 multiplier_node = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Multiplier")
 

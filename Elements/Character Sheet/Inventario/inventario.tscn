@@ -1,0 +1,313 @@
+[gd_scene load_steps=17 format=3 uid="uid://fjb5dqytibqg"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/Inventario/inventario.gd" id="1_gjdb7"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Inventario/inventario_manager.gd" id="1_s60h8"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Inventario/armadura.gd" id="1_scxcl"]
+[ext_resource type="Texture2D" uid="uid://dmy75pc2f2wah" path="res://Elements/Character Sheet/Inventario/siluetas/sil_1.png" id="2_i3ht0"]
+[ext_resource type="Texture2D" uid="uid://t3w17wv6j4di" path="res://Elements/Character Sheet/Inventario/siluetas/sil_3.png" id="3_gdb5a"]
+[ext_resource type="PackedScene" uid="uid://cvud0o8nvkoom" path="res://Elements/Character Sheet/Inventario/armadura/armor_slot.tscn" id="3_m53r3"]
+[ext_resource type="Texture2D" uid="uid://bi526citfor0h" path="res://Elements/Character Sheet/Inventario/siluetas/sil_4.png" id="4_18dpr"]
+[ext_resource type="Texture2D" uid="uid://dhxmwbo17ki5f" path="res://Elements/Character Sheet/Inventario/siluetas/sil_5.png" id="5_ybo4f"]
+[ext_resource type="Texture2D" uid="uid://d33y0o4j7kone" path="res://Elements/Character Sheet/Inventario/siluetas/sil_6.png" id="6_cvm2t"]
+[ext_resource type="Texture2D" uid="uid://i4l8uim1invf" path="res://Elements/Character Sheet/Inventario/siluetas/sil_7.png" id="7_rwwno"]
+[ext_resource type="Texture2D" uid="uid://jou8lcgj3pnj" path="res://Elements/Character Sheet/Inventario/siluetas/sil_8.png" id="8_q3uiy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ppepg"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_leheo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_veudv"]
+bg_color = Color(0.329412, 0.0901961, 0.0705882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hofyr"]
+bg_color = Color(0.0941176, 0.301961, 0.270588, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a32dd"]
+bg_color = Color(0.243137, 0.352941, 0.298039, 1)
+
+[node name="Inventario" type="MarginContainer" node_paths=PackedStringArray("inventory_tab", "armor_tab", "inventory_bttn", "armor_bttn")]
+visible = false
+custom_minimum_size = Vector2(700, 800)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -400.0
+offset_right = 350.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_s60h8")
+inventory_tab = NodePath("Elements/Inventory")
+armor_tab = NodePath("Elements/Armor")
+inventory_bttn = NodePath("Elements/Tabs/inventoryBttn")
+armor_bttn = NodePath("Elements/Tabs/armorBttn")
+
+[node name="Elements" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Tabs" type="HBoxContainer" parent="Elements"]
+layout_mode = 2
+
+[node name="inventoryBttn" type="Button" parent="Elements/Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ppepg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_leheo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_veudv")
+text = "INVENTARIO"
+
+[node name="armorBttn" type="Button" parent="Elements/Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ppepg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_leheo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_veudv")
+text = "ARMADURA"
+
+[node name="Inventory" type="Panel" parent="Elements"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_hofyr")
+script = ExtResource("1_gjdb7")
+
+[node name="Elements" type="HBoxContainer" parent="Elements/Inventory"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -267.0
+offset_top = -350.0
+offset_right = 267.0
+offset_bottom = 350.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+
+[node name="ItemList" type="ItemList" parent="Elements/Inventory/Elements"]
+custom_minimum_size = Vector2(400, 700)
+layout_mode = 2
+
+[node name="itemInfo" type="VBoxContainer" parent="Elements/Inventory/Elements"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="photo" type="Panel" parent="Elements/Inventory/Elements/itemInfo"]
+custom_minimum_size = Vector2(130, 130)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="information" type="RichTextLabel" parent="Elements/Inventory/Elements/itemInfo"]
+custom_minimum_size = Vector2(220, 0)
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Nombre:[/b] item
+[b]Tipo[/b]: Armadura
+[b]Usos[/b]: -
+[b]Descripcion:[/b] una descripcion"
+fit_content = true
+
+[node name="price" type="HBoxContainer" parent="Elements/Inventory/Elements/itemInfo"]
+layout_mode = 2
+
+[node name="label" type="RichTextLabel" parent="Elements/Inventory/Elements/itemInfo/price"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+tooltip_text = "Los precios deben ser averiguados por los jugadores"
+bbcode_enabled = true
+text = "[color=yellow][b]PRECIO:[/b][/color]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="priceNum" type="SpinBox" parent="Elements/Inventory/Elements/itemInfo/price"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Armor" type="Panel" parent="Elements" node_paths=PackedStringArray("silueta_img", "back_bttn", "foward_bttn", "grid_container")]
+custom_minimum_size = Vector2(0, 750)
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_styles/panel = SubResource("StyleBoxFlat_a32dd")
+script = ExtResource("1_scxcl")
+silueta_img = NodePath("silueta")
+siluetas_textures = Array[Texture2D]([ExtResource("2_i3ht0"), ExtResource("3_gdb5a"), ExtResource("4_18dpr"), ExtResource("5_ybo4f"), ExtResource("6_cvm2t"), ExtResource("7_rwwno"), ExtResource("8_q3uiy")])
+back_bttn = NodePath("change_figure/back")
+foward_bttn = NodePath("change_figure/foward")
+slot_scene = ExtResource("3_m53r3")
+grid_container = NodePath("all_pieces/ScrollContainer/GridContainer")
+
+[node name="silueta" type="TextureRect" parent="Elements/Armor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -363.5
+offset_top = -438.5
+offset_right = 363.5
+offset_bottom = 438.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_i3ht0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="change_figure" type="HBoxContainer" parent="Elements/Armor"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.5
+offset_top = -364.5
+offset_right = 46.5
+offset_bottom = -334.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="back" type="Button" parent="Elements/Armor/change_figure"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "<-"
+
+[node name="foward" type="Button" parent="Elements/Armor/change_figure"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "->"
+
+[node name="Slots" type="Control" parent="Elements/Armor"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="head_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
+layout_mode = 1
+offset_left = 300.0
+offset_top = 75.0
+offset_right = 360.0
+offset_bottom = 135.0
+slot_type = "Cabeza"
+is_main = true
+armor_manager = NodePath("../..")
+
+[node name="chest_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
+layout_mode = 1
+offset_left = 300.0
+offset_top = 159.0
+offset_right = 360.0
+offset_bottom = 219.0
+slot_type = "Superior"
+is_main = true
+armor_manager = NodePath("../..")
+
+[node name="legs_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
+layout_mode = 1
+offset_left = 300.0
+offset_top = 261.0
+offset_right = 360.0
+offset_bottom = 321.0
+slot_type = "Inferior"
+is_main = true
+armor_manager = NodePath("../..")
+
+[node name="hands_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
+layout_mode = 1
+offset_left = 129.0
+offset_top = 271.0
+offset_right = 189.0
+offset_bottom = 331.0
+slot_type = "Guantes"
+is_main = true
+armor_manager = NodePath("../..")
+
+[node name="foot_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
+layout_mode = 1
+offset_left = 300.0
+offset_top = 502.0
+offset_right = 360.0
+offset_bottom = 562.0
+slot_type = "Pies"
+is_main = true
+armor_manager = NodePath("../..")
+
+[node name="acc1_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
+layout_mode = 1
+offset_left = 578.0
+offset_top = 174.0
+offset_right = 638.0
+offset_bottom = 234.0
+slot_type = "Accesorio"
+is_main = true
+armor_manager = NodePath("../..")
+
+[node name="acc2_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
+layout_mode = 1
+offset_left = 578.0
+offset_top = 250.0
+offset_right = 638.0
+offset_bottom = 310.0
+slot_type = "Accesorio"
+is_main = true
+accesory_number = 2
+armor_manager = NodePath("../..")
+
+[node name="acc3_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
+layout_mode = 1
+offset_left = 578.0
+offset_top = 328.0
+offset_right = 638.0
+offset_bottom = 388.0
+slot_type = "Accesorio"
+is_main = true
+accesory_number = 3
+armor_manager = NodePath("../..")
+
+[node name="all_pieces" type="Panel" parent="Elements/Armor"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -331.5
+offset_top = -172.0
+offset_right = 331.5
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Elements/Armor/all_pieces"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -306.5
+offset_top = -67.5
+offset_right = 306.5
+offset_bottom = 67.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="Elements/Armor/all_pieces/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 8
+theme_override_constants/v_separation = 8
+columns = 9

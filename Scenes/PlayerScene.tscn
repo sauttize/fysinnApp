@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=36 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://ddp7y6gn35b86" path="res://Elements/Character Sheet/Conocimientos/conocimientos.tscn" id="12_mioef"]
 [ext_resource type="Script" path="res://Scenes/exitHandler.gd" id="13_jfxcr"]
 [ext_resource type="PackedScene" uid="uid://r1el5plw4yls" path="res://Elements/Debug/consoleTab.tscn" id="16_jijpf"]
+[ext_resource type="PackedScene" uid="uid://fjb5dqytibqg" path="res://Elements/Character Sheet/Inventario/inventario.tscn" id="16_qx1o4"]
 
 [sub_resource type="SystemFont" id="SystemFont_xkiv0"]
 
@@ -289,13 +290,13 @@ size_flags_horizontal = 8
 layout_mode = 2
 size_flags_horizontal = 8
 
-[node name="TabContainer" type="TabContainer" parent="Window/Container" node_paths=PackedStringArray("baseButton", "conocimientosButton", "mascotasButton", "relacionesButton", "notasButton", "consoleButton")]
+[node name="TabContainer" type="TabContainer" parent="Window/Container" node_paths=PackedStringArray("baseButton", "conocimientosButton", "inventarioButton", "relacionesButton", "notasButton", "consoleButton")]
 layout_mode = 2
 tabs_visible = false
 script = ExtResource("7_eonce")
 baseButton = NodePath("../Tabs/btn_Base")
 conocimientosButton = NodePath("../Tabs/btn_Conocimientos")
-mascotasButton = NodePath("../Tabs/btn_Inventario")
+inventarioButton = NodePath("../Tabs/btn_Inventario")
 relacionesButton = NodePath("../Tabs/btn_Relaciones")
 notasButton = NodePath("../Tabs/btn_Personal")
 consoleButton = NodePath("../Tabs/btn_Consola")
@@ -311,6 +312,11 @@ layout_mode = 2
 
 [node name="Console" parent="Window/Container/TabContainer" instance=ExtResource("16_jijpf")]
 visible = false
+layout_mode = 2
+
+[node name="Inventario" parent="Window/Container/TabContainer" instance=ExtResource("16_qx1o4")]
+visible = false
+custom_minimum_size = Vector2(700, 780)
 layout_mode = 2
 
 [node name="LoadResource" type="FileDialog" parent="."]

@@ -1,7 +1,7 @@
 extends Resource
 class_name Effect
 
-@export var effectName : String = "title"
+@export var effectName : String = "-"
 @export_enum("Fijo", "Temporal", "Activable") var effectType : String = "Temporal"
 @export_multiline var effectDescription : String = "-"
 @export var time_hs : float = 0.0

@@ -3,7 +3,7 @@ extends TabContainer
 @export_category("Tabs")
 @export var baseButton : Button
 @export var conocimientosButton : Button
-@export var mascotasButton : Button
+@export var inventarioButton : Button
 @export var relacionesButton : Button
 @export var notasButton : Button
 @export var consoleButton : Button
@@ -11,9 +11,9 @@ extends TabContainer
 func _ready() -> void:
 	baseButton.pressed.connect(changeTab.bind(0))
 	conocimientosButton.pressed.connect(changeTab.bind(1))
-#	mascotasButton.button_up.connect(changeTab(2))
-#	relacionesButton.button_up.connect(changeTab(3))
-#	notasButton.button_up.connect(changeTab(4))
+	inventarioButton.pressed.connect(changeTab.bind(3))
+#	relacionesButton.pressed.connect(changeTab.bind(4))
+#	notasButton.pressed.connect(changeTab.bind(5))
 	consoleButton.pressed.connect(changeTab.bind(2))
 
 func changeTab (tab_num : int):

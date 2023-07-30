@@ -65,7 +65,6 @@ func check_data_dump():
 		var dataBackUp = DataFile.new()
 		dataBackUp = ResourceLoader.load(DEFAULT_DATA_BACKUP, 'DataFile')
 		ResourceSaver.save(dataBackUp, DEFAULT_DATA_HOLDER)
-		dataBackUp.take_over_path(DEFAULT_DATA_HOLDER)
 
 func update_scene():
 	get_tree().reload_current_scene()

@@ -46,6 +46,7 @@ func set_options():
 	for element in dataDump.ELEMENT_LIST:
 		if element.getString() == "Propio": continue
 		newElement.add_item(element.getString())
+	newRace.selected = 2
 	set_color_by_class(0)
 	
 func set_color_by_class(index : int):
@@ -74,6 +75,7 @@ func create_SaveFile():
 		newPlayerData.maxLife = get_life(newPlayerData.classtype)
 		newPlayerData.currentLife = get_life(newPlayerData.classtype)
 		newPlayerData.imagen = newPhoto
+		newPlayerData.armor_equipped = ArmorSet.new()
 		
 #		newPlayerData.generate_id(GameManager.GetAllSaves())
 		newPlayerData.new_knowledge_list(GameManager.GetDataDump())

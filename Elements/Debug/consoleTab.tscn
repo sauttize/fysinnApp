@@ -6,7 +6,7 @@
 [ext_resource type="FontFile" uid="uid://b4v62ckpb2mwu" path="res://_assets/Fonts/CourierPrime/CourierPrime-Italic.ttf" id="4_yi10b"]
 [ext_resource type="FontFile" uid="uid://dijfx5gr3toa6" path="res://_assets/Fonts/CourierPrime/CourierPrime-BoldItalic.ttf" id="5_1uymt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6nj6i"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0kguh"]
 bg_color = Color(0, 0, 0, 0.239216)
 
 [node name="Console" type="MarginContainer"]
@@ -39,7 +39,7 @@ layout_mode = 2
 [node name="logPanel" type="Panel" parent="consoleElements"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_6nj6i")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0kguh")
 
 [node name="margin" type="MarginContainer" parent="consoleElements/logPanel"]
 layout_mode = 1

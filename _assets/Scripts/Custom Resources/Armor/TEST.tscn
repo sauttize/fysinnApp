@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://digauwpq2irle"]
+
+[ext_resource type="PackedScene" uid="uid://cvud0o8nvkoom" path="res://Elements/Character Sheet/Inventario/armadura/armor_slot.tscn" id="1_qoa7j"]
+[ext_resource type="Resource" uid="uid://bxutfiwbirrrn" path="res://_assets/Scripts/Custom Resources/Armor/test.tres" id="2_kih7b"]
+
+[node name="temptest" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ArmorSlot" parent="." instance=ExtResource("1_qoa7j")]
+layout_mode = 1
+offset_left = -210.0
+offset_top = 122.0
+offset_right = -150.0
+offset_bottom = 182.0
+slot_type = "Cabeza"
+current_piece = ExtResource("2_kih7b")
+
+[node name="ArmorSlot2" parent="." instance=ExtResource("1_qoa7j")]
+layout_mode = 1
+offset_left = 9.0
+offset_top = 124.0
+offset_right = 69.0
+offset_bottom = 184.0
+slot_type = "Cabeza"
+is_main = true

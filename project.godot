@@ -37,10 +37,6 @@ window/transparent_background=true
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/fysinnconsole/plugin.cfg")
-
 [gui]
 
 theme/custom_font="res://_assets/Fonts/Rubik/Rubik-Regular.ttf"

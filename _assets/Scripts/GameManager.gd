@@ -1,4 +1,3 @@
-@tool
 extends Node
 
 const DATA_DUMP_ROUTE = "user://data/DataContainer.tres"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ArmorPiece" load_steps=3 format=3 uid="uid://bxutfiwbirrrn"]
+
+[ext_resource type="Texture2D" uid="uid://nah356q45co0" path="res://_assets/Armor/Head/casco-1.png" id="1_22ch6"]
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Armor/armor_piece.gd" id="1_407pc"]
+
+[resource]
+script = ExtResource("1_407pc")
+name = "Casco normal"
+type = "Cabeza"
+icon = ExtResource("1_22ch6")
+base_value = 3
+is_equipped = false
+extra_value = 0
+is_rarity_known = true
+rarity = "Legendario"
+color = Color(0, 0, 0, 1)

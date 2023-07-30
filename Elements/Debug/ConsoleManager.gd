@@ -1,4 +1,3 @@
-@tool
 extends MarginContainer
 
 const SAVE_ROUTE = "User://saves/PlayerSave.tres"

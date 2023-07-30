@@ -1,7 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://brxpiqlksqnb4"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/name_window.gd" id="1_r26r7"]
-[ext_resource type="Resource" uid="uid://eqa3qh2rl1ub" path="res://_assets/Scripts/Custom Resources/PlayerSave.tres" id="2_ey8x2"]
 
 [node name="NameWindow" type="Window"]
 transparent_bg = true
@@ -15,7 +14,6 @@ popup_window = true
 min_size = Vector2i(20, 20)
 auto_translate = false
 script = ExtResource("1_r26r7")
-player_data = ExtResource("2_ey8x2")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15

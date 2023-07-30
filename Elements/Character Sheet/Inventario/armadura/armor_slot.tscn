@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://cvud0o8nvkoom"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/Inventario/armadura/armor_slot.gd" id="1_pwh3r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vl17r"]
+bg_color = Color(0.45098, 0.45098, 0.45098, 0.678431)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[node name="ArmorSlot" type="Panel"]
+custom_minimum_size = Vector2(60, 60)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 34.0
+offset_top = 67.0
+offset_right = 94.0
+offset_bottom = 127.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vl17r")
+script = ExtResource("1_pwh3r")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Timer" type="Timer" parent="."]

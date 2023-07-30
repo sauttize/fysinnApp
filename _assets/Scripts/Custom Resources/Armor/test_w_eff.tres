@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ArmorPiece" load_steps=4 format=3 uid="uid://ippi1t0ehxub"]
+
+[ext_resource type="Resource" uid="uid://ccojwgesoq30w" path="res://_assets/Scripts/Custom Resources/Effects/testEffect2.tres" id="1_8h3ml"]
+[ext_resource type="Texture2D" uid="uid://ct2t5g4d3cqjs" path="res://_assets/Armor/Hands/manos-1.png" id="2_dp5w7"]
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Armor/armor_piece.gd" id="3_id37j"]
+
+[resource]
+script = ExtResource("3_id37j")
+name = "Manos"
+type = "Guantes"
+icon = ExtResource("2_dp5w7")
+base_value = 2
+is_equipped = false
+effect = ExtResource("1_8h3ml")
+extra_value = 0
+is_rarity_known = false
+rarity = "Excelente"
+color = Color(0, 0, 0, 1)

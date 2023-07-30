@@ -35,6 +35,12 @@ var casillasMov : int = 0:
 @export var pe : int = 0
 @export var po : int = 0
 @export var ppt : int = 0
+@export_subgroup("Inventory")
+@export var item_list : Array[Item] = []
+@export_subgroup("Armor")
+@export var body_type : int = 0
+@export var armor_pieces : Array[ArmorPiece] = []
+@export var armor_equipped : ArmorSet
 
 #METERS
 @export_category("-- Meters --")
