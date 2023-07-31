@@ -78,6 +78,7 @@ var casillasMov : int = 0:
 var lastSaved : Dictionary
 var PATH : String = ""
 var UNIQUE_ID : int = -1
+var console_color : Color
 
 func updateExp(newExp : int):
 	experiencia += newExp

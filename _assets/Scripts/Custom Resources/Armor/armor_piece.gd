@@ -6,7 +6,14 @@ var rarity_color : Dictionary = {"Normal" : Color('#84390db4'), "Bueno" : Color(
 
 @export var name : String = "-"
 @export_enum("Cabeza", "Superior", "Guantes", "Inferior", "Pies", "Accesorio") var type : String
-@export var icon : Texture2D
+var default_icon : String = "res://_assets/Armor/Head/casco-1.png"
+@export var icon : Texture2D :
+	get:
+		if icon: return icon
+		else: 
+			var default_texture = ImageTexture.new()
+			default_texture.create_from_image(Image.load_from_file(default_icon))
+			return default_texture
 @export var base_value : int = 0
 @export var is_equipped : bool = false
 @export var effect : Effect

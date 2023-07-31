@@ -39,7 +39,8 @@ var commandList : Dictionary = {
 	"master": "master_tools", "dm" : "master_tools",
 	"text" : "change_text",
 	"editor_mode": "change_to_editor", "editor": "change_to_editor",
-	"currency_calc" : "currency_calculator", "c_calc" : "currency_calculator", "money_c": "currency_calculator"
+	"currency_calc" : "currency_calculator", "c_calc" : "currency_calculator", "money_c": "currency_calculator",
+	"cr_item" : "create_item", "newitem": "create_item", "new_i" : "create_item"
 }
 
 @onready var argumentList : Dictionary = {
@@ -86,10 +87,16 @@ var lastCommandSent : String = ""
 @export var defaultSize : Vector2 = Vector2(700, 700)
 @export_range(1, 50) var MAX_DICE_MULTIPLIER : int = 20
 
+# HTTP REQUEST
+var web_image_texture : ImageTexture
+signal got_image_from_web(image_texture : ImageTexture)
+
 func _ready() -> void:
 	change_window_size(editorVersion)
 	inputLine.text_submitted.connect(get_text)
-	Utilities.changeFlatboxColor_Panel(logPanel, dataDump.bgConsoleColor)
+	
+	if playerData.console_color:Utilities.changeFlatboxColor_Panel(logPanel, playerData.console_color)
+	else: Utilities.changeFlatboxColor_Panel(logPanel, argumentList["default"])
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
@@ -342,6 +349,30 @@ func get_index_vector(allElements : Array, page_num) -> Vector4:
 	
 	return Vector4(start_index, max_index, final_page, max_pages)
 
+func get_image_from_web(link : String):
+	# Create an HTTP request node and connect its completion signal.
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(_get_image_from_web)
+
+	# Perform the HTTP request. The URL below returns a PNG image as of writing.
+	var error = http_request.request(link)
+	if error != OK:
+		show_error("An error occurred in the HTTP request.")
+# Called when the HTTP request is completed.
+func _get_image_from_web(result, response_code, headers, body, node):
+	var image = Image.new()
+	var error = image.load_png_from_buffer(body)
+	if error != OK:
+		show_error("Couldn't load the image.")
+		got_image_from_web.emit()
+		return
+	else:
+		var texture = ImageTexture.new()
+		texture.create_from_image(image)
+		web_image_texture = texture
+		got_image_from_web.emit()
+
 ## ----------- COMMANDS -------------
 # ----------- console related -------------
 func help(argument : PackedStringArray = []):
@@ -363,9 +394,9 @@ func change_color(argument : PackedStringArray = []):
 		
 		if !single_argument(argument): 
 			if argumentList.has(argument[1]) && argumentList[argument[1]] == 'remember':
-				dataDump.bgConsoleColor = color
+				playerData.console_color = color
 				show_done_message("[i]... and saved![/i]")
-				save_dataDump()
+				GameManager.UpdateOriginalSaveFile()
 	elif (!is_help(argumentLine)):
 		show_error("Not an option... Check help to see list of options.", errorAltColor)
 	else:
@@ -554,6 +585,33 @@ func currency_calculator(argument : PackedStringArray = []):
 		"[b]You will actually get: [/b] %s (%s)." % [returned_money, to_str]], doneColor)
 	else:
 		show_error("Not a valid number.")
+# ----------- creation -------------
+func create_item(argument : PackedStringArray = []):
+	if no_arguments(argument) or was_generic_asked(argument, ["help", "h"]):
+		print_line("Sintax: [b]newitem[/b] + name + description + type + image_link[i][optional][/i] + effect_name", errorAltColor)
+		print_line("Type options: 'Consumible', 'Especial', 'Tesoro', 'Magico', 'Utilidad', 'Desconocido'.", errorAltColor)
+		print_line("Use '-' or 'default' in [i]image_link[/i] to not use an image.")
+		return
+	elif argument.size() < 4:
+		print_line("Some arguments are missing. Check [i]help[/i] for more info.")
+		return
+	
+	var allowed_types = ['Consumible', 'Especial', 'Tesoro', 'Magico', 'Utilidad', 'Desconocido']
+	var item_name = argument[0] # NAME
+	var description = argument[1] # DESCRIPTION
+	var type = argument[2] # TYPE
+	if !allowed_types.has(type): 
+		print_line("Type doesn't exist. Check [i]help[/i] to see the allowed types.")
+		return
+	var item_image : Texture2D
+	if !argument[3] == "-" or !argument[3] == "default":
+		var image_link = argument[3]
+		get_image_from_web(image_link)
+		await got_image_from_web
+		if web_image_texture: item_image = web_image_texture.duplicate()
+		else: show_error("Image didn't load.")
+		web_image_texture = null
+	## efffecccct
 	
 # ----------- information -------------
 func get_player_data(argument : PackedStringArray = [], fromInfo : bool = false):
