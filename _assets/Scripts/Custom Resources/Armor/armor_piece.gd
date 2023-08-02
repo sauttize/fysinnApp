@@ -11,8 +11,7 @@ var default_icon : String = "res://_assets/Armor/Head/casco-1.png"
 	get:
 		if icon: return icon
 		else: 
-			var default_texture = ImageTexture.new()
-			default_texture.create_from_image(Image.load_from_file(default_icon))
+			var default_texture = ImageTexture.create_from_image(Image.load_from_file(default_icon))
 			return default_texture
 @export var base_value : int = 0
 @export var is_equipped : bool = false

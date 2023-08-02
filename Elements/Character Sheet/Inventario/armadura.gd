@@ -1,4 +1,5 @@
 extends Panel
+class_name ArmorManager
 
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 
@@ -12,16 +13,18 @@ extends Panel
 @export var slot_scene : PackedScene
 @export var grid_container : GridContainer
 
-func _ready() -> void:
-	current_ind = playerData.body_type
-	change_figure(0)
-	
+func _ready() -> void:	
 	back_bttn.pressed.connect(change_figure.bind(-1))
 	foward_bttn.pressed.connect(change_figure.bind(1))
 	
-	clear_list()
-	fill_list()
+	update_all()
+
+func update_all() -> void:
+	current_ind = playerData.body_type
+	change_figure(0)
 	
+	clean_update()
+
 func change_figure(add : int):
 	current_ind += add
 	if current_ind < 0: current_ind = 6

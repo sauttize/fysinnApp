@@ -40,7 +40,8 @@ var commandList : Dictionary = {
 	"text" : "change_text",
 	"editor_mode": "change_to_editor", "editor": "change_to_editor",
 	"currency_calc" : "currency_calculator", "c_calc" : "currency_calculator", "money_c": "currency_calculator",
-	"cr_item" : "create_item", "newitem": "create_item", "new_i" : "create_item"
+	"cr_item" : "create_item", "newitem": "create_item", "new_i" : "create_item",
+	"open": "open_dir", "folder" : "open_dir"
 }
 
 @onready var argumentList : Dictionary = {
@@ -54,11 +55,20 @@ var commandList : Dictionary = {
 	'remember': 'remember', "-re": 'remember', "-s": "remember"
 }
 
+@export var https_booleans : Dictionary
+
 @onready var inputLine : LineEdit = $consoleElements/writeLine
 @onready var logScreen : RichTextLabel = $consoleElements/logPanel/margin/consoleLog
 var currentFontSize : int = 14
-var lastCommandSent : String = ""
+var lastCommandSent : PackedStringArray
+var get_command_index : int :
+	get:
+		if get_command_index < 0: return lastCommandSent.size() - 1
+		elif get_command_index >= lastCommandSent.size(): return 0
+		else: return get_command_index
+var get_last_sent : bool = true
 @onready var logPanel : Panel = $consoleElements/logPanel
+@onready var http_request : HTTPRequest = $HTTPRequest
 @export_category("Config")
 @export_subgroup("Help lists")
 @export var helpList : PackedStringArray # General
@@ -88,8 +98,10 @@ var lastCommandSent : String = ""
 @export_range(1, 50) var MAX_DICE_MULTIPLIER : int = 20
 
 # HTTP REQUEST
+signal request_done
+const HTTP_IMAGE = "Image"
+var request_error : bool = false
 var web_image_texture : ImageTexture
-signal got_image_from_web(image_texture : ImageTexture)
 
 func _ready() -> void:
 	change_window_size(editorVersion)
@@ -97,14 +109,34 @@ func _ready() -> void:
 	
 	if playerData.console_color:Utilities.changeFlatboxColor_Panel(logPanel, playerData.console_color)
 	else: Utilities.changeFlatboxColor_Panel(logPanel, argumentList["default"])
+	
+	http_request.request_completed.connect(_get_file_from_web)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
 		inputLine.clear()
-		inputLine.text = lastCommandSent
+		if lastCommandSent.size() == 0: return
+		if get_last_sent:
+			get_command_index = lastCommandSent.size() - 1
+			inputLine.text = lastCommandSent[get_command_index]
+			get_last_sent = false
+		else:
+			get_command_index -= 1
+			inputLine.text = lastCommandSent[get_command_index]
+	elif event.is_action_pressed("ui_down"):
+		inputLine.clear()
+		if lastCommandSent.size() == 0: return
+		if get_last_sent:
+			get_command_index = 0
+			inputLine.text = lastCommandSent[get_command_index]
+			get_last_sent = false
+		else:
+			get_command_index += 1
+			inputLine.text = lastCommandSent[get_command_index]
 
 func get_text(textSubmitted : String):
-	lastCommandSent = textSubmitted
+	lastCommandSent.append(textSubmitted)
+	get_last_sent = true
 	var textArray : PackedStringArray = textSubmitted.rsplit(" ")
 	inputLine.clear()
 	print_arrow()
@@ -349,29 +381,35 @@ func get_index_vector(allElements : Array, page_num) -> Vector4:
 	
 	return Vector4(start_index, max_index, final_page, max_pages)
 
-func get_image_from_web(link : String):
-	# Create an HTTP request node and connect its completion signal.
-	var http_request = HTTPRequest.new()
-	add_child(http_request)
-	http_request.request_completed.connect(_get_image_from_web)
-
-	# Perform the HTTP request. The URL below returns a PNG image as of writing.
+func process_link(link : String, file_type : String):
+	match file_type:
+		"Image":
+			https_booleans["get_image"] = true
+		_:
+			print("Invalid type for http request")
+			return
+	
+	request_error = false
+	# Perform the HTTP request. The URL below returns file from web.
 	var error = http_request.request(link)
 	if error != OK:
+		request_error = true
 		show_error("An error occurred in the HTTP request.")
+	
+	for entry in https_booleans:
+		entry = false
 # Called when the HTTP request is completed.
-func _get_image_from_web(result, response_code, headers, body, node):
-	var image = Image.new()
-	var error = image.load_png_from_buffer(body)
-	if error != OK:
-		show_error("Couldn't load the image.")
-		got_image_from_web.emit()
-		return
-	else:
-		var texture = ImageTexture.new()
-		texture.create_from_image(image)
-		web_image_texture = texture
-		got_image_from_web.emit()
+func _get_file_from_web(result, response_code, headers, body):
+	if request_error: return
+	if https_booleans["get_image"]:
+		var image = Image.new()
+		if image.load_png_from_buffer(body) == OK:
+			var texture = ImageTexture.new()
+			texture.create_from_image(image)
+			web_image_texture = texture
+		else:
+			show_error("There was a problem with the image")
+	request_done.emit()
 
 ## ----------- COMMANDS -------------
 # ----------- console related -------------
@@ -452,6 +490,28 @@ func save_PlayerData_cmm(argument : PackedStringArray = []):
 func reload_scene_cmmd(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
 	reload_scene()
+func open_dir(argument : PackedStringArray = []):
+	var list_of_folders = ["[b]List of folders:[/b]\n", "Custom items: cus_items, myitems"]
+	
+	if no_arguments(argument, true): return
+	if check_args_tooMany(argument, 2, list_of_folders): return
+	
+	var was_found = true
+	var path = ""
+	
+	if was_generic_asked(argument, ["cus_item", "cus_items", "myitems", "myitem"]):
+		print_line("Redirecting to your custom items folder...", outputColor)
+		path = ProjectSettings.globalize_path(GameManager.CUSTOM_ITEMS_ROUTE)
+		OS.shell_open(path)
+	elif was_generic_asked(argument, ["saves", "all_saves", "save_files"]):
+		print_line("Redirecting to your save files folder...", outputColor)
+		path = ProjectSettings.globalize_path(GameManager.SAVES_FOLDER_ROUTE)
+		OS.shell_open(path)
+	else:
+		was_found = false
+	
+	if !was_found:
+		show_error("Not an accepted argument. Check help for the full list.")
 
 # ----------- modifications -------------
 func change_name(argument : PackedStringArray = []):
@@ -588,30 +648,129 @@ func currency_calculator(argument : PackedStringArray = []):
 # ----------- creation -------------
 func create_item(argument : PackedStringArray = []):
 	if no_arguments(argument) or was_generic_asked(argument, ["help", "h"]):
-		print_line("Sintax: [b]newitem[/b] + name + description + type + image_link[i][optional][/i] + effect_name", errorAltColor)
-		print_line("Type options: 'Consumible', 'Especial', 'Tesoro', 'Magico', 'Utilidad', 'Desconocido'.", errorAltColor)
-		print_line("Use '-' or 'default' in [i]image_link[/i] to not use an image.")
+		print_line("[b]Sintax:[/b] newitem name , description , type , weight [i][optional][/i] , effect_name, uses", errorAltColor)
+		print_line("")
+		print_line("-> [b]Type options:[/b] 'Consumible', 'Especial', 'Tesoro', 'Magico', 'Utilidad', 'Desconocido'.", errorAltColor)
+		print_line("-> [b]Weight[/b] is in kg. Ex: '0.45'", errorAltColor)
+		print_line("-> Use '-' or 'default' in [b]image_link[/b] to not use an image.", errorAltColor)
+		print_line("-> The [b]uses[/b] is how many times can you use the item before it's gone.", errorAltColor)
+		print_line("")
+		print_line("[b]IMPORTANT:[/b] Comma can't be immediately next to argument. ex: 'Nombre,' has to be 'Nombre ,'", errorAltColor)
 		return
-	elif argument.size() < 4:
-		print_line("Some arguments are missing. Check [i]help[/i] for more info.")
+	var separator_cont : int = 0
+	for n in argument.size():
+		if argument[n] == ",": separator_cont += 1
+	if separator_cont < 3:
+		print_line("Some arguments are missing. Remember to use ',' to separate arguments. Check [b]help[/b] for more info.", errorAltColor)
+		return
+	if separator_cont > 5:
+		print_line("Too many arguments.")
 		return
 	
 	var allowed_types = ['Consumible', 'Especial', 'Tesoro', 'Magico', 'Utilidad', 'Desconocido']
-	var item_name = argument[0] # NAME
-	var description = argument[1] # DESCRIPTION
-	var type = argument[2] # TYPE
+	var item_name # NAME
+	var description # DESCRIPTION
+	var type # TYPE
+	var weight # WEIGHT
+	
+#	var image_link
+#	var item_image : ImageTexture # IMAGE
+	
+	var effect_name 
+	var item_eff : Effect # Effect
+	var uses_num : int = 0
+
+	var current = "Nombre"
+	for n in argument.size():
+		if argument[n] == ",": 
+			if current == "Nombre": current = "Descripcion"
+			elif current == "Descripcion": current = "Tipo"
+			elif current == "Tipo": current = "Peso"
+			elif current == "Peso": current = "Efecto"
+#			elif current == "Link": current = "Efecto"
+			elif current == "Efecto": current = "Usos"
+			continue
+		
+		match current:
+			"Nombre":
+				if item_name: item_name += " " + argument[n]
+				else: item_name = argument[n]
+			"Descripcion":
+				if description: description += " " + argument[n]
+				else: description = argument[n]
+			"Tipo":
+				if type: 
+					print_line("Type only accept 1 word.", errorAltColor)
+					return
+				else: 
+					type = argument[n].to_lower().to_pascal_case()
+			"Peso":
+				if weight || !float(argument[n]): 
+					print_line("Weight only accept a single number.", errorAltColor)
+					return
+				else: weight = argument[n]
+#			"Link":
+#				if image_link:
+#					print_line("Only 1 image link expected.", errorAltColor)
+#					return
+#				else: image_link = argument[n]
+			"Efecto":
+				if effect_name: effect_name += " " + argument[n]
+				else: effect_name = argument[n]
+			"Usos":
+				if int(argument[n]):
+					uses_num = int(argument[n])
+				else:
+					print_line("For 'uses' you need to input a integer.", errorAltColor)
+	# Errors
+	# Type
+	if type == "Magico": type == "Mágico"
 	if !allowed_types.has(type): 
-		print_line("Type doesn't exist. Check [i]help[/i] to see the allowed types.")
+		print_line("Type doesn't exist. Check [i]help[/i] to see the allowed types.", errorAltColor)
 		return
-	var item_image : Texture2D
-	if !argument[3] == "-" or !argument[3] == "default":
-		var image_link = argument[3]
-		get_image_from_web(image_link)
-		await got_image_from_web
-		if web_image_texture: item_image = web_image_texture.duplicate()
-		else: show_error("Image didn't load.")
-		web_image_texture = null
-	## efffecccct
+	# Weight
+	if float(weight):
+		weight = float(weight)
+	else:
+		print_line("Incorrect weight. Use numbers for the weight.", errorAltColor)
+		return
+	# Image link
+#	if !(image_link == "-") && !(image_link == "default"):
+#		process_link(image_link, HTTP_IMAGE)
+#		await request_done
+#		if web_image_texture: item_image = web_image_texture
+#		else: 
+#			print_line("Image didn't load.", errorAltColor)
+#			return
+#		https_booleans["item_creation"] = true
+	# Effect
+	if separator_cont >= 4:
+		if effect_name && get_effect([effect_name]): 
+			item_eff = get_effect([effect_name])
+		else: 
+			show_error("Effect doesn't exist")
+			return
+	
+	var new_item : Item = Item.new()
+	new_item.itemName = item_name
+	new_item.description = description
+	new_item.type = type
+	new_item.weight = weight
+#	if item_image: new_item.image = item_image
+	if item_eff: 
+		new_item.effect.append(item_eff)
+		new_item.isConsumable = true
+	new_item.uses_cant = uses_num
+	playerData.item_list.append(new_item)
+	
+	var file_name : String = item_name + "_" + str(randi_range(0, 9999)) + ".tres"
+	while FileAccess.file_exists(GameManager.CUSTOM_ITEMS_ROUTE + file_name):
+		file_name = item_name + "_" + str(randi_range(0, 9999)) + ".tres"
+	ResourceSaver.save(new_item, GameManager.CUSTOM_ITEMS_ROUTE + file_name)
+	
+	web_image_texture = null
+	print_line("Item sucessfully created and is now in bag.", outputColor)
+	print_line("\nYour item was also save as a file in your computer. (Check 'folder cus_item' to see the folder)", outputColor)
 	
 # ----------- information -------------
 func get_player_data(argument : PackedStringArray = [], fromInfo : bool = false):

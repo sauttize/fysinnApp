@@ -3,13 +3,18 @@ extends MarginContainer
 @export var editLife : Window
 @export var editArmor : Window
 
+@export_category("Managers")
+@export var effect_list : EffectList
+@export var inventory : ScrollContainer
+
 signal updateBaseData()
 
 func _ready():
 	visibility_changed.connect(refresh_data)
 
 func refresh_data():
-	$Container/ThirdRow/Effects/lista.updateEffects()
+	effect_list.updateEffects()
+	inventory.update_all()
 
 # SKILLS
 #Sets Skills data

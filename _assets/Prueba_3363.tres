@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Item" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Items/Item.gd" id="1_lrv5u"]
+
+[resource]
+script = ExtResource("1_lrv5u")
+itemName = "Prueba"
+description = "Descripcion"
+type = "Especial"
+weight = 3.0
+price = 0.0
+isConsumable = false
+uses_cant = 3
+effect = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

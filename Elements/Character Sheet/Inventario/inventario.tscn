@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://fjb5dqytibqg"]
+[gd_scene load_steps=18 format=3 uid="uid://fjb5dqytibqg"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Inventario/inventario.gd" id="1_gjdb7"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Inventario/inventario_manager.gd" id="1_s60h8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dmy75pc2f2wah" path="res://Elements/Character Sheet/Inventario/siluetas/sil_1.png" id="2_i3ht0"]
 [ext_resource type="Texture2D" uid="uid://t3w17wv6j4di" path="res://Elements/Character Sheet/Inventario/siluetas/sil_3.png" id="3_gdb5a"]
 [ext_resource type="PackedScene" uid="uid://cvud0o8nvkoom" path="res://Elements/Character Sheet/Inventario/armadura/armor_slot.tscn" id="3_m53r3"]
+[ext_resource type="PackedScene" uid="uid://d0heby8hnjlp0" path="res://Elements/Character Sheet/Inventario/item_slot_button.tscn" id="3_t1ruo"]
 [ext_resource type="Texture2D" uid="uid://bi526citfor0h" path="res://Elements/Character Sheet/Inventario/siluetas/sil_4.png" id="4_18dpr"]
 [ext_resource type="Texture2D" uid="uid://dhxmwbo17ki5f" path="res://Elements/Character Sheet/Inventario/siluetas/sil_5.png" id="5_ybo4f"]
 [ext_resource type="Texture2D" uid="uid://d33y0o4j7kone" path="res://Elements/Character Sheet/Inventario/siluetas/sil_6.png" id="6_cvm2t"]
@@ -71,15 +72,17 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_leheo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_veudv")
 text = "ARMADURA"
 
-[node name="Inventory" type="Panel" parent="Elements" node_paths=PackedStringArray("item_list", "item_photo", "item_data", "price_num")]
+[node name="Inventory" type="Panel" parent="Elements" node_paths=PackedStringArray("item_list", "item_photo", "item_data", "price_num", "activate_bttn")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_hofyr")
 script = ExtResource("1_gjdb7")
-item_list = NodePath("Elements/ItemList")
+item_list = NodePath("Elements/ItemsMargin/Scroll/ItemList")
+item_slot = ExtResource("3_t1ruo")
 item_photo = NodePath("Elements/itemInfo/photo/TextureRect")
 item_data = NodePath("Elements/itemInfo/information")
 price_num = NodePath("Elements/itemInfo/price/priceNum")
+activate_bttn = NodePath("Elements/itemInfo/activate_eff")
 
 [node name="Elements" type="HBoxContainer" parent="Elements/Inventory"]
 layout_mode = 1
@@ -96,13 +99,33 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 30
 
-[node name="ItemList" type="ItemList" parent="Elements/Inventory/Elements"]
+[node name="ItemsMargin" type="MarginContainer" parent="Elements/Inventory/Elements"]
+custom_minimum_size = Vector2(400, 700)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Elements/Inventory/Elements/ItemsMargin"]
+layout_mode = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Elements/Inventory/Elements/ItemsMargin"]
+custom_minimum_size = Vector2(380, 680)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="ItemList" type="VBoxContainer" parent="Elements/Inventory/Elements/ItemsMargin/Scroll"]
+custom_minimum_size = Vector2(380, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="ItemadaList" type="ItemList" parent="Elements/Inventory/Elements"]
+visible = false
 custom_minimum_size = Vector2(400, 700)
 layout_mode = 2
 
 [node name="itemInfo" type="VBoxContainer" parent="Elements/Inventory/Elements"]
 layout_mode = 2
-theme_override_constants/separation = 30
+theme_override_constants/separation = 25
 
 [node name="photo" type="Panel" parent="Elements/Inventory/Elements/itemInfo"]
 custom_minimum_size = Vector2(130, 130)
@@ -123,6 +146,8 @@ offset_right = 55.0
 offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+expand_mode = 1
+stretch_mode = 3
 
 [node name="information" type="RichTextLabel" parent="Elements/Inventory/Elements/itemInfo"]
 custom_minimum_size = Vector2(220, 0)
@@ -150,6 +175,13 @@ autowrap_mode = 0
 [node name="priceNum" type="SpinBox" parent="Elements/Inventory/Elements/itemInfo/price"]
 layout_mode = 2
 size_flags_horizontal = 3
+rounded = true
+allow_greater = true
+
+[node name="activate_eff" type="Button" parent="Elements/Inventory/Elements/itemInfo"]
+visible = false
+layout_mode = 2
+text = "Usar"
 
 [node name="Armor" type="Panel" parent="Elements" node_paths=PackedStringArray("silueta_img", "back_bttn", "foward_bttn", "grid_container")]
 visible = false

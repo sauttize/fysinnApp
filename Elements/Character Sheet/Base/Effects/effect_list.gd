@@ -1,4 +1,5 @@
 extends ScrollContainer
+class_name EffectList
 
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @onready var effectSlot = preload("res://Elements/Character Sheet/Base/Effects/effect_slot.tscn")

@@ -36,6 +36,15 @@ var casillasMov : int = 0:
 @export var po : int = 0
 @export var ppt : int = 0
 @export_subgroup("Inventory")
+@export var max_bag_weight : float = 0 # In kg
+@export var current_weight : float :
+	get:
+		if item_list.size() == 0: return 0
+		else:
+			var cont : float = 0
+			for item in item_list:
+				cont += item.weight
+			return cont
 @export var item_list : Array[Item] = []
 @export_subgroup("Armor")
 @export var body_type : int = 0
@@ -102,3 +111,11 @@ func generate_id(compareWith : Array[PlayerData]):
 		
 func new_knowledge_list(from : DataFile):
 	myKnowledgeList = from.get_duplicate_list_knowledge()
+
+## Inventory
+func get_available_bag_weight() -> float:
+	return max_bag_weight - current_weight
+func capacity_overflow() -> bool:
+	if current_weight > max_bag_weight:
+		return true
+	else: return false

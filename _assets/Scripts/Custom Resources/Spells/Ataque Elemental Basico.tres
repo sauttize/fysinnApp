@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Spell" load_steps=4 format=3 uid="uid://ciwn8s5do651p"]
+
+[ext_resource type="Resource" uid="uid://iiqkfammhjd4" path="res://_assets/Scripts/Custom Resources/Effects/temp_1.tres" id="1_7m8qy"]
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Spell.gd" id="1_cblpu"]
+[ext_resource type="Resource" uid="uid://dbwvpwnmgaawl" path="res://_assets/Scripts/Custom Resources/Modules/Elements/Propia.tres" id="2_hwp3d"]
+
+[resource]
+script = ExtResource("1_cblpu")
+spellName = "Ataque elemental basico"
+combat = true
+level = 1
+races = Array[int]([5])
+spellType = Array[int]([2])
+throwMultiplier = "1"
+throwDice = "d4"
+rangeDistance = 0
+saveThrow = "none"
+saveNumber = 1
+description = ""
+isElemental = true
+element = ExtResource("2_hwp3d")
+buffMuliplier = "1"
+buffElementalDice = "d4"
+debuffMuliplier = "1"
+debuffElementalDice = "d4"
+effects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([ExtResource("1_7m8qy")])
+infoLink = ""

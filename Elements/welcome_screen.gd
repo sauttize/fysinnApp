@@ -46,10 +46,12 @@ func _ready() -> void:
 
 ## Check folders and creates them if neccesary
 func check_folders():
-	if !DirAccess.dir_exists_absolute('user://saves/files/'):
-		DirAccess.make_dir_recursive_absolute('user://saves/files/')
+	if !DirAccess.dir_exists_absolute(GameManager.SAVES_FOLDER_ROUTE):
+		DirAccess.make_dir_recursive_absolute(GameManager.SAVES_FOLDER_ROUTE)
 	if !DirAccess.dir_exists_absolute('user://data/'):
 		DirAccess.make_dir_recursive_absolute('user://data/')
+	if !DirAccess.dir_exists_absolute(GameManager.CUSTOM_ITEMS_ROUTE):
+		DirAccess.make_dir_recursive_absolute(GameManager.CUSTOM_ITEMS_ROUTE)
 ## Check if the current save file exists, if it doesn't, then it'll create a new one empty one.
 func check_save_file():
 	if (FileAccess.file_exists(DEFAULT_SAVE_FILE)):

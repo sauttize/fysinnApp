@@ -1,8 +1,11 @@
-[gd_scene format=3 uid="uid://cxuoh0jlhqui4"]
+[gd_scene load_steps=2 format=3 uid="uid://cxuoh0jlhqui4"]
+
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Inventory/item_slot_basic.gd" id="1_ijv4k"]
 
 [node name="ItemSlotBasic" type="Panel"]
 custom_minimum_size = Vector2(180, 20)
 size_flags_horizontal = 4
+script = ExtResource("1_ijv4k")
 
 [node name="elementos" type="HBoxContainer" parent="."]
 layout_mode = 1

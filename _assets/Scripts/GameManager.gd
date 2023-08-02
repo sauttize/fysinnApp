@@ -12,6 +12,8 @@ const SPELLS_ROUTE = "res://_assets/Scripts/Custom Resources/Spells/"
 
 const RACE_NONE = "res://_assets/Scripts/Custom Resources/Modules/Races/_none.tres"
 
+const CUSTOM_ITEMS_ROUTE = "user://custom data/items/"
+
 var saving : bool = false
 
 var conversionDIC : Dictionary = {

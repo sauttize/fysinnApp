@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=68 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -38,6 +38,7 @@
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/ClassInfo/ClassPanel.gd" id="33_ja71m"]
 [ext_resource type="Script" path="res://_assets/Tweens/aplha_tween.gd" id="36_hcgwt"]
 [ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="37_7fw64"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Base/Inventory/inventarioBox.gd" id="38_35mvt"]
 [ext_resource type="PackedScene" uid="uid://cxuoh0jlhqui4" path="res://Elements/Character Sheet/Base/Inventory/item_slot_basic.tscn" id="38_vu7k7"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/Effects/effect_list.gd" id="39_ir3b0"]
 [ext_resource type="PackedScene" uid="uid://cjsqbq8oeyc3w" path="res://Elements/Character Sheet/Base/Effects/effect_slot.tscn" id="39_l70f3"]
@@ -158,7 +159,7 @@ corner_radius_top_right = 20
 corner_radius_bottom_right = 20
 corner_radius_bottom_left = 10
 
-[node name="Base" type="MarginContainer" node_paths=PackedStringArray("editLife", "editArmor")]
+[node name="Base" type="MarginContainer" node_paths=PackedStringArray("editLife", "editArmor", "effect_list", "inventory")]
 custom_minimum_size = Vector2(0, 680)
 anchors_preset = 15
 anchor_right = 1.0
@@ -172,6 +173,8 @@ theme_override_constants/margin_bottom = 0
 script = ExtResource("1_k2ofn")
 editLife = NodePath("Container/FirstRow/ArmorVida/Vida/EditLife")
 editArmor = NodePath("Container/FirstRow/ArmorVida/Armadura/AddTempArmor")
+effect_list = NodePath("Container/ThirdRow/Effects/lista")
+inventory = NodePath("Container/SecondRow/Items/elementos/inventarioBox")
 
 [node name="Container" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -1200,11 +1203,15 @@ text = "Inventario"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="inventarioBox" type="ScrollContainer" parent="Container/SecondRow/Items/elementos"]
+[node name="inventarioBox" type="ScrollContainer" parent="Container/SecondRow/Items/elementos" node_paths=PackedStringArray("max_size_label", "items_container")]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_c5m3m")
 horizontal_scroll_mode = 3
+script = ExtResource("38_35mvt")
+max_size_label = NodePath("inventario/capacidad")
+items_container = NodePath("inventario/items")
+basic_slot = ExtResource("38_vu7k7")
 
 [node name="inventario" type="VBoxContainer" parent="Container/SecondRow/Items/elementos/inventarioBox"]
 custom_minimum_size = Vector2(195, 0)
@@ -1230,33 +1237,6 @@ layout_mode = 2
 size_flags_horizontal = 4
 
 [node name="items" type="VBoxContainer" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario"]
-layout_mode = 2
-
-[node name="ItemSlotBasic" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
-layout_mode = 2
-
-[node name="ItemSlotBasic2" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
-layout_mode = 2
-
-[node name="ItemSlotBasic3" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
-layout_mode = 2
-
-[node name="ItemSlotBasic4" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
-layout_mode = 2
-
-[node name="ItemSlotBasic5" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
-layout_mode = 2
-
-[node name="ItemSlotBasic6" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
-layout_mode = 2
-
-[node name="ItemSlotBasic7" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
-layout_mode = 2
-
-[node name="ItemSlotBasic8" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
-layout_mode = 2
-
-[node name="ItemSlotBasic9" parent="Container/SecondRow/Items/elementos/inventarioBox/inventario/items" instance=ExtResource("38_vu7k7")]
 layout_mode = 2
 
 [node name="currencyBox" type="Button" parent="Container/SecondRow/Items/elementos" node_paths=PackedStringArray("pc_label", "pp_label", "pe_label", "po_label", "ppt_label", "editWindow", "numberNode", "addOption", "addButton", "fromOp", "toOp", "changeButton")]
