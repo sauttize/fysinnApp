@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://chwvwc8f3ipu4"]
+
+[ext_resource type="Script" path="res://_assets/Custom Nodes/customize_panel.gd" id="1_vofb0"]
+
+[node name="CustomizePanel" type="Node" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("1_vofb0")
+panel_node = NodePath("")
+color_picker_button = NodePath("")

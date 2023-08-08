@@ -4,6 +4,7 @@ class_name Knowledge
 enum PROFICIENCY {NONE, PROFICIENCY, HALF_PROFICIENCY, EXPERTISE}
 
 @export var knowledgeName : String = "none"
+@export_multiline var description : String
 @export var currentPercentage : float = 0:
 	set(num):
 		currentPercentage = clamp(num, minPercentage, maxPercentage)
@@ -12,6 +13,7 @@ enum PROFICIENCY {NONE, PROFICIENCY, HALF_PROFICIENCY, EXPERTISE}
 		currentLevel = clamp(num, 1, 10)
 @export var minPercentage : float = 1
 @export var maxPercentage : float = 100
+@export var temporary_add : float = 0
 @export var failAttempts : int = 0
 @export var motivation : int = 0
 @export var proficiencyType : PROFICIENCY = PROFICIENCY.NONE

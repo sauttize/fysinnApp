@@ -76,6 +76,7 @@ func create_SaveFile():
 		newPlayerData.currentLife = get_life(newPlayerData.classtype)
 		newPlayerData.imagen = newPhoto
 		newPlayerData.armor_equipped = ArmorSet.new()
+		newPlayerData.customization = Customization.new()
 		
 #		newPlayerData.generate_id(GameManager.GetAllSaves())
 		newPlayerData.new_knowledge_list(GameManager.GetDataDump())

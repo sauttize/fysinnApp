@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://fjb5dqytibqg"]
+[gd_scene load_steps=22 format=3 uid="uid://fjb5dqytibqg"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Inventario/inventario.gd" id="1_gjdb7"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Inventario/inventario_manager.gd" id="1_s60h8"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cvud0o8nvkoom" path="res://Elements/Character Sheet/Inventario/armadura/armor_slot.tscn" id="3_m53r3"]
 [ext_resource type="PackedScene" uid="uid://d0heby8hnjlp0" path="res://Elements/Character Sheet/Inventario/item_slot_button.tscn" id="3_t1ruo"]
 [ext_resource type="Texture2D" uid="uid://bi526citfor0h" path="res://Elements/Character Sheet/Inventario/siluetas/sil_4.png" id="4_18dpr"]
+[ext_resource type="PackedScene" uid="uid://chwvwc8f3ipu4" path="res://_assets/Custom Nodes/customize_panel.tscn" id="4_e4w6f"]
+[ext_resource type="Script" path="res://_assets/Custom Nodes/customize_panel.gd" id="4_oxvpt"]
 [ext_resource type="Texture2D" uid="uid://dhxmwbo17ki5f" path="res://Elements/Character Sheet/Inventario/siluetas/sil_5.png" id="5_ybo4f"]
 [ext_resource type="Texture2D" uid="uid://d33y0o4j7kone" path="res://Elements/Character Sheet/Inventario/siluetas/sil_6.png" id="6_cvm2t"]
 [ext_resource type="Texture2D" uid="uid://i4l8uim1invf" path="res://Elements/Character Sheet/Inventario/siluetas/sil_7.png" id="7_rwwno"]
@@ -22,10 +24,20 @@ bg_color = Color(0.145098, 0.145098, 0.145098, 1)
 bg_color = Color(0.329412, 0.0901961, 0.0705882, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hofyr"]
-bg_color = Color(0.0941176, 0.301961, 0.270588, 1)
+bg_color = Color(0.309804, 0.34902, 0.321569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pwpq0"]
+bg_color = Color(0, 0, 0, 0.356863)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a32dd"]
 bg_color = Color(0.243137, 0.352941, 0.298039, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uto8a"]
+bg_color = Color(1, 1, 1, 1)
 
 [node name="Inventario" type="MarginContainer" node_paths=PackedStringArray("inventory_tab", "armor_tab", "inventory_bttn", "armor_bttn")]
 custom_minimum_size = Vector2(700, 800)
@@ -73,6 +85,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_veudv")
 text = "ARMADURA"
 
 [node name="Inventory" type="Panel" parent="Elements" node_paths=PackedStringArray("item_list", "item_photo", "item_data", "price_num", "activate_bttn")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_hofyr")
@@ -83,6 +96,13 @@ item_photo = NodePath("Elements/itemInfo/photo/TextureRect")
 item_data = NodePath("Elements/itemInfo/information")
 price_num = NodePath("Elements/itemInfo/price/priceNum")
 activate_bttn = NodePath("Elements/itemInfo/activate_eff")
+
+[node name="CustomizePanel" parent="Elements/Inventory" node_paths=PackedStringArray("panel_node", "color_picker_button", "depend_on") instance=ExtResource("4_e4w6f")]
+panel_id = "inventory_color"
+panel_node = NodePath("..")
+color_picker_button = NodePath("../Elements/itemInfo/change_bg")
+default_color = Color(0.309804, 0.34902, 0.321569, 1)
+depend_on = NodePath("..")
 
 [node name="Elements" type="HBoxContainer" parent="Elements/Inventory"]
 layout_mode = 1
@@ -103,8 +123,17 @@ theme_override_constants/separation = 30
 custom_minimum_size = Vector2(400, 700)
 layout_mode = 2
 
+[node name="CustomizePanel" type="Node" parent="Elements/Inventory/Elements/ItemsMargin" node_paths=PackedStringArray("panel_node", "color_picker_button", "depend_on")]
+script = ExtResource("4_oxvpt")
+panel_id = "inventory_color_2"
+panel_node = NodePath("../Panel")
+color_picker_button = NodePath("../../itemInfo/change_itempn")
+default_color = Color(0, 0, 0, 0.356863)
+depend_on = NodePath("../../..")
+
 [node name="Panel" type="Panel" parent="Elements/Inventory/Elements/ItemsMargin"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pwpq0")
 
 [node name="Scroll" type="ScrollContainer" parent="Elements/Inventory/Elements/ItemsMargin"]
 custom_minimum_size = Vector2(380, 680)
@@ -147,7 +176,7 @@ offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
-stretch_mode = 3
+stretch_mode = 5
 
 [node name="information" type="RichTextLabel" parent="Elements/Inventory/Elements/itemInfo"]
 custom_minimum_size = Vector2(220, 0)
@@ -183,21 +212,58 @@ visible = false
 layout_mode = 2
 text = "Usar"
 
-[node name="Armor" type="Panel" parent="Elements" node_paths=PackedStringArray("silueta_img", "back_bttn", "foward_bttn", "grid_container")]
+[node name="change_bg" type="ColorPickerButton" parent="Elements/Inventory/Elements/itemInfo"]
 visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+edit_alpha = false
+
+[node name="change_itempn" type="ColorPickerButton" parent="Elements/Inventory/Elements/itemInfo"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Armor" type="Panel" parent="Elements" node_paths=PackedStringArray("silueta_img", "back_bttn", "foward_bttn", "grid_container")]
 custom_minimum_size = Vector2(0, 750)
 layout_mode = 2
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_a32dd")
 script = ExtResource("1_scxcl")
-silueta_img = NodePath("silueta")
+silueta_img = NodePath("SiluetaContainer/silueta")
 siluetas_textures = Array[Texture2D]([ExtResource("2_i3ht0"), ExtResource("3_gdb5a"), ExtResource("4_18dpr"), ExtResource("5_ybo4f"), ExtResource("6_cvm2t"), ExtResource("7_rwwno"), ExtResource("8_q3uiy")])
 back_bttn = NodePath("change_figure/back")
 foward_bttn = NodePath("change_figure/foward")
 slot_scene = ExtResource("3_m53r3")
 grid_container = NodePath("all_pieces/ScrollContainer/GridContainer")
 
-[node name="silueta" type="TextureRect" parent="Elements/Armor"]
+[node name="CustomizeBG" type="Node" parent="Elements/Armor" node_paths=PackedStringArray("panel_node", "color_picker_button", "depend_on")]
+script = ExtResource("4_oxvpt")
+panel_id = "inv_armor_color"
+panel_node = NodePath("..")
+color_picker_button = NodePath("../change_figure/colorBG")
+default_color = Color(0.243137, 0.352941, 0.298039, 1)
+depend_on = NodePath("..")
+
+[node name="CustomizeFigure" type="Node" parent="Elements/Armor" node_paths=PackedStringArray("panel_node", "color_picker_button", "depend_on")]
+script = ExtResource("4_oxvpt")
+panel_id = "figure_color"
+panel_node = NodePath("../SiluetaContainer")
+color_picker_button = NodePath("../change_figure/colorFigure")
+default_color = Color(1, 1, 1, 1)
+use_modulate = true
+depend_on = NodePath("..")
+
+[node name="SiluetaContainer" type="Panel" parent="Elements/Armor"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uto8a")
+
+[node name="silueta" type="TextureRect" parent="Elements/Armor/SiluetaContainer"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -234,82 +300,96 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "<-"
 
+[node name="colorBG" type="ColorPickerButton" parent="Elements/Armor/change_figure"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
+[node name="colorFigure" type="ColorPickerButton" parent="Elements/Armor/change_figure"]
+visible = false
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+
 [node name="foward" type="Button" parent="Elements/Armor/change_figure"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "->"
 
 [node name="Slots" type="Control" parent="Elements/Armor"]
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="head_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
 layout_mode = 1
-offset_left = 300.0
-offset_top = 75.0
-offset_right = 360.0
-offset_bottom = 135.0
+offset_left = -29.0
+offset_top = 71.0
+offset_right = 31.0
+offset_bottom = 131.0
 slot_type = "Cabeza"
 is_main = true
 armor_manager = NodePath("../..")
 
 [node name="chest_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
 layout_mode = 1
-offset_left = 300.0
-offset_top = 159.0
-offset_right = 360.0
-offset_bottom = 219.0
+offset_left = -29.0
+offset_top = 155.0
+offset_right = 31.0
+offset_bottom = 215.0
 slot_type = "Superior"
 is_main = true
 armor_manager = NodePath("../..")
 
 [node name="legs_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
 layout_mode = 1
-offset_left = 300.0
-offset_top = 261.0
-offset_right = 360.0
-offset_bottom = 321.0
+offset_left = -29.0
+offset_top = 257.0
+offset_right = 31.0
+offset_bottom = 317.0
 slot_type = "Inferior"
 is_main = true
 armor_manager = NodePath("../..")
 
 [node name="hands_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
 layout_mode = 1
-offset_left = 129.0
-offset_top = 271.0
-offset_right = 189.0
-offset_bottom = 331.0
+offset_left = -200.0
+offset_top = 267.0
+offset_right = -140.0
+offset_bottom = 327.0
 slot_type = "Guantes"
 is_main = true
 armor_manager = NodePath("../..")
 
 [node name="foot_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
 layout_mode = 1
-offset_left = 300.0
-offset_top = 502.0
-offset_right = 360.0
-offset_bottom = 562.0
+offset_left = -29.0
+offset_top = 498.0
+offset_right = 31.0
+offset_bottom = 558.0
 slot_type = "Pies"
 is_main = true
 armor_manager = NodePath("../..")
 
 [node name="acc1_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
 layout_mode = 1
-offset_left = 578.0
-offset_top = 174.0
-offset_right = 638.0
-offset_bottom = 234.0
+offset_left = 249.0
+offset_top = 170.0
+offset_right = 309.0
+offset_bottom = 230.0
 slot_type = "Accesorio"
 is_main = true
 armor_manager = NodePath("../..")
 
 [node name="acc2_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
 layout_mode = 1
-offset_left = 578.0
-offset_top = 250.0
-offset_right = 638.0
-offset_bottom = 310.0
+offset_left = 249.0
+offset_top = 246.0
+offset_right = 309.0
+offset_bottom = 306.0
 slot_type = "Accesorio"
 is_main = true
 accesory_number = 2
@@ -317,10 +397,10 @@ armor_manager = NodePath("../..")
 
 [node name="acc3_slot" parent="Elements/Armor/Slots" node_paths=PackedStringArray("armor_manager") instance=ExtResource("3_m53r3")]
 layout_mode = 1
-offset_left = 578.0
-offset_top = 328.0
-offset_right = 638.0
-offset_bottom = 388.0
+offset_left = 249.0
+offset_top = 324.0
+offset_right = 309.0
+offset_bottom = 384.0
 slot_type = "Accesorio"
 is_main = true
 accesory_number = 3

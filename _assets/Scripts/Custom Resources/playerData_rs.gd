@@ -81,13 +81,17 @@ var casillasMov : int = 0:
 #KNOWLEDGE RELATED
 @export_category("-- Knowledge --")
 @export var myKnowledgeList : Array[Knowledge]
+@export var knowl_history : Array[KnowledgeRecord]
 
 #OTHER
 @export_category("Other")
-var lastSaved : Dictionary
-var PATH : String = ""
-var UNIQUE_ID : int = -1
-var console_color : Color
+@export var lastSaved : Dictionary
+@export var PATH : String = ""
+@export var UNIQUE_ID : int = -1
+@export var console_color : Color
+@export var customization : Customization
+
+## Functions
 
 func updateExp(newExp : int):
 	experiencia += newExp

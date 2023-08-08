@@ -46,6 +46,7 @@ func get_item_info(item_selected : Item) -> void:
 	current_item = item_selected
 	if current_item:
 		if current_item.image: item_photo.texture = current_item.image
+		else: item_photo.texture = null
 		item_data.clear()
 		item_data.append_text("[b]Nombre:[/b] %s" % [current_item.itemName])
 		item_data.newline()
@@ -91,11 +92,24 @@ func file_dropped(files_path : PackedStringArray) -> void:
 	if is_visible_in_tree() != true: return # If it's outside inventory tab
 	await get_tree().create_timer(0.2).timeout
 	
+	if files_path.size() == 1:
+		var err = Image.new().load(files_path[0])
+		if err == OK:
+			var new_img = Image.load_from_file(files_path[0])
+			var new_text = ImageTexture.create_from_image(new_img)
+			if current_item:
+				current_item.image = new_text
+				item_photo.texture = current_item.image
+				return
+			else:
+				Utilities.create_PopUp("No hay item seleccionado...")
+				return
+	
 	for n in files_path.size():
 		var file = ResourceLoader.load(files_path[n])
 		if file && file is Item:
 			playerData.item_list.append(file)
 			update_list()
 		else:
-			Utilities.create_PopUp("Solo puedes agregar recursos del tipo item.")
+			Utilities.create_PopUp("Solo puedes agregar recursos del tipo item.\n Para agregar imagen recuerda soltar una sola.")
 

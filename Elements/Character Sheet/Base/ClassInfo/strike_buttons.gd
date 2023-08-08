@@ -1,14 +1,6 @@
 extends HBoxContainer
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 
-# Images
-const NOSTRIKE_NORMAL : String = "res://_assets/Icons/Death Strikes/no strike.png"
-const NOSTRIKE_HOVER : String = "res://_assets/Icons/Death Strikes/no strike/no strike hover.png"
-const NOSTRIKE_PRESSED : String = "res://_assets/Icons/Death Strikes/no strike/no strike pressed.png"
-const STRIKE_NORMAL : String = "res://_assets/Icons/Death Strikes/strike.png"
-const STRIKE_HOVER : String = "res://_assets/Icons/Death Strikes/strike/strike hover.png"
-const STRIKE_PRESSED : String = "res://_assets/Icons/Death Strikes/strike/strike pressed.png"
-
 # Variables
 enum STRIKE_TYPE {GOOD, BAD}
 
@@ -16,12 +8,12 @@ enum STRIKE_TYPE {GOOD, BAD}
 @export var modulateColor : Color
 var allStrikes : Array[Node]
 
-@onready var nostr_normal_texture = ImageTexture.create_from_image(Image.new().load_from_file(NOSTRIKE_NORMAL))
-@onready var nostr_hover_texture = ImageTexture.create_from_image(Image.new().load_from_file(NOSTRIKE_HOVER))
-@onready var nostr_pressed_texture = ImageTexture.create_from_image(Image.new().load_from_file(NOSTRIKE_PRESSED))
-@onready var str_normal_texture = ImageTexture.create_from_image(Image.new().load_from_file(STRIKE_NORMAL))
-@onready var str_hover_texture = ImageTexture.create_from_image(Image.new().load_from_file(STRIKE_HOVER))
-@onready var str_pressed_texture = ImageTexture.create_from_image(Image.new().load_from_file(STRIKE_PRESSED))
+@onready var nostr_normal_texture = preload("res://_assets/Icons/Death Strikes/no strike.png")
+@onready var nostr_hover_texture = preload("res://_assets/Icons/Death Strikes/no strike/no strike hover.png")
+@onready var nostr_pressed_texture = preload("res://_assets/Icons/Death Strikes/no strike/no strike pressed.png")
+@onready var str_normal_texture = preload("res://_assets/Icons/Death Strikes/strike.png")
+@onready var str_hover_texture = preload("res://_assets/Icons/Death Strikes/strike/strike hover.png")
+@onready var str_pressed_texture = preload("res://_assets/Icons/Death Strikes/strike/strike pressed.png")
 
 # Methods
 func _ready() -> void:

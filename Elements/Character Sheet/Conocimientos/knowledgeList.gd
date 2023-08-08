@@ -1,4 +1,5 @@
 extends ItemList
+class_name KnowledgeList
 
 @onready var dataDump : DataFile = GameManager.GetDataDump()
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
@@ -12,9 +13,20 @@ var starNodes : Array = []
 var selectedName : String = "Acrobacia"
 var selectedKnowl : Knowledge
 ## NODES TO FILL INFO
+@export_category("Information nodes")
+@export_subgroup("Percentage")
 @export var perActual : Label
 @export var perMinimo : Label
 @export var perMaximo : Label
+@export_subgroup("Middle row")
+@export var description_label : RichTextLabel
+@export var failed_attempts : Label
+@export var current_motivation : Label
+@export_subgroup("Bottom row")
+@export var associated_stat : Label
+@export var proficiency_type : OptionButton
+@export var list_effects : Label
+@export var effect_bttn : Button
 
 func _ready() -> void:
 	get_star_nodes()
@@ -33,9 +45,49 @@ func on_item_selected(index : int):
 	selectedName = get_item_text(index)
 	get_knowledge_by_name(selectedName)
 	update_level_stars(selectedKnowl)
-	perActual.text = str(selectedKnowl.currentPercentage)
-	perMinimo.text = str(selectedKnowl.minPercentage)
-	perMaximo.text = str(selectedKnowl.maxPercentage)
+	
+	update_information()
+
+## Updates every node
+func update_information() -> void:
+	if !selectedKnowl:
+		Utilities.create_PopUp("No hay concimiento asociado...")
+		return
+	else:
+		perActual.text = str(selectedKnowl.currentPercentage)
+		perMinimo.text = str(selectedKnowl.minPercentage)
+		perMaximo.text = str(selectedKnowl.maxPercentage)
+		
+		description_label.clear()
+		description_label.append_text(selectedKnowl.description)
+		failed_attempts.text = str(selectedKnowl.failAttempts)
+		current_motivation.text = str(selectedKnowl.motivation)
+		
+		if selectedKnowl.associatedStat:
+			associated_stat.text = Stats.new().get_string(selectedKnowl.associatedStat)
+			var stat_mod = playerData.stats.get_mod(selectedKnowl.associatedStat)
+			associated_stat.text += " (+%s)" % [stat_mod]
+		else:
+			associated_stat.text = "--"
+		
+		match selectedKnowl.get_proficiency_string():
+			"NONE":
+				proficiency_type.select(0)
+			"PROFICIENCY":
+				proficiency_type.select(1)
+			"HALF_PROFICIENCY":
+				proficiency_type.select(2)
+			"EXPERTISE":
+				proficiency_type.select(3)
+		
+		list_effects.text = ""
+		if selectedKnowl.associatedEffects.size() != 0:
+			effect_bttn.disabled = false
+			for eff in selectedKnowl.associatedEffects:
+				list_effects.text += "- %s\n" % [eff.effectName] 
+		else:
+			effect_bttn.disabled = true
+
 
 ## Updates all knowledges
 func update_list_of_knowledge():

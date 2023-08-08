@@ -57,3 +57,23 @@ func stat_to_mod(ability : int):
 			return 10
 		_:
 			return 0
+
+func get_mod(stat : STATS) -> int:
+	match stat:
+		STATS.FUE:
+			return strengthMOD
+		STATS.DES:
+			return dexterityMOD
+		STATS.CON:
+			return constitutionMOD
+		STATS.INT:
+			return intelligenceMOD
+		STATS.SAB:
+			return wisdomMOD
+		STATS.CAR:
+			return charismaMOD
+		_:
+			return 0
+
+func get_string(stat : STATS) -> String:
+	return STATS.keys()[stat]

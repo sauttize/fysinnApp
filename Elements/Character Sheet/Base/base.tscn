@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cgv0xmq1b22ap"]
+[gd_scene load_steps=69 format=3 uid="uid://cgv0xmq1b22ap"]
 
 [ext_resource type="PackedScene" uid="uid://bddgh2tf2lob8" path="res://Elements/Character Sheet/skills.tscn" id="1_b7ayw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Base/BaseManager.gd" id="1_k2ofn"]
@@ -49,6 +49,7 @@
 [ext_resource type="Texture2D" uid="uid://do4ulpagygwej" path="res://_assets/Icons/Death Strikes/no strike/no strike pressed.png" id="41_vuhha"]
 [ext_resource type="Texture2D" uid="uid://cdr5qgagc3ynw" path="res://_assets/Icons/Death Strikes/no strike/no strike hover.png" id="42_sl5bv"]
 [ext_resource type="Texture2D" uid="uid://cccb3wo4wmrl2" path="res://_assets/Icons/Death Strikes/good strike.png" id="44_te8eu"]
+[ext_resource type="Script" path="res://_assets/Custom Nodes/customize_panel.gd" id="50_odpd4"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rk3gq"]
 bg_color = Color(0.309804, 0.470588, 0.756863, 1)
@@ -92,7 +93,7 @@ corner_radius_top_left = 12
 corner_radius_top_right = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x4tw0"]
-bg_color = Color(0.2, 0.411765, 0.376471, 1)
+bg_color = Color(0.129412, 0.129412, 0.129412, 1)
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
@@ -153,7 +154,7 @@ corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3ftec"]
-bg_color = Color(0.380706, 0.341302, 0.648213, 1)
+bg_color = Color(0.380392, 0.341176, 0.647059, 1)
 corner_radius_top_left = 10
 corner_radius_top_right = 20
 corner_radius_bottom_right = 20
@@ -700,7 +701,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="bgFoto" type="Panel" parent="Container/FirstRow/RightPanel/picture"]
-clip_children = 2
+clip_children = 1
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1721,6 +1722,238 @@ alignment = 1
 [node name="effectSlot" parent="Container/ThirdRow/Effects/lista/efectos" instance=ExtResource("39_l70f3")]
 layout_mode = 2
 
+[node name="PanelColors" type="Control" parent="Container"]
+visible = false
+layout_mode = 2
+
+[node name="ColorPickers" type="HBoxContainer" parent="Container/PanelColors"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -367.0
+offset_top = 220.0
+offset_right = 367.0
+offset_bottom = 264.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="Stats" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/Stats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/Stats"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/Stats" node_paths=PackedStringArray("panel_node", "color_picker_button", "parent_node")]
+script = ExtResource("50_odpd4")
+panel_id = "stats_color"
+panel_node = NodePath("../../../../FirstRow/Stats/bg")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(0.2, 0.411765, 0.376471, 1)
+hide_parent = true
+parent_node = NodePath("../../..")
+
+[node name="Armor" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/Armor"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Armor"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/Armor"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/Armor" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("50_odpd4")
+panel_id = "armor_color"
+panel_node = NodePath("../../../../FirstRow/ArmorVida/Armadura/bg")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(0.309804, 0.470588, 0.756863, 1)
+
+[node name="Health" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/Health"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Health"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/Health"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/Health" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("50_odpd4")
+panel_id = "health_color"
+panel_node = NodePath("../../../../FirstRow/ArmorVida/Vida/bg")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(0.968627, 0.270588, 0.313726, 0.580392)
+
+[node name="ProfileBG" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/ProfileBG"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Profile BG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/ProfileBG"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/ProfileBG" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("50_odpd4")
+panel_id = "profile_color"
+panel_node = NodePath("../../../../FirstRow/RightPanel/bg")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(0.2, 0.411765, 0.376471, 1)
+
+[node name="ProfileHEADER" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/ProfileHEADER"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Profile Header
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/ProfileHEADER"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/ProfileHEADER" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("50_odpd4")
+panel_id = "profile_color_2"
+panel_node = NodePath("../../../../FirstRow/RightPanel/topPanel")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(0.686275, 0.341176, 0.301961, 1)
+
+[node name="ProfileFILTER" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/ProfileFILTER"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Photo Filter
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/ProfileFILTER"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/ProfileFILTER" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("50_odpd4")
+panel_id = "profile_color_3"
+panel_node = NodePath("../../../../FirstRow/RightPanel/picture/bgFoto")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(1, 1, 1, 1)
+use_modulate = true
+
+[node name="Spells" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/Spells"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Spells"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/Spells"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/Spells" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("50_odpd4")
+panel_id = "spells_color"
+panel_node = NodePath("../../../../SecondRow/Spells/bg")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(0.380392, 0.341176, 0.647059, 1)
+
+[node name="Inventory" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/Inventory"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Inventory"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/Inventory"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/Inventory" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("50_odpd4")
+panel_id = "inventory_base_color"
+panel_node = NodePath("../../../../SecondRow/Items/bg")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(0.670588, 0.364706, 0.196078, 1)
+
+[node name="Effects" type="VBoxContainer" parent="Container/PanelColors/ColorPickers"]
+layout_mode = 2
+
+[node name="label" type="Label" parent="Container/PanelColors/ColorPickers/Effects"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Effects"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Container/PanelColors/ColorPickers/Effects"]
+visible = false
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="CustomizePanel" type="Node" parent="Container/PanelColors/ColorPickers/Effects" node_paths=PackedStringArray("panel_node", "color_picker_button")]
+script = ExtResource("50_odpd4")
+panel_id = "effects_color"
+panel_node = NodePath("../../../../ThirdRow/Effects/bg")
+color_picker_button = NodePath("../ColorPickerButton")
+default_color = Color(0.380392, 0.341176, 0.647059, 1)
+
 [connection signal="updateBaseData" from="." to="Container/FirstRow/ArmorVida/Vida/Puntos/Maximos/ptsMaximos" method="_on_base_update_base_data"]
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Armadura/EditButton" to="." method="_on_edit_button_button_up"]
 [connection signal="close_requested" from="Container/FirstRow/ArmorVida/Armadura/AddTempArmor" to="." method="_on_add_temp_armor_close_requested"]
@@ -1735,3 +1968,5 @@ layout_mode = 2
 [connection signal="button_up" from="Container/FirstRow/RightPanel/topPanel/status/hbox/Change" to="Container/FirstRow/RightPanel" method="_on_change_button_up"]
 [connection signal="button_up" from="Container/FirstRow/RightPanel/picture/EditButton" to="Container/FirstRow/RightPanel" method="_on_edit_button_button_up"]
 [connection signal="file_selected" from="Container/FirstRow/RightPanel/picture/FileDialog" to="Container/FirstRow/RightPanel" method="_on_file_dialog_file_selected"]
+
+[editable path="Container/FirstRow/Stats"]
