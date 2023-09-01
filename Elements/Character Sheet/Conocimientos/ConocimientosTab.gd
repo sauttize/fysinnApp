@@ -14,6 +14,8 @@ func _ready() -> void:
 	visibility_changed.connect(play_animations)
 	update_history()
 	
+	knowl_list.update_history.connect(update_history)
+	
 func play_animations():
 	historialPanelPos.play_Tween()
 
@@ -23,8 +25,10 @@ func update_history() -> void:
 	for record in playerData.knowl_history:
 		var new_slot = history_slot.instantiate() as KnowledgeRecordSlot
 		new_slot.this_record = record
-		new_slot.update_label()
 		historialList.add_child(new_slot)
+		historialList.move_child(new_slot, 0)
+		new_slot.update_label()
+
 
 func clean_history() -> void:
 	for node in historialList.get_children():

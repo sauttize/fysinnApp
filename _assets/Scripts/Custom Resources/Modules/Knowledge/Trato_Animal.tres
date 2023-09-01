@@ -4,14 +4,19 @@
 
 [resource]
 script = ExtResource("1_vwjs5")
-knowledgeName = "Artes Escenicas"
+knowledgeName = "Trato Animal"
+description = "Capacidad de interactuar con los animales y bestias. 
+
+Tener o conseguir cualquier tipo de fobia a animales o criaturas hará que tu porcentaje de éxito baje. Los domadores de bestia difícilmente obtendrán el nerf de Fobia."
 currentPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 15.0
+maxPercentage = 90.0
+temporary_add = 0.0
 failAttempts = 0
 motivation = 0
+max_throw_num = 5
 proficiencyType = 0
-associatedStat = 0
+associatedStat = 6
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

@@ -5,13 +5,16 @@
 [resource]
 script = ExtResource("1_k4wrd")
 knowledgeName = "Meditación"
+description = "Al meditar se puede llegar a conseguir el boost de Cafeína (el sueño baja más lento). También hace que se recupere un porcentaje de vida elevado al dormir."
 currentPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 10.0
+maxPercentage = 75.0
+temporary_add = 0.0
 failAttempts = 0
 motivation = 0
+max_throw_num = 3
 proficiencyType = 0
-associatedStat = 0
+associatedStat = 6
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

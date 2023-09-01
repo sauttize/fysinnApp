@@ -1,7 +1,7 @@
 extends Resource
 class_name Stats
 
-enum STATS {FUE, DES, CON, INT, SAB, CAR}
+enum STATS {FUE, DES, CON, INT, SAB, CAR, NONE}
 
 #Abilty Score
 @export_subgroup("Ability Scores")
@@ -75,5 +75,5 @@ func get_mod(stat : STATS) -> int:
 		_:
 			return 0
 
-func get_string(stat : STATS) -> String:
+static func get_string(stat : STATS) -> String:
 	return STATS.keys()[stat]

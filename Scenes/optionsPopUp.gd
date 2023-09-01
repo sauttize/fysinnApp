@@ -24,7 +24,7 @@ func click_op(id : int):
 	match id:
 		0:
 			isCheck = !popup.is_item_checked(0)
-			popup.set_item_checked(0, isCheck)
+			popup.set_item_checked(0, isCheck) 
 			update_autosave(isCheck)
 		1:
 			new_knowledge_list()

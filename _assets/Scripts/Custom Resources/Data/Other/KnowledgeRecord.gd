@@ -1,7 +1,7 @@
 extends Resource
 class_name KnowledgeRecord
 
-enum THROW {NORMAL, ESPECIAL}
+enum THROW {SPECIAL, NORMAL}
 
 @export var content : String = "" ## Final output of the record
 @export var associated_knowl : Knowledge ## Knowledge resource associated
@@ -22,20 +22,32 @@ const ACTIVADO : String = "[i][color=lightblue]Efecto activado[/color][/i]" ## F
 
 ## Main functions
 
+func create_special_record(knowl: Knowledge, success: bool) -> String:
+	var res : String = ""
+	# Knowledge name
+	res += "[b]%s[/b] " % [knowl.knowledgeName]
+	res += "(Tirada especial)"
+	# Success or failure
+	res += "\n"
+	if success: res += EXITO
+	else: res += FALLO
+	
+	content = res
+	throw_type = THROW.SPECIAL
+	return res
+
 ## With the given input, fills the record as normal record, meaning: no effect.
-func create_normal_record(knowl : Knowledge, needed_num : int, got_num : int, type : THROW,prof_num : int = 0) -> String:
+func create_normal_record(knowl : Knowledge, needed_num : int, got_num : int,prof_num : int = 0) -> String:
 	associated_knowl = knowl
-	number_needed = needed_num + prof_num
+	number_needed = needed_num
 	number_got = got_num
 	if prof_num > 0: with_proficiency = true
-	throw_type = type
 	
 	var res : String = ""
 	# Knowledge name
 	res += "[b]%s[/b] " % [knowl.knowledgeName]
 	# Throw type
-	if type == THROW.NORMAL: res += "(Tirada normal)"
-	else:  res += "(Tirada especial)"
+	res += "(Tirada normal)"
 	# With proficiency?
 	if with_proficiency: res += " [i]+ prof %s[/i]" % [prof_num]
 	# Success or failure
@@ -49,6 +61,7 @@ func create_normal_record(knowl : Knowledge, needed_num : int, got_num : int, ty
 	res += BB_need_got(number_needed, number_got)
 	
 	content = res
+	throw_type = THROW.NORMAL
 	return res
 ##  With the given input, fills the record as effect record.
 func create_effect_record(knowl : Knowledge) -> String:
@@ -64,8 +77,33 @@ func create_effect_record(knowl : Knowledge) -> String:
 	content = res
 	return res
 
-## BBCode conversions
+## Learning records
+func create_learn_record(knowl : Knowledge, learn_type : String, success : bool) -> String:
+	var res : String = ""
+	# Knowledge name
+	res += "[b]%s[/b] " % [knowl.knowledgeName]
+	res += "\n(Aprendizaje por: %s)" % learn_type
+	# Success or failure
+	var left_text = ""
+	res += "\n"
+	if success: 
+		res += EXITO
+		left_text += "Nivel %s -> Nivel %s\n" % [(knowl.currentLevel - 1), knowl.currentLevel]
+	else: 
+		res += FALLO
+	
+	left_text += "Fallos: %s" % knowl.failAttempts
+	left_text += "\nMotivacion: %s" % knowl.motivation
+	res += BB_left_text(left_text)
+	
+	content = res
+	return res
 
+## BBCode conversions
+func BB_left_text(text : String) -> String:
+	var res : String
+	res = "[font_size=%s][right]%s[/right]" % [FONT_SIZE, text]
+	return res
 ## Creates needed/got bbcode from variables. Adds "font_size" 10 and "right" alignment.
 func BB_need_got(needed : int, got : int) -> String: 
 	var res : String

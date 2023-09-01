@@ -5,13 +5,22 @@
 [resource]
 script = ExtResource("1_a23ia")
 knowledgeName = "Búsqueda"
+description = "Habilidad de encontrar caminos, lugares, trampas.
+
+Útil para reconocer lugares de tesoros o para ir en dirección a lugares de interés.
+
+Combinado con la suerte se puede realizar un [i]encuentro afortunado[/i] (encontrar exactamente lo que se estaba buscando. Por ej. Una zona ritual)"
 currentPercentage = 0.0
+temporaryPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 25.0
+maxPercentage = 80.0
+temporary_add = 0.0
 failAttempts = 0
-motivation = 0
+motivation = 20
+max_motivation = 20
+max_throw_num = 3
 proficiencyType = 0
-associatedStat = 0
+associatedStat = 6
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

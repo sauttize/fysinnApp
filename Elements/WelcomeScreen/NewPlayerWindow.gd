@@ -80,6 +80,7 @@ func create_SaveFile():
 		
 #		newPlayerData.generate_id(GameManager.GetAllSaves())
 		newPlayerData.new_knowledge_list(GameManager.GetDataDump())
+		newPlayerData.max_motivation()
 		newPlayerData.newSave()
 #		ResourceSaver.save(newPlayerData, GameManager.SAVES_FOLDER_ROUTE + SAVE_NAME + str(dataDump.SAVES_INDEX) + EXT)
 		GameManager.NewSave(newPlayerData)

@@ -2,6 +2,7 @@ extends Control
 
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @export_category("Nodes")
+@export var prof_label : RichTextLabel
 @export_subgroup("Stats")
 @export var fue_num : LineEdit
 @export var des_num : LineEdit
@@ -27,9 +28,8 @@ var car : int
 signal updateMaxLife
 
 func _ready():
-	set_localStats_fromFile()
-	set_lineEdit_fromLocalVar()
-	update_modifiers()
+	update_info()
+	owner.visibility_changed.connect(update_info)
 	
 	fue_num.text_changed.connect(stat_changed)
 	des_num.text_changed.connect(stat_changed)
@@ -37,7 +37,16 @@ func _ready():
 	int_num.text_changed.connect(stat_changed)
 	sab_num.text_changed.connect(stat_changed)
 	car_num.text_changed.connect(stat_changed)
+
+# So far only updates proficiency label
+func update_info() -> void:
+	set_localStats_fromFile()
+	set_lineEdit_fromLocalVar()
+	update_modifiers()
 	
+	prof_label.clear()
+	prof_label.append_text("[center][b]Proficiency:[/b] %s" % [playerData.proficiency_num])
+
 func set_localStats_fromFile():
 	fue = playerData.stats.strength
 	des = playerData.stats.dexterity
@@ -78,7 +87,7 @@ func set_localMOD_toFile():
 	playerData.stats.wisdomMOD = int(sab_MOD.value)
 	playerData.stats.charismaMOD = int(car_MOD.value)
 
-#Stats chage signals
+#Stats change signals
 func stat_changed(text : String):
 	if (int(text)):
 		set_fileStats_fromLineEdit()

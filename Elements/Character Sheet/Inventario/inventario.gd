@@ -38,8 +38,12 @@ func clear_list() -> void:
 		node.queue_free()
 
 func clear_information() -> void:
+	current_item = null
 	item_data.clear()
 	item_data.append_text("[b]Nombre:[/b] -\n[b]Tipo[/b]: -\n\n[b]Descripcion:[/b] -\n[b]Peso:[/b] -")
+	item_photo.texture = null
+	price_num.value = 0
+	price_num.editable = false
 	activate_bttn.hide()
 
 func get_item_info(item_selected : Item) -> void:
@@ -63,9 +67,10 @@ func get_item_info(item_selected : Item) -> void:
 		item_data.newline()
 		item_data.append_text("[b]Peso:[/b] %s kg" % [current_item.weight])
 		price_num.value = current_item.price
+		price_num.editable = true
 
 func update_price(new_price : int) -> void:
-	await get_tree().create_timer(price_sent_delay).timeout
+#	await get_tree().create_timer(price_sent_delay).timeout
 	if current_item:
 		current_item.price = int(new_price)
 

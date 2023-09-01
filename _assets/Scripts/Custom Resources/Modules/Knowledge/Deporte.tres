@@ -5,12 +5,19 @@
 [resource]
 script = ExtResource("1_v28xv")
 knowledgeName = "Trato Animal"
+description = "Implica que tan bueno se es realizando deportes. 
+
+Las partidas de ciertos deportes implican hacer un número de tiradas establecidas y comparar el resultado entre ambos equipos. (Minijuego)"
 currentPercentage = 0.0
+temporaryPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 20.0
+maxPercentage = 95.0
+temporary_add = 0.0
 failAttempts = 0
-motivation = 0
+motivation = 20
+max_motivation = 20
+max_throw_num = 10
 proficiencyType = 0
 associatedStat = 0
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])

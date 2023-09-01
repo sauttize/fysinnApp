@@ -22,6 +22,9 @@ var casillasMov : int = 0:
 @export var speed : int = 30
 @export var initiativeNum : int = 1:
 	set(num): initiativeNum = clamp(num, 1, 5)
+@export var proficiency_num : int = 1 :
+	get:
+		return clamp(proficiency_num, 1, 100)
 @export_subgroup("Skills")
 @export var stats : Stats = Stats.new()
 @export var goodStrike : int = 0
@@ -113,8 +116,13 @@ func generate_id(compareWith : Array[PlayerData]):
 		var number = RandomNumberGenerator.new().randi_range(1, 1000000)
 		UNIQUE_ID = number
 		
+# Knowledge
 func new_knowledge_list(from : DataFile):
 	myKnowledgeList = from.get_duplicate_list_knowledge()
+
+func max_motivation() -> void:
+	for knowl in myKnowledgeList:
+		knowl.motivation = knowl.max_motivation
 
 ## Inventory
 func get_available_bag_weight() -> float:

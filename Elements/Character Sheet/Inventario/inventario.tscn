@@ -84,6 +84,15 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_leheo")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_veudv")
 text = "ARMADURA"
 
+[node name="spellsBttn" type="Button" parent="Elements/Tabs"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_ppepg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_leheo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_veudv")
+text = "HECHIZOS"
+
 [node name="Inventory" type="Panel" parent="Elements" node_paths=PackedStringArray("item_list", "item_photo", "item_data", "price_num", "activate_bttn")]
 visible = false
 layout_mode = 2

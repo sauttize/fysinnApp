@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="Knowledge" load_steps=2 format=3 uid="uid://blfw1hglwwv5e"]
+
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Knowledge.gd" id="1_tij4h"]
+
+[resource]
+script = ExtResource("1_tij4h")
+knowledgeName = "Susurros"
+description = "Uso de una lista de hechizos pequeños como ayuda en combate. 
+
+1. [b]Duplicación de objetos temporal:[/b] Útil para hacer doble ataque a melee / flechas.
+2. [b]Aguante:[/b] Se pierde un tercio menos de vida ante un golpe o hechizo de sangre.
+3. [b]Velocidad:[/b] Se puede mover el doble de lo normal por ese turno.
+4. [b]Recuperar PP en hechizo:[/b] se recupera un tercio del total. (Todo si es 1)
+5. [b]Confusión elemental:[/b] Se puede cambiar el elemento de un hechizo elemental."
+currentPercentage = 0.0
+currentLevel = 1
+minPercentage = 10.0
+maxPercentage = 50.0
+temporary_add = 0.0
+failAttempts = 0
+motivation = 0
+max_throw_num = 7
+proficiencyType = 0
+only_special_throw = false
+associatedStat = 3
+associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
+associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

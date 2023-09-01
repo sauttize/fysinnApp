@@ -5,13 +5,21 @@
 [resource]
 script = ExtResource("1_wh4ha")
 knowledgeName = "Acrobacia"
+description = "Habilidades acrobáticas como saltar, atravesar zonas pequeñas, mantenerse agarrado.
+
+Como conocimiento puede realizarse para dar un show."
 currentPercentage = 0.0
-currentLevel = 2
-minPercentage = 12.0
-maxPercentage = 35.0
+temporaryPercentage = 0.0
+currentLevel = 1
+minPercentage = 25.0
+maxPercentage = 85.0
+temporary_add = 0.0
 failAttempts = 0
-motivation = 0
+motivation = 20
+max_motivation = 20
+fail_lose = 2
+max_throw_num = 4
 proficiencyType = 0
-associatedStat = 0
+associatedStat = 1
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

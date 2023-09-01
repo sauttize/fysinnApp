@@ -26,3 +26,10 @@ text = "[b]Cocina[/b] (Tirada normal) [i]+ prof[/i]
 Obtuvo: 16[right]"
 fit_content = true
 autowrap_mode = 0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 8
+text = "x"

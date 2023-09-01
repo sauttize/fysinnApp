@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Effect" load_steps=2 format=3 uid="uid://iiqkfammhjd4"]
+[gd_resource type="Resource" script_class="Effect" load_steps=2 format=3 uid="uid://edqhhb1iinfp"]
 
-[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Effects.gd" id="1_n2j2l"]
+[ext_resource type="Script" path="res://_assets/Scripts/Custom Resources/Modules/Effects.gd" id="1_2bdmh"]
 
 [resource]
-script = ExtResource("1_n2j2l")
-effectName = "tem"
+script = ExtResource("1_2bdmh")
+effectName = "-"
 effectType = "Temporal"
 effectDescription = "-"
 time_hs = 0.0

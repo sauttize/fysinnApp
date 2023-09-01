@@ -126,7 +126,7 @@ func get_level_vector() -> Vector2:
 	return retVector
 
 func get_races_array() -> Array[Race]:
-	var retArray : Array[Race]
+	var retArray : Array[Race] = []
 	
 	if raincaster_ch.button_pressed: retArray.push_back(racesOrdered[0])
 	if naiad_ch.button_pressed: retArray.push_back(racesOrdered[1])

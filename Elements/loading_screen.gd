@@ -2,7 +2,7 @@ extends CanvasLayer
 class_name LoadingScreen
 
 var window_size : Vector2i = Vector2i(450, 500)
-@export var duration : int = 1.5
+@export var duration : float = 1.5
 @onready var animationPlayer : AnimationPlayer = $"Dissolve Effect/AnimationPlayer"
 @onready var parentNode : Control = $"Dissolve Effect"
 var progress_status : int

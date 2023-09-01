@@ -4,14 +4,19 @@
 
 [resource]
 script = ExtResource("1_cge1k")
-knowledgeName = "Naturaleza"
+knowledgeName = "Manos Ligeras"
+description = "Permite robar objetos, mover cosas de lugar sin que afecte (por ej en trampas).
+
+En combinación con artes escénicas se hace un show de magia."
 currentPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 15.0
+maxPercentage = 75.0
+temporary_add = 0.0
 failAttempts = 0
 motivation = 0
+max_throw_num = 4
 proficiencyType = 0
-associatedStat = 0
+associatedStat = 6
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

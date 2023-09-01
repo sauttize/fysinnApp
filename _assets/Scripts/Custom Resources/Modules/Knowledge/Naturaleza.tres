@@ -5,13 +5,19 @@
 [resource]
 script = ExtResource("1_y4uml")
 knowledgeName = "Naturaleza"
+description = "Como conocimiento:
+
+En combinación con con trato animal puede darte información sobre posibles criaturas de la zona."
 currentPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 25.0
+maxPercentage = 85.0
+temporary_add = 0.0
 failAttempts = 0
 motivation = 0
+max_throw_num = 4
 proficiencyType = 0
-associatedStat = 0
+only_special_throw = false
+associatedStat = 3
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

@@ -5,13 +5,19 @@
 [resource]
 script = ExtResource("1_0hps1")
 knowledgeName = "Memoria"
+description = "Habilidad mayormente de roleo. Para hacer verificación de eventos y situaciones que se vivieron en el pasado y que nadie parece recordar. 
+
+Solo puede usarlo un personaje por pregunta/evento."
 currentPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 40.0
+maxPercentage = 95.0
+temporary_add = 0.0
 failAttempts = 0
 motivation = 0
+max_throw_num = 3
 proficiencyType = 0
-associatedStat = 0
+only_special_throw = false
+associatedStat = 4
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

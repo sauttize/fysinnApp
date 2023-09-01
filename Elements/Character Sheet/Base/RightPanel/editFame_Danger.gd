@@ -9,7 +9,7 @@ extends Window
 @export var criminalLabel : Label
 
 func _ready() -> void:
-#	close_requested.connect(hide)
+	close_requested.connect(hide)
 	okButton.button_up.connect(update_number)
 
 func update_number():

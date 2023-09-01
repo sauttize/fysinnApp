@@ -269,6 +269,7 @@ texture = ExtResource("4_ye1em")
 metadata/_edit_lock_ = true
 
 [node name="EditButton" parent="Container/FirstRow/ArmorVida/Armadura" instance=ExtResource("5_uo5e2")]
+visible = false
 modulate = Color(1, 1, 1, 0.541176)
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 1
@@ -467,7 +468,7 @@ ignore_texture_size = true
 stretch_mode = 0
 metadata/_edit_lock_ = true
 
-[node name="EditLife" type="Window" parent="Container/FirstRow/ArmorVida/Vida" node_paths=PackedStringArray("_warning", "lifePoints", "maxPoints")]
+[node name="EditLife" type="Window" parent="Container/FirstRow/ArmorVida/Vida" node_paths=PackedStringArray("_warning", "lifePoints", "maxPoints", "heal_bttn", "damage_bttn", "mod_max_bttn")]
 title = "Editar Vida"
 size = Vector2i(200, 300)
 visible = false
@@ -478,6 +479,9 @@ script = ExtResource("12_rgb77")
 _warning = NodePath("../Puntos/Actuales/warning")
 lifePoints = NodePath("VSplitContainer/UpperPanel/VBox/ptsVida")
 maxPoints = NodePath("VSplitContainer/BottomPanel/VBox/addMax")
+heal_bttn = NodePath("VSplitContainer/UpperPanel/VBox/curarbtn")
+damage_bttn = NodePath("VSplitContainer/UpperPanel/VBox/herirbtn")
+mod_max_bttn = NodePath("VSplitContainer/BottomPanel/VBox/maxBtn")
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Container/FirstRow/ArmorVida/Vida/EditLife"]
 offset_right = 200.0
@@ -1959,12 +1963,6 @@ default_color = Color(0.380392, 0.341176, 0.647059, 1)
 [connection signal="close_requested" from="Container/FirstRow/ArmorVida/Armadura/AddTempArmor" to="." method="_on_add_temp_armor_close_requested"]
 [connection signal="close_requested" from="Container/FirstRow/ArmorVida/Vida/Puntos/Actuales/warning" to="Container/FirstRow/ArmorVida/Vida/EditLife" method="_on_warning_close_requested"]
 [connection signal="button_up" from="Container/FirstRow/ArmorVida/Vida/EditarVida" to="." method="_on_editar_vida_button_up"]
-[connection signal="addCurrent" from="Container/FirstRow/ArmorVida/Vida/EditLife" to="Container/FirstRow/ArmorVida/Vida/Puntos/Actuales/ptsActuales" method="_on_edit_life_add_current"]
-[connection signal="close_requested" from="Container/FirstRow/ArmorVida/Vida/EditLife" to="." method="_on_edit_life_close_requested"]
-[connection signal="subCurrent" from="Container/FirstRow/ArmorVida/Vida/EditLife" to="Container/FirstRow/ArmorVida/Vida/Puntos/Actuales/ptsActuales" method="_on_edit_life_sub_current"]
-[connection signal="button_up" from="Container/FirstRow/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox/curarbtn" to="Container/FirstRow/ArmorVida/Vida/EditLife" method="_on_curarbtn_button_up"]
-[connection signal="button_up" from="Container/FirstRow/ArmorVida/Vida/EditLife/VSplitContainer/UpperPanel/VBox/herirbtn" to="Container/FirstRow/ArmorVida/Vida/EditLife" method="_on_herirbtn_button_up"]
-[connection signal="button_up" from="Container/FirstRow/ArmorVida/Vida/EditLife/VSplitContainer/BottomPanel/VBox/maxBtn" to="Container/FirstRow/ArmorVida/Vida/EditLife" method="_on_max_btn_button_up"]
 [connection signal="button_up" from="Container/FirstRow/RightPanel/topPanel/status/hbox/Change" to="Container/FirstRow/RightPanel" method="_on_change_button_up"]
 [connection signal="button_up" from="Container/FirstRow/RightPanel/picture/EditButton" to="Container/FirstRow/RightPanel" method="_on_edit_button_button_up"]
 [connection signal="file_selected" from="Container/FirstRow/RightPanel/picture/FileDialog" to="Container/FirstRow/RightPanel" method="_on_file_dialog_file_selected"]

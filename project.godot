@@ -22,6 +22,7 @@ config/icon="res://Icono.png"
 
 GameManager="*res://_assets/Scripts/GameManager.gd"
 Utilities="*res://Scenes/Autoloads/Utilities.gd"
+GameTools="*res://_assets/Scripts/game_tools.gd"
 
 [display]
 

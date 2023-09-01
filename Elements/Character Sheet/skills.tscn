@@ -9,7 +9,7 @@ corner_radius_top_right = 12
 corner_radius_bottom_right = 12
 corner_radius_bottom_left = 20
 
-[node name="Stats" type="Control" node_paths=PackedStringArray("fue_num", "des_num", "con_num", "int_num", "sab_num", "car_num", "fue_MOD", "des_MOD", "con_MOD", "int_MOD", "sab_MOD", "car_MOD")]
+[node name="Stats" type="Control" node_paths=PackedStringArray("prof_label", "fue_num", "des_num", "con_num", "int_num", "sab_num", "car_num", "fue_MOD", "des_MOD", "con_MOD", "int_MOD", "sab_MOD", "car_MOD")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,18 +19,19 @@ offset_bottom = -560.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ylu36")
-fue_num = NodePath("MarginContainer/GridContainer/FUE_num")
-des_num = NodePath("MarginContainer/GridContainer/DES_num")
-con_num = NodePath("MarginContainer/GridContainer/CON_num")
-int_num = NodePath("MarginContainer/GridContainer/INT_num")
-sab_num = NodePath("MarginContainer/GridContainer/SAB_num")
-car_num = NodePath("MarginContainer/GridContainer/CAR_num")
-fue_MOD = NodePath("MarginContainer/GridContainer/FUE_bonus")
-des_MOD = NodePath("MarginContainer/GridContainer/DES_bonus")
-con_MOD = NodePath("MarginContainer/GridContainer/CON_bonus")
-int_MOD = NodePath("MarginContainer/GridContainer/INT_bonus")
-sab_MOD = NodePath("MarginContainer/GridContainer/SAB_bonus")
-car_MOD = NodePath("MarginContainer/GridContainer/CAR_bonus")
+prof_label = NodePath("MarginContainer/VBoxContainer/ProficiencyNumber")
+fue_num = NodePath("MarginContainer/VBoxContainer/GridContainer/FUE_num")
+des_num = NodePath("MarginContainer/VBoxContainer/GridContainer/DES_num")
+con_num = NodePath("MarginContainer/VBoxContainer/GridContainer/CON_num")
+int_num = NodePath("MarginContainer/VBoxContainer/GridContainer/INT_num")
+sab_num = NodePath("MarginContainer/VBoxContainer/GridContainer/SAB_num")
+car_num = NodePath("MarginContainer/VBoxContainer/GridContainer/CAR_num")
+fue_MOD = NodePath("MarginContainer/VBoxContainer/GridContainer/FUE_bonus")
+des_MOD = NodePath("MarginContainer/VBoxContainer/GridContainer/DES_bonus")
+con_MOD = NodePath("MarginContainer/VBoxContainer/GridContainer/CON_bonus")
+int_MOD = NodePath("MarginContainer/VBoxContainer/GridContainer/INT_bonus")
+sab_MOD = NodePath("MarginContainer/VBoxContainer/GridContainer/SAB_bonus")
+car_MOD = NodePath("MarginContainer/VBoxContainer/GridContainer/CAR_bonus")
 
 [node name="bg" type="Panel" parent="."]
 layout_mode = 1
@@ -51,103 +52,119 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
 
-[node name="FUE_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+[node name="FUE_num" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="FUE_lbl" type="Label" parent="MarginContainer/GridContainer"]
+[node name="FUE_lbl" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "FUE"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="FUE_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+[node name="FUE_bonus" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
 
-[node name="DES_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+[node name="DES_num" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="DES_lbl" type="Label" parent="MarginContainer/GridContainer"]
+[node name="DES_lbl" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "DES
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="DES_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+[node name="DES_bonus" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
 
-[node name="CON_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+[node name="CON_num" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="CON_lbl" type="Label" parent="MarginContainer/GridContainer"]
+[node name="CON_lbl" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "CON
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CON_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+[node name="CON_bonus" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
 
-[node name="INT_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+[node name="INT_num" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="INT_lbl" type="Label" parent="MarginContainer/GridContainer"]
+[node name="INT_lbl" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "INT
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="INT_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+[node name="INT_bonus" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
 
-[node name="SAB_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+[node name="SAB_num" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="SAB_lbl" type="Label" parent="MarginContainer/GridContainer"]
+[node name="SAB_lbl" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "SAB
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SAB_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+[node name="SAB_bonus" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
 
-[node name="CAR_num" type="LineEdit" parent="MarginContainer/GridContainer"]
+[node name="CAR_num" type="LineEdit" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="CAR_lbl" type="Label" parent="MarginContainer/GridContainer"]
+[node name="CAR_lbl" type="Label" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 text = "CAR
 "
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CAR_bonus" type="SpinBox" parent="MarginContainer/GridContainer"]
+[node name="CAR_bonus" type="SpinBox" parent="MarginContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 min_value = -5.0
 max_value = 10.0
 editable = false
+
+[node name="ProficiencyNumber" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/bold_font_size = 13
+theme_override_font_sizes/italics_font_size = 13
+theme_override_font_sizes/bold_italics_font_size = 13
+theme_override_font_sizes/mono_font_size = 13
+bbcode_enabled = true
+text = "[center][b]Proficiency:[/b] 0"
+fit_content = true

@@ -5,13 +5,16 @@
 [resource]
 script = ExtResource("1_ljxct")
 knowledgeName = "Suerte"
+description = "Suerte en general. Se puede combinar con otros conocimientos o usar como una segunda oportunidad si se esta en un aprieto muy grande. "
 currentPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 5.0
+maxPercentage = 35.0
+temporary_add = 0.0
 failAttempts = 0
 motivation = 0
+max_throw_num = 2
 proficiencyType = 0
-associatedStat = 0
+associatedStat = 6
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

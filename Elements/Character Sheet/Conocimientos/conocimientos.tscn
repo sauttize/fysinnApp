@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://ddp7y6gn35b86"]
+[gd_scene load_steps=29 format=3 uid="uid://ddp7y6gn35b86"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Conocimientos/ConocimientosTab.gd" id="1_5adb3"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Conocimientos/knowledgeList.gd" id="1_gfvjb"]
 [ext_resource type="Texture2D" uid="uid://cfurpr3rikh6w" path="res://_assets/Icons/Star/2x/outline_star_white_24dp.png" id="2_b5ilc"]
 [ext_resource type="Script" path="res://_assets/Tweens/position_tween.gd" id="3_bgbqo"]
+[ext_resource type="Texture2D" uid="uid://d1mpkgsjxix6v" path="res://_assets/Icons/Info/information.256x255.png" id="5_80572"]
 [ext_resource type="PackedScene" uid="uid://cp1n8sqvjphh2" path="res://Elements/Character Sheet/Conocimientos/history_record_slot.tscn" id="5_xkstt"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wq0kr"]
@@ -73,6 +74,9 @@ bg_color = Color(0, 0, 0, 0.454902)
 corner_radius_top_right = 12
 corner_radius_bottom_left = 12
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vwjne"]
+bg_color = Color(0.176471, 0.176471, 0.176471, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3yiyk"]
 bg_color = Color(0.305882, 0.137255, 0.129412, 0.603922)
 corner_radius_top_left = 10
@@ -124,6 +128,80 @@ corner_radius_bottom_left = 3
 expand_margin_left = 5.0
 expand_margin_right = 100.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ghdgn"]
+bg_color = Color(0.533333, 0.188235, 0.219608, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmspt"]
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="Animation" id="Animation_qreaq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dice:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dice:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_5plvt"]
+resource_name = "dice_movement"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Dice:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(2.82843, 0.277393, 0.287175, 0.420448),
+"update": 0,
+"values": [Vector2(-50, 10), Vector2(30, 80), Vector2(105, 65), Vector2(120, 80)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Dice:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8, 1),
+"transitions": PackedFloat32Array(2.37841, 0.517633, 0.5, 0.594604),
+"update": 0,
+"values": [-1.39626, 0.349066, 3.05433, 3.14159]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f8ao2"]
+_data = {
+"RESET": SubResource("Animation_qreaq"),
+"dice_movement": SubResource("Animation_5plvt")
+}
+
 [node name="Conocimientos" type="MarginContainer" node_paths=PackedStringArray("knowl_list", "historialPanelPos", "historialList")]
 custom_minimum_size = Vector2(0, 680)
 anchors_preset = 15
@@ -138,12 +216,13 @@ script = ExtResource("1_5adb3")
 knowl_list = NodePath("VBOX/knowledgeList")
 historialPanelPos = NodePath("VBOX/ThirdRow/Historial/PositionTween")
 historialList = NodePath("VBOX/ThirdRow/Historial/vbox/margin/historial/List")
+history_slot = ExtResource("5_xkstt")
 
 [node name="VBOX" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 7
 
-[node name="knowledgeList" type="ItemList" parent="VBOX" node_paths=PackedStringArray("starContainer", "perActual", "perMinimo", "perMaximo", "description_label", "failed_attempts", "current_motivation", "associated_stat", "proficiency_type", "list_effects", "effect_bttn")]
+[node name="knowledgeList" type="ItemList" parent="VBOX" node_paths=PackedStringArray("starContainer", "special_button", "learn_button", "learn_win", "learn_win_bttn1", "learn_win_options", "learn_win_bttn2", "learn_win_bttn3", "learn_win_screen1", "learn_win_screen2", "stat_button", "effect_bttn", "stat_t_win", "stat_win_control", "stat_win_anim", "stat_anim_controller", "stat_win_spin", "stat_win_button", "perActual", "perMinimo", "perMaximo", "description_label", "failed_attempts", "current_motivation", "associated_stat", "proficiency_type", "list_effects")]
 custom_minimum_size = Vector2(20, 200)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.921569, 0.921569, 0.921569, 1)
@@ -154,6 +233,24 @@ fixed_column_width = 200
 script = ExtResource("1_gfvjb")
 starContainer = NodePath("../knInfo/levelStars")
 noLevelColor = Color(0.768627, 0.831373, 0.843137, 1)
+special_button = NodePath("../ThirdRow/Tirar/elementos/TirarBttn")
+learn_button = NodePath("../Information/bg/elements/upperPanel/aprenderBttn")
+learn_win = NodePath("../Information/LearnBy")
+learn_win_bttn1 = NodePath("../Information/LearnBy/PanelContainer/Screen1/NextButton")
+learn_win_options = NodePath("../Information/LearnBy/PanelContainer/Screen2/HBoxContainer/OptionButton")
+learn_win_bttn2 = NodePath("../Information/LearnBy/PanelContainer/Screen2/HBoxContainer/LearnBttn")
+learn_win_bttn3 = NodePath("../Information/LearnBy/PanelContainer/Screen2/Info/showInfo")
+learn_win_screen1 = NodePath("../Information/LearnBy/PanelContainer/Screen1")
+learn_win_screen2 = NodePath("../Information/LearnBy/PanelContainer/Screen2")
+stat_button = NodePath("../ThirdRow/Otros/Margin/vbox/habilidad/tirarHab")
+effect_bttn = NodePath("../ThirdRow/Otros/Margin/vbox/efecto/activarEfecto")
+stat_t_win = NodePath("../ThirdRow/Tirar con habilidad")
+stat_win_control = NodePath("../ThirdRow/Tirar con habilidad/PanelContainer/VBoxContainer")
+stat_win_anim = NodePath("../ThirdRow/Tirar con habilidad/PanelContainer/Control")
+stat_anim_controller = NodePath("../ThirdRow/Tirar con habilidad/PanelContainer/Control/AnimationPlayer")
+stat_win_spin = NodePath("../ThirdRow/Tirar con habilidad/PanelContainer/VBoxContainer/SpinBox")
+stat_win_button = NodePath("../ThirdRow/Tirar con habilidad/PanelContainer/VBoxContainer/Button")
+stat_anim_time = 1.2
 perActual = NodePath("../knInfo/actuales/actualNum")
 perMinimo = NodePath("../knInfo/minimos/minimoNum")
 perMaximo = NodePath("../knInfo/maximos/maximoNum")
@@ -163,7 +260,6 @@ current_motivation = NodePath("../Information/bg/elements/upperPanel/elements/mo
 associated_stat = NodePath("../ThirdRow/Otros/Margin/vbox/habilidad/ability")
 proficiency_type = NodePath("../ThirdRow/Otros/Margin/vbox/proficiency/options")
 list_effects = NodePath("../ThirdRow/Otros/Margin/vbox/lista_efectos/effect")
-effect_bttn = NodePath("../ThirdRow/Otros/Margin/vbox/efecto/activarEfecto")
 
 [node name="knInfo" type="HBoxContainer" parent="VBOX"]
 layout_mode = 2
@@ -377,16 +473,19 @@ theme_override_constants/separation = 0
 [node name="Description" type="MarginContainer" parent="VBOX/Information/bg/elements"]
 custom_minimum_size = Vector2(0, 170)
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBOX/Information/bg/elements/Description"]
 layout_mode = 2
 
 [node name="Descripcion" type="RichTextLabel" parent="VBOX/Information/bg/elements/Description/ScrollContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+fit_content = true
 
 [node name="upperPanel" type="Panel" parent="VBOX/Information/bg/elements"]
 custom_minimum_size = Vector2(0, 30)
@@ -447,6 +546,88 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_aou7w")
 text = "0
 "
 horizontal_alignment = 1
+
+[node name="LearnBy" type="Window" parent="VBOX/Information"]
+title = "Subir de nivel"
+initial_position = 2
+size = Vector2i(400, 300)
+visible = false
+wrap_controls = true
+unresizable = true
+
+[node name="PanelContainer" type="PanelContainer" parent="VBOX/Information/LearnBy"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vwjne")
+
+[node name="Screen1" type="VBoxContainer" parent="VBOX/Information/LearnBy/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBOX/Information/LearnBy/PanelContainer/Screen1"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+bbcode_enabled = true
+text = "[center]Para subir de nivel un conocimiento debes aprender sobre el mismo de las siguientes formas:
+
+- [b]Practicando[/b] : Menos eficaz pero se puede hacer sin necesidad de nada en especial
+- [b]Por libro/objeto[/b] : Algunos libros, objetos o efectos especiales te permiten aprender con mayor facilidad.
+- [b]Academia / Profesor[/b] : forma más sencilla de subir de nivel. Debes tener un maestro o asistir a alguna academia para este tipo de enseñanza."
+fit_content = true
+autowrap_mode = 2
+
+[node name="NextButton" type="Button" parent="VBOX/Information/LearnBy/PanelContainer/Screen1"]
+layout_mode = 2
+text = "Entendido"
+
+[node name="Screen2" type="VBoxContainer" parent="VBOX/Information/LearnBy/PanelContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Info" type="HBoxContainer" parent="VBOX/Information/LearnBy/PanelContainer/Screen2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBOX/Information/LearnBy/PanelContainer/Screen2/Info"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Aprender por..."
+
+[node name="showInfo" type="Button" parent="VBOX/Information/LearnBy/PanelContainer/Screen2/Info"]
+custom_minimum_size = Vector2(25, 25)
+layout_mode = 2
+size_flags_horizontal = 8
+icon = ExtResource("5_80572")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBOX/Information/LearnBy/PanelContainer/Screen2"]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBOX/Information/LearnBy/PanelContainer/Screen2/HBoxContainer"]
+layout_mode = 2
+item_count = 3
+selected = 0
+popup/item_0/text = "Practica"
+popup/item_0/id = 0
+popup/item_1/text = "Objeto"
+popup/item_1/id = 1
+popup/item_2/text = "Academia"
+popup/item_2/id = 2
+
+[node name="LearnBttn" type="Button" parent="VBOX/Information/LearnBy/PanelContainer/Screen2/HBoxContainer"]
+layout_mode = 2
+text = "Aprender"
 
 [node name="ThirdRow" type="Control" parent="VBOX"]
 custom_minimum_size = Vector2(680, 300)
@@ -633,18 +814,17 @@ offset_bottom = 48.0
 
 [node name="elementos" type="HBoxContainer" parent="VBOX/ThirdRow/Tirar"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -17.0
-offset_right = 358.0
-offset_bottom = 17.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 80
 
-[node name="aprenderBttn" type="Button" parent="VBOX/ThirdRow/Tirar/elementos"]
+[node name="TirarBttn" type="Button" parent="VBOX/ThirdRow/Tirar/elementos"]
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 18
 theme_override_styles/normal = SubResource("StyleBoxFlat_apq8h")
 theme_override_styles/hover = SubResource("StyleBoxFlat_oa65o")
@@ -652,6 +832,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_7n60f")
 text = "Tirar"
 
 [node name="resultado2" type="HBoxContainer" parent="VBOX/ThirdRow/Tirar/elementos"]
+visible = false
 layout_mode = 2
 theme_override_constants/separation = 20
 
@@ -672,3 +853,76 @@ theme_override_font_sizes/font_size = 18
 text = "success"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Tirar con habilidad" type="Window" parent="VBOX/ThirdRow"]
+title = "Tirar con habilidad"
+initial_position = 2
+size = Vector2i(200, 130)
+visible = false
+wrap_controls = true
+unresizable = true
+
+[node name="PanelContainer" type="PanelContainer" parent="VBOX/ThirdRow/Tirar con habilidad"]
+custom_minimum_size = Vector2(200, 130)
+offset_right = 200.0
+offset_bottom = 130.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "¿Cuánto debes superar?"
+
+[node name="SpinBox" type="SpinBox" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="Button" type="Button" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tirar"
+
+[node name="Control" type="Control" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Dice" type="Panel" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer/Control"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 80.0
+offset_right = 59.9982
+offset_bottom = 120.0
+pivot_offset = Vector2(20, 20)
+theme_override_styles/panel = SubResource("StyleBoxFlat_ghdgn")
+
+[node name="Circle" type="Panel" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer/Control/Dice"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 15.0
+offset_bottom = 15.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dmspt")
+
+[node name="Circle2" type="Panel" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer/Control/Dice"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -15.0
+offset_top = -15.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_dmspt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="VBOX/ThirdRow/Tirar con habilidad/PanelContainer/Control"]
+libraries = {
+"": SubResource("AnimationLibrary_f8ao2")
+}

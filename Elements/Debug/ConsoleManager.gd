@@ -41,7 +41,9 @@ var commandList : Dictionary = {
 	"editor_mode": "change_to_editor", "editor": "change_to_editor",
 	"currency_calc" : "currency_calculator", "c_calc" : "currency_calculator", "money_c": "currency_calculator",
 	"cr_item" : "create_item", "newitem": "create_item", "new_i" : "create_item",
-	"open": "open_dir", "folder" : "open_dir"
+	"open": "open_dir", "folder" : "open_dir",
+	"new_prof" : "change_proficiency" , "nprof" : "change_proficiency",
+	"new_mot" : "change_motivation", "mot" : "change_motivation"
 }
 
 @onready var argumentList : Dictionary = {
@@ -78,6 +80,7 @@ var get_last_sent : bool = true
 @export var helpDiceThrow : PackedStringArray # dice_throw
 @export var helpInfo : PackedStringArray # info_about
 @export var helpShortCuts : PackedStringArray # shortcut_list
+@export var helpFolders : PackedStringArray # List of folders
 @export var helpMaster : PackedStringArray # Master tools
 @export_category("Colors")
 @export_subgroup("Basics")
@@ -399,13 +402,13 @@ func process_link(link : String, file_type : String):
 	for entry in https_booleans:
 		entry = false
 # Called when the HTTP request is completed.
-func _get_file_from_web(result, response_code, headers, body):
+func _get_file_from_web(_result, _response_code, _headers, body):
 	if request_error: return
 	if https_booleans["get_image"]:
 		var image = Image.new()
 		if image.load_png_from_buffer(body) == OK:
 			var texture = ImageTexture.new()
-			texture.create_from_image(image)
+			ImageTexture.create_from_image(image)
 			web_image_texture = texture
 		else:
 			show_error("There was a problem with the image")
@@ -442,6 +445,12 @@ func change_color(argument : PackedStringArray = []):
 
 func change_text(argument : PackedStringArray = []):
 	if no_arguments(argument, true): return
+	if was_generic_asked(argument, ['help']):
+		show_this_help(['[i]more, +[/i]: bigger text',
+		'[i]less, -[/i]: smaller text', '',
+		'[b]predefined size:[/b]', 
+		'-- [i]default, normal[/i]', '-- [i]big, 1[/i]', '-- [i]small, 2[/i]'])
+		return
 	
 	var invalidArgs : bool = true
 	
@@ -457,6 +466,9 @@ func change_text(argument : PackedStringArray = []):
 	elif was_generic_asked(argument, ["big", "1"]):
 		invalidArgs = false
 		currentFontSize = 20
+	elif was_generic_asked(argument, ['small', '2']):
+		invalidArgs = false
+		currentFontSize = 10
 	
 	if invalidArgs: 
 		show_error("Invalid option. Try with '+' or '-'.")
@@ -491,10 +503,8 @@ func reload_scene_cmmd(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
 	reload_scene()
 func open_dir(argument : PackedStringArray = []):
-	var list_of_folders = ["[b]List of folders:[/b]\n", "Custom items: cus_items, myitems"]
-	
 	if no_arguments(argument, true): return
-	if check_args_tooMany(argument, 2, list_of_folders): return
+	if check_args_tooMany(argument, 2, helpFolders): return
 	
 	var was_found = true
 	var path = ""
@@ -536,6 +546,47 @@ func add_effect(argument : PackedStringArray = []):
 		show_done_message("Effect added! (use eff command to see more details)")
 		if was_generic_asked(argument, ["save", "s"], true, "File saved!"): save_playerData()
 	else: show_error("That effect doesn't exist.")
+func change_proficiency(argument : PackedStringArray = []):
+	if no_arguments(argument, true): return
+	var new_num = argument[0]
+	if !int(new_num):
+		print_line("Only integer numbers are accepted as arguments.", errorAltColor)
+	elif int(new_num) <= 0:
+		print_line("Proficiency should be greater than 1.", errorAltColor)
+	else:
+		playerData.proficiency_num = int(new_num)
+		print_line("Done! Remember to save your file to keep the changes.", doneColor)
+func change_motivation(argument : PackedStringArray = []):
+	if no_arguments(argument, true): return
+	if was_generic_asked(argument, ['help']):
+		show_this_help(['[b]Sintax options:[/b]','',
+		'mot "[i]name[/i]" + [i]new_mot[/i]',
+		'mot "[i]name[/i]" + add + [i]amount[/i]',
+		'mot "[i]name[/i]" + sub + [i]amount[/i]'])
+	
+	var knowl_name = ""
+	for line in argument:
+		if line.contains('"'): 
+			var new_line = line.replace('"', "")
+			if line.ends_with('"'): 
+				knowl_name += new_line
+				break
+			if line.begins_with('"'):
+				knowl_name += new_line + " "
+				continue
+		else:
+			knowl_name += line + " "
+	
+	var selected_knowl : Knowledge
+	for knowl in playerData.myKnowledgeList:
+		if knowl.knowledgeName.to_lower() == knowl_name.to_lower():
+			selected_knowl = knowl
+	
+	if !selected_knowl:
+		print_line("Name don't match with any knowledge. Remember to write name between brackets!", errorAltColor)
+		return
+	
+	
 # ----------- show stuff -------------
 func show_name(argument : PackedStringArray = []):
 	no_arguments_needed(argument)
@@ -617,11 +668,17 @@ func throw_dice(argument : PackedStringArray = []):
 	print_line("")
 	print_line("Total: [b]" + str(total) + "[/b]", doneColor)
 func knowledge_list_to_default(argument : PackedStringArray = []):
-	no_arguments_needed(argument)
-	playerData.myKnowledgeList = dataDump.get_duplicate_list_knowledge()
-	show_done_message("Knowledge list from player save file were set to default sucessfully!")
+	if check_args_tooMany(argument, 1, ["No arguments to use the local DD.'og' to use the internal."]):
+		return
+	playerData.myKnowledgeList.clear()
+	if was_generic_asked(argument, ["og", "-i"]):
+		playerData.myKnowledgeList.append_array(dataDumpOG.get_duplicate_list_knowledge())
+		show_done_message("Knowledge list from player save file were set to default sucessfully! (Original Dump)")
+	else:
+		playerData.myKnowledgeList.append_array(dataDump.get_duplicate_list_knowledge())
+		show_done_message("Knowledge list from player save file were set to default sucessfully! (Local Dump)")
 func currency_calculator(argument : PackedStringArray = []):
-	var validArgs : PackedStringArray = ["PP", "PP", "PE", "PO", "PPT"]
+	var validArgs : PackedStringArray = ["PC","PP", "PP", "PE", "PO", "PPT"]
 	var helpArray : PackedStringArray = ["[b]Sintax:[/b] c_calc (money wanted) (from) (to)", 
 	"[b]From/To Options: pc, pp, pe, po, ppt.[/b]", "", 
 	"[i]Remember full numbers. Decimal numbers are not allowed for conversion.[/i]"]
@@ -648,14 +705,14 @@ func currency_calculator(argument : PackedStringArray = []):
 # ----------- creation -------------
 func create_item(argument : PackedStringArray = []):
 	if no_arguments(argument) or was_generic_asked(argument, ["help", "h"]):
-		print_line("[b]Sintax:[/b] newitem name , description , type , weight [i][optional][/i] , effect_name, uses", errorAltColor)
+		print_line("[b]Sintax:[/b] newitem name , description , type , weight", helpColor)
+		print_line("[i][optional][/i] , effect_name, uses", helpColor)
+		print_line("-> [b]Type options:[/b] 'Consumible', 'Especial', 'Tesoro', 'Magico', 'Utilidad', 'Desconocido'.", helpColor)
+		print_line("-> [b]Weight[/b] is in kg. Ex: '0.45'", helpColor)
+		print_line("-> To change the item [b]image[/b] you need to drop the image in the inventory.", helpColor)
+		print_line("-> The [b]uses[/b] is how many times can you use the item before it's gone.", helpColor)
 		print_line("")
-		print_line("-> [b]Type options:[/b] 'Consumible', 'Especial', 'Tesoro', 'Magico', 'Utilidad', 'Desconocido'.", errorAltColor)
-		print_line("-> [b]Weight[/b] is in kg. Ex: '0.45'", errorAltColor)
-		print_line("-> Use '-' or 'default' in [b]image_link[/b] to not use an image.", errorAltColor)
-		print_line("-> The [b]uses[/b] is how many times can you use the item before it's gone.", errorAltColor)
-		print_line("")
-		print_line("[b]IMPORTANT:[/b] Comma can't be immediately next to argument. ex: 'Nombre,' has to be 'Nombre ,'", errorAltColor)
+		print_line("[b]IMPORTANT:[/b] Comma can't be immediately next to argument. ex: 'Nombre,' has to be 'Nombre ,'", helpColor)
 		return
 	var separator_cont : int = 0
 	for n in argument.size():
@@ -724,7 +781,7 @@ func create_item(argument : PackedStringArray = []):
 					print_line("For 'uses' you need to input a integer.", errorAltColor)
 	# Errors
 	# Type
-	if type == "Magico": type == "Mágico"
+	if type == "Magico": type = "Mágico"
 	if !allowed_types.has(type): 
 		print_line("Type doesn't exist. Check [i]help[/i] to see the allowed types.", errorAltColor)
 		return
@@ -903,14 +960,15 @@ func master_tools(argument : PackedStringArray = []):
 		if !OS.is_debug_build():
 			show_error("That command only is available in debug mode.")
 			return
-		dataDumpOG.helpList = helpList
-		dataDumpOG.helpChangeColor = helpChangeColor
-		dataDumpOG.helpSaveFile = helpSaveFile
-		dataDumpOG.helpReload = helpReload
-		dataDumpOG.helpDiceThrow = helpDiceThrow
-		dataDumpOG.helpInfo = helpInfo
-		dataDumpOG.helpShortCuts = helpShortCuts
-		dataDumpOG.helpMaster = helpMaster
+		dataDumpOG.helpList = helpList.duplicate()
+		dataDumpOG.helpChangeColor = helpChangeColor.duplicate()
+		dataDumpOG.helpSaveFile = helpSaveFile.duplicate()
+		dataDumpOG.helpReload = helpReload.duplicate()
+		dataDumpOG.helpDiceThrow = helpDiceThrow.duplicate()
+		dataDumpOG.helpInfo = helpInfo.duplicate()
+		dataDumpOG.helpShortCuts = helpShortCuts.duplicate()
+		dataDumpOG.helpMaster = helpMaster.duplicate()
+		save_dataDump()
 		show_done_message("All arrays were updated and saved!")
 # ----------- funsies -------------
 func easter_egg(_argument : PackedStringArray = []):

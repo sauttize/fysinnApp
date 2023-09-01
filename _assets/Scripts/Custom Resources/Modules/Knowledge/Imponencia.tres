@@ -5,13 +5,19 @@
 [resource]
 script = ExtResource("1_aouyv")
 knowledgeName = "Imponencia"
+description = "Combinación de intimidación y persuasión en DnD.
+
+Como conocimiento se puede usar para provocar o mejorar reputación/ganar fama."
 currentPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 15.0
+maxPercentage = 70.0
+temporary_add = 0.0
 failAttempts = 0
 motivation = 0
+max_throw_num = 4
 proficiencyType = 0
+only_special_throw = false
 associatedStat = 0
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

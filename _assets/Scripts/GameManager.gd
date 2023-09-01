@@ -98,7 +98,7 @@ func GetCurrentSaveFile() -> PlayerData:
 	else: return PlayerData.new()
 
 func GetAllSaves() -> Array[PlayerData]:
-	var allSaves : Array[PlayerData] = []
+	var allSaves : Array[PlayerData]
 	var pathList : PackedStringArray = DirAccess.get_files_at(SAVES_FOLDER_ROUTE)
 	pathList = updatePathList(pathList)
 	for path in pathList:
@@ -130,7 +130,7 @@ func GetDataDump() -> DataFile:
 
 func GetMainDataDump() -> DataFile:
 	var dataDumpOG : DataFile
-	dataDumpOG = ResourceLoader.load(DATA_DUMP_ROUTE)
+	dataDumpOG = ResourceLoader.load(DATA_DUMP_BACKUP)
 	return dataDumpOG
 
 ## Way of saving the data
@@ -167,7 +167,7 @@ func GetRaceNone() -> Race:
 
 # Full lists of data
 func GetAllEffects() -> Array[Effect]:
-	var allEffects : Array[Effect] = []
+	var allEffects : Array[Effect]
 	var pathList : PackedStringArray = DirAccess.get_files_at(EFFECTS_ROUTE)
 	for path in pathList:
 		var thisEffect

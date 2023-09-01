@@ -5,13 +5,23 @@
 [resource]
 script = ExtResource("1_mfg17")
 knowledgeName = "Artes Escénicas"
+description = "Realizar un show efectivo. La gente pagará mejor por ver un buen show, lo que lo hace especialmente útil para conseguir dinero. 
+
+[i]¿Por qué máximo 85?[/i]
+Realizar un show puede suponer hacer una tirada sola: show corto. O multiples tiradas: show compuesto. 
+
+El show compuesto lleva más tiempo del día, pero podrá generar más o menos dinero."
 currentPercentage = 0.0
+temporaryPercentage = 0.0
 currentLevel = 1
-minPercentage = 1.0
-maxPercentage = 100.0
+minPercentage = 15.0
+maxPercentage = 85.0
+temporary_add = 0.0
 failAttempts = 0
-motivation = 0
+motivation = 20
+max_motivation = 20
+max_throw_num = 10
 proficiencyType = 0
-associatedStat = 0
+associatedStat = 5
 associatedClasses = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Class.gd")]([])
 associatedEffects = Array[Resource("res://_assets/Scripts/Custom Resources/Modules/Effects.gd")]([])

@@ -5,10 +5,24 @@ extends Window
 @export var lifePoints : LineEdit
 @export var maxPoints : LineEdit
 
+@export_category("Buttons")
+@export var heal_bttn : Button
+@export var damage_bttn : Button
+@export var mod_max_bttn : Button
+
 signal addCurrent(value : int)
 signal subCurrent(value : int)
 signal updateMax(value : int)
 
+func _ready() -> void:
+	heal_bttn.pressed.connect(_on_curarbtn_button_up)
+	damage_bttn.pressed.connect(_on_herirbtn_button_up)
+	mod_max_bttn.pressed.connect(_on_max_btn_button_up)
+	
+	_warning.close_requested.connect(_warning.hide)
+	
+	close_requested.connect(hide)
+	
 #HEAL
 func _on_curarbtn_button_up():
 	if (int(lifePoints.text)):
@@ -33,6 +47,3 @@ func _on_max_btn_button_up():
 	else:
 		_warning.show()
 
-#Hides warning window
-func _on_warning_close_requested():
-	_warning.hide()
