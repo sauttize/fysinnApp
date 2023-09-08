@@ -1,0 +1,119 @@
+[gd_scene load_steps=4 format=3 uid="uid://n3oik1efoxgb"]
+
+[ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="1_h77r6"]
+[ext_resource type="Texture2D" uid="uid://cubjdqkujv28b" path="res://_assets/Icons/Heart/Relationship/empty.png" id="2_m4uyj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxvnn"]
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[node name="ProfileSlot" type="Button"]
+custom_minimum_size = Vector2(0, 100)
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 10.0
+offset_top = -37.5
+offset_right = 196.0
+offset_bottom = 37.5
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Panel" type="Panel" parent="HBoxContainer"]
+clip_children = 1
+z_index = 1
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxvnn")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(78, 78)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -39.0
+offset_top = -39.0
+offset_right = 39.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h77r6")
+expand_mode = 1
+
+[node name="Data" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Name" type="RichTextLabel" parent="HBoxContainer/Data"]
+layout_mode = 2
+size_flags_horizontal = 0
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 12
+bbcode_enabled = true
+text = "Ana (23)♀"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Hearts" type="HBoxContainer" parent="HBoxContainer/Data"]
+layout_mode = 2
+
+[node name="h1" type="TextureRect" parent="HBoxContainer/Data/Hearts"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_m4uyj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="h2" type="TextureRect" parent="HBoxContainer/Data/Hearts"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_m4uyj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="h3" type="TextureRect" parent="HBoxContainer/Data/Hearts"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_m4uyj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="h4" type="TextureRect" parent="HBoxContainer/Data/Hearts"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_m4uyj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="h5" type="TextureRect" parent="HBoxContainer/Data/Hearts"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_m4uyj")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Type" type="RichTextLabel" parent="HBoxContainer/Data"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+bbcode_enabled = true
+text = "[i]Conocida[/i]"
+fit_content = true
+autowrap_mode = 0

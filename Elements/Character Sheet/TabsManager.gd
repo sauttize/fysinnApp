@@ -12,7 +12,7 @@ func _ready() -> void:
 	baseButton.pressed.connect(changeTab.bind(0))
 	conocimientosButton.pressed.connect(changeTab.bind(1))
 	inventarioButton.pressed.connect(changeTab.bind(3))
-#	relacionesButton.pressed.connect(changeTab.bind(4))
+	relacionesButton.pressed.connect(changeTab.bind(4))
 #	notasButton.pressed.connect(changeTab.bind(5))
 	consoleButton.pressed.connect(changeTab.bind(2))
 

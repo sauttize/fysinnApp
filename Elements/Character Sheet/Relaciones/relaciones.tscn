@@ -1,0 +1,299 @@
+[gd_scene load_steps=12 format=3 uid="uid://bhcso5yjj7k04"]
+
+[ext_resource type="PackedScene" uid="uid://n3oik1efoxgb" path="res://Elements/Character Sheet/Relaciones/profile_slot.tscn" id="1_pkcgr"]
+[ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="2_rwj71"]
+[ext_resource type="Texture2D" uid="uid://cubjdqkujv28b" path="res://_assets/Icons/Heart/Relationship/empty.png" id="3_fdlkw"]
+[ext_resource type="Texture2D" uid="uid://b6bpfuex47bpt" path="res://_assets/Icons/Edit/writing.png" id="4_1wkwo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_as4hp"]
+bg_color = Color(0.263326, 0.199041, 0.18105, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_twfrx"]
+corner_radius_top_left = 13
+corner_radius_top_right = 13
+corner_radius_bottom_right = 13
+corner_radius_bottom_left = 13
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w71ch"]
+bg_color = Color(0.203922, 0.458824, 0.341176, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rcbyi"]
+bg_color = Color(0.654902, 0.658824, 0.501961, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u4d38"]
+bg_color = Color(0.113725, 0.184314, 0.207843, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxvnn"]
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7v0ej"]
+bg_color = Color(0.238978, 0.178342, 0.162036, 1)
+
+[node name="Relaciones" type="MarginContainer"]
+custom_minimum_size = Vector2(700, 760)
+offset_right = 700.0
+offset_bottom = 760.0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="RightSection" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TabBar" type="TabBar" parent="HBoxContainer/RightSection"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+tab_count = 2
+tab_0/title = "Personas"
+tab_1/title = "Otros"
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/RightSection"]
+custom_minimum_size = Vector2(0, 680)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_as4hp")
+
+[node name="clip" type="Panel" parent="HBoxContainer/RightSection/PanelContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(225, 670)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_twfrx")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/RightSection/PanelContainer/clip"]
+custom_minimum_size = Vector2(225, 670)
+layout_mode = 2
+offset_right = 225.0
+offset_bottom = 670.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer"]
+custom_minimum_size = Vector2(225, 0)
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ProfileSlot" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
+layout_mode = 2
+
+[node name="ProfileSlot2" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
+layout_mode = 2
+
+[node name="ProfileSlot3" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
+layout_mode = 2
+
+[node name="ProfileSlot4" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
+layout_mode = 2
+
+[node name="ProfileSlot5" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
+layout_mode = 2
+
+[node name="ProfileSlot6" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
+layout_mode = 2
+
+[node name="ProfileSlot7" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
+layout_mode = 2
+
+[node name="ProfileSlot8" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="HBoxContainer/RightSection/PanelContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="Button" type="Button" parent="HBoxContainer/RightSection/PanelContainer/Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -28.0
+offset_right = 40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_w71ch")
+theme_override_styles/hover = SubResource("StyleBoxFlat_rcbyi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_u4d38")
+text = "+"
+
+[node name="LeftSection" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Perfil" type="MarginContainer" parent="HBoxContainer/LeftSection"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftSection/Perfil"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Panel" type="Panel" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer"]
+clip_children = 1
+custom_minimum_size = Vector2(120, 120)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cxvnn")
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(122, 122)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -61.0
+offset_top = -61.0
+offset_right = 61.0
+offset_bottom = 61.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_rwj71")
+expand_mode = 1
+
+[node name="Datas" type="VBoxContainer" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer"]
+layout_mode = 2
+
+[node name="Data" type="VBoxContainer" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Name" type="RichTextLabel" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data"]
+layout_mode = 2
+size_flags_horizontal = 0
+bbcode_enabled = true
+text = "Ana (23)♀"
+fit_content = true
+autowrap_mode = 0
+
+[node name="Hearts" type="HBoxContainer" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data"]
+layout_mode = 2
+
+[node name="h1" type="TextureRect" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("3_fdlkw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="h2" type="TextureRect" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("3_fdlkw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="h3" type="TextureRect" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("3_fdlkw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="h4" type="TextureRect" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("3_fdlkw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="h5" type="TextureRect" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+texture = ExtResource("3_fdlkw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Type" type="RichTextLabel" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[i]Conocida[/i]"
+fit_content = true
+autowrap_mode = 0
+
+[node name="DataEdit" type="VBoxContainer" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit"]
+layout_mode = 2
+
+[node name="EditName" type="LineEdit" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+placeholder_text = "Nombre"
+
+[node name="EditAge" type="SpinBox" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+min_value = 1.0
+value = 1.0
+rounded = true
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+item_count = 3
+popup/item_0/text = "Hombre"
+popup/item_0/id = 0
+popup/item_1/text = "Mujer"
+popup/item_1/id = 1
+popup/item_2/text = "Otro"
+popup/item_2/id = 2
+
+[node name="EditHearts" type="SpinBox" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit"]
+layout_mode = 2
+max_value = 10.0
+rounded = true
+
+[node name="EditType" type="LineEdit" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+placeholder_text = "Tipo de relacion"
+
+[node name="Button" type="Button" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas"]
+modulate = Color(0.560784, 0.498039, 0.588235, 1)
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+size_flags_vertical = 4
+icon = ExtResource("4_1wkwo")
+icon_alignment = 1
+expand_icon = true
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/LeftSection"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_7v0ej")
+
+[node name="TextEdit" type="TextEdit" parent="HBoxContainer/LeftSection/PanelContainer"]
+custom_minimum_size = Vector2(380, 560)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+placeholder_text = "Raza :
+Oficio :
+Otros :"
