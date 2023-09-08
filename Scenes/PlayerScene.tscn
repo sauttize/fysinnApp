@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://cqh7crjxe48sq"]
+[gd_scene load_steps=37 format=3 uid="uid://cqh7crjxe48sq"]
 
 [ext_resource type="Theme" uid="uid://gk8yrqt5iopc" path="res://_assets/Themes/default_theme.tres" id="1_186vv"]
 [ext_resource type="Script" path="res://_assets/Scripts/GameManager.gd" id="1_fd83x"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://Scenes/exitHandler.gd" id="13_jfxcr"]
 [ext_resource type="PackedScene" uid="uid://r1el5plw4yls" path="res://Elements/Debug/consoleTab.tscn" id="16_jijpf"]
 [ext_resource type="PackedScene" uid="uid://fjb5dqytibqg" path="res://Elements/Character Sheet/Inventario/inventario.tscn" id="16_qx1o4"]
+[ext_resource type="PackedScene" uid="uid://bhcso5yjj7k04" path="res://Elements/Character Sheet/Relaciones/relaciones.tscn" id="17_5mc40"]
 
 [sub_resource type="SystemFont" id="SystemFont_xkiv0"]
 
@@ -317,6 +318,10 @@ layout_mode = 2
 [node name="Inventario" parent="Window/Container/TabContainer" instance=ExtResource("16_qx1o4")]
 visible = false
 custom_minimum_size = Vector2(700, 780)
+layout_mode = 2
+
+[node name="Relaciones" parent="Window/Container/TabContainer" instance=ExtResource("17_5mc40")]
+visible = false
 layout_mode = 2
 
 [node name="LoadResource" type="FileDialog" parent="."]
