@@ -50,3 +50,22 @@ func knowledge_learn(knowl : Knowledge, type : K_TYPE, type_str : String) -> Kno
 		new_record.create_learn_record(knowl, type_str, false)
 	
 	return new_record
+	
+## ----> Relationships tools:
+@onready var empty_heart : Texture2D = preload("res://_assets/Icons/Heart/Relationship/empty.png")
+@onready var half_heart : Texture2D = preload("res://_assets/Icons/Heart/Relationship/half_heart.png")
+@onready var full_heart : Texture2D = preload("res://_assets/Icons/Heart/Relationship/full.png")
+
+func update_heart_textures(arr : Array[TextureRect], rel : Relationship) -> void:
+	var new_text_num : int = rel.full_hearts + rel.half_hearts
+	var cont := 0
+	for i in new_text_num:
+		if cont < rel.full_hearts:
+			cont += 1
+			arr[i].texture = full_heart
+		else:
+			arr[i].texture = half_heart
+
+func clean_heart_textures(arr : Array[TextureRect]) -> void:
+	for node in arr:
+		node.texture = empty_heart

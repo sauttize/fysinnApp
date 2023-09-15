@@ -78,7 +78,7 @@ var casillasMov : int = 0:
 @export var activeSpells : Array[Spell]
 
 #EFFECTS
-@export_category("Effects")
+@export_category("-- Effects --")
 @export var activeEffects : Array[Effect]
 
 #KNOWLEDGE RELATED
@@ -86,8 +86,12 @@ var casillasMov : int = 0:
 @export var myKnowledgeList : Array[Knowledge]
 @export var knowl_history : Array[KnowledgeRecord]
 
+#ROL RELATED
+@export_category("-- Rol related --")
+@export var relationships : Array[Relationship]
+
 #OTHER
-@export_category("Other")
+@export_category("-- Other --")
 @export var lastSaved : Dictionary
 @export var PATH : String = ""
 @export var UNIQUE_ID : int = -1

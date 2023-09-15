@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://bhcso5yjj7k04"]
+[gd_scene load_steps=14 format=3 uid="uid://bhcso5yjj7k04"]
 
+[ext_resource type="Script" path="res://Elements/Character Sheet/Relaciones/relaciones.gd" id="1_3rxde"]
 [ext_resource type="PackedScene" uid="uid://n3oik1efoxgb" path="res://Elements/Character Sheet/Relaciones/profile_slot.tscn" id="1_pkcgr"]
 [ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="2_rwj71"]
 [ext_resource type="Texture2D" uid="uid://cubjdqkujv28b" path="res://_assets/Icons/Heart/Relationship/empty.png" id="3_fdlkw"]
+[ext_resource type="Script" path="res://Elements/Character Sheet/Relaciones/rel_creator_win.gd" id="3_im85v"]
 [ext_resource type="Texture2D" uid="uid://b6bpfuex47bpt" path="res://_assets/Icons/Edit/writing.png" id="4_1wkwo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_as4hp"]
@@ -38,7 +40,7 @@ corner_radius_bottom_left = 15
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7v0ej"]
 bg_color = Color(0.238978, 0.178342, 0.162036, 1)
 
-[node name="Relaciones" type="MarginContainer"]
+[node name="Relaciones" type="MarginContainer" node_paths=PackedStringArray("new_rel_button", "new_rel_window", "list_parent", "output_view", "pic_texture", "name_label", "heart_textures", "type_label", "extra_info_label", "input_view", "edit_name", "edit_age", "sex_opt", "edit_hearts", "edit_type", "edit_button")]
 custom_minimum_size = Vector2(700, 760)
 offset_right = 700.0
 offset_bottom = 760.0
@@ -46,6 +48,24 @@ theme_override_constants/margin_left = 15
 theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
+script = ExtResource("1_3rxde")
+new_rel_button = NodePath("HBoxContainer/RightSection/PanelContainer/Control/NewRelationship")
+new_rel_window = NodePath("HBoxContainer/RightSection/PanelContainer/Control/rel_creator")
+profileSlot = ExtResource("1_pkcgr")
+list_parent = NodePath("HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List")
+output_view = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data")
+pic_texture = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Panel/TextureRect")
+name_label = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Name")
+heart_textures = [NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h1"), NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h2"), NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h3"), NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h4"), NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h5")]
+type_label = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Type")
+extra_info_label = NodePath("HBoxContainer/LeftSection/PanelContainer/TextEdit")
+input_view = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit")
+edit_name = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/HBoxContainer/EditName")
+edit_age = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/HBoxContainer/EditAge")
+sex_opt = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/HBoxContainer/OptionButton")
+edit_hearts = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/EditHearts")
+edit_type = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/EditType")
+edit_button = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Button")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -95,34 +115,13 @@ layout_mode = 2
 [node name="ProfileSlot" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
 layout_mode = 2
 
-[node name="ProfileSlot2" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
-layout_mode = 2
-
-[node name="ProfileSlot3" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
-layout_mode = 2
-
-[node name="ProfileSlot4" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
-layout_mode = 2
-
-[node name="ProfileSlot5" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
-layout_mode = 2
-
-[node name="ProfileSlot6" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
-layout_mode = 2
-
-[node name="ProfileSlot7" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
-layout_mode = 2
-
-[node name="ProfileSlot8" parent="HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List" instance=ExtResource("1_pkcgr")]
-layout_mode = 2
-
 [node name="Control" type="Control" parent="HBoxContainer/RightSection/PanelContainer"]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="Button" type="Button" parent="HBoxContainer/RightSection/PanelContainer/Control"]
+[node name="NewRelationship" type="Button" parent="HBoxContainer/RightSection/PanelContainer/Control"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -138,6 +137,130 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_w71ch")
 theme_override_styles/hover = SubResource("StyleBoxFlat_rcbyi")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_u4d38")
 text = "+"
+
+[node name="rel_creator" type="Window" parent="HBoxContainer/RightSection/PanelContainer/Control" node_paths=PackedStringArray("create_button", "name_edit", "age_edit", "sex_opt", "type_edit", "select_pic_button", "is_selected_label", "file_window")]
+initial_position = 2
+size = Vector2i(300, 300)
+visible = false
+wrap_controls = true
+unresizable = true
+script = ExtResource("3_im85v")
+create_button = NodePath("Elements/Crear")
+name_edit = NodePath("Elements/inp_1/LineEdit")
+age_edit = NodePath("Elements/inp_2/SpinBox")
+sex_opt = NodePath("Elements/inp_3/OptionButton")
+type_edit = NodePath("Elements/inp_4/LineEdit")
+select_pic_button = NodePath("Elements/inp_5/pic_butt_win")
+is_selected_label = NodePath("Elements/inp_5/pic_selected")
+file_window = NodePath("FileDialog")
+
+[node name="bg" type="Panel" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Elements" type="VBoxContainer" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -110.5
+offset_top = -20.0
+offset_right = 110.5
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="inp_1" type="HBoxContainer" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements"]
+layout_mode = 2
+
+[node name="name" type="Label" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_1"]
+layout_mode = 2
+text = "Nombre: "
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_1"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="inp_2" type="HBoxContainer" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements"]
+layout_mode = 2
+
+[node name="age" type="Label" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_2"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Edad: "
+
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="inp_3" type="HBoxContainer" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements"]
+layout_mode = 2
+
+[node name="sex" type="Label" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_3"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Sexo: "
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_3"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+selected = 0
+popup/item_0/text = "Hombre"
+popup/item_0/id = 0
+popup/item_1/text = "Mujer"
+popup/item_1/id = 1
+popup/item_2/text = "Otro"
+popup/item_2/id = 2
+
+[node name="inp_4" type="HBoxContainer" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements"]
+layout_mode = 2
+
+[node name="type" type="Label" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_4"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Tipo relacion:"
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_4"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="inp_5" type="HBoxContainer" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements"]
+layout_mode = 2
+
+[node name="pic" type="Label" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_5"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Foto:"
+
+[node name="pic_butt_win" type="Button" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_5"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Seleccionar"
+
+[node name="pic_selected" type="Label" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements/inp_5"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.854902, 0, 0, 1)
+text = "x"
+
+[node name="Crear" type="Button" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator/Elements"]
+layout_mode = 2
+text = "Crear"
+
+[node name="FileDialog" type="FileDialog" parent="HBoxContainer/RightSection/PanelContainer/Control/rel_creator"]
+title = "Open a File"
+initial_position = 2
+size = Vector2i(500, 400)
+unresizable = true
+ok_button_text = "Open"
+cancel_button_text = "Cancelar"
+file_mode = 0
+access = 2
+filters = PackedStringArray("*.png", "*.jpg")
 
 [node name="LeftSection" type="VBoxContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
@@ -243,8 +366,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="EditName" type="LineEdit" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/HBoxContainer"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(90, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 placeholder_text = "Nombre"
 
 [node name="EditAge" type="SpinBox" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit/HBoxContainer"]
@@ -273,6 +397,7 @@ rounded = true
 [node name="EditType" type="LineEdit" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/DataEdit"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 placeholder_text = "Tipo de relacion"
 
 [node name="Button" type="Button" parent="HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas"]
