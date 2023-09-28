@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://bhcso5yjj7k04"]
+[gd_scene load_steps=15 format=3 uid="uid://bhcso5yjj7k04"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Relaciones/relaciones.gd" id="1_3rxde"]
 [ext_resource type="PackedScene" uid="uid://n3oik1efoxgb" path="res://Elements/Character Sheet/Relaciones/profile_slot.tscn" id="1_pkcgr"]
 [ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="2_rwj71"]
 [ext_resource type="Texture2D" uid="uid://cubjdqkujv28b" path="res://_assets/Icons/Heart/Relationship/empty.png" id="3_fdlkw"]
 [ext_resource type="Script" path="res://Elements/Character Sheet/Relaciones/rel_creator_win.gd" id="3_im85v"]
+[ext_resource type="Texture2D" uid="uid://bml5urvfump7f" path="res://_assets/Images/bob.png" id="3_kpf3j"]
 [ext_resource type="Texture2D" uid="uid://b6bpfuex47bpt" path="res://_assets/Icons/Edit/writing.png" id="4_1wkwo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_as4hp"]
@@ -55,6 +56,7 @@ profileSlot = ExtResource("1_pkcgr")
 list_parent = NodePath("HBoxContainer/RightSection/PanelContainer/clip/ScrollContainer/MarginContainer/List")
 output_view = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data")
 pic_texture = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Panel/TextureRect")
+placeholder_pic = ExtResource("3_kpf3j")
 name_label = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Name")
 heart_textures = [NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h1"), NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h2"), NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h3"), NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h4"), NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Hearts/h5")]
 type_label = NodePath("HBoxContainer/LeftSection/Perfil/HBoxContainer/Datas/Data/Type")
@@ -80,9 +82,8 @@ theme_override_constants/separation = 0
 [node name="TabBar" type="TabBar" parent="HBoxContainer/RightSection"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-tab_count = 2
-tab_0/title = "Personas"
-tab_1/title = "Otros"
+tab_count = 1
+tab_0/title = "Lista"
 
 [node name="PanelContainer" type="PanelContainer" parent="HBoxContainer/RightSection"]
 custom_minimum_size = Vector2(0, 680)

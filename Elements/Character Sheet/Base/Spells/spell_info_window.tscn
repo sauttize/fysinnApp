@@ -66,10 +66,10 @@ expand_margin_left = 2.0
 expand_margin_right = 4.0
 anti_aliasing = false
 
-[node name="SpellInfo" type="Window" node_paths=PackedStringArray("moreInfoElement", "activateEffect", "notionLink", "winName", "winElement", "winType", "winLevel", "winIsCombat", "winRace", "winThrow", "winRange", "winSaveThrow", "winDescription", "winBuff", "winDebuff")]
+[node name="SpellInfo" type="Window" node_paths=PackedStringArray("moreInfoElement", "activateEffect", "notionLink", "addSpell", "eraseSpell", "winName", "winElement", "winType", "winLevel", "winIsCombat", "winRace", "winThrow", "winRange", "winSaveThrow", "winDescription", "winBuff", "winDebuff")]
 title = "Información sobre el hechizo"
 initial_position = 2
-size = Vector2i(400, 400)
+size = Vector2i(400, 449)
 visible = false
 wrap_controls = true
 unresizable = true
@@ -78,6 +78,8 @@ script = ExtResource("1_rflab")
 moreInfoElement = NodePath("Container/vertical/boxElement/info")
 activateEffect = NodePath("Container/vertical/elementalEffect/right/activateEffects")
 notionLink = NodePath("Container/vertical/elementalEffect/right/goToNotion")
+addSpell = NodePath("Container/vertical/addSpell")
+eraseSpell = NodePath("Container/vertical/eraseSpell")
 winName = NodePath("Container/vertical/boxName/name")
 winElement = NodePath("Container/vertical/boxElement/element")
 winType = NodePath("Container/vertical/tabla/type")
@@ -291,3 +293,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 10
 text = "Pagina Notion"
+
+[node name="addSpell" type="Button" parent="Container/vertical"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Añadir a mis hechizos"
+
+[node name="eraseSpell" type="Button" parent="Container/vertical"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Eliminar de mis hechizos"

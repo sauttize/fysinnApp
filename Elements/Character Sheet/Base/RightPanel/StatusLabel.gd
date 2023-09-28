@@ -18,6 +18,7 @@ const RED : float = 25 # Less than 25%
 func _ready() -> void:
 	update_num_fromFile()
 	update_colors()
+	text = str(currentNum)
 	
 	editWindow.sendNumbers.connect(update_num)
 

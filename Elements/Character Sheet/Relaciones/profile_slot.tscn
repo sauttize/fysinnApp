@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://n3oik1efoxgb"]
 
 [ext_resource type="Script" path="res://Elements/Character Sheet/Relaciones/profile_slot.gd" id="1_gk4xc"]
-[ext_resource type="Texture2D" uid="uid://drjaepfwkohva" path="res://_assets/Images/profilepic/test.jpg" id="1_h77r6"]
+[ext_resource type="Texture2D" uid="uid://bml5urvfump7f" path="res://_assets/Images/bob.png" id="2_1xxoo"]
 [ext_resource type="Texture2D" uid="uid://cubjdqkujv28b" path="res://_assets/Icons/Heart/Relationship/empty.png" id="2_m4uyj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cxvnn"]
@@ -50,7 +50,7 @@ offset_right = 39.0
 offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_h77r6")
+texture = ExtResource("2_1xxoo")
 expand_mode = 1
 
 [node name="Data" type="VBoxContainer" parent="HBoxContainer"]

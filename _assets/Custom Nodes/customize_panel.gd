@@ -9,7 +9,7 @@ class_name CustomizePanel
 @export var default_color : Color
 @export_subgroup("Optional")
 @export var use_modulate : bool = false
-@export var depend_on : Control
+@export var depend_on : Control ## This node needs to be visible for input to be read
 @export_subgroup("Parent (Just link one)")
 @export var hide_parent : bool = false
 @export var parent_node : Control

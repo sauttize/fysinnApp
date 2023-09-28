@@ -1,4 +1,5 @@
 extends MarginContainer
+class_name ListSpells
 
 @onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 @onready var learnedList : ItemList = $container/playerList
@@ -77,17 +78,18 @@ func apply_filter():
 func filter_list(fromLevel:int = 1, toLevel:int = 20, byRace:Array[Race] = allRaces):
 	spellsCache.clear()
 	if showAll: spellsCache = GameManager.GetAllSpells()
-	else: spellsCache = playerData.spells
+	else: spellsCache.append_array(playerData.spells)
+
 	
 	if !((fromLevel == 1) && (toLevel == 20)) && fromLevel < toLevel:
-		clear_cache_temporary()
-		for spell in tempCache:
+#		clear_cache_temporary()
+		for spell in spellsCache:
 			if spell.level > fromLevel && spell.level < toLevel:
 				spellsCache.push_back(spell)
 	
 	if !(byRace == allRaces):
-		clear_cache_temporary()
-		for spell in tempCache:
+#		clear_cache_temporary()
+		for spell in spellsCache:
 			for race in byRace:
 				if spell.races.has(race):
 					spellsCache.push_back(spell)
@@ -144,7 +146,12 @@ func show_information():
 		return
 	var about : Spell = spellsCache[index]
 	var window = spellInfoWindow.instantiate() as SpellInfoWindow
+	window.list_updated.connect(update_list)
 	window.update_Complete(about)
 	window.close_requested.connect(window.queue_free)
 	add_child(window)
 	window.show()
+
+func update_list() -> void:
+	filter_list()
+	show_by_cache()

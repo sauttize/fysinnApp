@@ -5,12 +5,15 @@ var spellData : Spell
 
 # PRELOADS AND OTHER
 var info_Elemental = preload("res://Elements/Character Sheet/Base/Spells/info_elemento.tscn")
+@onready var playerData : PlayerData = GameManager.GetCurrentSaveFile()
 
 # BUTTONS
 @export_subgroup("Buttons")
 @export var moreInfoElement : Button
 @export var activateEffect : Button
 @export var notionLink : Button
+@export var addSpell : Button
+@export var eraseSpell : Button
 
 # LABELS
 @export_subgroup("Labels")
@@ -27,14 +30,21 @@ var info_Elemental = preload("res://Elements/Character Sheet/Base/Spells/info_el
 @export var winBuff : Label
 @export var winDebuff : Label
 
+signal list_updated
+
 func _ready() -> void:
 	#buttons set up
 	moreInfoElement.button_up.connect(showElementInfo)
 	notionLink.button_up.connect(goToLink)
+	
+	addSpell.pressed.connect(add_spell)
+	eraseSpell.pressed.connect(erase_spell)
+	update_button()
 
 func update_Complete(data : Spell):
 	spellData = data
 	if (!spellData): return
+	if is_node_ready(): update_button()
 	
 	winName.text = spellData.spellName # Name
 	if (spellData.isElemental && spellData.element): # Element, buff and debuff
@@ -86,6 +96,28 @@ func activate_effect():
 			playerData.activeEffects.append(eff)
 		GameManager.UpdateOriginalSaveFile()
 		get_tree().reload_current_scene()
+
+func update_button():
+	if playerData.spells.has(spellData):
+		eraseSpell.show()
+		addSpell.hide()
+	else:
+		addSpell.show()
+		eraseSpell.hide()
+
+func add_spell():
+	playerData.spells.append(spellData)
+	Utilities.create_PopUp("¡Hechizo añadido!")
+#	GameManager.UpdateOriginalSaveFile()
+	list_updated.emit()
+	update_button()
+
+func erase_spell():
+	playerData.spells.erase(spellData)
+	Utilities.create_PopUp("Hechizo eliminado de tu lista")
+#	GameManager.UpdateOriginalSaveFile()
+	list_updated.emit()
+	update_button()
 
 func goToLink():
 	spellData.goToLink()

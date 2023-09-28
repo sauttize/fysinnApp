@@ -12,6 +12,7 @@ enum TYPES {
 	OTRO
 }
 
+@export var id : int = 0
 @export var spellName : String = "none"
 
 #@export var active : bool = false #if active then show up in spelllist

@@ -14,7 +14,7 @@ const EXT : String = '.tres'
 @onready var newElement : OptionButton = $Control/form/element/elemento
 
 @onready var getPhotoButton : Button = $Control/form/photo/Button
-@onready var newPhoto : ImageTexture
+var newPhoto : ImageTexture
 @onready var photoStatusLabel : Label = $Control/form/photo/elegida
 
 @onready var newPlayerData : PlayerData = PlayerData.new()

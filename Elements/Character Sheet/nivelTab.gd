@@ -14,6 +14,7 @@ extends Control
 
 
 func _ready() -> void:
+	levelNumber.value = playerData.nivel
 	levelUpAlert.close_requested.connect(levelUpAlert.hide)
 	levelUpAlert.visibility_changed.connect(randomize_alert_photo)
 

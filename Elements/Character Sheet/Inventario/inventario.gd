@@ -12,12 +12,14 @@ var current_item : Item = null
 @export var price_num : SpinBox
 @export var price_sent_delay : float = 0.3
 @export var activate_bttn : Button
+@export var delete_bttn : Button
 
 func _ready() -> void:
 	update_list()
 	
 	price_num.value_changed.connect(update_price)
 	activate_bttn.pressed.connect(activate_effect)
+	delete_bttn.pressed.connect(delete_item)
 	
 	get_tree().get_root().files_dropped.connect(file_dropped)
 
@@ -45,6 +47,7 @@ func clear_information() -> void:
 	price_num.value = 0
 	price_num.editable = false
 	activate_bttn.hide()
+	delete_bttn.disabled = true
 
 func get_item_info(item_selected : Item) -> void:
 	current_item = item_selected
@@ -68,6 +71,7 @@ func get_item_info(item_selected : Item) -> void:
 		item_data.append_text("[b]Peso:[/b] %s kg" % [current_item.weight])
 		price_num.value = current_item.price
 		price_num.editable = true
+		delete_bttn.disabled = false
 
 func update_price(new_price : int) -> void:
 #	await get_tree().create_timer(price_sent_delay).timeout
@@ -93,6 +97,14 @@ func activate_effect() -> void:
 		else:
 			Utilities.create_PopUp("Lo siento, ha ocurrido un error.")
 
+func delete_item() -> void:
+	if playerData.item_list.has(current_item):
+		playerData.item_list.erase(current_item)
+		Utilities.create_PopUp("Item eliminado")
+		update_list()
+	else:
+		Utilities.create_PopUp("Ocurrio un error.")
+
 func file_dropped(files_path : PackedStringArray) -> void:
 	if is_visible_in_tree() != true: return # If it's outside inventory tab
 	await get_tree().create_timer(0.2).timeout
@@ -111,7 +123,7 @@ func file_dropped(files_path : PackedStringArray) -> void:
 				return
 	
 	for n in files_path.size():
-		var file = ResourceLoader.load(files_path[n])
+		var file = ResourceLoader.load(files_path[n]).duplicate()
 		if file && file is Item:
 			playerData.item_list.append(file)
 			update_list()

@@ -13,6 +13,7 @@ var current_rel : Relationship
 @export_subgroup("Output")
 @export var output_view : VBoxContainer
 @export var pic_texture : TextureRect
+@export var placeholder_pic : Texture2D
 @export var name_label : RichTextLabel
 @export var heart_textures : Array[TextureRect]
 @export var type_label : RichTextLabel
@@ -30,6 +31,7 @@ var output_shown : bool :
 
 func _ready() -> void:
 	edit_button.pressed.connect(change_view)
+	visibility_changed.connect(reset_tab)
 	
 	clean_all()
 	fill_list_data()
@@ -38,6 +40,7 @@ func _ready() -> void:
 		update_profile_info()
 	else:
 		edit_button.disabled = true
+		extra_info_label.editable = false
 	
 	extra_info_label.text_changed.connect(save_extra_info)
 	new_rel_button.pressed.connect(new_rel_window.show)
@@ -46,6 +49,7 @@ func _ready() -> void:
 ## Update data
 func clean_all() -> void:
 	name_label.clear()
+	pic_texture.texture = null
 	GameTools.clean_heart_textures(heart_textures)
 	type_label.clear()
 	extra_info_label.clear()
@@ -62,11 +66,13 @@ func fill_list_data() -> void:
 func get_data(rel : Relationship = current_rel) -> void:
 	current_rel = rel
 	edit_button.disabled = false
+	extra_info_label.editable = true
 	update_profile_info()
 
 func update_profile_info() -> void:
 	clean_all()
 	if current_rel.picture: pic_texture.texture = current_rel.picture
+	else: pic_texture.texture = placeholder_pic
 	var name_str := "%s (%s)%s" % [current_rel.rel_name, current_rel.age, current_rel.sex_emoji]
 	name_label.append_text(name_str)
 	GameTools.clean_heart_textures(heart_textures)
@@ -92,6 +98,12 @@ func save_extra_info() -> void:
 	var ind : int = playerData.relationships.find(current_rel)
 	if ind != -1: playerData.relationships[ind] = current_rel
 
+func reset_tab() -> void:
+	current_rel = null
+	clean_all()
+	edit_button.disabled = true
+	extra_info_label.editable = false
+
 ## Edit Button
 func change_view() -> void:
 	match output_shown:
@@ -111,3 +123,20 @@ func change_view() -> void:
 			input_view.hide()
 			output_view.show()
 			save_all_input()
+
+## Edit photo
+## Drop image options
+func file_dropped(files_path : PackedStringArray) -> void:
+	if (is_visible_in_tree() != true) || !current_rel: return # If it's outside relationship tab
+	await get_tree().create_timer(0.2).timeout
+	
+	if files_path.size() == 1:
+		var err = Image.new().load(files_path[0])
+		if err == OK:
+			var new_img = Image.load_from_file(files_path[0])
+			var new_text = ImageTexture.create_from_image(new_img)
+			current_rel.picture = new_text
+			Utilities.create_PopUp("Imagen cambiada correctamente!")
+			pic_texture.texture = current_rel.picture
+	else:
+		Utilities.create_PopUp("Solo puedes arrastrar una imagen.")

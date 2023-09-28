@@ -17,3 +17,4 @@ class_name Customization
 @export var inventory_color_2 : Color = Color("#0000005b") # List
 @export var inv_armor_color : Color = Color("#3e5a4c")
 @export var figure_color : Color = Color("#ffffff")
+@export var inv_spells_color : Color = Color("#383964")
