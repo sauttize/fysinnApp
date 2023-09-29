@@ -14,5 +14,7 @@ Tool created to help my players keep track of their characters in my TTRPG game 
 - Full customization over colors of many sections of the app.
 
 ### Not inplemented yet
-- Relationship tab to keep track of NPCs and pets.
 - Notes tab to allow quick access to information collected.
+- Creation of custom spells, effects and armor items.
+- Better implemented effect system.
+- Armor system not tested yet.
