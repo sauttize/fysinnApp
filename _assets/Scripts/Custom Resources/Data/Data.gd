@@ -24,6 +24,7 @@ var NOT_SLEEP_MINUTES : float = 0.11 ## Each minute
 @export var ELEMENT_LIST : Array[Element]
 @export var EFFECTS_LIST : Array[Effect]
 @export var SPELLS_LIST : Array[Spell]
+@export var INFO_BLOCK_LIST : Array[InfoBlock]
 
 # KNOWLEDGE LIST
 @export_category("Knowledge related")
